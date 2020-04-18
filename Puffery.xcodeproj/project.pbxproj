@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154632444BB4400EDB97B /* AppDelegate.swift */; };
 		BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154652444BB4400EDB97B /* SceneDelegate.swift */; };
-		BAF154692444BB4400EDB97B /* Wake.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF154672444BB4400EDB97B /* Wake.xcdatamodeld */; };
+		BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */; };
 		BAF1546B2444BB4400EDB97B /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1546A2444BB4400EDB97B /* AppView.swift */; };
 		BAF1546D2444BB4600EDB97B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAF1546C2444BB4600EDB97B /* Assets.xcassets */; };
 		BAF154702444BB4600EDB97B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAF1546F2444BB4600EDB97B /* Preview Assets.xcassets */; };
 		BAF154732444BB4600EDB97B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF154712444BB4600EDB97B /* LaunchScreen.storyboard */; };
-		BAF1547E2444BB4600EDB97B /* WakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1547D2444BB4600EDB97B /* WakeTests.swift */; };
-		BAF154892444BB4600EDB97B /* WakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154882444BB4600EDB97B /* WakeUITests.swift */; };
+		BAF1547E2444BB4600EDB97B /* PufferyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1547D2444BB4600EDB97B /* PufferyTests.swift */; };
+		BAF154892444BB4600EDB97B /* PufferyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154882444BB4600EDB97B /* PufferyUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,32 +24,32 @@
 			containerPortal = BAF154582444BB4400EDB97B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = BAF1545F2444BB4400EDB97B;
-			remoteInfo = Wake;
+			remoteInfo = Puffery;
 		};
 		BAF154852444BB4600EDB97B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BAF154582444BB4400EDB97B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = BAF1545F2444BB4400EDB97B;
-			remoteInfo = Wake;
+			remoteInfo = Puffery;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BAF154602444BB4400EDB97B /* Wake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wake.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAF154602444BB4400EDB97B /* Puffery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puffery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF154632444BB4400EDB97B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF154652444BB4400EDB97B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BAF154682444BB4400EDB97B /* Wake.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wake.xcdatamodel; sourceTree = "<group>"; };
+		BAF154682444BB4400EDB97B /* Puffery.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Puffery.xcdatamodel; sourceTree = "<group>"; };
 		BAF1546A2444BB4400EDB97B /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		BAF1546C2444BB4600EDB97B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BAF1546F2444BB4600EDB97B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BAF154722444BB4600EDB97B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BAF154742444BB4600EDB97B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BAF154792444BB4600EDB97B /* WakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BAF1547D2444BB4600EDB97B /* WakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeTests.swift; sourceTree = "<group>"; };
+		BAF154792444BB4600EDB97B /* PufferyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PufferyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAF1547D2444BB4600EDB97B /* PufferyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PufferyTests.swift; sourceTree = "<group>"; };
 		BAF1547F2444BB4600EDB97B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BAF154842444BB4600EDB97B /* WakeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WakeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BAF154882444BB4600EDB97B /* WakeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeUITests.swift; sourceTree = "<group>"; };
+		BAF154842444BB4600EDB97B /* PufferyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PufferyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAF154882444BB4600EDB97B /* PufferyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PufferyUITests.swift; sourceTree = "<group>"; };
 		BAF1548A2444BB4600EDB97B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,9 +81,9 @@
 		BAF154572444BB4400EDB97B = {
 			isa = PBXGroup;
 			children = (
-				BAF154622444BB4400EDB97B /* Wake */,
-				BAF1547C2444BB4600EDB97B /* WakeTests */,
-				BAF154872444BB4600EDB97B /* WakeUITests */,
+				BAF154622444BB4400EDB97B /* Puffery */,
+				BAF1547C2444BB4600EDB97B /* PufferyTests */,
+				BAF154872444BB4600EDB97B /* PufferyUITests */,
 				BAF154612444BB4400EDB97B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,14 +91,14 @@
 		BAF154612444BB4400EDB97B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BAF154602444BB4400EDB97B /* Wake.app */,
-				BAF154792444BB4600EDB97B /* WakeTests.xctest */,
-				BAF154842444BB4600EDB97B /* WakeUITests.xctest */,
+				BAF154602444BB4400EDB97B /* Puffery.app */,
+				BAF154792444BB4600EDB97B /* PufferyTests.xctest */,
+				BAF154842444BB4600EDB97B /* PufferyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BAF154622444BB4400EDB97B /* Wake */ = {
+		BAF154622444BB4400EDB97B /* Puffery */ = {
 			isa = PBXGroup;
 			children = (
 				BAF154632444BB4400EDB97B /* AppDelegate.swift */,
@@ -107,10 +107,10 @@
 				BAF1546C2444BB4600EDB97B /* Assets.xcassets */,
 				BAF154712444BB4600EDB97B /* LaunchScreen.storyboard */,
 				BAF154742444BB4600EDB97B /* Info.plist */,
-				BAF154672444BB4400EDB97B /* Wake.xcdatamodeld */,
+				BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */,
 				BAF1546E2444BB4600EDB97B /* Preview Content */,
 			);
-			path = Wake;
+			path = Puffery;
 			sourceTree = "<group>";
 		};
 		BAF1546E2444BB4600EDB97B /* Preview Content */ = {
@@ -121,30 +121,30 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		BAF1547C2444BB4600EDB97B /* WakeTests */ = {
+		BAF1547C2444BB4600EDB97B /* PufferyTests */ = {
 			isa = PBXGroup;
 			children = (
-				BAF1547D2444BB4600EDB97B /* WakeTests.swift */,
+				BAF1547D2444BB4600EDB97B /* PufferyTests.swift */,
 				BAF1547F2444BB4600EDB97B /* Info.plist */,
 			);
-			path = WakeTests;
+			path = PufferyTests;
 			sourceTree = "<group>";
 		};
-		BAF154872444BB4600EDB97B /* WakeUITests */ = {
+		BAF154872444BB4600EDB97B /* PufferyUITests */ = {
 			isa = PBXGroup;
 			children = (
-				BAF154882444BB4600EDB97B /* WakeUITests.swift */,
+				BAF154882444BB4600EDB97B /* PufferyUITests.swift */,
 				BAF1548A2444BB4600EDB97B /* Info.plist */,
 			);
-			path = WakeUITests;
+			path = PufferyUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BAF1545F2444BB4400EDB97B /* Wake */ = {
+		BAF1545F2444BB4400EDB97B /* Puffery */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BAF1548D2444BB4600EDB97B /* Build configuration list for PBXNativeTarget "Wake" */;
+			buildConfigurationList = BAF1548D2444BB4600EDB97B /* Build configuration list for PBXNativeTarget "Puffery" */;
 			buildPhases = (
 				BAF1545C2444BB4400EDB97B /* Sources */,
 				BAF1545D2444BB4400EDB97B /* Frameworks */,
@@ -154,14 +154,14 @@
 			);
 			dependencies = (
 			);
-			name = Wake;
-			productName = Wake;
-			productReference = BAF154602444BB4400EDB97B /* Wake.app */;
+			name = Puffery;
+			productName = Puffery;
+			productReference = BAF154602444BB4400EDB97B /* Puffery.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BAF154782444BB4600EDB97B /* WakeTests */ = {
+		BAF154782444BB4600EDB97B /* PufferyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BAF154902444BB4600EDB97B /* Build configuration list for PBXNativeTarget "WakeTests" */;
+			buildConfigurationList = BAF154902444BB4600EDB97B /* Build configuration list for PBXNativeTarget "PufferyTests" */;
 			buildPhases = (
 				BAF154752444BB4600EDB97B /* Sources */,
 				BAF154762444BB4600EDB97B /* Frameworks */,
@@ -172,14 +172,14 @@
 			dependencies = (
 				BAF1547B2444BB4600EDB97B /* PBXTargetDependency */,
 			);
-			name = WakeTests;
+			name = PufferyTests;
 			productName = WakeTests;
-			productReference = BAF154792444BB4600EDB97B /* WakeTests.xctest */;
+			productReference = BAF154792444BB4600EDB97B /* PufferyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		BAF154832444BB4600EDB97B /* WakeUITests */ = {
+		BAF154832444BB4600EDB97B /* PufferyUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BAF154932444BB4600EDB97B /* Build configuration list for PBXNativeTarget "WakeUITests" */;
+			buildConfigurationList = BAF154932444BB4600EDB97B /* Build configuration list for PBXNativeTarget "PufferyUITests" */;
 			buildPhases = (
 				BAF154802444BB4600EDB97B /* Sources */,
 				BAF154812444BB4600EDB97B /* Frameworks */,
@@ -190,9 +190,9 @@
 			dependencies = (
 				BAF154862444BB4600EDB97B /* PBXTargetDependency */,
 			);
-			name = WakeUITests;
+			name = PufferyUITests;
 			productName = WakeUITests;
-			productReference = BAF154842444BB4600EDB97B /* WakeUITests.xctest */;
+			productReference = BAF154842444BB4600EDB97B /* PufferyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -218,7 +218,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BAF1545B2444BB4400EDB97B /* Build configuration list for PBXProject "Wake" */;
+			buildConfigurationList = BAF1545B2444BB4400EDB97B /* Build configuration list for PBXProject "Puffery" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -231,9 +231,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BAF1545F2444BB4400EDB97B /* Wake */,
-				BAF154782444BB4600EDB97B /* WakeTests */,
-				BAF154832444BB4600EDB97B /* WakeUITests */,
+				BAF1545F2444BB4400EDB97B /* Puffery */,
+				BAF154782444BB4600EDB97B /* PufferyTests */,
+				BAF154832444BB4600EDB97B /* PufferyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -271,7 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */,
-				BAF154692444BB4400EDB97B /* Wake.xcdatamodeld in Sources */,
+				BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */,
 				BAF1546B2444BB4400EDB97B /* AppView.swift in Sources */,
 				BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */,
 			);
@@ -281,7 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAF1547E2444BB4600EDB97B /* WakeTests.swift in Sources */,
+				BAF1547E2444BB4600EDB97B /* PufferyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAF154892444BB4600EDB97B /* WakeUITests.swift in Sources */,
+				BAF154892444BB4600EDB97B /* PufferyUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,12 +298,12 @@
 /* Begin PBXTargetDependency section */
 		BAF1547B2444BB4600EDB97B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BAF1545F2444BB4400EDB97B /* Wake */;
+			target = BAF1545F2444BB4400EDB97B /* Puffery */;
 			targetProxy = BAF1547A2444BB4600EDB97B /* PBXContainerItemProxy */;
 		};
 		BAF154862444BB4600EDB97B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BAF1545F2444BB4400EDB97B /* Wake */;
+			target = BAF1545F2444BB4400EDB97B /* Puffery */;
 			targetProxy = BAF154852444BB4600EDB97B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -439,15 +439,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Wake/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Puffery/Preview Content\"";
 				DEVELOPMENT_TEAM = BG9UY79792;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Wake/Info.plist;
+				INFOPLIST_FILE = Puffery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.Wake;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.Puffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -459,15 +459,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Wake/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Puffery/Preview Content\"";
 				DEVELOPMENT_TEAM = BG9UY79792;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Wake/Info.plist;
+				INFOPLIST_FILE = Puffery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.Wake;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.Puffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -492,7 +492,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wake.app/Wake";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Puffery.app/Puffery";
 			};
 			name = Debug;
 		};
@@ -514,7 +514,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wake.app/Wake";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Puffery.app/Puffery";
 			};
 			name = Release;
 		};
@@ -534,7 +534,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Wake;
+				TEST_TARGET_NAME = Puffery;
 			};
 			name = Debug;
 		};
@@ -554,14 +554,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Wake;
+				TEST_TARGET_NAME = Puffery;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BAF1545B2444BB4400EDB97B /* Build configuration list for PBXProject "Wake" */ = {
+		BAF1545B2444BB4400EDB97B /* Build configuration list for PBXProject "Puffery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BAF1548B2444BB4600EDB97B /* Debug */,
@@ -570,7 +570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BAF1548D2444BB4600EDB97B /* Build configuration list for PBXNativeTarget "Wake" */ = {
+		BAF1548D2444BB4600EDB97B /* Build configuration list for PBXNativeTarget "Puffery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BAF1548E2444BB4600EDB97B /* Debug */,
@@ -579,7 +579,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BAF154902444BB4600EDB97B /* Build configuration list for PBXNativeTarget "WakeTests" */ = {
+		BAF154902444BB4600EDB97B /* Build configuration list for PBXNativeTarget "PufferyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BAF154912444BB4600EDB97B /* Debug */,
@@ -588,7 +588,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BAF154932444BB4600EDB97B /* Build configuration list for PBXNativeTarget "WakeUITests" */ = {
+		BAF154932444BB4600EDB97B /* Build configuration list for PBXNativeTarget "PufferyUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BAF154942444BB4600EDB97B /* Debug */,
@@ -600,13 +600,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		BAF154672444BB4400EDB97B /* Wake.xcdatamodeld */ = {
+		BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				BAF154682444BB4400EDB97B /* Wake.xcdatamodel */,
+				BAF154682444BB4400EDB97B /* Puffery.xcdatamodel */,
 			);
-			currentVersion = BAF154682444BB4400EDB97B /* Wake.xcdatamodel */;
-			path = Wake.xcdatamodeld;
+			currentVersion = BAF154682444BB4400EDB97B /* Puffery.xcdatamodel */;
+			path = Puffery.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

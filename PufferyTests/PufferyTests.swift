@@ -1,15 +1,15 @@
 //
-//  WakeTests.swift
-//  WakeTests
+//  PufferyTests.swift
+//  PufferyTests
 //
 //  Created by Valentin Knabel on 13.04.20.
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
 import XCTest
-@testable import Wake
+@testable import Puffery
 
-class WakeTests: XCTestCase {
+class PufferyTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

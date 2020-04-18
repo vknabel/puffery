@@ -1,6 +1,6 @@
 //
-//  WakeUITests.swift
-//  WakeUITests
+//  PufferyUITests.swift
+//  PufferyUITests
 //
 //  Created by Valentin Knabel on 13.04.20.
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class WakeUITests: XCTestCase {
+class PufferyUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

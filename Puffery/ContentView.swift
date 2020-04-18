@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Wake
+//  Puffery
 //
 //  Created by Valentin Knabel on 13.04.20.
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ReceivedMessage: Identifiable {
     var id: UUID = UUID()
-    
+
     var title: String
     var sender: Sender // TODO: Later more
     var triggerDate: Date
@@ -38,7 +38,7 @@ let terminalSender = Sender(name: "My MacBook", icon: .computer)
 
 struct AppView: View {
     let messages = [
-        ReceivedMessage(title: "Build completed", sender: terminalSender, triggerDate: .init(timeIntervalSinceNow: -100))
+        ReceivedMessage(title: "Build completed", sender: terminalSender, triggerDate: .init(timeIntervalSinceNow: -100)),
     ]
 
     var body: some View {
@@ -47,7 +47,7 @@ struct AppView: View {
                 Image(systemName: "tray")
                 Text("Messages")
             }
-            
+
             Text("Create new x")
                 .multilineTextAlignment(.center)
                 .tabItem {
@@ -60,7 +60,7 @@ struct AppView: View {
 
 struct MessagesView: View {
     let messages: [ReceivedMessage]
-    
+
     var body: some View {
         List(messages) { message in
             HStack {
