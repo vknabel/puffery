@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA94F0BD244B92FB0087924C /* ChannelListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BC244B92FB0087924C /* ChannelListView.swift */; };
+		BA94F0BF244B93D60087924C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BE244B93D60087924C /* Channel.swift */; };
 		BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154632444BB4400EDB97B /* AppDelegate.swift */; };
 		BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154652444BB4400EDB97B /* SceneDelegate.swift */; };
 		BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA94F0BC244B92FB0087924C /* ChannelListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListView.swift; sourceTree = "<group>"; };
+		BA94F0BE244B93D60087924C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		BAF154602444BB4400EDB97B /* Puffery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puffery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF154632444BB4400EDB97B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF154652444BB4400EDB97B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 				BAF154632444BB4400EDB97B /* AppDelegate.swift */,
 				BAF154652444BB4400EDB97B /* SceneDelegate.swift */,
 				BAF1546A2444BB4400EDB97B /* AppView.swift */,
+				BA94F0BE244B93D60087924C /* Channel.swift */,
+				BA94F0BC244B92FB0087924C /* ChannelListView.swift */,
 				BAF1546C2444BB4600EDB97B /* Assets.xcassets */,
 				BAF154712444BB4600EDB97B /* LaunchScreen.storyboard */,
 				BAF154742444BB4600EDB97B /* Info.plist */,
@@ -271,7 +277,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */,
+				BA94F0BF244B93D60087924C /* Channel.swift in Sources */,
 				BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */,
+				BA94F0BD244B92FB0087924C /* ChannelListView.swift in Sources */,
 				BAF1546B2444BB4400EDB97B /* AppView.swift in Sources */,
 				BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */,
 			);
@@ -438,7 +446,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Puffery/Preview Content\"";
 				DEVELOPMENT_TEAM = BG9UY79792;
 				ENABLE_PREVIEWS = YES;
@@ -447,8 +457,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.Puffery;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Puffery App Store";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -458,7 +469,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Puffery/Preview Content\"";
 				DEVELOPMENT_TEAM = BG9UY79792;
 				ENABLE_PREVIEWS = YES;
@@ -467,8 +480,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.Puffery;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Puffery App Store";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
