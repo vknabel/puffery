@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct Notification: Identifiable {
     var id: UUID = UUID()
@@ -71,6 +72,8 @@ struct AppView: View {
 struct NotificationsView: View {
     let messages: [Notification]
     
+    @State var settings: UNNotificationSettings?
+    
     var body: some View {
         ScrollView(.vertical) {
             VStack(spacing: 16) {
@@ -79,9 +82,34 @@ struct NotificationsView: View {
                 }
             }
             .padding()
-            .navigationBarItems(trailing: Button(action: {}, label: {Image(systemName: "equal.circle")}))
+            .navigationBarItems(trailing: Button(action: {
+                self.registerForPushNotifications()
+            }, label: {Image(systemName: "equal.circle")}))
             .navigationBarTitle("Inbox")
         }
+    }
+    
+    
+    
+    func registerForPushNotifications() {
+      UNUserNotificationCenter.current() // 1
+        .requestAuthorization(options: [.alert, .sound, .badge]) { // 2
+          granted, error in
+          print("Permission granted: \(granted)") // 3
+            
+            guard granted else {
+                return
+            }
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                guard settings.authorizationStatus == .authorized else { return }
+                DispatchQueue.main.async {
+                  UIApplication.shared.registerForRemoteNotifications()
+                }
+//                let tokenParts = settings.map { data in String(format: "%02.2hhx", data) }
+//                let token = tokenParts.joined()
+//                UIPasteboard.general.string = token
+            }
+      }
     }
 }
 
