@@ -8,18 +8,21 @@
 
 import SwiftUI
 
-//struct ChannelListView: View {
-//    var channels: [Channel]
-//    
-//    var body: some View {
-//        List(channels) { channel in
-//            Text(channel.name)
-//        }
-//    }
-//}
-//
-//struct ChannelListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ChannelListView()
-//    }
-//}
+struct ChannelListView: View {
+    var channels: [Channel]
+    
+    var body: some View {
+        List(channels) { channel in
+            Text(channel.name)
+        }
+    }
+}
+
+struct ChannelListView_Previews: PreviewProvider {
+    static var previews: some View {
+        ChannelListView(channels: [
+            Channel(name: "Bitrise"),
+            Channel(name: "Manual"),
+        ])
+    }
+}
