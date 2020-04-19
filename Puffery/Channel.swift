@@ -11,6 +11,7 @@ import Foundation
 struct Channel: Codable, Identifiable {
     var id: UUID = UUID()
     var name: String
+    var token: String = UUID().uuidString
 }
 
 extension Channel {

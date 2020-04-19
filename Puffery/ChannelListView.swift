@@ -11,6 +11,8 @@ import SwiftUI
 struct ChannelListView: View {
     var channels: [Channel]
     
+    @State var presentsSettings = false
+    
     var body: some View {
         List {
             Section {
@@ -25,8 +27,20 @@ struct ChannelListView: View {
                     }
                 }
             }
-        }.listStyle(GroupedListStyle())
+        }
+        .roundedListStyle()
         .navigationBarTitle("Inbox")
+        .navigationBarItems(trailing: settingsNavigationBarItem)
+    }
+    
+    var settingsNavigationBarItem: some View {
+        Button(action: { self.presentsSettings.toggle() }) {
+            Image(systemName: "wrench")
+        }.sheet(isPresented: $presentsSettings) {
+            NavigationView {
+                AppSettingsPage()
+            }
+        }
     }
 }
 

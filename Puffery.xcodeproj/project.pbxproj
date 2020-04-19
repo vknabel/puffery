@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA1C53F0244CD0AE00A06871 /* AcknowledgementsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1C53EF244CD0AE00A06871 /* AcknowledgementsPage.swift */; };
 		BA3B3ADF244C4663001C1A07 /* ChannelDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3B3ADE244C4663001C1A07 /* ChannelDetailsView.swift */; };
 		BA3B3AE1244C47DF001C1A07 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3B3AE0244C47DF001C1A07 /* MessageCell.swift */; };
 		BA3B3AE3244C47EB001C1A07 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3B3AE2244C47EB001C1A07 /* Message.swift */; };
@@ -17,6 +18,9 @@
 		BA94F0BD244B92FB0087924C /* ChannelListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BC244B92FB0087924C /* ChannelListView.swift */; };
 		BA94F0BF244B93D60087924C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BE244B93D60087924C /* Channel.swift */; };
 		BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94F0C2244BA4030087924C /* UserNotifications.framework */; };
+		BAA70270244CC04A00D03A20 /* ChannelSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA7026F244CC04A00D03A20 /* ChannelSettingsPage.swift */; };
+		BAA70272244CC8D200D03A20 /* RoundedGroupListStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */; };
+		BAA70274244CCD7F00D03A20 /* AppSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA70273244CCD7F00D03A20 /* AppSettingsPage.swift */; };
 		BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154632444BB4400EDB97B /* AppDelegate.swift */; };
 		BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154652444BB4400EDB97B /* SceneDelegate.swift */; };
 		BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */; };
@@ -46,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA1C53EF244CD0AE00A06871 /* AcknowledgementsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsPage.swift; sourceTree = "<group>"; };
 		BA3B3ADE244C4663001C1A07 /* ChannelDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDetailsView.swift; sourceTree = "<group>"; };
 		BA3B3AE0244C47DF001C1A07 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		BA3B3AE2244C47EB001C1A07 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -57,6 +62,9 @@
 		BA94F0BE244B93D60087924C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		BA94F0C0244BA2E80087924C /* Puffery.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puffery.entitlements; sourceTree = "<group>"; };
 		BA94F0C2244BA4030087924C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		BAA7026F244CC04A00D03A20 /* ChannelSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingsPage.swift; sourceTree = "<group>"; };
+		BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGroupListStyle.swift; sourceTree = "<group>"; };
+		BAA70273244CCD7F00D03A20 /* AppSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsPage.swift; sourceTree = "<group>"; };
 		BAF154602444BB4400EDB97B /* Puffery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puffery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF154632444BB4400EDB97B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF154652444BB4400EDB97B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,12 +144,16 @@
 				BAF154632444BB4400EDB97B /* AppDelegate.swift */,
 				BAF154652444BB4400EDB97B /* SceneDelegate.swift */,
 				BAF1546A2444BB4400EDB97B /* LegacyAppView.swift */,
-				BA3B3AEA244C7AA5001C1A07 /* PufferyApp.swift */,
 				BA3B3AEC244C7F2F001C1A07 /* GettingStarted.swift */,
 				BA94F0BE244B93D60087924C /* Channel.swift */,
 				BA3B3AE2244C47EB001C1A07 /* Message.swift */,
+				BA3B3AEA244C7AA5001C1A07 /* PufferyApp.swift */,
 				BA94F0BC244B92FB0087924C /* ChannelListView.swift */,
 				BA3B3ADE244C4663001C1A07 /* ChannelDetailsView.swift */,
+				BAA7026F244CC04A00D03A20 /* ChannelSettingsPage.swift */,
+				BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */,
+				BAA70273244CCD7F00D03A20 /* AppSettingsPage.swift */,
+				BA1C53EF244CD0AE00A06871 /* AcknowledgementsPage.swift */,
 				BA3B3AE0244C47DF001C1A07 /* MessageCell.swift */,
 				BA3B3AE4244C492C001C1A07 /* MessageList.swift */,
 				BA3B3AE6244C50B5001C1A07 /* ActivityIndicator.swift */,
@@ -311,7 +323,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAA70272244CC8D200D03A20 /* RoundedGroupListStyle.swift in Sources */,
 				BA3B3AE1244C47DF001C1A07 /* MessageCell.swift in Sources */,
+				BAA70270244CC04A00D03A20 /* ChannelSettingsPage.swift in Sources */,
 				BA3B3ADF244C4663001C1A07 /* ChannelDetailsView.swift in Sources */,
 				BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */,
 				BA3B3AE3244C47EB001C1A07 /* Message.swift in Sources */,
@@ -320,7 +334,9 @@
 				BA3B3AE5244C492C001C1A07 /* MessageList.swift in Sources */,
 				BA3B3AED244C7F2F001C1A07 /* GettingStarted.swift in Sources */,
 				BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */,
+				BAA70274244CCD7F00D03A20 /* AppSettingsPage.swift in Sources */,
 				BA94F0BD244B92FB0087924C /* ChannelListView.swift in Sources */,
+				BA1C53F0244CD0AE00A06871 /* AcknowledgementsPage.swift in Sources */,
 				BA3B3AEB244C7AA5001C1A07 /* PufferyApp.swift in Sources */,
 				BAF1546B2444BB4400EDB97B /* LegacyAppView.swift in Sources */,
 				BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */,
@@ -503,6 +519,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -527,6 +544,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Puffery App Store";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

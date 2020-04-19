@@ -25,7 +25,9 @@ struct ChannelDetailsView: View {
                 Button(action: { self.displaysChannelSettings.toggle() }) {
                         Image(systemName: "wrench")
                             .sheet(isPresented: self.$displaysChannelSettings) {
-                            EmptyView()
+                                NavigationView {
+                                    ChannelSettingsPage(channel: self.channel)
+                                }
                     }
                 }
         )
