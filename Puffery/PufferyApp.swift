@@ -10,26 +10,39 @@ import SwiftUI
 
 enum AppMode: Equatable {
     case gettingStarted
+    case requiresPushNotifications
     case mainApp
-    case blank
+    case loading
 }
 
 struct SelectPufferyApp: View {
-    @State var mode = AppMode.blank
+    @State var mode = AppMode.loading
     
     var body: some View {
         ZStack {
-            PufferyApp().show(when: mode == .mainApp)
-            GettingStarted().show(when: mode == .gettingStarted)
+            ActivityIndicator(isAnimating: mode == .loading)
             
-            VStack {
-                Button(action: { self.mode = .mainApp }) {
-                    Text("New app")
-                }
-                Button(action: { self.mode = .gettingStarted }) {
-                    Text("Getting Started")
-                }
-            }.show(when: mode == .blank)
+            PufferyApp().show(when: mode == .mainApp)
+            GettingStarted(onFinish: determineCurrentNotificationSettings)
+                .show(when: mode == .gettingStarted)
+            Text("Requires Push Notifications").show(when: mode == .requiresPushNotifications)
+        }.onAppear(perform: determineCurrentNotificationSettings)
+    }
+    
+    func determineCurrentNotificationSettings() {
+        mode = .loading
+        
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized, .provisional:
+                self.mode = .mainApp
+            case .denied:
+                self.mode = .requiresPushNotifications
+            case .notDetermined:
+                self.mode = .gettingStarted
+            @unknown default:
+                self.mode = .gettingStarted
+            }
         }
     }
 }

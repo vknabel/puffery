@@ -10,6 +10,8 @@ import SwiftUI
 import UserNotifications
 
 struct GettingStarted: View {
+    var onFinish: () -> Void
+    
     var body: some View {
         Button(action: registerForPushNotifications) {
             Text("Copy Push notification token")
@@ -29,6 +31,7 @@ struct GettingStarted: View {
                     guard settings.authorizationStatus == .authorized else { return }
                     DispatchQueue.main.async {
                       UIApplication.shared.registerForRemoteNotifications()
+                        self.onFinish()
                     }
                 }
           }
@@ -37,6 +40,6 @@ struct GettingStarted: View {
 
 struct GettingStarted_Previews: PreviewProvider {
     static var previews: some View {
-        GettingStarted()
+        GettingStarted(onFinish: {})
     }
 }
