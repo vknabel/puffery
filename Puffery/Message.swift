@@ -21,7 +21,6 @@ struct Message: Identifiable, Codable {
     }
 }
 
-#if DEBUG
 extension Message {
     static var testflight: Message {
             Message(
@@ -38,4 +37,3 @@ extension Message {
         )
     }
 }
-#endif

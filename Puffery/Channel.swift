@@ -13,7 +13,6 @@ struct Channel: Codable, Identifiable {
     var name: String
 }
 
-#if DEBUG
 extension Channel {
     static var puffery: Channel {
         Channel(name: "Puffery")
@@ -23,4 +22,3 @@ extension Channel {
         Channel(name: "Plants")
     }
 }
-#endif
