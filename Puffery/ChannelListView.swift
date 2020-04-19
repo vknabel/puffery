@@ -12,17 +12,31 @@ struct ChannelListView: View {
     var channels: [Channel]
     
     var body: some View {
-        List(channels) { channel in
-            Text(channel.name)
-        }
+        List {
+            Section {
+                NavigationLink(destination: EmptyView()) {
+                    Text("All")
+                }
+            }
+            Section(header: Text("Channels")) {
+                ForEach(channels) { channel in
+                    NavigationLink(destination: ChannelDetailsView(channel: channel)) {
+                        Text(channel.name)
+                    }
+                }
+            }
+        }.listStyle(GroupedListStyle())
+        .navigationBarTitle("Inbox")
     }
 }
 
 struct ChannelListView_Previews: PreviewProvider {
     static var previews: some View {
-        ChannelListView(channels: [
-            Channel(name: "Bitrise"),
-            Channel(name: "Manual"),
-        ])
+        NavigationView {
+            ChannelListView(channels: [
+                Channel(name: "Bitrise"),
+                Channel(name: "Manual"),
+            ])
+        }
     }
 }

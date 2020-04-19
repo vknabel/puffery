@@ -12,3 +12,15 @@ struct Channel: Codable, Identifiable {
     var id: UUID = UUID()
     var name: String
 }
+
+#if DEBUG
+extension Channel {
+    static var puffery: Channel {
+        Channel(name: "Puffery")
+    }
+    
+    static var plants: Channel {
+        Channel(name: "Plants")
+    }
+}
+#endif

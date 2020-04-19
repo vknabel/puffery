@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  LegacyAppView.swift
 //  Puffery
 //
 //  Created by Valentin Knabel on 13.04.20.
@@ -40,7 +40,7 @@ struct Sender: Identifiable {
 
 let terminalSender = Sender(name: "My MacBook", icon: .computer)
 
-struct AppView: View {
+struct LegacyAppView: View {
     @State var messages = [
         Notification(title: "Build completed", sender: terminalSender, triggerDate: .init(timeIntervalSinceNow: -100), color: .green),
         Notification(title: "Build completed", sender: terminalSender, triggerDate: .init(timeIntervalSinceNow: -100), color: .accentColor)
@@ -187,8 +187,8 @@ struct CreateNewSenderView: View {
     }
 }
 
-struct AppView_Previews: PreviewProvider {
+struct LegacyAppView_Previews: PreviewProvider {
     static var previews: some View {
-        AppView()
+        LegacyAppView()
     }
 }
