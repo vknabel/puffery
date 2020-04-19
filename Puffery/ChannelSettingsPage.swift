@@ -27,7 +27,7 @@ struct ChannelSettingsPage: View {
                 Button(action: copyTokenToPasteboard) {
                     HStack {
                         Text("Copy Token")
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                         Spacer()
                         Text(hasJustCopiedToken ? "Copied!" : channel.token)
                             .lineLimit(1)
