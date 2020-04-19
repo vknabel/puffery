@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct AppSettingsPage: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
         List {
             Section(header: Text("Notifications")) {
@@ -25,6 +27,9 @@ struct AppSettingsPage: View {
         }
             .roundedListStyle()
             .navigationBarTitle("Settings", displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: dismiss) {
+                Text("Done").fontWeight(.bold)
+            })
     }
     
     func registerForPushNotifications() {
@@ -43,6 +48,10 @@ struct AppSettingsPage: View {
                     }
                 }
           }
+    }
+    
+    func dismiss() {
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

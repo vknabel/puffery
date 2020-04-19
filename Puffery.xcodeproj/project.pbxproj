@@ -24,7 +24,6 @@
 		BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154632444BB4400EDB97B /* AppDelegate.swift */; };
 		BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154652444BB4400EDB97B /* SceneDelegate.swift */; };
 		BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */; };
-		BAF1546B2444BB4400EDB97B /* LegacyAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1546A2444BB4400EDB97B /* LegacyAppView.swift */; };
 		BAF1546D2444BB4600EDB97B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAF1546C2444BB4600EDB97B /* Assets.xcassets */; };
 		BAF154702444BB4600EDB97B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAF1546F2444BB4600EDB97B /* Preview Assets.xcassets */; };
 		BAF154732444BB4600EDB97B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF154712444BB4600EDB97B /* LaunchScreen.storyboard */; };
@@ -69,7 +68,6 @@
 		BAF154632444BB4400EDB97B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF154652444BB4400EDB97B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BAF154682444BB4400EDB97B /* Puffery.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Puffery.xcdatamodel; sourceTree = "<group>"; };
-		BAF1546A2444BB4400EDB97B /* LegacyAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyAppView.swift; sourceTree = "<group>"; };
 		BAF1546C2444BB4600EDB97B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BAF1546F2444BB4600EDB97B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BAF154722444BB4600EDB97B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 				BA94F0C0244BA2E80087924C /* Puffery.entitlements */,
 				BAF154632444BB4400EDB97B /* AppDelegate.swift */,
 				BAF154652444BB4400EDB97B /* SceneDelegate.swift */,
-				BAF1546A2444BB4400EDB97B /* LegacyAppView.swift */,
 				BA3B3AEC244C7F2F001C1A07 /* GettingStarted.swift */,
 				BA94F0BE244B93D60087924C /* Channel.swift */,
 				BA3B3AE2244C47EB001C1A07 /* Message.swift */,
@@ -338,7 +335,6 @@
 				BA94F0BD244B92FB0087924C /* ChannelListView.swift in Sources */,
 				BA1C53F0244CD0AE00A06871 /* AcknowledgementsPage.swift in Sources */,
 				BA3B3AEB244C7AA5001C1A07 /* PufferyApp.swift in Sources */,
-				BAF1546B2444BB4400EDB97B /* LegacyAppView.swift in Sources */,
 				BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

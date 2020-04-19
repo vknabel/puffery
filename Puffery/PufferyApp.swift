@@ -10,7 +10,6 @@ import SwiftUI
 
 enum AppMode: Equatable {
     case gettingStarted
-    case legacyApp
     case mainApp
     case blank
 }
@@ -20,14 +19,10 @@ struct SelectPufferyApp: View {
     
     var body: some View {
         ZStack {
-            LegacyAppView().show(when: mode == .legacyApp)
             PufferyApp().show(when: mode == .mainApp)
             GettingStarted().show(when: mode == .gettingStarted)
             
             VStack {
-                Button(action: { self.mode = .legacyApp }) {
-                    Text("Old app")
-                }
                 Button(action: { self.mode = .mainApp }) {
                     Text("New app")
                 }

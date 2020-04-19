@@ -35,7 +35,8 @@ struct ChannelListView: View {
     
     var settingsNavigationBarItem: some View {
         Button(action: { self.presentsSettings.toggle() }) {
-            Image(systemName: "wrench")
+            Image(systemName: "person.crop.circle")
+                .padding()
         }.sheet(isPresented: $presentsSettings) {
             NavigationView {
                 AppSettingsPage()

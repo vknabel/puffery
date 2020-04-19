@@ -81,7 +81,7 @@ struct LicensePage: View {
             Spacer()
         }
             .navigationBarItems(trailing: Button(action: openLicense) {
-                Image(systemName: "safari")
+                Image(systemName: "safari").padding()
             })
             .navigationBarTitle("\(license.name)", displayMode: .inline)
     }
@@ -98,7 +98,7 @@ struct FlaticonAssetPage: View {
         VStack {
             Image(asset.name)
             Text("Icon made by Freepik from www.flaticon.com").navigationBarItems(trailing: Button(action: openLicense) {
-                Image(systemName: "safari")
+                Image(systemName: "safari").padding()
             })
         }
             .navigationBarTitle("\(asset.name)", displayMode: .inline)

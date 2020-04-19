@@ -24,6 +24,7 @@ struct ChannelDetailsView: View {
             .navigationBarItems(trailing:
                 Button(action: { self.displaysChannelSettings.toggle() }) {
                         Image(systemName: "wrench")
+                            .padding()
                             .sheet(isPresented: self.$displaysChannelSettings) {
                                 NavigationView {
                                     ChannelSettingsPage(channel: self.channel)
