@@ -18,6 +18,8 @@
 		BA94F0BD244B92FB0087924C /* ChannelListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BC244B92FB0087924C /* ChannelListView.swift */; };
 		BA94F0BF244B93D60087924C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BE244B93D60087924C /* Channel.swift */; };
 		BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94F0C2244BA4030087924C /* UserNotifications.framework */; };
+		BA9A865B244DA60D00C8D644 /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A865A244DA60D00C8D644 /* ApiController.swift */; };
+		BA9A865F244DB01300C8D644 /* ChannelCreationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A865E244DB01300C8D644 /* ChannelCreationPage.swift */; };
 		BAA70270244CC04A00D03A20 /* ChannelSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA7026F244CC04A00D03A20 /* ChannelSettingsPage.swift */; };
 		BAA70272244CC8D200D03A20 /* RoundedGroupListStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */; };
 		BAA70274244CCD7F00D03A20 /* AppSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA70273244CCD7F00D03A20 /* AppSettingsPage.swift */; };
@@ -61,6 +63,8 @@
 		BA94F0BE244B93D60087924C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		BA94F0C0244BA2E80087924C /* Puffery.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puffery.entitlements; sourceTree = "<group>"; };
 		BA94F0C2244BA4030087924C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		BA9A865A244DA60D00C8D644 /* ApiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
+		BA9A865E244DB01300C8D644 /* ChannelCreationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationPage.swift; sourceTree = "<group>"; };
 		BAA7026F244CC04A00D03A20 /* ChannelSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingsPage.swift; sourceTree = "<group>"; };
 		BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGroupListStyle.swift; sourceTree = "<group>"; };
 		BAA70273244CCD7F00D03A20 /* AppSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsPage.swift; sourceTree = "<group>"; };
@@ -141,11 +145,13 @@
 				BA94F0C0244BA2E80087924C /* Puffery.entitlements */,
 				BAF154632444BB4400EDB97B /* AppDelegate.swift */,
 				BAF154652444BB4400EDB97B /* SceneDelegate.swift */,
+				BA9A865A244DA60D00C8D644 /* ApiController.swift */,
 				BA3B3AEC244C7F2F001C1A07 /* GettingStarted.swift */,
 				BA94F0BE244B93D60087924C /* Channel.swift */,
 				BA3B3AE2244C47EB001C1A07 /* Message.swift */,
 				BA3B3AEA244C7AA5001C1A07 /* PufferyApp.swift */,
 				BA94F0BC244B92FB0087924C /* ChannelListView.swift */,
+				BA9A865E244DB01300C8D644 /* ChannelCreationPage.swift */,
 				BA3B3ADE244C4663001C1A07 /* ChannelDetailsView.swift */,
 				BAA7026F244CC04A00D03A20 /* ChannelSettingsPage.swift */,
 				BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */,
@@ -334,8 +340,10 @@
 				BAA70274244CCD7F00D03A20 /* AppSettingsPage.swift in Sources */,
 				BA94F0BD244B92FB0087924C /* ChannelListView.swift in Sources */,
 				BA1C53F0244CD0AE00A06871 /* AcknowledgementsPage.swift in Sources */,
+				BA9A865F244DB01300C8D644 /* ChannelCreationPage.swift in Sources */,
 				BA3B3AEB244C7AA5001C1A07 /* PufferyApp.swift in Sources */,
 				BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */,
+				BA9A865B244DA60D00C8D644 /* ApiController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

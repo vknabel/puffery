@@ -11,30 +11,30 @@ import UserNotifications
 
 struct GettingStarted: View {
     var onFinish: () -> Void
-    
+
     var body: some View {
         Button(action: registerForPushNotifications) {
             Text("Copy Push notification token")
         }
     }
-    
+
     func registerForPushNotifications() {
-          UNUserNotificationCenter.current() // 1
+        UNUserNotificationCenter.current() // 1
             .requestAuthorization(options: [.alert, .sound, .badge]) { // 2
-              granted, error in
-              print("Permission granted: \(granted)") // 3
-                
+                granted, _ in
+                print("Permission granted: \(granted)") // 3
+
                 guard granted else {
                     return
                 }
                 UNUserNotificationCenter.current().getNotificationSettings { settings in
                     guard settings.authorizationStatus == .authorized else { return }
                     DispatchQueue.main.async {
-                      UIApplication.shared.registerForRemoteNotifications()
+                        UIApplication.shared.registerForRemoteNotifications()
                         self.onFinish()
                     }
                 }
-          }
+            }
     }
 }
 

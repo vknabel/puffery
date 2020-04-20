@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MessageList: View {
     let messages: [Message]
-    
+
     var body: some View {
         ScrollView(.vertical) {
             VStack(spacing: 16) {
@@ -28,14 +28,14 @@ struct MessageList_Previews: PreviewProvider {
         MessageList(messages: [
             Message(
                 title: "New TestFlight version available",
-                channel: Channel(name: "Puffery"),
+                channel: .puffery,
                 color: .orange
             ),
             Message(
                 title: "New Docker image pushed",
-                channel: Channel(name: "Puffery"),
+                channel: .puffery,
                 color: .blue
-            )
+            ),
         ])
     }
 }

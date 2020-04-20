@@ -9,10 +9,11 @@
 import SwiftUI
 
 struct ChannelListView: View {
-    var channels: [Channel]
-    
+    @State var channels: [Channel]
+
     @State var presentsSettings = false
-    
+    @State var presentsChannelCreation = false
+
     var body: some View {
         List {
             Section {
@@ -20,10 +21,10 @@ struct ChannelListView: View {
                     Text("All")
                 }
             }
-            Section(header: Text("Channels")) {
+            Section(header: channelsHeader) {
                 ForEach(channels) { channel in
                     NavigationLink(destination: ChannelDetailsView(channel: channel)) {
-                        Text(channel.name)
+                        Text(channel.title)
                     }
                 }
             }
@@ -31,8 +32,24 @@ struct ChannelListView: View {
         .roundedListStyle()
         .navigationBarTitle("Inbox")
         .navigationBarItems(trailing: settingsNavigationBarItem)
+        .onAppear(perform: loadChannels)
     }
-    
+
+    var channelsHeader: some View {
+        HStack {
+            Text("Channels")
+            Spacer()
+
+            Button(action: { self.presentsChannelCreation.toggle() }) {
+                Image(systemName: "plus.circle").font(.body)
+            }.sheet(isPresented: $presentsChannelCreation, onDismiss: loadChannels) {
+                NavigationView {
+                    ChannelCreationPage()
+                }
+            }
+        }
+    }
+
     var settingsNavigationBarItem: some View {
         Button(action: { self.presentsSettings.toggle() }) {
             Image(systemName: "person.crop.circle")
@@ -43,14 +60,25 @@ struct ChannelListView: View {
             }
         }
     }
+
+    func loadChannels() {
+        ApiController().channels(deviceToken: latestDeviceToken) { result in
+            switch result {
+            case let .success(channels):
+                self.channels = channels
+            case let .failure(error):
+                print("Error", error)
+            }
+        }
+    }
 }
 
 struct ChannelListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             ChannelListView(channels: [
-                Channel(name: "Bitrise"),
-                Channel(name: "Manual"),
+                .plants,
+                .puffery,
             ])
         }
     }

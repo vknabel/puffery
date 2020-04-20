@@ -10,12 +10,12 @@ import Foundation
 
 struct Message: Identifiable, Codable {
     var id: UUID = UUID()
-    
+
     var title: String
     var channel: Channel
 //    var triggerDate: Date
     var color: Color // TODO: Later own type
-    
+
     enum Color: String, Codable {
         case blue, orange, green, red
     }
@@ -23,16 +23,17 @@ struct Message: Identifiable, Codable {
 
 extension Message {
     static var testflight: Message {
-            Message(
-                title: "New TestFlight version available",
-                channel: Channel(name: "Puffery"),
-                color: .orange
-            )
+        Message(
+            title: "New TestFlight version available",
+            channel: .puffery,
+            color: .orange
+        )
     }
+
     static var dockerImage: Message {
         Message(
             title: "New Docker image pushed",
-            channel: Channel(name: "Puffery"),
+            channel: .puffery,
             color: .blue
         )
     }

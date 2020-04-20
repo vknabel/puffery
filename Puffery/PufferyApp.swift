@@ -17,21 +17,21 @@ enum AppMode: Equatable {
 
 struct SelectPufferyApp: View {
     @State var mode = AppMode.loading
-    
+
     var body: some View {
         ZStack {
             ActivityIndicator(isAnimating: mode == .loading)
-            
+
             PufferyApp().show(when: mode == .mainApp)
             GettingStarted(onFinish: determineCurrentNotificationSettings)
                 .show(when: mode == .gettingStarted)
             Text("Requires Push Notifications").show(when: mode == .requiresPushNotifications)
         }.onAppear(perform: determineCurrentNotificationSettings)
     }
-    
+
     func determineCurrentNotificationSettings() {
         mode = .loading
-        
+
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             switch settings.authorizationStatus {
             case .authorized, .provisional:
@@ -66,8 +66,6 @@ extension View {
         }
     }
 }
-
-
 
 struct PufferyApp_Previews: PreviewProvider {
     static var previews: some View {

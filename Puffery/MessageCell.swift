@@ -10,23 +10,23 @@ import SwiftUI
 
 struct MessageCell: View {
     let message: Message
-    
+
     var body: some View {
         HStack {
 //            message.sender.icon.imageView
             VStack(alignment: .leading) {
                 Text(message.title)
                     .font(.headline)
-                Text(message.channel.name)
+                Text(message.channel.title)
                     .font(.subheadline)
             }
         }
-            .padding()
-            .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
-            .background(message.color)
-            .colorScheme(ColorScheme.dark)
-            .cornerRadius(15)
-            .shadow(radius: 8)
+        .padding()
+        .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
+        .background(message.color)
+        .colorScheme(ColorScheme.dark)
+        .cornerRadius(15)
+        .shadow(radius: 8)
     }
 }
 
@@ -49,7 +49,7 @@ struct MessageCell_Previews: PreviewProvider {
     static var previews: some View {
         MessageCell(message: Message(
             title: "New Docker image pushed",
-            channel: Channel(name: "Puffery"),
+            channel: .puffery,
             color: .orange
         ))
     }

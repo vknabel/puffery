@@ -8,18 +8,22 @@
 
 import Foundation
 
-struct Channel: Codable, Identifiable {
-    var id: UUID = UUID()
-    var name: String
-    var token: String = UUID().uuidString
+struct Channel: Codable {
+    let title: String
+    let token: String
+    let publicId: String
+}
+
+extension Channel: Identifiable {
+    var id: String { token }
 }
 
 extension Channel {
     static var puffery: Channel {
-        Channel(name: "Puffery")
+        Channel(title: "Puffery", token: UUID().uuidString, publicId: UUID().uuidString)
     }
-    
+
     static var plants: Channel {
-        Channel(name: "Plants")
+        Channel(title: "Plants", token: UUID().uuidString, publicId: UUID().uuidString)
     }
 }

@@ -10,31 +10,42 @@ import SwiftUI
 
 struct ChannelSettingsPage: View {
     var channel: Channel
-    
-    @State var hasJustCopiedToken = false
+
+    @State var hasJustCopiedPrivateToken = false
+    @State var hasJustCopiedPublicToken = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
+
     var body: some View {
         List {
             Section {
                 HStack {
                     Text("Name")
                     Spacer()
-                    Text(channel.name)
+                    Text(channel.title)
                         .foregroundColor(.secondary)
                 }
-                
-                Button(action: copyTokenToPasteboard) {
+
+                Button(action: copyPrivateTokenToPasteboard) {
                     HStack {
-                        Text("Copy Token")
+                        Text("Private Token")
                             .foregroundColor(.primary)
                         Spacer()
-                        Text(hasJustCopiedToken ? "Copied!" : channel.token)
+                        Text(hasJustCopiedPrivateToken ? "Copied!" : channel.token)
+                            .lineLimit(1)
+                    }
+                }
+
+                Button(action: copyPublicTokenToPasteboard) {
+                    HStack {
+                        Text("Public Token")
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Text(hasJustCopiedPublicToken ? "Copied!" : channel.publicId)
                             .lineLimit(1)
                     }
                 }
             }
-            
+
             Section {
                 Button(action: {}) {
                     Text("Unsubscribe from channel")
@@ -42,38 +53,47 @@ struct ChannelSettingsPage: View {
             }
         }
         .roundedListStyle()
-        .navigationBarTitle("\(channel.name)", displayMode: NavigationBarItem.TitleDisplayMode.inline)
+        .navigationBarTitle("\(channel.title)", displayMode: NavigationBarItem.TitleDisplayMode.inline)
         .navigationBarItems(
             leading: cancelNavigationItem,
             trailing: saveNavigationItem
         )
     }
-    
+
     var saveNavigationItem: some View {
         Button(action: dismiss) {
             Text("Save").fontWeight(.bold)
         }
     }
-    
+
     var cancelNavigationItem: some View {
         Button(action: dismiss) {
             Text("Cancel")
         }
     }
-    
-    func copyTokenToPasteboard() {
+
+    func copyPrivateTokenToPasteboard() {
         UIPasteboard.general.string = channel.token
-        hasJustCopiedToken = true
-        
+        hasJustCopiedPrivateToken = true
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.hasJustCopiedToken = false
+            self.hasJustCopiedPrivateToken = false
         }
     }
-    
+
+    func copyPublicTokenToPasteboard() {
+        UIPasteboard.general.string = channel.publicId
+        hasJustCopiedPublicToken = true
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.hasJustCopiedPublicToken = false
+        }
+    }
+
     func save() {
         dismiss()
     }
-    
+
     func dismiss() {
         presentationMode.wrappedValue.dismiss()
     }

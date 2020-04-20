@@ -10,7 +10,7 @@ import SwiftUI
 
 struct License: Identifiable, Codable {
     var id: String { name }
-    
+
     var name: String
     var source: URL
     var licenseText: String
@@ -18,7 +18,7 @@ struct License: Identifiable, Codable {
 
 struct FlaticonAsset: Identifiable, Codable {
     var id: String { name }
-    
+
     var name: String
     var author: String
     var source: URL
@@ -27,7 +27,7 @@ struct FlaticonAsset: Identifiable, Codable {
 struct AcknowledgementsPage: View {
     var assets: [FlaticonAsset]
     var licenses: [License]
-    
+
     var body: some View {
         List {
             Section(header: Text("Assets")) {
@@ -35,7 +35,7 @@ struct AcknowledgementsPage: View {
                     NavigationLink(destination: FlaticonAssetPage(asset: asset)) {
                         HStack {
                             Image(asset.name)
-                            
+
                             VStack(alignment: .leading) {
                                 Text(asset.name)
                                 Text("made by \(asset.author) from www.flaticon.com")
@@ -45,7 +45,7 @@ struct AcknowledgementsPage: View {
                     }
                 }
             }.show(when: !assets.isEmpty)
-            
+
             Section(header: Text("Code")) {
                 ForEach(licenses) { license in
                     NavigationLink(destination: LicensePage(license: license)) {
@@ -54,9 +54,9 @@ struct AcknowledgementsPage: View {
                 }
             }.show(when: !licenses.isEmpty)
         }.roundedListStyle()
-        .navigationBarTitle("Acknowledgements", displayMode: .inline)
+            .navigationBarTitle("Acknowledgements", displayMode: .inline)
     }
-    
+
     func openAssetDetails(_ asset: FlaticonAsset) {
         UIApplication.shared.open(asset.source)
     }
@@ -73,19 +73,19 @@ extension AcknowledgementsPage {
 
 struct LicensePage: View {
     var license: License
-    
+
     var body: some View {
         VStack {
             Text(license.licenseText)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
             Spacer()
         }
-            .navigationBarItems(trailing: Button(action: openLicense) {
-                Image(systemName: "safari").padding()
+        .navigationBarItems(trailing: Button(action: openLicense) {
+            Image(systemName: "safari").padding()
             })
-            .navigationBarTitle("\(license.name)", displayMode: .inline)
+        .navigationBarTitle("\(license.name)", displayMode: .inline)
     }
-    
+
     func openLicense() {
         UIApplication.shared.open(license.source)
     }
@@ -93,7 +93,7 @@ struct LicensePage: View {
 
 struct FlaticonAssetPage: View {
     var asset: FlaticonAsset
-    
+
     var body: some View {
         VStack {
             Image(asset.name)
@@ -101,9 +101,9 @@ struct FlaticonAssetPage: View {
                 Image(systemName: "safari").padding()
             })
         }
-            .navigationBarTitle("\(asset.name)", displayMode: .inline)
+        .navigationBarTitle("\(asset.name)", displayMode: .inline)
     }
-    
+
     func openLicense() {
         UIApplication.shared.open(asset.source)
     }

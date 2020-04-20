@@ -12,28 +12,27 @@ struct ChannelDetailsView: View {
     var channel: Channel
     @State var messages: [Message]?
     @State var displaysChannelSettings = false
-    
+
     var body: some View {
         ZStack {
             messages.map(MessageList.init(messages:))
             ActivityIndicator(isAnimating: messages == nil)
                 .onAppear(perform: self.loadMessages)
-            
         }
-            .navigationBarTitle(self.channel.name)
-            .navigationBarItems(trailing:
-                Button(action: { self.displaysChannelSettings.toggle() }) {
-                        Image(systemName: "wrench")
-                            .padding()
-                            .sheet(isPresented: self.$displaysChannelSettings) {
-                                NavigationView {
-                                    ChannelSettingsPage(channel: self.channel)
-                                }
+        .navigationBarTitle(self.channel.title)
+        .navigationBarItems(trailing:
+            Button(action: { self.displaysChannelSettings.toggle() }) {
+                Image(systemName: "wrench")
+                    .padding()
+                    .sheet(isPresented: self.$displaysChannelSettings) {
+                        NavigationView {
+                            ChannelSettingsPage(channel: self.channel)
+                        }
                     }
-                }
+            }
         )
     }
-    
+
     private func loadMessages() {
         messages = [.dockerImage, .testflight]
     }
@@ -42,8 +41,7 @@ struct ChannelDetailsView: View {
 struct ChannelDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ChannelDetailsView(channel: Channel(name: "Puffery"))
+            ChannelDetailsView(channel: .puffery)
         }
     }
 }
-
