@@ -79,8 +79,10 @@ struct ChannelCreationPage: View {
     }
 }
 
-struct ChannelCreationPage_Previews: PreviewProvider {
-    static var previews: some View {
-        ChannelCreationPage()
+#if DEBUG
+    struct ChannelCreationPage_Previews: PreviewProvider {
+        static var previews: some View {
+            ChannelCreationPage()
+        }
     }
-}
+#endif

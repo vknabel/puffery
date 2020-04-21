@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ChannelDetailsView: View {
-    var channel: Channel
+    var channel: Channel?
     @State var messages: [Message]?
     @State var displaysChannelSettings = false
 
@@ -19,29 +19,47 @@ struct ChannelDetailsView: View {
             ActivityIndicator(isAnimating: messages == nil)
                 .onAppear(perform: self.loadMessages)
         }
-        .navigationBarTitle(self.channel.title)
+        .navigationBarTitle(self.channel?.title ?? "All")
         .navigationBarItems(trailing:
-            Button(action: { self.displaysChannelSettings.toggle() }) {
-                Image(systemName: "wrench")
-                    .padding()
-                    .sheet(isPresented: self.$displaysChannelSettings) {
-                        NavigationView {
-                            ChannelSettingsPage(channel: self.channel)
+            channel.map { channel in
+                Button(action: { self.displaysChannelSettings.toggle() }) {
+                    Image(systemName: "wrench")
+                        .padding()
+                        .sheet(isPresented: self.$displaysChannelSettings) {
+                            NavigationView {
+                                ChannelSettingsPage(channel: channel)
+                            }
                         }
-                    }
+                }
             }
         )
+        .onAppear(perform: loadMessages)
     }
 
     private func loadMessages() {
-        messages = [.dockerImage, .testflight]
+        if let channel = channel {
+            ApiController().channelMessages(channel: channel, completion: didReceiveMessages(result:))
+        } else {
+            ApiController().deviceMessages(deviceToken: latestDeviceToken, completion: didReceiveMessages(result:))
+        }
     }
-}
 
-struct ChannelDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            ChannelDetailsView(channel: .puffery)
+    private func didReceiveMessages(result: Result<[Message], Error>) {
+        switch result {
+        case let .success(messages):
+            self.messages = messages
+        case .failure:
+            break
         }
     }
 }
+
+#if DEBUG
+    struct ChannelDetailsView_Previews: PreviewProvider {
+        static var previews: some View {
+            NavigationView {
+                ChannelDetailsView(channel: .puffery, messages: [.dockerImage, .testflight])
+            }
+        }
+    }
+#endif

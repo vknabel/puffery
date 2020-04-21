@@ -30,8 +30,10 @@ struct ChannelSettingsPage: View {
                         Text("Private Token")
                             .foregroundColor(.primary)
                         Spacer()
-                        Text(hasJustCopiedPrivateToken ? "Copied!" : channel.token)
-                            .lineLimit(1)
+                        channel.token.map { token in
+                            Text(hasJustCopiedPrivateToken ? "Copied!" : token)
+                                .lineLimit(1)
+                        }
                     }
                 }
 
@@ -99,10 +101,12 @@ struct ChannelSettingsPage: View {
     }
 }
 
-struct ChannelSettingsPage_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            ChannelSettingsPage(channel: .puffery)
+#if DEBUG
+    struct ChannelSettingsPage_Previews: PreviewProvider {
+        static var previews: some View {
+            NavigationView {
+                ChannelSettingsPage(channel: .puffery)
+            }
         }
     }
-}
+#endif

@@ -17,7 +17,7 @@ struct MessageCell: View {
             VStack(alignment: .leading) {
                 Text(message.title)
                     .font(.headline)
-                Text(message.channel.title)
+                Text(message.body)
                     .font(.subheadline)
             }
         }
@@ -41,16 +41,16 @@ extension Message.Color: View {
             return SwiftUI.Color.orange
         case .red:
             return SwiftUI.Color.red
+        case .gray:
+            return SwiftUI.Color.gray
         }
     }
 }
 
-struct MessageCell_Previews: PreviewProvider {
-    static var previews: some View {
-        MessageCell(message: Message(
-            title: "New Docker image pushed",
-            channel: .puffery,
-            color: .orange
-        ))
+#if DEBUG
+    struct MessageCell_Previews: PreviewProvider {
+        static var previews: some View {
+            MessageCell(message: .dockerImage)
+        }
     }
-}
+#endif

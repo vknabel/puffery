@@ -15,14 +15,16 @@ extension View {
     }
 }
 
-struct RoundedGroupListStyle_Previews: PreviewProvider {
-    static var previews: some View {
-        List {
-            Section {
-                Text("Hello")
-                Text("World")
+#if DEBUG
+    struct RoundedGroupListStyle_Previews: PreviewProvider {
+        static var previews: some View {
+            List {
+                Section {
+                    Text("Hello")
+                    Text("World")
+                }
             }
+            .roundedListStyle()
         }
-        .roundedListStyle()
     }
-}
+#endif

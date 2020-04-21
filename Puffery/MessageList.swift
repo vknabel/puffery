@@ -23,19 +23,13 @@ struct MessageList: View {
     }
 }
 
-struct MessageList_Previews: PreviewProvider {
-    static var previews: some View {
-        MessageList(messages: [
-            Message(
-                title: "New TestFlight version available",
-                channel: .puffery,
-                color: .orange
-            ),
-            Message(
-                title: "New Docker image pushed",
-                channel: .puffery,
-                color: .blue
-            ),
-        ])
+#if DEBUG
+    struct MessageList_Previews: PreviewProvider {
+        static var previews: some View {
+            MessageList(messages: [
+                .testflight,
+                .dockerImage,
+            ])
+        }
     }
-}
+#endif

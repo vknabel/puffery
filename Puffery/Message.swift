@@ -12,29 +12,36 @@ struct Message: Identifiable, Codable {
     var id: UUID = UUID()
 
     var title: String
-    var channel: Channel
+    var body: String
+//    var channel: Channel
 //    var triggerDate: Date
-    var color: Color // TODO: Later own type
+    var color: Color
 
     enum Color: String, Codable {
-        case blue, orange, green, red
+        case blue, orange, green, red, gray
+
+        static var unspecified: Color {
+            return .gray
+        }
     }
 }
 
-extension Message {
-    static var testflight: Message {
-        Message(
-            title: "New TestFlight version available",
-            channel: .puffery,
-            color: .orange
-        )
-    }
+#if DEBUG
+    extension Message {
+        static var testflight: Message {
+            Message(
+                title: "New TestFlight version available",
+                body: "Version 123 has been build",
+                color: .orange
+            )
+        }
 
-    static var dockerImage: Message {
-        Message(
-            title: "New Docker image pushed",
-            channel: .puffery,
-            color: .blue
-        )
+        static var dockerImage: Message {
+            Message(
+                title: "New Docker image pushed",
+                body: "Version 123 has been build",
+                color: .blue
+            )
+        }
     }
-}
+#endif

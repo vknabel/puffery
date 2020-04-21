@@ -55,10 +55,12 @@ struct AppSettingsPage: View {
     }
 }
 
-struct AppSettingsPage_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            AppSettingsPage()
+#if DEBUG
+    struct AppSettingsPage_Previews: PreviewProvider {
+        static var previews: some View {
+            NavigationView {
+                AppSettingsPage()
+            }
         }
     }
-}
+#endif

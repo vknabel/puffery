@@ -109,17 +109,19 @@ struct FlaticonAssetPage: View {
     }
 }
 
-struct AcknowledgementsPage_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            AcknowledgementsPage(
-                assets: [
-                    FlaticonAsset(name: "Kugelfisch", author: "Freepik", source: URL(string: "https://www.flaticon.com/de/kostenloses-icon/kugelfisch_774951")!),
-                ],
-                licenses: [
-                    License(name: "AckeeTracker-Swift", source: URL(string: "https://github.com/vknabel/AckeeTracker-Swift")!, licenseText: "MIT"),
-                ]
-            )
+#if DEBUG
+    struct AcknowledgementsPage_Previews: PreviewProvider {
+        static var previews: some View {
+            NavigationView {
+                AcknowledgementsPage(
+                    assets: [
+                        FlaticonAsset(name: "Kugelfisch", author: "Freepik", source: URL(string: "https://www.flaticon.com/de/kostenloses-icon/kugelfisch_774951")!),
+                    ],
+                    licenses: [
+                        License(name: "AckeeTracker-Swift", source: URL(string: "https://github.com/vknabel/AckeeTracker-Swift")!, licenseText: "MIT"),
+                    ]
+                )
+            }
         }
     }
-}
+#endif

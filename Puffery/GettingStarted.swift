@@ -19,14 +19,11 @@ struct GettingStarted: View {
     }
 
     func registerForPushNotifications() {
-        UNUserNotificationCenter.current() // 1
-            .requestAuthorization(options: [.alert, .sound, .badge]) { // 2
+        UNUserNotificationCenter.current()
+            .requestAuthorization(options: [.alert, .sound, .badge]) {
                 granted, _ in
-                print("Permission granted: \(granted)") // 3
-
-                guard granted else {
-                    return
-                }
+                print("Permission granted: \(granted)")
+                guard granted else { return }
                 UNUserNotificationCenter.current().getNotificationSettings { settings in
                     guard settings.authorizationStatus == .authorized else { return }
                     DispatchQueue.main.async {
@@ -38,8 +35,10 @@ struct GettingStarted: View {
     }
 }
 
-struct GettingStarted_Previews: PreviewProvider {
-    static var previews: some View {
-        GettingStarted(onFinish: {})
+#if DEBUG
+    struct GettingStarted_Previews: PreviewProvider {
+        static var previews: some View {
+            GettingStarted(onFinish: {})
+        }
     }
-}
+#endif

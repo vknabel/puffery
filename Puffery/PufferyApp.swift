@@ -50,7 +50,7 @@ struct SelectPufferyApp: View {
 struct PufferyApp: View {
     var body: some View {
         NavigationView {
-            ChannelListView(channels: [.plants, .puffery])
+            ChannelListView()
         }
     }
 }
@@ -67,8 +67,10 @@ extension View {
     }
 }
 
-struct PufferyApp_Previews: PreviewProvider {
-    static var previews: some View {
-        SelectPufferyApp()
+#if DEBUG
+    struct PufferyApp_Previews: PreviewProvider {
+        static var previews: some View {
+            SelectPufferyApp()
+        }
     }
-}
+#endif

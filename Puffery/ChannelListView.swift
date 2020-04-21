@@ -9,27 +9,35 @@
 import SwiftUI
 
 struct ChannelListView: View {
-    @State var channels: [Channel]
+    @State var channels: [Channel]?
 
     @State var presentsSettings = false
     @State var presentsChannelCreation = false
 
     var body: some View {
-        List {
-            Section {
-                NavigationLink(destination: EmptyView()) {
-                    Text("All")
-                }
-            }
-            Section(header: channelsHeader) {
-                ForEach(channels) { channel in
-                    NavigationLink(destination: ChannelDetailsView(channel: channel)) {
-                        Text(channel.title)
+        ZStack {
+            channels.map { channels in
+                List {
+                    Section {
+                        NavigationLink(destination: ChannelDetailsView()) {
+                            Text("All")
+                        }
+                    }
+                    Section(header: channelsHeader) {
+                        ForEach(channels) { channel in
+                            NavigationLink(destination: ChannelDetailsView(channel: channel)) {
+                                Text(channel.title)
+                            }
+                        }
                     }
                 }
+                .roundedListStyle()
+            }
+
+            if channels == nil {
+                ActivityIndicator(isAnimating: true)
             }
         }
-        .roundedListStyle()
         .navigationBarTitle("Inbox")
         .navigationBarItems(trailing: settingsNavigationBarItem)
         .onAppear(perform: loadChannels)
@@ -73,13 +81,12 @@ struct ChannelListView: View {
     }
 }
 
-struct ChannelListView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            ChannelListView(channels: [
-                .plants,
-                .puffery,
-            ])
+#if DEBUG
+    struct ChannelListView_Previews: PreviewProvider {
+        static var previews: some View {
+            NavigationView {
+                ChannelListView(channels: nil)
+            }
         }
     }
-}
+#endif

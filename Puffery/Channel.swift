@@ -10,20 +10,22 @@ import Foundation
 
 struct Channel: Codable {
     let title: String
-    let token: String
+    let token: String?
     let publicId: String
 }
 
 extension Channel: Identifiable {
-    var id: String { token }
+    var id: String { token ?? publicId }
 }
 
-extension Channel {
-    static var puffery: Channel {
-        Channel(title: "Puffery", token: UUID().uuidString, publicId: UUID().uuidString)
-    }
+#if DEBUG
+    extension Channel {
+        static var puffery: Channel {
+            Channel(title: "Puffery", token: UUID().uuidString, publicId: UUID().uuidString)
+        }
 
-    static var plants: Channel {
-        Channel(title: "Plants", token: UUID().uuidString, publicId: UUID().uuidString)
+        static var plants: Channel {
+            Channel(title: "Plants", token: UUID().uuidString, publicId: UUID().uuidString)
+        }
     }
-}
+#endif
