@@ -13,6 +13,10 @@ struct ChannelCreationPage: View {
     @State var title: String = ""
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
+    var isUUID: Bool {
+        UUID(uuidString: title) != nil
+    }
+
     var body: some View {
         Form {
             Section {
@@ -20,7 +24,7 @@ struct ChannelCreationPage: View {
             }
             Section {
                 Button(action: createChannel) {
-                    Text("Create")
+                    Text(isUUID ? "Join" : "Create")
                 }.disabled(title.isEmpty)
             }
         }.navigationBarTitle("Create Channel", displayMode: NavigationBarItem.TitleDisplayMode.inline)
@@ -32,7 +36,7 @@ struct ChannelCreationPage: View {
 
     var createNavigationItem: some View {
         Button(action: dismiss) {
-            Text("Create").fontWeight(.bold)
+            Text(isUUID ? "Join" : "Create").fontWeight(.bold)
         }
     }
 
@@ -44,14 +48,20 @@ struct ChannelCreationPage: View {
 
     func createChannel() {
         registerForPushNotifications {
-            ApiController().createChannel(deviceId: latestDeviceToken, title: self.title) { result in
-                switch result {
-                case .success:
-                    self.dismiss()
-                case .failure:
-                    print("Error")
-                }
+            if self.isUUID {
+                ApiController().subscribeChannel(deviceId: latestDeviceToken, channelId: self.title, completion: self.receiveChannel(result:))
+            } else {
+                ApiController().createChannel(deviceId: latestDeviceToken, title: self.title, completion: self.receiveChannel(result:))
             }
+        }
+    }
+
+    func receiveChannel(result: Result<Void, Error>) {
+        switch result {
+        case .success:
+            dismiss()
+        case let .failure(error):
+            print("Error", error)
         }
     }
 
@@ -82,7 +92,9 @@ struct ChannelCreationPage: View {
 #if DEBUG
     struct ChannelCreationPage_Previews: PreviewProvider {
         static var previews: some View {
-            ChannelCreationPage()
+            NavigationView {
+                ChannelCreationPage()
+            }
         }
     }
 #endif

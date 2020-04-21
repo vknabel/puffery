@@ -13,8 +13,6 @@ struct Message: Identifiable, Codable {
 
     var title: String
     var body: String
-//    var channel: Channel
-//    var triggerDate: Date
     var color: Color
 
     enum Color: String, Codable {

@@ -57,6 +57,38 @@ class ApiController {
         task.resume()
     }
 
+    func subscribeChannel(deviceId: String, channelId: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        var request = URLRequest(url: baseURL.appendingPathComponent("channel/subscribe"))
+        request.httpMethod = "POST"
+
+        // Headers
+
+        request.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+
+        // JSON Body
+
+        let bodyObject: [String: Any] = [
+            "channelId": channelId,
+            "deviceId": deviceId,
+        ]
+        request.httpBody = try! JSONSerialization.data(withJSONObject: bodyObject, options: [])
+
+        /* Start a new Task */
+        let task = session.dataTask(with: request, completionHandler: { (_: Data?, response: URLResponse?, error: Error?) -> Void in
+            if error == nil {
+                // Success
+                let statusCode = (response as! HTTPURLResponse).statusCode
+                print("URL Session Task Succeeded: HTTP \(statusCode)")
+                completion(.success(()))
+            } else {
+                // Failure
+                print("URL Session Task Failed: %@", error!.localizedDescription)
+                completion(.failure(error!))
+            }
+        })
+        task.resume()
+    }
+
     func notify(title: String, body: String, channelToken: String, completion: @escaping (Result<Void, Error>) -> Void) {
         var request = URLRequest(url: baseURL.appendingPathComponent("notify"))
         request.httpMethod = "POST"
@@ -153,7 +185,7 @@ class ApiController {
     }
 
     func channelMessages(channel: Channel, completion: @escaping (Result<[Message], Error>) -> Void) {
-        var request = URLRequest(url: baseURL.appendingPathComponent("channel").appendingPathComponent(channel.id).appendingPathComponent("notifications"))
+        var request = URLRequest(url: baseURL.appendingPathComponent("channel").appendingPathComponent(channel.publicId).appendingPathComponent("notifications"))
         request.httpMethod = "GET"
 
         /* Start a new Task */
