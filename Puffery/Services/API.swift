@@ -17,10 +17,12 @@ final class API: ObservableObject {
     init(baseURL: URL) {
         let internalStrategy = URLSessionRequestFetchingStrategy(baseURL: baseURL)
         defaultStrategy = LoggingRequestFetchingStrategy(internalStrategy) {
-            guard case let .failure(error) = $0 else {
-                return
+            switch $0 {
+            case let .failure(error):
+                print("Request failed: \(error)")
+            case let .success(value):
+                print("Request passed: \(value)")
             }
-            print("Request failed: \(error)")
         }
     }
 

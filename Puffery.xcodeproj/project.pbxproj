@@ -21,6 +21,7 @@
 		BA4FEB18244F9053008A02E4 /* RequestFetchingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FEB17244F9053008A02E4 /* RequestFetchingStrategy.swift */; };
 		BA4FEB1A244F9AD5008A02E4 /* URLSessionRequestFetchingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FEB19244F9AD5008A02E4 /* URLSessionRequestFetchingStrategy.swift */; };
 		BA4FEB1C24502C2E008A02E4 /* LoggingRequestFetchingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FEB1B24502C2E008A02E4 /* LoggingRequestFetchingStrategy.swift */; };
+		BA4FEB1E245030F5008A02E4 /* Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FEB1D245030F5008A02E4 /* Fetching.swift */; };
 		BA94F0BD244B92FB0087924C /* ChannelListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BC244B92FB0087924C /* ChannelListView.swift */; };
 		BA94F0BF244B93D60087924C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BE244B93D60087924C /* Channel.swift */; };
 		BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94F0C2244BA4030087924C /* UserNotifications.framework */; };
@@ -69,6 +70,7 @@
 		BA4FEB17244F9053008A02E4 /* RequestFetchingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFetchingStrategy.swift; sourceTree = "<group>"; };
 		BA4FEB19244F9AD5008A02E4 /* URLSessionRequestFetchingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionRequestFetchingStrategy.swift; sourceTree = "<group>"; };
 		BA4FEB1B24502C2E008A02E4 /* LoggingRequestFetchingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingRequestFetchingStrategy.swift; sourceTree = "<group>"; };
+		BA4FEB1D245030F5008A02E4 /* Fetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetching.swift; sourceTree = "<group>"; };
 		BA94F0BC244B92FB0087924C /* ChannelListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListView.swift; sourceTree = "<group>"; };
 		BA94F0BE244B93D60087924C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		BA94F0C0244BA2E80087924C /* Puffery.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puffery.entitlements; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				BA3B3AE0244C47DF001C1A07 /* MessageCell.swift */,
 				BA3B3AE4244C492C001C1A07 /* MessageList.swift */,
 				BA3B3AE6244C50B5001C1A07 /* ActivityIndicator.swift */,
+				BA4FEB1D245030F5008A02E4 /* Fetching.swift */,
 				BAF1546C2444BB4600EDB97B /* Assets.xcassets */,
 				BAF154712444BB4600EDB97B /* LaunchScreen.storyboard */,
 				BAF154742444BB4600EDB97B /* Info.plist */,
@@ -376,6 +379,7 @@
 				BA4FEB1C24502C2E008A02E4 /* LoggingRequestFetchingStrategy.swift in Sources */,
 				BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */,
 				BA4FEB16244F8E89008A02E4 /* API.swift in Sources */,
+				BA4FEB1E245030F5008A02E4 /* Fetching.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
