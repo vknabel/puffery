@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ChannelDetailsView: View {
     var channel: Channel?
+
+    @EnvironmentObject var api: API
     @State var messages: [Message]?
     @State var displaysChannelSettings = false
 
@@ -38,13 +40,13 @@ struct ChannelDetailsView: View {
 
     private func loadMessages() {
         if let channel = channel {
-            ApiController().channelMessages(channel: channel, completion: didReceiveMessages(result:))
+            api.messages(ofChannel: channel).task(didReceiveMessages(result:))
         } else {
-            ApiController().deviceMessages(deviceToken: latestDeviceToken, completion: didReceiveMessages(result:))
+            api.messages(ofDevice: latestDeviceToken).task(didReceiveMessages(result:))
         }
     }
 
-    private func didReceiveMessages(result: Result<[Message], Error>) {
+    private func didReceiveMessages(result: Result<[Message], FetchingError>) {
         switch result {
         case let .success(messages):
             self.messages = messages

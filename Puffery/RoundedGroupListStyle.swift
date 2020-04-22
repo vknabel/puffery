@@ -10,7 +10,7 @@ import SwiftUI
 
 extension View {
     public func roundedListStyle() -> some View {
-        return listStyle(GroupedListStyle())
+        listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
     }
 }

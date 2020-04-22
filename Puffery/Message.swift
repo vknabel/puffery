@@ -19,7 +19,7 @@ struct Message: Identifiable, Codable {
         case blue, orange, green, red, gray
 
         static var unspecified: Color {
-            return .gray
+            .gray
         }
     }
 }

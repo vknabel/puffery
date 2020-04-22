@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/vknabel/dev/Puffery/Puffery.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

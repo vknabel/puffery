@@ -6,13 +6,17 @@
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 
 struct ChannelListView: View {
+    @EnvironmentObject var api: API
     @State var channels: [Channel]?
 
     @State var presentsSettings = false
     @State var presentsChannelCreation = false
+
+    @State var refreshSubscription: AnyCancellable? = nil
 
     var body: some View {
         ZStack {
@@ -70,13 +74,18 @@ struct ChannelListView: View {
     }
 
     func loadChannels() {
-        ApiController().channels(deviceToken: latestDeviceToken) { result in
-            switch result {
-            case let .success(channels):
-                self.channels = channels
+        refreshSubscription = Publishers.Zip(
+            api.privateChannels(device: latestDeviceToken).publisher(),
+            api.publicChannels(device: latestDeviceToken).publisher()
+        ).sink(receiveCompletion: { completion in
+            switch completion {
+            case .finished:
+                break
             case let .failure(error):
                 print("Error", error)
             }
+        }) { channelLists in
+            self.channels = channelLists.0 + channelLists.1
         }
     }
 }

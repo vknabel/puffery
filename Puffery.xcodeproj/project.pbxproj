@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,10 +15,15 @@
 		BA3B3AE7244C50B5001C1A07 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3B3AE6244C50B5001C1A07 /* ActivityIndicator.swift */; };
 		BA3B3AEB244C7AA5001C1A07 /* PufferyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3B3AEA244C7AA5001C1A07 /* PufferyApp.swift */; };
 		BA3B3AED244C7F2F001C1A07 /* GettingStarted.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3B3AEC244C7F2F001C1A07 /* GettingStarted.swift */; };
+		BA4FEB11244F7AC9008A02E4 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FEB10244F7AC9008A02E4 /* Endpoint.swift */; };
+		BA4FEB14244F80D7008A02E4 /* Overture in Frameworks */ = {isa = PBXBuildFile; productRef = BA4FEB13244F80D7008A02E4 /* Overture */; };
+		BA4FEB16244F8E89008A02E4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FEB15244F8E89008A02E4 /* API.swift */; };
+		BA4FEB18244F9053008A02E4 /* RequestFetchingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FEB17244F9053008A02E4 /* RequestFetchingStrategy.swift */; };
+		BA4FEB1A244F9AD5008A02E4 /* URLSessionRequestFetchingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FEB19244F9AD5008A02E4 /* URLSessionRequestFetchingStrategy.swift */; };
+		BA4FEB1C24502C2E008A02E4 /* LoggingRequestFetchingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FEB1B24502C2E008A02E4 /* LoggingRequestFetchingStrategy.swift */; };
 		BA94F0BD244B92FB0087924C /* ChannelListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BC244B92FB0087924C /* ChannelListView.swift */; };
 		BA94F0BF244B93D60087924C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BE244B93D60087924C /* Channel.swift */; };
 		BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94F0C2244BA4030087924C /* UserNotifications.framework */; };
-		BA9A865B244DA60D00C8D644 /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A865A244DA60D00C8D644 /* ApiController.swift */; };
 		BA9A865F244DB01300C8D644 /* ChannelCreationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A865E244DB01300C8D644 /* ChannelCreationPage.swift */; };
 		BAA70270244CC04A00D03A20 /* ChannelSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA7026F244CC04A00D03A20 /* ChannelSettingsPage.swift */; };
 		BAA70272244CC8D200D03A20 /* RoundedGroupListStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */; };
@@ -59,11 +64,15 @@
 		BA3B3AE6244C50B5001C1A07 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		BA3B3AEA244C7AA5001C1A07 /* PufferyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PufferyApp.swift; sourceTree = "<group>"; };
 		BA3B3AEC244C7F2F001C1A07 /* GettingStarted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettingStarted.swift; sourceTree = "<group>"; };
+		BA4FEB10244F7AC9008A02E4 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		BA4FEB15244F8E89008A02E4 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		BA4FEB17244F9053008A02E4 /* RequestFetchingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFetchingStrategy.swift; sourceTree = "<group>"; };
+		BA4FEB19244F9AD5008A02E4 /* URLSessionRequestFetchingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionRequestFetchingStrategy.swift; sourceTree = "<group>"; };
+		BA4FEB1B24502C2E008A02E4 /* LoggingRequestFetchingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingRequestFetchingStrategy.swift; sourceTree = "<group>"; };
 		BA94F0BC244B92FB0087924C /* ChannelListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListView.swift; sourceTree = "<group>"; };
 		BA94F0BE244B93D60087924C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		BA94F0C0244BA2E80087924C /* Puffery.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puffery.entitlements; sourceTree = "<group>"; };
 		BA94F0C2244BA4030087924C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
-		BA9A865A244DA60D00C8D644 /* ApiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
 		BA9A865E244DB01300C8D644 /* ChannelCreationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationPage.swift; sourceTree = "<group>"; };
 		BAA7026F244CC04A00D03A20 /* ChannelSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingsPage.swift; sourceTree = "<group>"; };
 		BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGroupListStyle.swift; sourceTree = "<group>"; };
@@ -89,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA4FEB14244F80D7008A02E4 /* Overture in Frameworks */,
 				BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +120,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA4FEB0A244F7991008A02E4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BA4FEB10244F7AC9008A02E4 /* Endpoint.swift */,
+				BA4FEB17244F9053008A02E4 /* RequestFetchingStrategy.swift */,
+				BA4FEB19244F9AD5008A02E4 /* URLSessionRequestFetchingStrategy.swift */,
+				BA4FEB1B24502C2E008A02E4 /* LoggingRequestFetchingStrategy.swift */,
+				BA4FEB15244F8E89008A02E4 /* API.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		BA94F0C1244BA4020087924C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +167,7 @@
 				BA94F0C0244BA2E80087924C /* Puffery.entitlements */,
 				BAF154632444BB4400EDB97B /* AppDelegate.swift */,
 				BAF154652444BB4400EDB97B /* SceneDelegate.swift */,
-				BA9A865A244DA60D00C8D644 /* ApiController.swift */,
+				BA4FEB0A244F7991008A02E4 /* Services */,
 				BA3B3AEC244C7F2F001C1A07 /* GettingStarted.swift */,
 				BA94F0BE244B93D60087924C /* Channel.swift */,
 				BA3B3AE2244C47EB001C1A07 /* Message.swift */,
@@ -211,6 +233,9 @@
 			dependencies = (
 			);
 			name = Puffery;
+			packageProductDependencies = (
+				BA4FEB13244F80D7008A02E4 /* Overture */,
+			);
 			productName = Puffery;
 			productReference = BAF154602444BB4400EDB97B /* Puffery.app */;
 			productType = "com.apple.product-type.application";
@@ -283,6 +308,9 @@
 				Base,
 			);
 			mainGroup = BAF154572444BB4400EDB97B;
+			packageReferences = (
+				BA4FEB12244F80D7008A02E4 /* XCRemoteSwiftPackageReference "swift-overture" */,
+			);
 			productRefGroup = BAF154612444BB4400EDB97B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -329,12 +357,15 @@
 				BAA70272244CC8D200D03A20 /* RoundedGroupListStyle.swift in Sources */,
 				BA3B3AE1244C47DF001C1A07 /* MessageCell.swift in Sources */,
 				BAA70270244CC04A00D03A20 /* ChannelSettingsPage.swift in Sources */,
+				BA4FEB18244F9053008A02E4 /* RequestFetchingStrategy.swift in Sources */,
 				BA3B3ADF244C4663001C1A07 /* ChannelDetailsView.swift in Sources */,
 				BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */,
 				BA3B3AE3244C47EB001C1A07 /* Message.swift in Sources */,
+				BA4FEB11244F7AC9008A02E4 /* Endpoint.swift in Sources */,
 				BA94F0BF244B93D60087924C /* Channel.swift in Sources */,
 				BA3B3AE7244C50B5001C1A07 /* ActivityIndicator.swift in Sources */,
 				BA3B3AE5244C492C001C1A07 /* MessageList.swift in Sources */,
+				BA4FEB1A244F9AD5008A02E4 /* URLSessionRequestFetchingStrategy.swift in Sources */,
 				BA3B3AED244C7F2F001C1A07 /* GettingStarted.swift in Sources */,
 				BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */,
 				BAA70274244CCD7F00D03A20 /* AppSettingsPage.swift in Sources */,
@@ -342,8 +373,9 @@
 				BA1C53F0244CD0AE00A06871 /* AcknowledgementsPage.swift in Sources */,
 				BA9A865F244DB01300C8D644 /* ChannelCreationPage.swift in Sources */,
 				BA3B3AEB244C7AA5001C1A07 /* PufferyApp.swift in Sources */,
+				BA4FEB1C24502C2E008A02E4 /* LoggingRequestFetchingStrategy.swift in Sources */,
 				BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */,
-				BA9A865B244DA60D00C8D644 /* ApiController.swift in Sources */,
+				BA4FEB16244F8E89008A02E4 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,6 +710,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BA4FEB12244F80D7008A02E4 /* XCRemoteSwiftPackageReference "swift-overture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-overture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BA4FEB13244F80D7008A02E4 /* Overture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA4FEB12244F80D7008A02E4 /* XCRemoteSwiftPackageReference "swift-overture" */;
+			productName = Overture;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */ = {
