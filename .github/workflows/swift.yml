@@ -8,13 +8,8 @@ on:
 
 jobs:
   build:
+    runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
       - name: Build
         uses: YOCKOW/Action-setup-swift@v1.1.2
-        run: |
-          swift build -v
-      - name: Run tests
-        uses: YOCKOW/Action-setup-swift@v1.1.2
-        run: |
-          swift test -v
