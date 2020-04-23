@@ -17,12 +17,15 @@ enum AppMode: Equatable {
 
 struct SelectPufferyApp: View {
     @State var mode = AppMode.loading
+    @EnvironmentObject var tokens: TokenRepository
 
     var body: some View {
         ZStack {
             ActivityIndicator(isAnimating: mode == .loading)
 
-            PufferyApp().show(when: mode == .mainApp)
+            PufferyApp()
+                .onAppear(perform: PushNotifications.register)
+                .show(when: mode == .mainApp)
             GettingStarted(onFinish: determineCurrentNotificationSettings)
                 .show(when: mode == .gettingStarted)
             Text("Requires Push Notifications").show(when: mode == .requiresPushNotifications)
@@ -35,7 +38,13 @@ struct SelectPufferyApp: View {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             switch settings.authorizationStatus {
             case .authorized, .provisional:
-                self.mode = .mainApp
+                if self.tokens.latestDeviceToken != nil {
+                    self.mode = .mainApp
+                } else {
+                    PushNotifications.register {
+                        self.determineCurrentNotificationSettings()
+                    }
+                }
             case .denied:
                 self.mode = .requiresPushNotifications
             case .notDetermined:
@@ -60,8 +69,6 @@ extension View {
         Group {
             if predicate {
                 self
-            } else {
-                hidden()
             }
         }
     }

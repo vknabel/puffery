@@ -14,11 +14,12 @@ struct ChannelDetailsView: View {
     var channel: Channel?
 
     @EnvironmentObject var api: API
+    @EnvironmentObject var tokens: TokenRepository
     @State var displaysChannelSettings = false
 
     var loadMessagesPublisher: AnyPublisher<[Message], FetchingError> {
         channel.map(api.messages(ofChannel:))?.publisher()
-            ?? api.messages(ofDevice: latestDeviceToken).publisher()
+            ?? api.messages().publisher()
     }
 
     var body: some View {
@@ -33,7 +34,7 @@ struct ChannelDetailsView: View {
                         .padding()
                         .sheet(isPresented: self.$displaysChannelSettings) {
                             NavigationView {
-                                ChannelSettingsPage(channel: channel)
+                                ChannelSettingsPage(channel: channel).environmentObject(self.api)
                             }
                         }
                 }

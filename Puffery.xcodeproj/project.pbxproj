@@ -25,6 +25,13 @@
 		BA94F0BD244B92FB0087924C /* ChannelListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BC244B92FB0087924C /* ChannelListView.swift */; };
 		BA94F0BF244B93D60087924C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BE244B93D60087924C /* Channel.swift */; };
 		BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94F0C2244BA4030087924C /* UserNotifications.framework */; };
+		BA96015724521D2100667BDD /* GoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA96015624521D2100667BDD /* GoAPI.swift */; };
+		BA96015B24521EFE00667BDD /* TokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA96015A24521EFE00667BDD /* TokenRepository.swift */; };
+		BA9601602452208C00667BDD /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BA96015F2452208C00667BDD /* KeychainSwift */; };
+		BA9601622452268500667BDD /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9601612452268500667BDD /* KeychainItem.swift */; };
+		BA960164245227A500667BDD /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA960163245227A500667BDD /* Services.swift */; };
+		BA96016624522A3B00667BDD /* PushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA96016524522A3B00667BDD /* PushNotifications.swift */; };
+		BA960168245232CB00667BDD /* Acknowloedgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA960167245232CB00667BDD /* Acknowloedgements.swift */; };
 		BA9A865F244DB01300C8D644 /* ChannelCreationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A865E244DB01300C8D644 /* ChannelCreationPage.swift */; };
 		BAA70270244CC04A00D03A20 /* ChannelSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA7026F244CC04A00D03A20 /* ChannelSettingsPage.swift */; };
 		BAA70272244CC8D200D03A20 /* RoundedGroupListStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */; };
@@ -75,6 +82,13 @@
 		BA94F0BE244B93D60087924C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		BA94F0C0244BA2E80087924C /* Puffery.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puffery.entitlements; sourceTree = "<group>"; };
 		BA94F0C2244BA4030087924C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		BA96015624521D2100667BDD /* GoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoAPI.swift; sourceTree = "<group>"; };
+		BA96015A24521EFE00667BDD /* TokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRepository.swift; sourceTree = "<group>"; };
+		BA96015C2452204200667BDD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		BA9601612452268500667BDD /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
+		BA960163245227A500667BDD /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		BA96016524522A3B00667BDD /* PushNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotifications.swift; sourceTree = "<group>"; };
+		BA960167245232CB00667BDD /* Acknowloedgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acknowloedgements.swift; sourceTree = "<group>"; };
 		BA9A865E244DB01300C8D644 /* ChannelCreationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationPage.swift; sourceTree = "<group>"; };
 		BAA7026F244CC04A00D03A20 /* ChannelSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingsPage.swift; sourceTree = "<group>"; };
 		BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGroupListStyle.swift; sourceTree = "<group>"; };
@@ -100,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA9601602452208C00667BDD /* KeychainSwift in Frameworks */,
 				BA4FEB14244F80D7008A02E4 /* Overture in Frameworks */,
 				BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */,
 			);
@@ -125,11 +140,13 @@
 		BA4FEB0A244F7991008A02E4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BA96015A24521EFE00667BDD /* TokenRepository.swift */,
 				BA4FEB10244F7AC9008A02E4 /* Endpoint.swift */,
 				BA4FEB17244F9053008A02E4 /* RequestFetchingStrategy.swift */,
 				BA4FEB19244F9AD5008A02E4 /* URLSessionRequestFetchingStrategy.swift */,
 				BA4FEB1B24502C2E008A02E4 /* LoggingRequestFetchingStrategy.swift */,
 				BA4FEB15244F8E89008A02E4 /* API.swift */,
+				BA96015624521D2100667BDD /* GoAPI.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -137,6 +154,7 @@
 		BA94F0C1244BA4020087924C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA96015C2452204200667BDD /* Security.framework */,
 				BA94F0C2244BA4030087924C /* UserNotifications.framework */,
 			);
 			name = Frameworks;
@@ -168,7 +186,10 @@
 			children = (
 				BA94F0C0244BA2E80087924C /* Puffery.entitlements */,
 				BAF154632444BB4400EDB97B /* AppDelegate.swift */,
+				BA960163245227A500667BDD /* Services.swift */,
 				BAF154652444BB4400EDB97B /* SceneDelegate.swift */,
+				BA9601612452268500667BDD /* KeychainItem.swift */,
+				BA96016524522A3B00667BDD /* PushNotifications.swift */,
 				BA4FEB0A244F7991008A02E4 /* Services */,
 				BA3B3AEC244C7F2F001C1A07 /* GettingStarted.swift */,
 				BA94F0BE244B93D60087924C /* Channel.swift */,
@@ -181,6 +202,7 @@
 				BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */,
 				BAA70273244CCD7F00D03A20 /* AppSettingsPage.swift */,
 				BA1C53EF244CD0AE00A06871 /* AcknowledgementsPage.swift */,
+				BA960167245232CB00667BDD /* Acknowloedgements.swift */,
 				BA3B3AE0244C47DF001C1A07 /* MessageCell.swift */,
 				BA3B3AE4244C492C001C1A07 /* MessageList.swift */,
 				BA3B3AE6244C50B5001C1A07 /* ActivityIndicator.swift */,
@@ -238,6 +260,7 @@
 			name = Puffery;
 			packageProductDependencies = (
 				BA4FEB13244F80D7008A02E4 /* Overture */,
+				BA96015F2452208C00667BDD /* KeychainSwift */,
 			);
 			productName = Puffery;
 			productReference = BAF154602444BB4400EDB97B /* Puffery.app */;
@@ -313,6 +336,7 @@
 			mainGroup = BAF154572444BB4400EDB97B;
 			packageReferences = (
 				BA4FEB12244F80D7008A02E4 /* XCRemoteSwiftPackageReference "swift-overture" */,
+				BA96015E2452208C00667BDD /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = BAF154612444BB4400EDB97B /* Products */;
 			projectDirPath = "";
@@ -363,14 +387,18 @@
 				BA4FEB18244F9053008A02E4 /* RequestFetchingStrategy.swift in Sources */,
 				BA3B3ADF244C4663001C1A07 /* ChannelDetailsView.swift in Sources */,
 				BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */,
+				BA96015724521D2100667BDD /* GoAPI.swift in Sources */,
 				BA3B3AE3244C47EB001C1A07 /* Message.swift in Sources */,
 				BA4FEB11244F7AC9008A02E4 /* Endpoint.swift in Sources */,
+				BA96015B24521EFE00667BDD /* TokenRepository.swift in Sources */,
 				BA94F0BF244B93D60087924C /* Channel.swift in Sources */,
 				BA3B3AE7244C50B5001C1A07 /* ActivityIndicator.swift in Sources */,
 				BA3B3AE5244C492C001C1A07 /* MessageList.swift in Sources */,
+				BA960168245232CB00667BDD /* Acknowloedgements.swift in Sources */,
 				BA4FEB1A244F9AD5008A02E4 /* URLSessionRequestFetchingStrategy.swift in Sources */,
 				BA3B3AED244C7F2F001C1A07 /* GettingStarted.swift in Sources */,
 				BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */,
+				BA960164245227A500667BDD /* Services.swift in Sources */,
 				BAA70274244CCD7F00D03A20 /* AppSettingsPage.swift in Sources */,
 				BA94F0BD244B92FB0087924C /* ChannelListView.swift in Sources */,
 				BA1C53F0244CD0AE00A06871 /* AcknowledgementsPage.swift in Sources */,
@@ -379,7 +407,9 @@
 				BA4FEB1C24502C2E008A02E4 /* LoggingRequestFetchingStrategy.swift in Sources */,
 				BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */,
 				BA4FEB16244F8E89008A02E4 /* API.swift in Sources */,
+				BA96016624522A3B00667BDD /* PushNotifications.swift in Sources */,
 				BA4FEB1E245030F5008A02E4 /* Fetching.swift in Sources */,
+				BA9601622452268500667BDD /* KeychainItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,6 +754,14 @@
 				minimumVersion = 0.5.0;
 			};
 		};
+		BA96015E2452208C00667BDD /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 19.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -731,6 +769,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BA4FEB12244F80D7008A02E4 /* XCRemoteSwiftPackageReference "swift-overture" */;
 			productName = Overture;
+		};
+		BA96015F2452208C00667BDD /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA96015E2452208C00667BDD /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 

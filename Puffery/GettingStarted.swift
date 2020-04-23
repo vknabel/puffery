@@ -19,19 +19,7 @@ struct GettingStarted: View {
     }
 
     func registerForPushNotifications() {
-        UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .sound, .badge]) {
-                granted, _ in
-                print("Permission granted: \(granted)")
-                guard granted else { return }
-                UNUserNotificationCenter.current().getNotificationSettings { settings in
-                    guard settings.authorizationStatus == .authorized else { return }
-                    DispatchQueue.main.async {
-                        UIApplication.shared.registerForRemoteNotifications()
-                        self.onFinish()
-                    }
-                }
-            }
+        PushNotifications.register(onFinish)
     }
 }
 

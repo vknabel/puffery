@@ -11,6 +11,7 @@ import SwiftUI
 
 struct ChannelListView: View {
     @EnvironmentObject var api: API
+    @EnvironmentObject var tokens: TokenRepository
     @State var channels: [Channel]?
 
     @State var presentsSettings = false
@@ -56,7 +57,7 @@ struct ChannelListView: View {
                 Image(systemName: "plus.circle").font(.body)
             }.sheet(isPresented: $presentsChannelCreation, onDismiss: loadChannels) {
                 NavigationView {
-                    ChannelCreationPage()
+                    ChannelCreationPage().environmentObject(self.api)
                 }
             }
         }
@@ -69,14 +70,15 @@ struct ChannelListView: View {
         }.sheet(isPresented: $presentsSettings) {
             NavigationView {
                 AppSettingsPage()
+                    .environmentObject(self.api)
             }
         }
     }
 
     func loadChannels() {
         refreshSubscription = Publishers.Zip(
-            api.privateChannels(device: latestDeviceToken).publisher(),
-            api.publicChannels(device: latestDeviceToken).publisher()
+            api.privateChannels().publisher(),
+            api.publicChannels().publisher()
         ).sink(receiveCompletion: { completion in
             switch completion {
             case .finished:

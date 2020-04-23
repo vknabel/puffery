@@ -7,77 +7,15 @@
 //
 
 import Foundation
-import Overture
+import Combine
 
-final class API: ObservableObject {
-    private let defaultStrategy: RequestFetchingStrategy
-    private(set) lazy var jsonDecoder = updateObject(JSONDecoder())
-    private(set) lazy var jsonEncoder = updateObject(JSONEncoder())
-
-    init(baseURL: URL) {
-        let internalStrategy = URLSessionRequestFetchingStrategy(baseURL: baseURL)
-        defaultStrategy = LoggingRequestFetchingStrategy(internalStrategy) {
-            switch $0 {
-            case let .failure(error):
-                print("Request failed: \(error)")
-            case let .success(value):
-                print("Request passed: \(value)")
-            }
-        }
-    }
-
-    private func endpoint(_ strategy: RequestFetchingStrategy? = nil) -> Endpoint<Data?> {
-        Endpoint(strategy: strategy ?? defaultStrategy)
-            .update { $0.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type") }
-    }
-
-    func docs() -> Endpoint<String?> {
-        endpoint().get().compactMap { String(data: $0, encoding: .utf8) }
-    }
-
-    func createChannel(title: String, deviceToken: String) -> Endpoint<Void> {
-        endpoint().post("channel", "create")
-            .encoding(body: ["title": title, "deviceId": deviceToken], using: jsonEncoder.encode)
-            .ignoreValue()
-    }
-
-    func messages(ofDevice deviceToken: String) -> Endpoint<[Message]> {
-        endpoint()
-            .get("channel", deviceToken, "notifications")
-            .decoding(jsonDecoder.decode)
-    }
-
-    func messages(ofChannel channel: Channel) -> Endpoint<[Message]> {
-        endpoint()
-            .get("channel", channel.id, "notifications")
-            .decoding(jsonDecoder.decode)
-    }
-
-    func subscribe(device deviceToken: String, publicChannel: String) -> Endpoint<Void> {
-        endpoint()
-            .post("channel", "subscribe")
-            .encoding(body: ["channelId": publicChannel, "deviceId": deviceToken], using: jsonEncoder.encode)
-            .ignoreValue()
-    }
-
-    func notify(title: String, body: String, privateChannelToken: String) -> Endpoint<Void> {
-        endpoint().post("notify").encoding(body: [
-            "title": title,
-            "body": body,
-            "channelToken": privateChannelToken,
-        ], using: jsonEncoder.encode)
-            .ignoreValue()
-    }
-
-//    func channels(deviceToken: String) -> Endpoint<[Channel]> // TODO: geht nicht mehr!!
-
-    func publicChannels(device deviceToken: String) -> Endpoint<[Channel]> {
-        endpoint().get("channels", deviceToken, "public")
-            .decoding(jsonDecoder.decode)
-    }
-
-    func privateChannels(device deviceToken: String) -> Endpoint<[Channel]> {
-        endpoint().get("channels", deviceToken, "private")
-            .decoding(jsonDecoder.decode)
-    }
+open class API: ObservableObject {
+    func docs() -> Endpoint<String?> { fatalError() }
+    func createChannel(title: String, deviceToken: String) -> Endpoint<Void> { fatalError() }
+    func messages() -> Endpoint<[Message]> { fatalError() }
+    func messages(ofChannel channel: Channel) -> Endpoint<[Message]> { fatalError() }
+    func subscribe(device deviceToken: String, publicChannel: String) -> Endpoint<Void> { fatalError() }
+    func notify(title: String, body: String, privateChannelToken: String) -> Endpoint<Void> { fatalError() }
+    func publicChannels() -> Endpoint<[Channel]> { fatalError() }
+    func privateChannels() -> Endpoint<[Channel]> { fatalError() }
 }

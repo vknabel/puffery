@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AppSettingsPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var tokens: TokenRepository
 
     var body: some View {
         List {
@@ -33,21 +34,9 @@ struct AppSettingsPage: View {
     }
 
     func registerForPushNotifications() {
-        UNUserNotificationCenter.current() // 1
-            .requestAuthorization(options: [.alert, .sound, .badge]) { // 2
-                granted, _ in
-                print("Permission granted: \(granted)") // 3
-
-                guard granted else {
-                    return
-                }
-                UNUserNotificationCenter.current().getNotificationSettings { settings in
-                    guard settings.authorizationStatus == .authorized else { return }
-                    DispatchQueue.main.async {
-                        UIApplication.shared.registerForRemoteNotifications()
-                    }
-                }
-            }
+        PushNotifications.register {
+            UIPasteboard.general.string = self.tokens.latestDeviceToken
+        }
     }
 
     func dismiss() {

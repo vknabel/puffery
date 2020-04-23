@@ -9,8 +9,6 @@
 import CoreData
 import UIKit
 
-var latestDeviceToken = "d6574a4ffd6f7bc43e365c87712596f62c338923981e550a1b1449d46898d939"
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -38,9 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
-        UIPasteboard.general.string = token
-        print("Device Token: \(token)")
-        latestDeviceToken = token
+        Current.tokens.latestDeviceToken = token
     }
 
     // MARK: - Core Data stack

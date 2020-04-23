@@ -12,6 +12,7 @@ import UserNotifications
 struct ChannelCreationPage: View {
     @State var title: String = ""
     @EnvironmentObject var api: API
+    @EnvironmentObject var tokens: TokenRepository
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var isUUID: Bool {
@@ -36,7 +37,7 @@ struct ChannelCreationPage: View {
     }
 
     var createNavigationItem: some View {
-        Button(action: dismiss) {
+        Button(action: createChannel) {
             Text(isUUID ? "Join" : "Create").fontWeight(.bold)
         }
     }
@@ -48,12 +49,12 @@ struct ChannelCreationPage: View {
     }
 
     func createChannel() {
-        registerForPushNotifications {
+        PushNotifications.register {
             if self.isUUID {
-                self.api.subscribe(device: latestDeviceToken, publicChannel: self.title)
+                self.api.subscribe(device: self.tokens.latestDeviceToken ?? "", publicChannel: self.title)
                     .task(self.receiveChannel(result:))
             } else {
-                self.api.createChannel(title: self.title, deviceToken: latestDeviceToken)
+                self.api.createChannel(title: self.title, deviceToken: self.tokens.latestDeviceToken ?? "")
                     .task(self.receiveChannel(result:))
             }
         }
@@ -70,25 +71,6 @@ struct ChannelCreationPage: View {
 
     func dismiss() {
         presentationMode.wrappedValue.dismiss()
-    }
-
-    func registerForPushNotifications(finish: @escaping () -> Void) {
-        UNUserNotificationCenter.current() // 1
-            .requestAuthorization(options: [.alert, .sound, .badge]) { // 2
-                granted, _ in
-                print("Permission granted: \(granted)") // 3
-
-                guard granted else {
-                    return
-                }
-                UNUserNotificationCenter.current().getNotificationSettings { settings in
-                    guard settings.authorizationStatus == .authorized else { return }
-                    DispatchQueue.main.async {
-                        UIApplication.shared.registerForRemoteNotifications()
-                        finish()
-                    }
-                }
-            }
     }
 }
 

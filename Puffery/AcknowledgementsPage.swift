@@ -8,22 +8,6 @@
 
 import SwiftUI
 
-struct License: Identifiable, Codable {
-    var id: String { name }
-
-    var name: String
-    var source: URL
-    var licenseText: String
-}
-
-struct FlaticonAsset: Identifiable, Codable {
-    var id: String { name }
-
-    var name: String
-    var author: String
-    var source: URL
-}
-
 struct AcknowledgementsPage: View {
     var assets: [FlaticonAsset]
     var licenses: [License]
@@ -64,10 +48,8 @@ struct AcknowledgementsPage: View {
 
 extension AcknowledgementsPage {
     init() {
-        assets = [
-            FlaticonAsset(name: "Kugelfisch", author: "Freepik", source: URL(string: "https://www.flaticon.com/de/kostenloses-icon/kugelfisch_774951")!),
-        ]
-        licenses = []
+        assets = FlaticonAsset.assets
+        licenses = License.licenses
     }
 }
 
@@ -76,9 +58,12 @@ struct LicensePage: View {
 
     var body: some View {
         VStack {
-            Text(license.licenseText)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-            Spacer()
+            ScrollView {
+                Text(license.licenseText)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
+                    .padding()
+                Spacer()
+            }
         }
         .navigationBarItems(trailing: Button(action: openLicense) {
             Image(systemName: "safari").padding()
@@ -113,14 +98,7 @@ struct FlaticonAssetPage: View {
     struct AcknowledgementsPage_Previews: PreviewProvider {
         static var previews: some View {
             NavigationView {
-                AcknowledgementsPage(
-                    assets: [
-                        FlaticonAsset(name: "Kugelfisch", author: "Freepik", source: URL(string: "https://www.flaticon.com/de/kostenloses-icon/kugelfisch_774951")!),
-                    ],
-                    licenses: [
-                        License(name: "AckeeTracker-Swift", source: URL(string: "https://github.com/vknabel/AckeeTracker-Swift")!, licenseText: "MIT"),
-                    ]
-                )
+                AcknowledgementsPage()
             }
         }
     }
