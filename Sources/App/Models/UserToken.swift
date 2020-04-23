@@ -3,7 +3,7 @@ import Fluent
 import Vapor
 
 /// An ephermal authentication token that identifies a registered user.
-final class UserToken: Model, Content {
+final class UserToken: Model {
     static let schema = "user_tokens"
 
 //    /// Creates a new `UserToken` for a given user.

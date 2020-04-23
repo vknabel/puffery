@@ -20,6 +20,8 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreateSubscriptionMigration())
     app.migrations.add(CreateUserTokenMigration())
 
+    app.migrations.add(MakeEmailsOptionalUserMigration2020_04_23())
+
     try apns(app)
     try routes(app)
 }

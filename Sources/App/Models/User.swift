@@ -8,14 +8,14 @@ final class User: Model, Authenticatable {
     var id: UUID?
 
     @Field(key: "email")
-    var email: String
+    var email: String?
 
     @Children(for: \.$user)
     var subscriptions: [Subscription]
 
     init() {}
 
-    init(id: UUID? = nil, email: String) {
+    init(id: UUID? = nil, email: String?) {
         self.id = id
         self.email = email
     }
@@ -32,6 +32,22 @@ struct CreateUserMigration: Migration {
 
     func revert(on database: Database) -> EventLoopFuture<Void> {
         database.schema(User.schema).delete()
+    }
+}
+
+struct MakeEmailsOptionalUserMigration2020_04_23: Migration {
+    func prepare(on database: Database) -> EventLoopFuture<Void> {
+        database.schema(User.schema)
+            .deleteField("email")
+            .field("email", .string)
+            .update()
+    }
+
+    func revert(on database: Database) -> EventLoopFuture<Void> {
+        database.schema(User.schema)
+            .deleteField("email")
+            .field("email", .string, .required)
+            .update()
     }
 }
 
