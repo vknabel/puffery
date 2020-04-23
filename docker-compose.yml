@@ -28,7 +28,7 @@ x-shared_environment: &shared_environment
 
 services:
   app:
-    image: PufferySwiftServer:latest
+    image: puffery-vapor:latest
     build:
       context: .
     environment:
@@ -40,7 +40,7 @@ services:
     command:
       ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "80"]
   migrate:
-    image: PufferySwiftServer:latest
+    image: puffery-vapor:latest
     build:
       context: .
     environment:
@@ -51,7 +51,7 @@ services:
     deploy:
       replicas: 0
   revert:
-    image: PufferySwiftServer:latest
+    image: puffery-vapor:latest
     build:
       context: .
     environment:
