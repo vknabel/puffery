@@ -1,0 +1,11 @@
+Packages
+.build
+xcuserdata
+*.xcodeproj
+DerivedData/
+.DS_Store
+.swiftpm
+db.sqlite
+
+.envrc
+private
