@@ -8,6 +8,7 @@ let package = Package(
     ],
     products: [
         .library(name: "PufferyServer", targets: ["App"]),
+        .executable(name: "puffery", targets: ["Run"]),
     ],
     dependencies: [
         // 💧 A server-side Swift web framework.
