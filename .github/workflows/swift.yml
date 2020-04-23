@@ -13,6 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build
-        run: eval "$(curl -sL https://swiftenv.fuller.li/install.sh)" && swift build -v
+        uses: YOCKOW/Action-setup-swift@v1.1.2
+        run: |
+          swift build -v
       - name: Run tests
-        run: eval "$(curl -sL https://swiftenv.fuller.li/install.sh)" && swift test -v
+        uses: YOCKOW/Action-setup-swift@v1.1.2
+        run: |
+          swift test -v
