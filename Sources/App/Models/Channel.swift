@@ -27,19 +27,3 @@ final class Channel: Model {
         self.receiveOnlyKey = receiveOnlyKey
     }
 }
-
-/// Allows `Channel` to be used as a dynamic migration.
-struct CreateChannelMigration: Migration {
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
-        database.schema(Channel.schema)
-            .id()
-            .field("title", .string, .required)
-            .field("notifyKey", .string, .required)
-            .field("receiveOnlyKey", .string, .required)
-            .create()
-    }
-
-    func revert(on database: Database) -> EventLoopFuture<Void> {
-        database.schema(Channel.schema).delete()
-    }
-}

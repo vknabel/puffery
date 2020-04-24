@@ -12,16 +12,7 @@ public func configure(_ app: Application) throws {
     // Register middleware
     app.middleware.use(ErrorMiddleware.default(environment: app.environment))
 
-    // Configure migrations
-    app.migrations.add(CreateUserMigration())
-    app.migrations.add(CreateChannelMigration())
-    app.migrations.add(CreateDeviceMigration())
-    app.migrations.add(CreateMessageMigration())
-    app.migrations.add(CreateSubscriptionMigration())
-    app.migrations.add(CreateUserTokenMigration())
-
-    app.migrations.add(MakeEmailsOptionalUserMigration2020_04_23())
-
+    try migrate(app)
     try apns(app)
     try routes(app)
 }

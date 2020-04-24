@@ -1,5 +1,7 @@
 import Fluent
 import Vapor
+import FluentPostgresDriver
+import FluentSQL
 
 final class User: Model, Authenticatable {
     static let schema = "users"
@@ -18,36 +20,6 @@ final class User: Model, Authenticatable {
     init(id: UUID? = nil, email: String?) {
         self.id = id
         self.email = email
-    }
-}
-
-/// Allows `User` to be used as a dynamic migration.
-struct CreateUserMigration: Migration {
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
-        database.schema(User.schema)
-            .id()
-            .field("email", .string, .required)
-            .create()
-    }
-
-    func revert(on database: Database) -> EventLoopFuture<Void> {
-        database.schema(User.schema).delete()
-    }
-}
-
-struct MakeEmailsOptionalUserMigration2020_04_23: Migration {
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
-        database.schema(User.schema)
-            .deleteField("email")
-            .field("email", .string)
-            .update()
-    }
-
-    func revert(on database: Database) -> EventLoopFuture<Void> {
-        database.schema(User.schema)
-            .deleteField("email")
-            .field("email", .string, .required)
-            .update()
     }
 }
 
