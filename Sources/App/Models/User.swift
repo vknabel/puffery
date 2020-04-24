@@ -1,7 +1,5 @@
 import Fluent
 import Vapor
-import FluentPostgresDriver
-import FluentSQL
 
 final class User: Model, Authenticatable {
     static let schema = "users"

@@ -1,0 +1,6 @@
+{
+  "[swift]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "vknabel.vscode-swiftformat"
+  }
+}

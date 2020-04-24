@@ -15,4 +15,3 @@ struct CreateChannelMigration: Migration {
         database.schema("channels").delete()
     }
 }
-

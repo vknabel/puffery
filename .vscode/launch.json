@@ -1,0 +1,54 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    // Running executables
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Serve",
+      "program": "${workspaceFolder}/.build/debug/puffery",
+      "args": ["serve"],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "swift-build"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Migrate",
+      "program": "${workspaceFolder}/.build/debug/puffery",
+      "args": ["migrate", "--yes"],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "swift-build"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Revert",
+      "program": "${workspaceFolder}/.build/debug/puffery",
+      "args": ["migrate", "--yes", "--revert"],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "swift-build"
+    },
+    // Running unit tests
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Test on macOS",
+      "program": "/Applications/Xcode.app/Contents/Developer/usr/bin/xctest", //For example /Applications/Xcode.app/Contents/Developer/usr/bin/xctest
+      "args": [
+        "${workspaceFolder}/.build/debug/PufferyServerPackageTests.xctest"
+      ],
+      "preLaunchTask": "swift-build-tests"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Test on Linux",
+      "program": "./.build/x86_64-unknown-linux/debug/PufferyServerPackageTests.xctest",
+      "preLaunchTask": "swift-build-tests"
+    }
+  ]
+}
