@@ -13,8 +13,8 @@ import SwiftUI
 struct ChannelDetailsPage: View {
     var channel: Channel?
 
-    @EnvironmentObject var api: API
-    @EnvironmentObject var tokens: TokenRepository
+    private var api: API { Current.api }
+    private var tokens: TokenRepository { Current.tokens }
     @State var displaysChannelSettings = false
 
     var loadMessagesPublisher: AnyPublisher<[Message], FetchingError> {
@@ -34,8 +34,7 @@ struct ChannelDetailsPage: View {
                         .padding()
                         .sheet(isPresented: self.$displaysChannelSettings) {
                             NavigationView {
-                                ChannelSettingsPage(channel: channel).environmentObject(self.api)
-                                    .environmentObject(self.tokens)
+                                ChannelSettingsPage(channel: channel)
                             }
                         }
                 }
@@ -59,7 +58,7 @@ struct ChannelDetailsPage: View {
     }
 
     func noMessageHelperText() -> String? {
-        if channel?.token != nil {
+        if channel?.notifyKey != nil {
             return "Create your own messages!"
         } else if channel != nil {
             return "Stay tuned for the author!"
@@ -69,7 +68,7 @@ struct ChannelDetailsPage: View {
     }
 
     func noMessageCodeExampleText() -> String? {
-        if let channel = channel, let privateToken = channel.token {
+        if let channel = channel, let privateToken = channel.notifyKey {
             return """
             curl "https://api.puffery.app/notify" \\
             --form-string "channelToken=\(privateToken)" \\

@@ -8,24 +8,18 @@
 
 import Foundation
 
-struct Channel: Codable {
-    let title: String
-    let token: String?
-    let publicId: String
-}
+typealias Channel = SubscribedChannelResponse
 
-extension Channel: Identifiable {
-    var id: String { token ?? publicId }
-}
+extension Channel: Identifiable {}
 
 #if DEBUG
     extension Channel {
         static var puffery: Channel {
-            Channel(title: "Puffery", token: UUID().uuidString, publicId: UUID().uuidString)
+            Channel(id: UUID(), title: "Puffery", receiveOnlyKey: UUID().uuidString, notifyKey: UUID().uuidString)
         }
 
         static var plants: Channel {
-            Channel(title: "Plants", token: UUID().uuidString, publicId: UUID().uuidString)
+            Channel(id: UUID(), title: "Plants", receiveOnlyKey: UUID().uuidString, notifyKey: UUID().uuidString)
         }
     }
 #endif

@@ -10,14 +10,16 @@ import AckeeTracker
 import Foundation
 
 struct World {
+    var config: Config
     var api: API
     var tokens: TokenRepository
     var tracker: Tracker
 }
 
 var Current: World = {
+    let config = Config.prod()
     let tokens = TokenRepository()
-    let api = GoAPI(tokens: tokens, baseURL: URL(string: "https://api.puffery.app/")!)
+    let api = VaporAPI(tokens: tokens, baseURL: config.apiURL)
 
     let trackingDisabled: Bool
     #if DEBUG
@@ -26,10 +28,10 @@ var Current: World = {
         trackingDisabled = false
     #endif
     let ackee = AckeeTracker(configuration: AckeeConfiguration(
-        domainId: Bundle.main.infoDictionary!["ACKEE_DOMAIN_ID"] as! String,
-        serverUrl: URL(string: Bundle.main.infoDictionary!["ACKEE_SERVER_URL"] as! String)!,
-        appUrl: URL(string: Bundle.main.infoDictionary!["ACKEE_APP_URL"] as! String)!,
+        domainId: config.ackeeDomainID,
+        serverUrl: config.ackeeServerURL,
+        appUrl: config.ackeeAppURL,
         disabled: trackingDisabled
     ))
-    return World(api: api, tokens: tokens, tracker: ackee)
+    return World(config: config, api: api, tokens: tokens, tracker: ackee)
 }()

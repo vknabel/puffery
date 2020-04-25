@@ -20,6 +20,7 @@ struct Fetching<V, E: Error, LoadingView: View, ErrorView: View, DataView: View>
 
     @State var latestResult: Result<V, E>?
     @State var operation: AnyCancellable?
+    @State var isLoading: AnyCancellable?
 
     init<P: Publisher>(
         _ fetch: P,
@@ -35,7 +36,9 @@ struct Fetching<V, E: Error, LoadingView: View, ErrorView: View, DataView: View>
 
     var body: some View {
         Group {
-            operation.map { _ in loading() }
+            if latestResult == nil {
+                loading()
+            }
             latestResult?.failure.map {
                 self.error($0, self.retry)
             }
@@ -52,7 +55,9 @@ struct Fetching<V, E: Error, LoadingView: View, ErrorView: View, DataView: View>
                 }
                 self.operation = nil
             },
-            receiveValue: { self.latestResult = .success($0) }
+            receiveValue: {
+                self.latestResult = .success($0)
+            }
         )
     }
 

@@ -14,7 +14,7 @@ enum PushNotifications {
     static func register() {
         register {}
     }
-
+    
     static func register(_ onFinish: @escaping () -> Void) {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge]) {

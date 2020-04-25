@@ -9,13 +9,18 @@
 import Combine
 import Foundation
 
-open class API: ObservableObject {
-    func docs() -> Endpoint<String?> { fatalError() }
-    func createChannel(title _: String, deviceToken _: String) -> Endpoint<Void> { fatalError() }
-    func messages() -> Endpoint<[Message]> { fatalError() }
-    func messages(ofChannel _: Channel) -> Endpoint<[Message]> { fatalError() }
-    func subscribe(device _: String, publicChannel _: String) -> Endpoint<Void> { fatalError() }
-    func notify(title _: String, body _: String, privateChannelToken _: String) -> Endpoint<Void> { fatalError() }
-    func publicChannels() -> Endpoint<[Channel]> { fatalError() }
-    func privateChannels() -> Endpoint<[Channel]> { fatalError() }
+protocol API {
+    func docs() -> Endpoint<String?>
+    
+    func register(user createUser: CreateUserRequest) -> Endpoint<TokenResponse>
+    func create(device createDevice: CreateDeviceRequest) -> Endpoint<DeviceResponse>
+    func createOrUpdate(device deviceToken: String, contents: CreateOrUpdateDeviceRequest) -> Endpoint<DeviceResponse>
+    
+    func createChannel(_ createChannel: CreateChannelRequest) -> Endpoint<SubscribedChannelResponse>
+    func messages() -> Endpoint<[Message]>
+    func messages(ofChannel: Channel) -> Endpoint<[MessageResponse]>
+    func subscribe(_ createSubscription: CreateSubscriptionRequest) -> Endpoint<SubscribedChannelResponse>
+    func channels() -> Endpoint<[SubscribedChannelResponse]>
+    
+    func notify(_ createMessage: CreateMessageRequest) -> Endpoint<NotifyMessageResponse>
 }

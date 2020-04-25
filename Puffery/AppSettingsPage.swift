@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AppSettingsPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @EnvironmentObject var tokens: TokenRepository
+    var tokens: TokenRepository { Current.tokens }
 
     var body: some View {
         List {

@@ -17,7 +17,7 @@ enum AppMode: Equatable {
 
 struct SelectPufferyApp: View {
     @State var mode = AppMode.loading
-    @EnvironmentObject var tokens: TokenRepository
+    @State var tokens: TokenRepository = Current.tokens
 
     var body: some View {
         ZStack {
@@ -33,26 +33,31 @@ struct SelectPufferyApp: View {
     }
 
     func determineCurrentNotificationSettings() {
-        mode = .loading
-
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            switch settings.authorizationStatus {
-            case .authorized, .provisional:
-                if self.tokens.latestDeviceToken != nil {
-                    self.mode = .mainApp
-                } else {
-                    PushNotifications.register {
-                        self.determineCurrentNotificationSettings()
-                    }
-                }
-            case .denied:
-                self.mode = .requiresPushNotifications
-            case .notDetermined:
-                self.mode = .gettingStarted
-            @unknown default:
-                self.mode = .gettingStarted
-            }
+        guard !tokens.isLoggedIn else {
+            mode = .mainApp
+            return
         }
+        mode = .gettingStarted
+//        mode = .loading
+//
+//        UNUserNotificationCenter.current().getNotificationSettings { settings in
+//            switch settings.authorizationStatus {
+//            case .authorized, .provisional:
+//                if self.tokens.latestDeviceToken != nil {
+//                    self.mode = .mainApp
+//                } else {
+//                    PushNotifications.register {
+//                        self.determineCurrentNotificationSettings()
+//                    }
+//                }
+//            case .denied:
+//                self.mode = .requiresPushNotifications
+//            case .notDetermined:
+//                self.mode = .gettingStarted
+//            @unknown default:
+//                self.mode = .gettingStarted
+//            }
+//        }
     }
 }
 

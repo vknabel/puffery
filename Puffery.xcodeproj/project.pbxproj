@@ -26,7 +26,6 @@
 		BA94F0BD244B92FB0087924C /* ChannelListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BC244B92FB0087924C /* ChannelListPage.swift */; };
 		BA94F0BF244B93D60087924C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94F0BE244B93D60087924C /* Channel.swift */; };
 		BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94F0C2244BA4030087924C /* UserNotifications.framework */; };
-		BA96015724521D2100667BDD /* GoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA96015624521D2100667BDD /* GoAPI.swift */; };
 		BA96015B24521EFE00667BDD /* TokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA96015A24521EFE00667BDD /* TokenRepository.swift */; };
 		BA9601602452208C00667BDD /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BA96015F2452208C00667BDD /* KeychainSwift */; };
 		BA9601622452268500667BDD /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9601612452268500667BDD /* KeychainItem.swift */; };
@@ -37,6 +36,11 @@
 		BAA70270244CC04A00D03A20 /* ChannelSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA7026F244CC04A00D03A20 /* ChannelSettingsPage.swift */; };
 		BAA70272244CC8D200D03A20 /* RoundedGroupListStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */; };
 		BAA70274244CCD7F00D03A20 /* AppSettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA70273244CCD7F00D03A20 /* AppSettingsPage.swift */; };
+		BAC22B812454B3020000F9E4 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC22B802454B3020000F9E4 /* Requests.swift */; };
+		BAC22B832454B30C0000F9E4 /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC22B822454B30C0000F9E4 /* Responses.swift */; };
+		BAC22B852454B3320000F9E4 /* Compatability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC22B842454B3320000F9E4 /* Compatability.swift */; };
+		BAC76C4F2454A18400600BC4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC76C4E2454A18400600BC4 /* Config.swift */; };
+		BAC76C512454AD1600600BC4 /* VaporAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC76C502454AD1600600BC4 /* VaporAPI.swift */; };
 		BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154632444BB4400EDB97B /* AppDelegate.swift */; };
 		BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154652444BB4400EDB97B /* SceneDelegate.swift */; };
 		BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */; };
@@ -83,7 +87,6 @@
 		BA94F0BE244B93D60087924C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		BA94F0C0244BA2E80087924C /* Puffery.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puffery.entitlements; sourceTree = "<group>"; };
 		BA94F0C2244BA4030087924C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
-		BA96015624521D2100667BDD /* GoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoAPI.swift; sourceTree = "<group>"; };
 		BA96015A24521EFE00667BDD /* TokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRepository.swift; sourceTree = "<group>"; };
 		BA96015C2452204200667BDD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BA9601612452268500667BDD /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
@@ -94,6 +97,11 @@
 		BAA7026F244CC04A00D03A20 /* ChannelSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSettingsPage.swift; sourceTree = "<group>"; };
 		BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGroupListStyle.swift; sourceTree = "<group>"; };
 		BAA70273244CCD7F00D03A20 /* AppSettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsPage.swift; sourceTree = "<group>"; };
+		BAC22B802454B3020000F9E4 /* Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
+		BAC22B822454B30C0000F9E4 /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
+		BAC22B842454B3320000F9E4 /* Compatability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compatability.swift; sourceTree = "<group>"; };
+		BAC76C4E2454A18400600BC4 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		BAC76C502454AD1600600BC4 /* VaporAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaporAPI.swift; sourceTree = "<group>"; };
 		BAF154602444BB4400EDB97B /* Puffery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puffery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF154632444BB4400EDB97B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF154652444BB4400EDB97B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,13 +150,16 @@
 		BA4FEB0A244F7991008A02E4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BAC22B7F2454B2F60000F9E4 /* Content */,
+				BA960163245227A500667BDD /* Services.swift */,
 				BA96015A24521EFE00667BDD /* TokenRepository.swift */,
 				BA4FEB10244F7AC9008A02E4 /* Endpoint.swift */,
 				BA4FEB17244F9053008A02E4 /* RequestFetchingStrategy.swift */,
 				BA4FEB19244F9AD5008A02E4 /* URLSessionRequestFetchingStrategy.swift */,
 				BA4FEB1B24502C2E008A02E4 /* LoggingRequestFetchingStrategy.swift */,
 				BA4FEB15244F8E89008A02E4 /* API.swift */,
-				BA96015624521D2100667BDD /* GoAPI.swift */,
+				BAC76C502454AD1600600BC4 /* VaporAPI.swift */,
+				BAC76C4E2454A18400600BC4 /* Config.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -160,6 +171,16 @@
 				BA94F0C2244BA4030087924C /* UserNotifications.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BAC22B7F2454B2F60000F9E4 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				BAC22B802454B3020000F9E4 /* Requests.swift */,
+				BAC22B822454B30C0000F9E4 /* Responses.swift */,
+				BAC22B842454B3320000F9E4 /* Compatability.swift */,
+			);
+			path = Content;
 			sourceTree = "<group>";
 		};
 		BAF154572444BB4400EDB97B = {
@@ -188,7 +209,6 @@
 			children = (
 				BA94F0C0244BA2E80087924C /* Puffery.entitlements */,
 				BAF154632444BB4400EDB97B /* AppDelegate.swift */,
-				BA960163245227A500667BDD /* Services.swift */,
 				BAF154652444BB4400EDB97B /* SceneDelegate.swift */,
 				BA9601612452268500667BDD /* KeychainItem.swift */,
 				BA96016524522A3B00667BDD /* PushNotifications.swift */,
@@ -386,22 +406,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAA70272244CC8D200D03A20 /* RoundedGroupListStyle.swift in Sources */,
+				BAC22B812454B3020000F9E4 /* Requests.swift in Sources */,
 				BA3B3AE1244C47DF001C1A07 /* MessageCell.swift in Sources */,
 				BAA70270244CC04A00D03A20 /* ChannelSettingsPage.swift in Sources */,
 				BA4FEB18244F9053008A02E4 /* RequestFetchingStrategy.swift in Sources */,
 				BA3B3ADF244C4663001C1A07 /* ChannelDetailsPage.swift in Sources */,
 				BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */,
-				BA96015724521D2100667BDD /* GoAPI.swift in Sources */,
 				BA3B3AE3244C47EB001C1A07 /* Message.swift in Sources */,
+				BAC22B852454B3320000F9E4 /* Compatability.swift in Sources */,
+				BAC76C512454AD1600600BC4 /* VaporAPI.swift in Sources */,
 				BA4FEB11244F7AC9008A02E4 /* Endpoint.swift in Sources */,
 				BA96015B24521EFE00667BDD /* TokenRepository.swift in Sources */,
 				BA94F0BF244B93D60087924C /* Channel.swift in Sources */,
+				BAC22B832454B30C0000F9E4 /* Responses.swift in Sources */,
 				BA3B3AE7244C50B5001C1A07 /* ActivityIndicator.swift in Sources */,
 				BA3B3AE5244C492C001C1A07 /* MessageList.swift in Sources */,
 				BA960168245232CB00667BDD /* Acknowloedgements.swift in Sources */,
 				BA4FEB1A244F9AD5008A02E4 /* URLSessionRequestFetchingStrategy.swift in Sources */,
 				BA3B3AED244C7F2F001C1A07 /* GettingStartedPage.swift in Sources */,
 				BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */,
+				BAC76C4F2454A18400600BC4 /* Config.swift in Sources */,
 				BA960164245227A500667BDD /* Services.swift in Sources */,
 				BAA70274244CCD7F00D03A20 /* AppSettingsPage.swift in Sources */,
 				BA94F0BD244B92FB0087924C /* ChannelListPage.swift in Sources */,

@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct Message: Identifiable, Codable {
-    var id: UUID = UUID()
+typealias Message = MessageResponse
 
-    var title: String
-    var body: String
-    var color: Color
-
+extension Message: Identifiable {
+    var color: Color {
+        colorName.flatMap(Color.init(rawValue:)) ?? .unspecified
+    }
+    
     enum Color: String, Codable {
         case blue, orange, green, red, gray
 
@@ -28,17 +28,23 @@ struct Message: Identifiable, Codable {
     extension Message {
         static var testflight: Message {
             Message(
+                id: UUID(),
                 title: "New TestFlight version available",
                 body: "Version 123 has been build",
-                color: .orange
+                colorName: "orange",
+                channel: UUID(),
+                createdAt: Date()
             )
         }
 
         static var dockerImage: Message {
             Message(
+                id: UUID(),
                 title: "New Docker image pushed",
                 body: "Version 123 has been build",
-                color: .blue
+                colorName: "blue",
+                channel: UUID(),
+                createdAt: Date()
             )
         }
     }

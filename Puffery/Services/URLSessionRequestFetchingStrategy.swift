@@ -19,15 +19,19 @@ final class URLSessionRequestFetchingStrategy: RequestFetchingStrategy {
         self.session = session
     }
 
-    private func decode<R>(_ endpoint: Endpoint<R>, request: URLRequest?, data: Data?, response: URLResponse?, receive: @escaping (Result<R, FetchingError>) -> Void) {
+    private func decode<R>(_ endpoint: Endpoint<R>, request: URLRequest, data: Data?, response: URLResponse?, receive: @escaping (Result<R, FetchingError>) -> Void) {
         switch (data, response as? HTTPURLResponse) {
         case let (data, urlResponse?) where urlResponse.statusCode >= 400:
-            receive(.failure(FetchingError(reason: .statusCode(urlResponse.statusCode), request: request, data: data)))
+            let error = FetchingError(reason: .statusCode(urlResponse.statusCode), request: request, data: data)
+            endpoint.report(error)
+            receive(.failure(error))
         case let (data, _):
             do {
                 receive(.success(try endpoint.decode(data)))
             } catch {
-                receive(.failure(FetchingError(reason: .decoding(error), request: request, data: data)))
+                let error = FetchingError(reason: .decoding(error), request: request, data: data)
+                endpoint.report(error)
+                receive(.failure(error))
             }
         }
     }
@@ -46,7 +50,9 @@ final class URLSessionRequestFetchingStrategy: RequestFetchingStrategy {
             task.resume()
             return task
         } catch {
-            receive(.failure(FetchingError(reason: .encoding(error), request: nil, data: nil)))
+            let error = FetchingError(reason: .encoding(error), request: nil, data: nil)
+            endpoint.report(error)
+            receive(.failure(error))
             return nil
         }
     }

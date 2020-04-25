@@ -17,6 +17,7 @@ struct Endpoint<Response> {
     var strategy: RequestFetchingStrategy
     var encode: RequestModifier
     var decode: ResponseDecoder<Response>
+    var report: (FetchingError) -> Void
 
     @discardableResult
     func task(_ receive: @escaping (Result<Response, FetchingError>) -> Void) -> URLSessionDataTask? {
@@ -33,6 +34,7 @@ extension Endpoint where Response == Data? {
         self.strategy = strategy
         encode = { _ in }
         decode = { $0 }
+        report = { _ in }
     }
 
     func decoding<Resp: Decodable>(_ strategy: @escaping (Resp.Type, Data) throws -> Resp, _: Resp.Type = Resp.self) -> Endpoint<Resp> {
@@ -42,17 +44,31 @@ extension Endpoint where Response == Data? {
     func compactMap<Resp>(_ transform: @escaping (Data) throws -> Resp?) -> Endpoint<Resp?> {
         Endpoint<Resp?>(strategy: strategy, encode: encode, decode: {
             try self.decode($0).flatMap(transform)
-        })
+        }, report: report)
     }
 }
 
 extension Endpoint {
     func update(_ mutate: @escaping (inout URLRequest) throws -> Void) -> Endpoint {
-        Endpoint(strategy: strategy, encode: concat(encode, mutate), decode: decode)
+        Endpoint(strategy: strategy, encode: concat(encode, mutate), decode: decode, report: report)
     }
 
     func map<Resp>(_ transform: @escaping (Response) throws -> Resp) -> Endpoint<Resp> {
-        Endpoint<Resp>(strategy: strategy, encode: encode, decode: pipe(decode, transform))
+        Endpoint<Resp>(strategy: strategy, encode: encode, decode: pipe(decode, transform), report: report)
+    }
+    
+    func perform(_ action: @escaping (Response) -> Void) -> Endpoint {
+        map { response in
+            action(response)
+            return response
+        }
+    }
+    
+    func handle(_ error: @escaping (FetchingError) -> Void) -> Endpoint {
+        Endpoint(strategy: strategy, encode: encode, decode: decode, report: {
+            self.report($0)
+            error($0)
+        })
     }
 
     func encoding<Body: Encodable>(body: Body, using strategy: @escaping (Body) throws -> Data) -> Endpoint {

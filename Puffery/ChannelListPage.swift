@@ -10,42 +10,33 @@ import Combine
 import SwiftUI
 
 struct ChannelListPage: View {
-    @EnvironmentObject var api: API
-    @EnvironmentObject var tokens: TokenRepository
-    @State var channels: [Channel]?
+    private var api: API { Current.api }
+    private var tokens: TokenRepository { Current.tokens }
 
     @State var presentsSettings = false
     @State var presentsChannelCreation = false
-
-    @State var refreshSubscription: AnyCancellable? = nil
+    @State var shouldReload = PassthroughSubject<Void, FetchingError>()
 
     var body: some View {
-        ZStack {
-            channels.map { channels in
-                List {
-                    Section {
-                        NavigationLink(destination: ChannelDetailsPage()) {
-                            Text("All")
-                        }
+        Fetching(loadChannelsPublisher, empty: self.channelsHeader) { channels in
+            List {
+                Section {
+                    NavigationLink(destination: ChannelDetailsPage()) {
+                        Text("All")
                     }
-                    Section(header: channelsHeader) {
-                        ForEach(channels) { channel in
-                            NavigationLink(destination: ChannelDetailsPage(channel: channel)) {
-                                Text(channel.title)
-                            }
+                }
+                Section(header: self.channelsHeader) {
+                    ForEach(channels) { channel in
+                        NavigationLink(destination: ChannelDetailsPage(channel: channel)) {
+                            Text(channel.title)
                         }
                     }
                 }
-                .roundedListStyle()
             }
-
-            if channels == nil {
-                ActivityIndicator(isAnimating: true)
-            }
+            .roundedListStyle()
         }
-        .navigationBarTitle("Inbox")
+        .navigationBarTitle("Puffery")
         .navigationBarItems(trailing: settingsNavigationBarItem)
-        .onAppear(perform: loadChannels)
         .onAppear { Current.tracker.record("channels") }
     }
 
@@ -56,10 +47,9 @@ struct ChannelListPage: View {
 
             Button(action: { self.presentsChannelCreation.toggle() }) {
                 Image(systemName: "plus.circle").font(.body)
-            }.sheet(isPresented: $presentsChannelCreation, onDismiss: loadChannels) {
+            }.sheet(isPresented: $presentsChannelCreation, onDismiss: shouldReload.send) {
                 NavigationView {
-                    ChannelCreationPage().environmentObject(self.api)
-                        .environmentObject(self.tokens)
+                    ChannelCreationPage()
                 }
             }
         }
@@ -72,26 +62,14 @@ struct ChannelListPage: View {
         }.sheet(isPresented: $presentsSettings) {
             NavigationView {
                 AppSettingsPage()
-                    .environmentObject(self.api)
-                    .environmentObject(self.tokens)
             }
         }
     }
 
-    func loadChannels() {
-        refreshSubscription = Publishers.Zip(
-            api.privateChannels().publisher(),
-            api.publicChannels().publisher()
-        ).sink(receiveCompletion: { completion in
-            switch completion {
-            case .finished:
-                break
-            case let .failure(error):
-                print("Error", error)
-            }
-        }) { channelLists in
-            self.channels = channelLists.0 + channelLists.1
-        }
+    var loadChannelsPublisher: AnyPublisher<[Channel], FetchingError> {
+        shouldReload.prepend(())
+            .flatMap(api.channels().publisher)
+            .eraseToAnyPublisher()
     }
 }
 
@@ -99,7 +77,7 @@ struct ChannelListPage: View {
     struct ChannelListPage_Previews: PreviewProvider {
         static var previews: some View {
             NavigationView {
-                ChannelListPage(channels: nil)
+                ChannelListPage()
             }
         }
     }

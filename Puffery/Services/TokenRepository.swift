@@ -25,6 +25,11 @@ final class TokenRepository: ObservableObject {
     var sessionToken: String? {
         willSet {
             objectWillChange.send()
+            print("update sessionToken", sessionToken, newValue)
         }
+    }
+    
+    var isLoggedIn: Bool {
+        sessionToken != nil
     }
 }

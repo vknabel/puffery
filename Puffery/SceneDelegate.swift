@@ -24,8 +24,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
         let contentView = SelectPufferyApp()
             .environment(\.managedObjectContext, context)
-            .environmentObject(Current.api)
-            .environmentObject(Current.tokens)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

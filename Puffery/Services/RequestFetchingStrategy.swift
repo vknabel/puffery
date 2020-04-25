@@ -10,7 +10,9 @@ import Combine
 import Foundation
 import Overture
 
-struct FetchingError: Error {
+struct FetchingError: Error, Identifiable {
+    var id = UUID()
+    
     var reason: Reason
     var request: URLRequest?
     var data: Data?

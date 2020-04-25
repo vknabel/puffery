@@ -11,8 +11,9 @@ import UserNotifications
 
 struct ChannelCreationPage: View {
     @State var title: String = ""
-    @EnvironmentObject var api: API
-    @EnvironmentObject var tokens: TokenRepository
+    private var api: API { Current.api }
+    private var tokens: TokenRepository { Current.tokens }
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var isUUID: Bool {
@@ -22,7 +23,7 @@ struct ChannelCreationPage: View {
     var body: some View {
         Form {
             Section {
-                TextField("Title", text: $title)
+                TextField("Title", text: $title, onCommit: createChannel)
             }
             Section {
                 Button(action: createChannel) {
@@ -52,16 +53,17 @@ struct ChannelCreationPage: View {
     func createChannel() {
         PushNotifications.register {
             if self.isUUID {
-                self.api.subscribe(device: self.tokens.latestDeviceToken ?? "", publicChannel: self.title)
+                // TODO: .receiveOnlyKey
+                self.api.subscribe(CreateSubscriptionRequest.notifyKey(self.title))
                     .task(self.receiveChannel(result:))
             } else {
-                self.api.createChannel(title: self.title, deviceToken: self.tokens.latestDeviceToken ?? "")
+                self.api.createChannel(CreateChannelRequest(title: self.title))
                     .task(self.receiveChannel(result:))
             }
         }
     }
 
-    func receiveChannel(result: Result<Void, FetchingError>) {
+    func receiveChannel(result: Result<SubscribedChannelResponse, FetchingError>) {
         switch result {
         case .success:
             dismiss()

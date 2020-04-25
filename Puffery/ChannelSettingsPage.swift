@@ -27,10 +27,10 @@ struct ChannelSettingsPage: View {
 
                 Button(action: copyPrivateTokenToPasteboard) {
                     HStack {
-                        Text("Private Token")
+                        Text("Notify Key")
                             .foregroundColor(.primary)
                         Spacer()
-                        channel.token.map { token in
+                        channel.notifyKey.map { token in
                             Text(hasJustCopiedPrivateToken ? "Copied!" : token)
                                 .lineLimit(1)
                         }
@@ -39,10 +39,10 @@ struct ChannelSettingsPage: View {
 
                 Button(action: copyPublicTokenToPasteboard) {
                     HStack {
-                        Text("Public Token")
+                        Text("Receive Only Key")
                             .foregroundColor(.primary)
                         Spacer()
-                        Text(hasJustCopiedPublicToken ? "Copied!" : channel.publicId)
+                        Text(hasJustCopiedPublicToken ? "Copied!" : channel.receiveOnlyKey)
                             .lineLimit(1)
                     }
                 }
@@ -75,7 +75,7 @@ struct ChannelSettingsPage: View {
     }
 
     func copyPrivateTokenToPasteboard() {
-        UIPasteboard.general.string = channel.token
+        UIPasteboard.general.string = channel.notifyKey
         hasJustCopiedPrivateToken = true
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -84,7 +84,7 @@ struct ChannelSettingsPage: View {
     }
 
     func copyPublicTokenToPasteboard() {
-        UIPasteboard.general.string = channel.publicId
+        UIPasteboard.general.string = channel.receiveOnlyKey
         hasJustCopiedPublicToken = true
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
