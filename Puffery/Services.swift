@@ -23,7 +23,7 @@ var Current: World = {
     #if DEBUG
         trackingDisabled = true
     #else
-        trackingDisabled = true
+        trackingDisabled = false
     #endif
     let ackee = AckeeTracker(configuration: AckeeConfiguration(
         domainId: Bundle.main.infoDictionary!["ACKEE_DOMAIN_ID"] as! String,
