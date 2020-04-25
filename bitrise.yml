@@ -1,0 +1,77 @@
+---
+format_version: "8"
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: ios
+trigger_map:
+  - push_branch: "*"
+    workflow: primary
+  - pull_request_source_branch: "*"
+    workflow: primary
+workflows:
+  deploy:
+    steps:
+      - activate-ssh-key@4.0.3:
+          run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+      - git-clone@4.0.17: {}
+      - cache-pull@2.1.1: {}
+      - script@1.1.5:
+          title: Do anything with Script step
+      - certificate-and-profile-installer@1.10.1: {}
+      - recreate-user-schemes@1.0.2:
+          inputs:
+            - project_path: "$BITRISE_PROJECT_PATH"
+      - xcode-test@2.4.1:
+          inputs:
+            - project_path: "$BITRISE_PROJECT_PATH"
+            - scheme: "$BITRISE_SCHEME"
+      - xcode-archive@2.7.0:
+          inputs:
+            - project_path: "$BITRISE_PROJECT_PATH"
+            - scheme: "$BITRISE_SCHEME"
+            - export_method: "$BITRISE_EXPORT_METHOD"
+      - deploy-to-bitrise-io@1.9.2: {}
+      - cache-push@2.2.1: {}
+  primary:
+    steps:
+      - activate-ssh-key@4.0.3:
+          run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+      - git-clone@4.0.17: {}
+      - cache-pull@2.1.1: {}
+      - script@1.1.5:
+          title: Do anything with Script step
+      - certificate-and-profile-installer@1.10.1: {}
+      - recreate-user-schemes@1.0.2:
+          inputs:
+            - project_path: "$BITRISE_PROJECT_PATH"
+      - set-xcode-build-number@1:
+          inputs:
+            - plist_path: Puffery/Info.plist
+      - xcode-archive@2: {}
+      - deploy-to-itunesconnect-application-loader@0:
+          inputs:
+            - password: "$PUFFERY_APPLE_PASSWORD"
+            - app_password: "$PUFFERY_APPLE_APP_PASSWORD"
+            - itunescon_user: "$PUFFERY_APPLE_ID"
+      - deploy-to-bitrise-io@1.9.2: {}
+      - cache-push@2.2.1: {}
+      - script@1:
+          inputs:
+            - content:
+                "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
+                log\nset -x\n\n# write your script here\ncurl -X \"POST\" \"https://api.puffery.app/notify\"
+                \\\n     -H 'Content-Type: application/json; charset=utf-8' \\\n     -d
+                \"{ \n  \\\"title\\\": \\\"New Puffery build $BITRISE_BUILD_NUMBER\\\",\n
+                \ \\\"body\\\": \\\"$BITRISE_GIT_MESSAGE\\\",\n  \\\"channelToken\\\":
+                \\\"$PUFFERY_CHANNEL\\\"\n}\"\n"
+          title: Puffery
+app:
+  envs:
+    - opts:
+        is_expand: false
+      BITRISE_PROJECT_PATH: Puffery.xcodeproj
+    - opts:
+        is_expand: false
+      BITRISE_SCHEME: Puffery
+    - opts:
+        is_expand: false
+      BITRISE_EXPORT_METHOD: app-store
