@@ -12,7 +12,6 @@ extension View {
     public func roundedListStyle() -> some View {
         listStyle(GroupedListStyle())
 //            .environment(\.horizontalSizeClass, .regular)
-        
     }
 }
 

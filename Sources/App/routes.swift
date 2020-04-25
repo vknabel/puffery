@@ -32,7 +32,7 @@ public func routes(_ app: Application) throws {
     bearer.get("channels", use: subscribedChannelController.index)
 
     app.post("notify", ":notify_key", use: messageController.publicNotify)
-// TODO:    bearer.get("channels", "messages", use: messageController.messagesForAllChannels)
+    bearer.get("channels", "messages", use: messageController.messagesForAllChannels)
     bearer.get("channels", ":subscription_id", "messages", use: messageController.index)
     bearer.post("channels", ":subscription_id", "messages", use: messageController.create)
 

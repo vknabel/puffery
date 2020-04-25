@@ -56,14 +56,14 @@ extension Endpoint {
     func map<Resp>(_ transform: @escaping (Response) throws -> Resp) -> Endpoint<Resp> {
         Endpoint<Resp>(strategy: strategy, encode: encode, decode: pipe(decode, transform), report: report)
     }
-    
+
     func perform(_ action: @escaping (Response) -> Void) -> Endpoint {
         map { response in
             action(response)
             return response
         }
     }
-    
+
     func handle(_ error: @escaping (FetchingError) -> Void) -> Endpoint {
         Endpoint(strategy: strategy, encode: encode, decode: decode, report: {
             self.report($0)

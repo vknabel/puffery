@@ -75,12 +75,31 @@ final class MessageController {
                     }
             }
     }
-    
-// TODO:
-//    func messagesForAllChannels(_ req: Request) throws -> EventLoopFuture<[MessageResponse]> {
-//        let user = try req.auth.require(User.self)
-//        Subscription.query(on: req.db)
-//
+
+    // TODO:
+    func messagesForAllChannels(_ req: Request) throws -> EventLoopFuture<[MessageResponse]> {
+        let user = try req.auth.require(User.self)
+
+        return try Subscription.query(on: req.db)
+            .filter(\Subscription.$user.$id == user.requireID())
+            .all()
+            .flatMap { (subscriptions: [Subscription]) in
+                let messageResponses = subscriptions.map { subscription in
+                    Message.query(on: req.db)
+                        .filter(\Message.$channel.$id, .equal, subscription.$channel.id)
+                        .all()
+                        .flatMapThrowing { messages in
+                            try messages.map { try MessageResponse($0, subscription: subscription) }
+                        }
+                }
+                return req.eventLoop.flatten(messageResponses)
+                    .map { responses in
+                        responses
+                            .flatMap { $0 }
+                            .sorted(by: { $0.createdAt > $1.createdAt })
+                    }
+            }
+
 //        try Message.query(on: req.db)
 //            .join(Channel.self, on: \Message.$channel.$id == \Channel.$id)
 //            .join(Subscription.self, on: \Channel.$id == \Subscription.$channel.$id)
@@ -90,13 +109,12 @@ final class MessageController {
 //                nested.with(\Channel.$subscriptions)
 //            })
 //            .all()
-//
-////            .flatMapThrowing { messages in
-////                try messages.map { message in
-////                    try MessageResponse(message, subscription: subscription)
-////                }
-////            }
-//    }
+//            .flatMapThrowing { messages in
+//                try messages.map { message in
+//                    try MessageResponse(message, subscription: subscription)
+//                }
+//            }
+    }
 
     private func notifyDevices(_ req: Request, message: Message) -> Future<Void> {
         let alert = APNSwiftPayload.APNSwiftAlert(

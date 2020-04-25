@@ -10,7 +10,7 @@ import Foundation
 
 struct Config {
     var apiURL: URL
-    
+
     var ackeeDomainID: String
     var ackeeServerURL: URL
     var ackeeAppURL: URL
@@ -18,7 +18,7 @@ struct Config {
 
 extension Config {
     static func prod() -> Config {
-        return Config(
+        Config(
             apiURL: URL(string: Bundle.main.infoDictionary!["PUFFERY_API_URL"] as! String)!,
             ackeeDomainID: Bundle.main.infoDictionary!["ACKEE_DOMAIN_ID"] as! String,
             ackeeServerURL: URL(string: Bundle.main.infoDictionary!["ACKEE_SERVER_URL"] as! String)!,

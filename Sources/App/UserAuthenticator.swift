@@ -2,14 +2,14 @@ import Vapor
 
 struct UserAuthenticator: BearerAuthenticator {
     typealias User = App.User
-    
+
     func authenticate(bearer: BearerAuthorization, for request: Request) -> EventLoopFuture<Void> {
         authenticateUser(bearer: bearer, for: request)
             .map { user in
                 if let user = user {
                     request.auth.login(user)
                 }
-        }
+            }
     }
 
     func authenticateUser(
@@ -27,6 +27,5 @@ struct UserAuthenticator: BearerAuthenticator {
                     return nil
                 }
             }
-   }
+    }
 }
-

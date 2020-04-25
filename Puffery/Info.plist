@@ -42,7 +42,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>PUFFERY_API_URL</key>
-	<string>https://vapor.puffery.app:8080</string>
+	<string>https://vapor.puffery.app</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

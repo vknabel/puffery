@@ -13,7 +13,7 @@ struct ChannelCreationPage: View {
     @State var title: String = ""
     private var api: API { Current.api }
     private var tokens: TokenRepository { Current.tokens }
-    
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var isUUID: Bool {

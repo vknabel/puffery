@@ -5,6 +5,18 @@ final class UserController {
         let createRequest = try req.content.decode(CreateUserRequest.self)
         let newUser = User(email: createRequest.email)
         return newUser.save(on: req.db)
+            .flatMap { _ -> EventLoopFuture<Void> in
+                if let device = createRequest.device {
+                    do {
+                        return try DeviceToken(user: newUser, token: device.token, isProduction: device.isProduction ?? true)
+                            .create(on: req.db)
+                    } catch {
+                        return req.eventLoop.makeFailedFuture(error)
+                    }
+                } else {
+                    return req.eventLoop.makeSucceededFuture(())
+                }
+            }
             .flatMapThrowing { _ in
                 try newUser.generateToken()
             }

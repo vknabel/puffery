@@ -12,7 +12,7 @@ import Overture
 
 struct FetchingError: Error, Identifiable {
     var id = UUID()
-    
+
     var reason: Reason
     var request: URLRequest?
     var data: Data?

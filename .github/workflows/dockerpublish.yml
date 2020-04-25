@@ -15,7 +15,7 @@ on:
 
 env:
   # TODO: Change variable to your image's name.
-  IMAGE_NAME: puffery-vapor
+  IMAGE_NAME: puffery-server
 
 jobs:
   # Run tests.

@@ -51,42 +51,41 @@ final class VaporAPI: API {
     func docs() -> Endpoint<String?> {
         endpoint().get().compactMap { String(data: $0, encoding: .utf8) }
     }
-    
+
     func register(user createUser: CreateUserRequest) -> Endpoint<TokenResponse> {
         endpoint().post("register")
             .encoding(body: createUser, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode, TokenResponse.self)
             .perform { tokenResponse in
                 self.tokens.sessionToken = tokenResponse.token
-        }
+            }
     }
-    
+
     func create(device createDevice: CreateDeviceRequest) -> Endpoint<DeviceResponse> {
         var createDevice = createDevice
         #if DEBUG
-        createDevice.isProduction = false
+            createDevice.isProduction = false
         #endif
         return endpoint().post("devices")
             .encoding(body: createDevice, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode, DeviceResponse.self)
             .perform { deviceResponse in
                 self.tokens.latestDeviceToken = deviceResponse.token
-        }
+            }
     }
-    
+
     func createOrUpdate(device deviceToken: String, contents createOrUpdateDevice: CreateOrUpdateDeviceRequest) -> Endpoint<DeviceResponse> {
         var createOrUpdateDevice = createOrUpdateDevice
         #if DEBUG
-        createOrUpdateDevice.isProduction = false
+            createOrUpdateDevice.isProduction = false
         #endif
         return endpoint().post("devices", deviceToken)
             .encoding(body: createOrUpdateDevice, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode, DeviceResponse.self)
             .perform { deviceResponse in
                 self.tokens.latestDeviceToken = deviceResponse.token
-        }
+            }
     }
-    
 
     func createChannel(_ createChannel: CreateChannelRequest) -> Endpoint<SubscribedChannelResponse> {
         endpoint().post("channels")
@@ -96,7 +95,7 @@ final class VaporAPI: API {
 
     func messages() -> Endpoint<[Message]> {
         endpoint()
-            .get("channel", tokens.latestDeviceToken ?? "", "notifications")
+            .get("channels", "messages")
             .decoding(jsonDecoder.decode)
     }
 
@@ -114,7 +113,7 @@ final class VaporAPI: API {
     }
 
     func notify(_ createMessage: CreateMessageRequest) -> Endpoint<NotifyMessageResponse> {
-        endpoint().post("notify").encoding(body:createMessage, using: jsonEncoder.encode)
+        endpoint().post("notify").encoding(body: createMessage, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode)
     }
 

@@ -28,7 +28,7 @@ final class TokenRepository: ObservableObject {
             print("update sessionToken", sessionToken, newValue)
         }
     }
-    
+
     var isLoggedIn: Bool {
         sessionToken != nil
     }

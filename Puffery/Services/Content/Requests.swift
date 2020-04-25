@@ -16,7 +16,7 @@ struct CreateChannelRequest: Content {
 enum CreateSubscriptionRequest: Content {
     case notifyKey(String)
     case receiveOnlyKey(String)
-    
+
     init(from decoder: Decoder) throws {
         if let notify = try? CreateNotifySubscription(from: decoder) {
             self = .notifyKey(notify.notifyKey)
