@@ -62,54 +62,11 @@ final class SubscribedChannelController {
     }
 }
 
-struct CreateChannelRequest: Content {
-    var title: String
-}
-
-struct SubscribedChannelResponse: Content {
-    /// Actually the ID of the Subscription!
-    var id: UUID
-    var title: String
-    var receiveOnlyKey: String
-    var notifyKey: String?
-}
-
 extension SubscribedChannelResponse {
     init(subscription: Subscription) throws {
         id = try subscription.requireID()
         title = subscription.channel.title
         receiveOnlyKey = subscription.channel.receiveOnlyKey
         notifyKey = subscription.canNotify ? subscription.channel.notifyKey : nil
-    }
-}
-
-enum CreateSubscriptionRequest: Content {
-    case notifyKey(String)
-    case receiveOnlyKey(String)
-
-    init(from decoder: Decoder) throws {
-        if let notify = try? CreateNotifySubscription(from: decoder) {
-            self = .notifyKey(notify.notifyKey)
-        } else {
-            let receiveOnly = try CreateSubscribeOnlySubscription(from: decoder)
-            self = .receiveOnlyKey(receiveOnly.receiveOnlyKey)
-        }
-    }
-
-    func encode(to encoder: Encoder) throws {
-        switch self {
-        case let .notifyKey(key):
-            try CreateNotifySubscription(notifyKey: key).encode(to: encoder)
-        case let .receiveOnlyKey(key):
-            try CreateSubscribeOnlySubscription(receiveOnlyKey: key).encode(to: encoder)
-        }
-    }
-
-    private struct CreateNotifySubscription: Codable {
-        var notifyKey: String
-    }
-
-    private struct CreateSubscribeOnlySubscription: Codable {
-        var receiveOnlyKey: String
     }
 }

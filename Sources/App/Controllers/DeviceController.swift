@@ -32,18 +32,3 @@ final class DeviceController {
             .flatMapThrowing { try DeviceResponse(id: $0.requireID(), token: $0.token, isProduction: $0.isProduction) }
     }
 }
-
-struct CreateDeviceRequest: Content {
-    var token: String
-    var isProduction: Bool?
-}
-
-struct CreateOrUpdateDeviceRequest: Content {
-    var isProduction: Bool?
-}
-
-struct DeviceResponse: Content {
-    var id: DeviceToken.IDValue
-    var token: String
-    var isProduction: Bool
-}

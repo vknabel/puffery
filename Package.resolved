@@ -74,6 +74,15 @@
         }
       },
       {
+        "package": "jwt",
+        "repositoryURL": "https://github.com/vapor/jwt.git",
+        "state": {
+          "branch": null,
+          "revision": "8c1681e9497b72430fa62962f61339d3573c7b0f",
+          "version": "4.0.0-rc.2"
+        }
+      },
+      {
         "package": "jwt-kit",
         "repositoryURL": "https://github.com/vapor/jwt-kit.git",
         "state": {

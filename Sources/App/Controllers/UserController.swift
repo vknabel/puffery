@@ -6,7 +6,12 @@ final class UserController {
         let newUser = User(email: createRequest.email)
         return newUser.save(on: req.db)
             .flatMapThrowing { _ in
-                let token = try newUser.generateToken()
+                try newUser.generateToken()
+            }
+            .flatMap { token in
+                token.create(on: req.db).transform(to: token)
+            }
+            .flatMapThrowing { token in
                 let userResponse = try UserResponse(id: newUser.requireID(), email: newUser.email)
                 return TokenResponse(token: token.value, user: userResponse)
             }
@@ -34,22 +39,4 @@ final class UserController {
                 }
             }
     }
-}
-
-struct CreateUserRequest: Content {
-    var email: String?
-}
-
-struct LoginUserRequest: Content {
-    var email: String?
-}
-
-struct UserResponse: Content {
-    var id: UUID
-    var email: String?
-}
-
-struct TokenResponse: Content {
-    var token: String
-    var user: UserResponse
 }

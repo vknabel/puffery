@@ -20,6 +20,7 @@ let package = Package(
 
         // 👤 Authentication and Authorization layer for Fluent.
 //        .package(url: "https://github.com/vapor/auth.git", from: "2.0.0"),
+        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0-rc"),
 
         // 📱 APNS Push Notifications
 //        .package(url: "https://github.com/vapor/apns.git", .exact("1.0.0-rc.1")),
@@ -32,6 +33,7 @@ let package = Package(
             .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver"),
             .product(name: "Vapor", package: "vapor"),
             .product(name: "APNS", package: "apns"),
+            .product(name: "JWT", package: "jwt"),
         ]),
         .target(name: "Run", dependencies: ["App"]),
         .testTarget(name: "AppTests", dependencies: ["App"]),

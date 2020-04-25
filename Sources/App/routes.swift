@@ -20,7 +20,7 @@ public func routes(_ app: Application) throws {
     app.post("register", use: userController.create)
     app.post("login", use: userController.login)
 
-    let bearer = app.grouped(UserToken.authenticator())
+    let bearer = app.grouped(UserToken.authenticator()).grouped(UserAuthenticator())
     let subscribedChannelController = SubscribedChannelController()
     let messageController = MessageController()
     let deviceController = DeviceController()
@@ -32,8 +32,9 @@ public func routes(_ app: Application) throws {
     bearer.get("channels", use: subscribedChannelController.index)
 
     app.post("notify", ":notify_key", use: messageController.publicNotify)
-    bearer.post("channels", ":subscription_id", "messages", use: messageController.create)
+// TODO:    bearer.get("channels", "messages", use: messageController.messagesForAllChannels)
     bearer.get("channels", ":subscription_id", "messages", use: messageController.index)
+    bearer.post("channels", ":subscription_id", "messages", use: messageController.create)
 
     bearer.post("channels", "subscribe", use: subscribedChannelController.subscribe)
 }

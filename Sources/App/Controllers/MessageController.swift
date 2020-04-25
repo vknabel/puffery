@@ -75,6 +75,28 @@ final class MessageController {
                     }
             }
     }
+    
+// TODO:
+//    func messagesForAllChannels(_ req: Request) throws -> EventLoopFuture<[MessageResponse]> {
+//        let user = try req.auth.require(User.self)
+//        Subscription.query(on: req.db)
+//
+//        try Message.query(on: req.db)
+//            .join(Channel.self, on: \Message.$channel.$id == \Channel.$id)
+//            .join(Subscription.self, on: \Channel.$id == \Subscription.$channel.$id)
+//            .filter(Subscription.self, \Subscription.$user.$id == user.requireID())
+//            .filter(\Message.$createdAt >= \Subscription.$createdAt)
+//            .with(\Message.$channel, { nested in
+//                nested.with(\Channel.$subscriptions)
+//            })
+//            .all()
+//
+////            .flatMapThrowing { messages in
+////                try messages.map { message in
+////                    try MessageResponse(message, subscription: subscription)
+////                }
+////            }
+//    }
 
     private func notifyDevices(_ req: Request, message: Message) -> Future<Void> {
         let alert = APNSwiftPayload.APNSwiftAlert(
@@ -101,46 +123,5 @@ final class MessageController {
                 }
                 return req.eventLoop.flatten(apnsSends)
             }
-    }
-}
-
-struct CreateMessageRequest: Content {
-    var title: String
-    var body: String
-    var color: String?
-}
-
-struct MessageResponse: Content {
-    var id: UUID
-    var title: String
-    var body: String
-    var color: String?
-    var channel: UUID
-    var createdAt: Date
-
-    init(_ message: Message, subscription: Subscription) throws {
-        precondition(message.$channel.id == subscription.$channel.id, "Message and Subscription must share the same Channel")
-        id = try message.requireID()
-        title = message.title
-        body = message.body
-        color = message.color
-        channel = try subscription.requireID()
-        createdAt = message.createdAt ?? Date()
-    }
-}
-
-struct NotifyMessageResponse: Content {
-    var id: UUID
-    var title: String
-    var body: String
-    var color: String?
-    var createdAt: Date
-
-    init(_ message: Message) throws {
-        id = try message.requireID()
-        title = message.title
-        body = message.body
-        color = message.color
-        createdAt = message.createdAt ?? Date()
     }
 }
