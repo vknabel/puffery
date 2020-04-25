@@ -1,5 +1,5 @@
 //
-//  ChannelDetailsView.swift
+//  ChannelDetailsPage.swift
 //  Puffery
 //
 //  Created by Valentin Knabel on 19.04.20.
@@ -10,7 +10,7 @@ import Combine
 import Overture
 import SwiftUI
 
-struct ChannelDetailsView: View {
+struct ChannelDetailsPage: View {
     var channel: Channel?
 
     @EnvironmentObject var api: API
@@ -40,6 +40,7 @@ struct ChannelDetailsView: View {
                 }
             }
         )
+        .onAppear { Current.tracker.record("channels/:id") }
     }
 
     var noMessages: some View {
@@ -81,10 +82,10 @@ struct ChannelDetailsView: View {
 }
 
 #if DEBUG
-    struct ChannelDetailsView_Previews: PreviewProvider {
+    struct ChannelDetailsPage_Previews: PreviewProvider {
         static var previews: some View {
             NavigationView {
-                ChannelDetailsView(channel: .puffery)
+                ChannelDetailsPage(channel: .puffery)
             }
         }
     }

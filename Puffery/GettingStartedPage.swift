@@ -1,5 +1,5 @@
 //
-//  GettingStarted.swift
+//  GettingStartedPage.swift
 //  Puffery
 //
 //  Created by Valentin Knabel on 19.04.20.
@@ -9,13 +9,13 @@
 import SwiftUI
 import UserNotifications
 
-struct GettingStarted: View {
+struct GettingStartedPage: View {
     var onFinish: () -> Void
 
     var body: some View {
         Button(action: registerForPushNotifications) {
             Text("Copy Push notification token")
-        }
+        }.onAppear { Current.tracker.record("GettingStartedPage") }
     }
 
     func registerForPushNotifications() {
@@ -26,7 +26,7 @@ struct GettingStarted: View {
 #if DEBUG
     struct GettingStarted_Previews: PreviewProvider {
         static var previews: some View {
-            GettingStarted(onFinish: {})
+            GettingStartedPage(onFinish: {})
         }
     }
 #endif

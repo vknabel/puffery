@@ -31,6 +31,7 @@ struct AppSettingsPage: View {
         .navigationBarItems(trailing: Button(action: dismiss) {
             Text("Done").fontWeight(.bold)
             })
+        .onAppear { Current.tracker.record("settings") }
     }
 
     func registerForPushNotifications() {

@@ -11,8 +11,9 @@ import UserNotifications
 
 enum PushNotifications {
     static func register() {
-        register { }
+        register {}
     }
+
     static func register(_ onFinish: @escaping () -> Void) {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge]) {
@@ -23,9 +24,9 @@ enum PushNotifications {
                     guard settings.authorizationStatus == .authorized else { return }
                     DispatchQueue.main.async {
                         #if targetEnvironment(simulator)
-                        Current.tokens.latestDeviceToken = "d6574a4ffd6f7bc43e365c87712596f62c338923981e550a1b1449d46898d939"
+                            Current.tokens.latestDeviceToken = "d6574a4ffd6f7bc43e365c87712596f62c338923981e550a1b1449d46898d939"
                         #else
-                        UIApplication.shared.registerForRemoteNotifications()
+                            UIApplication.shared.registerForRemoteNotifications()
                         #endif
                         onFinish()
                     }

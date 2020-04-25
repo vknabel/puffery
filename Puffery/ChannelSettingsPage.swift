@@ -59,7 +59,7 @@ struct ChannelSettingsPage: View {
         .navigationBarItems(
             leading: cancelNavigationItem,
             trailing: saveNavigationItem
-        )
+        ).onAppear { Current.tracker.record("channels/:id/settings") }
     }
 
     var saveNavigationItem: some View {

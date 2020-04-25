@@ -1,5 +1,5 @@
 //
-//  ChannelListView.swift
+//  ChannelListPage.swift
 //  Puffery
 //
 //  Created by Valentin Knabel on 18.04.20.
@@ -9,7 +9,7 @@
 import Combine
 import SwiftUI
 
-struct ChannelListView: View {
+struct ChannelListPage: View {
     @EnvironmentObject var api: API
     @EnvironmentObject var tokens: TokenRepository
     @State var channels: [Channel]?
@@ -24,13 +24,13 @@ struct ChannelListView: View {
             channels.map { channels in
                 List {
                     Section {
-                        NavigationLink(destination: ChannelDetailsView()) {
+                        NavigationLink(destination: ChannelDetailsPage()) {
                             Text("All")
                         }
                     }
                     Section(header: channelsHeader) {
                         ForEach(channels) { channel in
-                            NavigationLink(destination: ChannelDetailsView(channel: channel)) {
+                            NavigationLink(destination: ChannelDetailsPage(channel: channel)) {
                                 Text(channel.title)
                             }
                         }
@@ -46,6 +46,7 @@ struct ChannelListView: View {
         .navigationBarTitle("Inbox")
         .navigationBarItems(trailing: settingsNavigationBarItem)
         .onAppear(perform: loadChannels)
+        .onAppear { Current.tracker.record("channels") }
     }
 
     var channelsHeader: some View {
@@ -93,10 +94,10 @@ struct ChannelListView: View {
 }
 
 #if DEBUG
-    struct ChannelListView_Previews: PreviewProvider {
+    struct ChannelListPage_Previews: PreviewProvider {
         static var previews: some View {
             NavigationView {
-                ChannelListView(channels: nil)
+                ChannelListPage(channels: nil)
             }
         }
     }

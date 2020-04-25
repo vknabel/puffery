@@ -39,6 +39,7 @@ struct AcknowledgementsPage: View {
             }.show(when: !licenses.isEmpty)
         }.roundedListStyle()
             .navigationBarTitle("Acknowledgements", displayMode: .inline)
+            .onAppear { Current.tracker.record("acknowledgements") }
     }
 
     func openAssetDetails(_ asset: FlaticonAsset) {
@@ -69,6 +70,7 @@ struct LicensePage: View {
             Image(systemName: "safari").padding()
             })
         .navigationBarTitle("\(license.name)", displayMode: .inline)
+        .onAppear { Current.tracker.record("acknowledgements/licenses/\(self.license.id)") }
     }
 
     func openLicense() {
@@ -87,6 +89,7 @@ struct FlaticonAssetPage: View {
             })
         }
         .navigationBarTitle("\(asset.name)", displayMode: .inline)
+        .onAppear { Current.tracker.record("acknowledgements/assets/\(self.asset.id)") }
     }
 
     func openLicense() {

@@ -34,6 +34,7 @@ struct ChannelCreationPage: View {
                 leading: cancelNavigationItem,
                 trailing: createNavigationItem
             )
+            .onAppear { Current.tracker.record("channels/create") }
     }
 
     var createNavigationItem: some View {

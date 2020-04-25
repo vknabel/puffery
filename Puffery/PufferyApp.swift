@@ -26,7 +26,7 @@ struct SelectPufferyApp: View {
             PufferyApp()
                 .onAppear(perform: PushNotifications.register)
                 .show(when: mode == .mainApp)
-            GettingStarted(onFinish: determineCurrentNotificationSettings)
+            GettingStartedPage(onFinish: determineCurrentNotificationSettings)
                 .show(when: mode == .gettingStarted)
             Text("Requires Push Notifications").show(when: mode == .requiresPushNotifications)
         }.onAppear(perform: determineCurrentNotificationSettings)
@@ -59,7 +59,7 @@ struct SelectPufferyApp: View {
 struct PufferyApp: View {
     var body: some View {
         NavigationView {
-            ChannelListView()
+            ChannelListPage()
         }
     }
 }

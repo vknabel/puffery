@@ -11,11 +11,11 @@ import KeychainSwift
 @propertyWrapper
 struct KeychainItem {
     typealias Value = String
-    
+
     private let keychain: KeychainSwift
     private let key: String
     private let access: KeychainSwiftAccessOptions?
-    
+
     var wrappedValue: Value? {
         get { keychain.get(key) }
         set {
@@ -26,7 +26,7 @@ struct KeychainItem {
             }
         }
     }
-    
+
     init(_ key: String, keychain: KeychainSwift, withAccess access: KeychainSwiftAccessOptions? = nil) {
         self.keychain = keychain
         self.key = key

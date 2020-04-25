@@ -7,20 +7,20 @@
 //
 
 import Foundation
-import Overture
 import KeychainSwift
+import Overture
 
 final class TokenRepository: ObservableObject {
     private static let device: KeychainSwift = update(KeychainSwift(), mut(\.synchronizable, false))
     private static let cloud: KeychainSwift = update(KeychainSwift(), mut(\.synchronizable, true))
-    
+
     @KeychainItem("latestDeviceToken", keychain: device)
     var latestDeviceToken: String? {
         willSet {
             objectWillChange.send()
         }
     }
-    
+
     @KeychainItem("sessionToken", keychain: cloud)
     var sessionToken: String? {
         willSet {
@@ -28,4 +28,3 @@ final class TokenRepository: ObservableObject {
         }
     }
 }
-
