@@ -59,6 +59,7 @@ struct ChannelListPage: View {
             }.sheet(isPresented: $presentsChannelCreation, onDismiss: loadChannels) {
                 NavigationView {
                     ChannelCreationPage().environmentObject(self.api)
+                        .environmentObject(self.tokens)
                 }
             }
         }
@@ -72,6 +73,7 @@ struct ChannelListPage: View {
             NavigationView {
                 AppSettingsPage()
                     .environmentObject(self.api)
+                    .environmentObject(self.tokens)
             }
         }
     }
