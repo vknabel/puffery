@@ -70,8 +70,7 @@ struct ChannelDetailsPage: View {
     func noMessageCodeExampleText() -> String? {
         if let channel = channel, let privateToken = channel.notifyKey {
             return """
-            curl "https://api.puffery.app/notify" \\
-            --form-string "channelToken=\(privateToken)" \\
+            curl "\(Current.config.apiURL.absoluteString)/notify/\(privateToken)" \\
             --form-string "title=Hello from \(channel.title)" \\
             --form-string "body=Some details"
             """
