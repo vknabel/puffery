@@ -73,6 +73,7 @@ struct ChannelDetailsPage: View {
             curl "\(Current.config.apiURL.absoluteString)/notify/\(privateToken)" \\
             --form-string "title=Hello from \(channel.title)" \\
             --form-string "body=Some details"
+            --form-string "color=green"
             """
         } else {
             return nil
