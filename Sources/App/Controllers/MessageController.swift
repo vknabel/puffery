@@ -46,7 +46,7 @@ final class MessageController {
                 return channel
             }
             .flatMap { channel in
-                let message = try Message(channel: channel, title: createMessage.title, body: createMessage.body, color: createMessage.body)
+                let message = try Message(channel: channel, title: createMessage.title, body: createMessage.body, color: createMessage.color)
                 return message.create(on: req.db).transform(to: self.notifyDevices(req, message: message)).flatMapThrowing { _ in
                     try NotifyMessageResponse(message)
                 }
