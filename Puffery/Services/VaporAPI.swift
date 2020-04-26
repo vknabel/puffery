@@ -11,8 +11,8 @@ import Overture
 
 final class VaporAPI: API {
     private let defaultStrategy: RequestFetchingStrategy
-    private(set) lazy var jsonDecoder = updateObject(JSONDecoder())
-    private(set) lazy var jsonEncoder = updateObject(JSONEncoder())
+    private(set) lazy var jsonDecoder = updateObject(JSONDecoder(), mut(\JSONDecoder.dateDecodingStrategy, .iso8601))
+    private(set) lazy var jsonEncoder = updateObject(JSONEncoder(), mut(\JSONEncoder.dateEncodingStrategy, .iso8601))
 
     private let tokens: TokenRepository
 
