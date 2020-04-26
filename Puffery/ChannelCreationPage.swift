@@ -53,8 +53,7 @@ struct ChannelCreationPage: View {
     func createChannel() {
         PushNotifications.register {
             if self.isUUID {
-                // TODO: .receiveOnlyKey
-                self.api.subscribe(CreateSubscriptionRequest.notifyKey(self.title))
+                self.api.subscribe(CreateSubscriptionRequest(receiveOrNotifyKey: self.title))
                     .task(self.receiveChannel(result:))
             } else {
                 self.api.createChannel(CreateChannelRequest(title: self.title))

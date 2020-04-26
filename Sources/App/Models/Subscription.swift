@@ -21,10 +21,10 @@ final class Subscription: Model {
 
     init(id: UUID? = nil, user: User, channel: Channel, canNotify: Bool) throws {
         self.id = id
-        $user.id = try user.requireID()
         $user.value = user
-        $channel.id = try channel.requireID()
+        $user.id = try user.requireID()
         $channel.value = channel
+        $channel.id = try channel.requireID()
         self.canNotify = canNotify
     }
 }

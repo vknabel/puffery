@@ -1,4 +1,5 @@
 import Vapor
+import Fluent
 
 final class SubscribedChannelController {
     func create(_ req: Request) throws -> Future<SubscribedChannelResponse> {
@@ -24,6 +25,7 @@ final class SubscribedChannelController {
 //            .join(Channel.self, on: \Channel.$id == \Subscription.$channel.$id)
             .with(\.$channel)
 //            .alsoDecode(Channel.self)
+            .sort(\Subscription.$createdAt)
             .all()
             .flatMapThrowing { try $0.map(SubscribedChannelResponse.init) }
     }
@@ -31,30 +33,25 @@ final class SubscribedChannelController {
     func subscribe(_ req: Request) throws -> Future<SubscribedChannelResponse> {
         let user = try req.auth.require(User.self)
         let createSubscription = try req.content.decode(CreateSubscriptionRequest.self)
-        let canNotify: Bool
-        let loadChannel: Future<Channel?>
-
-        switch createSubscription {
-        case let .notifyKey(key):
-            canNotify = true
-            loadChannel = Channel.query(on: req.db)
-                .filter(\.$notifyKey, .equal, key)
-                .first()
-        case let .receiveOnlyKey(key):
-            canNotify = false
-            loadChannel = Channel.query(on: req.db)
-                .filter(\.$receiveOnlyKey, .equal, key)
-                .first()
-        }
+        
+        let loadChannel = Channel.query(on: req.db)
+            .group(.or, { query in
+                query.filter(\Channel.$notifyKey == createSubscription.receiveOrNotifyKey)
+                    .filter(\Channel.$receiveOnlyKey == createSubscription.receiveOrNotifyKey)
+            })
+            .sort(\.$title)
+            .first()
+        
         return loadChannel.flatMap { channel in
             if let channel = channel {
                 let subscription = try Subscription(
                     user: user,
                     channel: channel,
-                    canNotify: canNotify
+                    canNotify: channel.notifyKey == createSubscription.receiveOrNotifyKey
                 )
-                let subscribedChannel = try SubscribedChannelResponse(subscription: subscription)
-                return subscription.save(on: req.db).transform(to: subscribedChannel)
+                return subscription.create(on: req.db).flatMapThrowing { _ in
+                    try SubscribedChannelResponse(subscription: subscription)
+                }
             } else {
                 return req.eventLoop.future(error: ApiError.channelNotFound)
             }

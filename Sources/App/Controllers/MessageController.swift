@@ -67,6 +67,7 @@ final class MessageController {
                 Message.query(on: req.db)
                     .filter(\Message.$channel.$id, .equal, subscription.$channel.id)
                     .filter(\Message.$createdAt, .greaterThanOrEqual, subscription.createdAt ?? Date.distantPast)
+                    .sort(\.$createdAt)
                     .all()
                     .flatMapThrowing { messages in
                         try messages.map { message in
@@ -82,11 +83,13 @@ final class MessageController {
 
         return try Subscription.query(on: req.db)
             .filter(\Subscription.$user.$id == user.requireID())
+            .sort(\.$createdAt)
             .all()
             .flatMap { (subscriptions: [Subscription]) in
                 let messageResponses = subscriptions.map { subscription in
                     Message.query(on: req.db)
                         .filter(\Message.$channel.$id, .equal, subscription.$channel.id)
+                        .sort(\.$createdAt)
                         .all()
                         .flatMapThrowing { messages in
                             try messages.map { try MessageResponse($0, subscription: subscription) }
@@ -118,8 +121,7 @@ final class MessageController {
 
     private func notifyDevices(_ req: Request, message: Message) -> Future<Void> {
         let alert = APNSwiftPayload.APNSwiftAlert(
-            title: message.title,
-            subtitle: message.channel.title,
+            title: "\(message.channel.title): \(message.title)",
             body: message.body,
             titleLocKey: nil,
             titleLocArgs: nil,
