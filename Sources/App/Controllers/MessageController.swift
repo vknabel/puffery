@@ -67,7 +67,7 @@ final class MessageController {
                 Message.query(on: req.db)
                     .filter(\Message.$channel.$id, .equal, subscription.$channel.id)
                     .filter(\Message.$createdAt, .greaterThanOrEqual, subscription.createdAt ?? Date.distantPast)
-                    .sort(\.$createdAt)
+                    .sort(\.$createdAt, .descending)
                     .all()
                     .flatMapThrowing { messages in
                         try messages.map { message in
@@ -83,13 +83,13 @@ final class MessageController {
 
         return try Subscription.query(on: req.db)
             .filter(\Subscription.$user.$id == user.requireID())
-            .sort(\.$createdAt)
+            .sort(\.$createdAt, .descending)
             .all()
             .flatMap { (subscriptions: [Subscription]) in
                 let messageResponses = subscriptions.map { subscription in
                     Message.query(on: req.db)
                         .filter(\Message.$channel.$id, .equal, subscription.$channel.id)
-                        .sort(\.$createdAt)
+                        .sort(\.$createdAt, .descending)
                         .all()
                         .flatMapThrowing { messages in
                             try messages.map { try MessageResponse($0, subscription: subscription) }

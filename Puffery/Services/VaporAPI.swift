@@ -79,7 +79,7 @@ final class VaporAPI: API {
         #if DEBUG
             createOrUpdateDevice.isProduction = false
         #endif
-        return endpoint().post("devices", deviceToken)
+        return endpoint().put("devices", deviceToken)
             .encoding(body: createOrUpdateDevice, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode, DeviceResponse.self)
             .perform { deviceResponse in

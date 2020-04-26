@@ -25,7 +25,7 @@ final class SubscribedChannelController {
 //            .join(Channel.self, on: \Channel.$id == \Subscription.$channel.$id)
             .with(\.$channel)
 //            .alsoDecode(Channel.self)
-            .sort(\Subscription.$createdAt)
+            .sort(\Subscription.$createdAt, .descending)
             .all()
             .flatMapThrowing { try $0.map(SubscribedChannelResponse.init) }
     }
