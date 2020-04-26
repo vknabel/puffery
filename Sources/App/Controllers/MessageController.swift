@@ -138,8 +138,9 @@ final class MessageController {
             .filter(Channel.self, \Channel.$id == message.$channel.id)
             .all()
             .flatMap { devices in
-                let apnsSends = devices.map { device in
+                let apnsSends = devices.filter { !$0.token.isEmpty }.map { device in
                     req.apns.send(alert, to: device.token)
+                    // TODO: delete tokens that are not found
                 }
                 return req.eventLoop.flatten(apnsSends)
             }

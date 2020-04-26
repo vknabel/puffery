@@ -13,15 +13,20 @@ final class DeviceController {
 
     func createOrUpdate(_ req: Request) throws -> Future<DeviceResponse> {
         let user = try req.auth.require(User.self)
-        let deviceToken = req.parameters.get(":device_token") ?? ""
+        let deviceToken = req.parameters.get("device_token")!
+        if deviceToken.isEmpty {
+            return req.eventLoop.makeFailedFuture(Abort(.notFound))
+        }
+        
         let createDevice = try req.content.decode(CreateOrUpdateDeviceRequest.self)
         return DeviceToken.query(on: req.db)
             .filter(\.$token, .equal, deviceToken)
             .first()
             .flatMap { (existingToken) -> Future<DeviceToken> in
                 if let existingToken = existingToken {
-                    existingToken.user = user
-                    return existingToken.save(on: req.db)
+                    existingToken.$user.id = try user.requireID()
+                    existingToken.$user.value = user
+                    return existingToken.update(on: req.db)
                         .transform(to: existingToken)
                 } else {
                     let deviceToken = try DeviceToken(user: user, token: deviceToken, isProduction: createDevice.isProduction ?? true)

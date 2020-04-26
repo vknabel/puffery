@@ -19,6 +19,7 @@ final class DeviceToken: Model {
     init(id: UUID? = nil, user: User, token: String, isProduction: Bool) throws {
         self.id = id
         $user.id = try user.requireID()
+        $user.value = user
         self.token = token
         self.isProduction = isProduction
     }
