@@ -13,7 +13,7 @@ final class DeviceController {
 
     func createOrUpdate(_ req: Request) throws -> Future<DeviceResponse> {
         let user = try req.auth.require(User.self)
-        let deviceToken = req.parameters.get("device_token")!
+        let deviceToken = req.parameters.get("device_token") ?? ""
         if deviceToken.isEmpty {
             return req.eventLoop.makeFailedFuture(Abort(.notFound))
         }
