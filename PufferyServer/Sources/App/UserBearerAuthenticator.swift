@@ -1,6 +1,6 @@
 import Vapor
 
-struct UserAuthenticator: BearerAuthenticator {
+struct UserBearerAuthenticator: BearerAuthenticator {
     typealias User = App.User
 
     func authenticate(bearer: BearerAuthorization, for request: Request) -> EventLoopFuture<Void> {

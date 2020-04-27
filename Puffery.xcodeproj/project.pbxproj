@@ -41,6 +41,8 @@
 		BAC22B852454B3320000F9E4 /* Compatability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC22B842454B3320000F9E4 /* Compatability.swift */; };
 		BAC76C4F2454A18400600BC4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC76C4E2454A18400600BC4 /* Config.swift */; };
 		BAC76C512454AD1600600BC4 /* VaporAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC76C502454AD1600600BC4 /* VaporAPI.swift */; };
+		BAEEE07024577C7A00E3506A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEE06F24577C7A00E3506A /* LoginView.swift */; };
+		BAEEE07324577FFE00E3506A /* ChangeCredentialsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEE07224577FFE00E3506A /* ChangeCredentialsPage.swift */; };
 		BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154632444BB4400EDB97B /* AppDelegate.swift */; };
 		BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154652444BB4400EDB97B /* SceneDelegate.swift */; };
 		BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */; };
@@ -102,6 +104,8 @@
 		BAC22B842454B3320000F9E4 /* Compatability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compatability.swift; sourceTree = "<group>"; };
 		BAC76C4E2454A18400600BC4 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		BAC76C502454AD1600600BC4 /* VaporAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaporAPI.swift; sourceTree = "<group>"; };
+		BAEEE06F24577C7A00E3506A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		BAEEE07224577FFE00E3506A /* ChangeCredentialsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCredentialsPage.swift; sourceTree = "<group>"; };
 		BAF154602444BB4400EDB97B /* Puffery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puffery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF154632444BB4400EDB97B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF154652444BB4400EDB97B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 				BA96016524522A3B00667BDD /* PushNotifications.swift */,
 				BA4FEB0A244F7991008A02E4 /* Services */,
 				BA3B3AEC244C7F2F001C1A07 /* GettingStartedPage.swift */,
+				BAEEE06F24577C7A00E3506A /* LoginView.swift */,
 				BA94F0BE244B93D60087924C /* Channel.swift */,
 				BA3B3AE2244C47EB001C1A07 /* Message.swift */,
 				BA3B3AEA244C7AA5001C1A07 /* PufferyApp.swift */,
@@ -223,6 +228,7 @@
 				BAA7026F244CC04A00D03A20 /* ChannelSettingsPage.swift */,
 				BAA70271244CC8D200D03A20 /* RoundedGroupListStyle.swift */,
 				BAA70273244CCD7F00D03A20 /* AppSettingsPage.swift */,
+				BAEEE07224577FFE00E3506A /* ChangeCredentialsPage.swift */,
 				BA1C53EF244CD0AE00A06871 /* AcknowledgementsPage.swift */,
 				BA960167245232CB00667BDD /* Acknowloedgements.swift */,
 				BA3B3AE0244C47DF001C1A07 /* MessageCell.swift */,
@@ -411,10 +417,12 @@
 				BAA70270244CC04A00D03A20 /* ChannelSettingsPage.swift in Sources */,
 				BA4FEB18244F9053008A02E4 /* RequestFetchingStrategy.swift in Sources */,
 				BA3B3ADF244C4663001C1A07 /* ChannelDetailsPage.swift in Sources */,
+				BAEEE07324577FFE00E3506A /* ChangeCredentialsPage.swift in Sources */,
 				BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */,
 				BA3B3AE3244C47EB001C1A07 /* Message.swift in Sources */,
 				BAC22B852454B3320000F9E4 /* Compatability.swift in Sources */,
 				BAC76C512454AD1600600BC4 /* VaporAPI.swift in Sources */,
+				BAEEE07024577C7A00E3506A /* LoginView.swift in Sources */,
 				BA4FEB11244F7AC9008A02E4 /* Endpoint.swift in Sources */,
 				BA96015B24521EFE00667BDD /* TokenRepository.swift in Sources */,
 				BA94F0BF244B93D60087924C /* Channel.swift in Sources */,
@@ -602,7 +610,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Puffery/Puffery.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Puffery/PufferyDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;

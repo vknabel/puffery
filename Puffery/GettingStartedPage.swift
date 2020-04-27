@@ -16,12 +16,15 @@ struct GettingStartedPage: View {
     @State var registrationError: FetchingError?
 
     var body: some View {
-        Button(action: registerForPushNotifications) {
-            Text("Copy Push notification token")
-        }.disabled(registrationInProgress).onAppear { Current.tracker.record("GettingStartedPage") }
-            .alert(item: $registrationError) { error in
-                Alert(title: Text("Registration failed"), message: Text(error.localizedDescription))
-            }
+        VStack {
+            Button(action: registerForPushNotifications) {
+                Text("Register anonymously")
+            }.disabled(registrationInProgress).onAppear { Current.tracker.record("GettingStartedPage") }
+                .alert(item: $registrationError) { error in
+                    Alert(title: Text("Registration failed"), message: Text(error.localizedDescription))
+                }
+            LoginView(onFinish: onFinish)
+        }
 //        .alert(isPresented: $showingAlert) {
 //            Alert(title: Text("Important message"), message: Text("Wear sunscreen"), dismissButton: .default(Text("Got it!")))
 //        }

@@ -10,4 +10,6 @@ func migrate(_ app: Application) throws {
 
     app.migrations.add(_2020_04_23_UniqueEmailsOptionalUserMigration())
     app.migrations.add(_2020_04_26_UniqueSubscriptionMigration())
+    app.migrations.add(_2020_04_27_AddUserPasswordMigration())
+    app.migrations.add(_2020_04_27_UniqueUserEmailsAndDeletionRulesMigration())
 }

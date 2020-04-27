@@ -16,11 +16,15 @@ public func routes(_ app: Application) throws {
     // POST notify/:private
     // POST subscriptions
 
+    let bearer = app.grouped(UserToken.authenticator()).grouped(UserBearerAuthenticator())
+
     let userController = UserController()
     app.post("register", use: userController.create)
-    app.post("login", use: userController.login)
+    app.grouped(UserCredentialsAuthenticator())
+        .post("login", use: userController.login)
+    bearer.get("profile", use: userController.profile)
+    bearer.put("profile/credentials", use: userController.updateCredentials)
 
-    let bearer = app.grouped(UserToken.authenticator()).grouped(UserAuthenticator())
     let subscribedChannelController = SubscribedChannelController()
     let messageController = MessageController()
     let deviceController = DeviceController()

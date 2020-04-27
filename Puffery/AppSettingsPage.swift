@@ -14,7 +14,11 @@ struct AppSettingsPage: View {
 
     var body: some View {
         List {
-            Section(header: Text("Notifications")) {
+            Section(header: Text("Account")) {
+                NavigationLink(destination: ChangeCredentialsPage()) {
+                    Text("Edit Profile")
+                }
+
                 Button(action: registerForPushNotifications) {
                     Text("Copy notification token")
                 }

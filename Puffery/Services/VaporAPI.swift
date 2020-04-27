@@ -61,6 +61,26 @@ final class VaporAPI: API {
             }
     }
 
+    func login(user credentials: LoginUserRequest) -> Endpoint<TokenResponse> {
+        endpoint().post("login")
+            .encoding(body: credentials, using: jsonEncoder.encode)
+            .decoding(jsonDecoder.decode, TokenResponse.self)
+            .perform { tokenResponse in
+                self.tokens.sessionToken = tokenResponse.token
+            }
+    }
+
+    func profile() -> Endpoint<UserResponse> {
+        endpoint().post("profile")
+            .decoding(jsonDecoder.decode, UserResponse.self)
+    }
+
+    func updateProfile(credentials: UpdateCredentialsRequest) -> Endpoint<UserResponse> {
+        endpoint().put("profile", "credentials")
+            .encoding(body: credentials, using: jsonEncoder.encode)
+            .decoding(jsonDecoder.decode, UserResponse.self)
+    }
+
     func create(device createDevice: CreateDeviceRequest) -> Endpoint<DeviceResponse> {
         var createDevice = createDevice
         #if DEBUG
