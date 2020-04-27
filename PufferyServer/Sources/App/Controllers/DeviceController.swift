@@ -17,7 +17,7 @@ final class DeviceController {
         if deviceToken.isEmpty {
             return req.eventLoop.makeFailedFuture(Abort(.notFound))
         }
-        
+
         let createDevice = try req.content.decode(CreateOrUpdateDeviceRequest.self)
         return DeviceToken.query(on: req.db)
             .filter(\.$token, .equal, deviceToken)

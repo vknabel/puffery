@@ -1,5 +1,5 @@
-import Vapor
 import Fluent
+import Vapor
 
 final class SubscribedChannelController {
     func create(_ req: Request) throws -> Future<SubscribedChannelResponse> {
@@ -33,15 +33,15 @@ final class SubscribedChannelController {
     func subscribe(_ req: Request) throws -> Future<SubscribedChannelResponse> {
         let user = try req.auth.require(User.self)
         let createSubscription = try req.content.decode(CreateSubscriptionRequest.self)
-        
+
         let loadChannel = Channel.query(on: req.db)
-            .group(.or, { query in
+            .group(.or) { query in
                 query.filter(\Channel.$notifyKey == createSubscription.receiveOrNotifyKey)
                     .filter(\Channel.$receiveOnlyKey == createSubscription.receiveOrNotifyKey)
-            })
+            }
             .sort(\.$title)
             .first()
-        
+
         return loadChannel.flatMap { channel in
             if let channel = channel {
                 let subscription = try Subscription(
@@ -53,7 +53,7 @@ final class SubscribedChannelController {
                     try SubscribedChannelResponse(subscription: subscription)
                 }
             } else {
-                return req.eventLoop.future(error: ApiError.channelNotFound)
+                return req.eventLoop.future(error: ApiError(.channelNotFound))
             }
         }
     }

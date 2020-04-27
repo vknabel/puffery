@@ -13,6 +13,7 @@ public func apns(_ app: Application) throws {
             teamIdentifier: teamID
         ),
         topic: "com.vknabel.puffery",
-        environment: .production
+        environment: .production,
+        logger: app.logger
     )
 }

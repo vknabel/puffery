@@ -30,9 +30,6 @@ final class UserController {
     }
 
     func login(_ req: Request) throws -> EventLoopFuture<TokenResponse> {
-//        let user = try req.requireAuthenticated(User.self)
-//        let token = try UserToken.create(userID: user.requireID())
-//        return token.save(on: req)
         let loginRequest =
             try req.content.decode(LoginUserRequest.self)
         return User.query(on: req.db)
@@ -47,7 +44,7 @@ final class UserController {
                     )
                     return token.create(on: req.db).transform(to: tokenResponse)
                 } else {
-                    return req.eventLoop.future(error: ApiError.invalidCredentials)
+                    return req.eventLoop.future(error: ApiError(.invalidCredentials))
                 }
             }
     }
