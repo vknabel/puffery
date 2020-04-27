@@ -67,7 +67,9 @@ struct Fetching<V, E: Error, LoadingView: View, ErrorView: View, DataView: View>
     }
 
     private func cancel() {
-        operation = nil
+        DispatchQueue.main.async {
+            self.operation = nil
+        }
     }
 }
 

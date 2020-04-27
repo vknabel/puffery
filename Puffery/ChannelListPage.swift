@@ -16,12 +16,13 @@ struct ChannelListPage: View {
     @State var presentsSettings = false
     @State var presentsChannelCreation = false
     @State var shouldReload = PassthroughSubject<Void, FetchingError>()
+    @State private var selectedAllChannels = UIDevice.current.model == "iPad"
 
     var body: some View {
         Fetching(loadChannelsPublisher, empty: self.channelsHeader) { channels in
             List {
                 Section {
-                    NavigationLink(destination: ChannelDetailsPage()) {
+                    NavigationLink(destination: ChannelDetailsPage(), isActive: self.$selectedAllChannels) {
                         Text("All")
                     }
                 }
@@ -50,7 +51,7 @@ struct ChannelListPage: View {
             }.sheet(isPresented: $presentsChannelCreation, onDismiss: shouldReload.send) {
                 NavigationView {
                     ChannelCreationPage()
-                }
+                }.navigationViewStyle(StackNavigationViewStyle())
             }
         }
     }
@@ -62,7 +63,7 @@ struct ChannelListPage: View {
         }.sheet(isPresented: $presentsSettings) {
             NavigationView {
                 AppSettingsPage()
-            }
+            }.navigationViewStyle(StackNavigationViewStyle())
         }
     }
 

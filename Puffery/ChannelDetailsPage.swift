@@ -35,7 +35,7 @@ struct ChannelDetailsPage: View {
                         .sheet(isPresented: self.$displaysChannelSettings) {
                             NavigationView {
                                 ChannelSettingsPage(channel: channel)
-                            }
+                            }.navigationViewStyle(StackNavigationViewStyle())
                         }
                 }
             }
