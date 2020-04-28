@@ -71,7 +71,7 @@ final class VaporAPI: API {
     }
 
     func profile() -> Endpoint<UserResponse> {
-        endpoint().post("profile")
+        endpoint().get("profile")
             .decoding(jsonDecoder.decode, UserResponse.self)
     }
 
