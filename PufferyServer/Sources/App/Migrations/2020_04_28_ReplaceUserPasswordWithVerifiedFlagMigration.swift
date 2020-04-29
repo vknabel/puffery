@@ -5,7 +5,7 @@ struct _2020_04_28_ReplaceUserPasswordWithVerifiedFlagMigration: Migration {
     func prepare(on database: Database) -> EventLoopFuture<Void> {
         database.schema("users")
             .deleteField("password_hash")
-            .field("is_confirmed", .bool, .required)
+            .field("is_confirmed", .bool, .sql(raw: "NOT NULL DEFAULT FALSE"))
             .update()
     }
 

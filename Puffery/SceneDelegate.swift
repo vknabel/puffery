@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
         let contentView = SelectPufferyApp()
             .environment(\.managedObjectContext, context)
+            .environmentObject(Current.store)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
@@ -76,12 +77,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             switch (first, second, third) {
             case let ("confirmations", "login", confirmationID?):
                 Current.api.confirmLogin(confirmationID)
-                    .task { result in
-                        guard case let .success(tokenResponse) = result else {
-                            return
-                        }
-                        Current.tokens.sessionToken = tokenResponse.token
-                    }
+                    .task { _ in }
             case let ("confirmations", "email", confirmationID?):
                 Current.api.confirmEmail(confirmationID)
                     .task { _ in }

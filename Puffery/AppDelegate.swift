@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
-        Current.tokens.latestDeviceToken = token
+        Current.store.commit(.updateDeviceToken(token))
         Current.api.createOrUpdate(device: token, contents: CreateOrUpdateDeviceRequest())
             .task { _ in }
     }

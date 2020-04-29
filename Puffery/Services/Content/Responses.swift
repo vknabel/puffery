@@ -1,6 +1,6 @@
 import Foundation
 
-struct UserResponse: Content {
+struct UserResponse: Content, Equatable {
     var id: UUID
     var email: String?
 }
@@ -10,7 +10,7 @@ struct TokenResponse: Content {
     var user: UserResponse
 }
 
-struct SubscribedChannelResponse: Content {
+struct SubscribedChannelResponse: Content, Equatable {
     /// Actually the ID of the Subscription!
     var id: UUID
     var title: String

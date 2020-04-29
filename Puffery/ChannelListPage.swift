@@ -11,7 +11,6 @@ import SwiftUI
 
 struct ChannelListPage: View {
     private var api: API { Current.api }
-    private var tokens: TokenRepository { Current.tokens }
 
     @State var presentsSettings = false
     @State var presentsChannelCreation = false

@@ -17,15 +17,15 @@ enum AppMode: Equatable {
 
 struct SelectPufferyApp: View {
     @State var mode = AppMode.loading
-    @State var tokens: TokenRepository = Current.tokens
+    @ObservedObject var store = Current.store
 
     var body: some View {
         ZStack {
             ActivityIndicator(isAnimating: mode == .loading)
-
+            Text(store.state.session.sessionToken ?? "no")
             PufferyApp()
                 .onAppear(perform: PushNotifications.register)
-                .show(when: mode == .mainApp)
+                .show(when: store.state.session.isLoggedIn() || mode == .mainApp)
             GettingStartedPage(onFinish: determineCurrentNotificationSettings)
                 .show(when: mode == .gettingStarted)
             Text("Requires Push Notifications").show(when: mode == .requiresPushNotifications)
@@ -33,7 +33,7 @@ struct SelectPufferyApp: View {
     }
 
     func determineCurrentNotificationSettings() {
-        guard !tokens.isLoggedIn else {
+        guard !store.state.session.isLoggedIn() else {
             mode = .mainApp
             return
         }

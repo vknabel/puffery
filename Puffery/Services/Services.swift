@@ -12,15 +12,15 @@ import Foundation
 struct World {
     var config: Config
     var api: API
-    var tokens: TokenRepository
     var tracker: Tracker
+    var store: Store
 }
 
 var Current: World = {
     let config = Config.prod()
-    let tokens = TokenRepository()
-    let api = VaporAPI(tokens: tokens, baseURL: config.apiURL)
-
+    var store = Store()
+    let api = VaporAPI(baseURL: config.apiURL)
+    
     let trackingDisabled: Bool
     #if DEBUG
         trackingDisabled = true
@@ -33,5 +33,5 @@ var Current: World = {
         appUrl: config.ackeeAppURL,
         disabled: trackingDisabled
     ))
-    return World(config: config, api: api, tokens: tokens, tracker: ackee)
+    return World(config: config, api: api, tracker: ackee, store: store)
 }()

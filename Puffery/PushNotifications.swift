@@ -25,7 +25,7 @@ enum PushNotifications {
                     guard settings.authorizationStatus == .authorized else { return }
                     DispatchQueue.main.async {
                         #if targetEnvironment(simulator)
-                            Current.tokens.latestDeviceToken = nil
+                        Current.store.commit(.updateDeviceToken(nil))
                         #else
                             UIApplication.shared.registerForRemoteNotifications()
                         #endif

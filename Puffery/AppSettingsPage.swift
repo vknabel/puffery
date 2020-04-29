@@ -10,7 +10,6 @@ import SwiftUI
 
 struct AppSettingsPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    var tokens: TokenRepository { Current.tokens }
 
     var body: some View {
         List {
@@ -29,6 +28,12 @@ struct AppSettingsPage: View {
                     Text("Acknowledgements")
                 }
             }
+            
+            Section {
+                Button(action: { Current.store.commit(.updateSession(nil)) }) {
+                    Text("Logout").foregroundColor(.red)
+                }
+            }
         }
         .roundedListStyle()
         .navigationBarTitle("Settings", displayMode: .inline)
@@ -40,7 +45,9 @@ struct AppSettingsPage: View {
 
     func registerForPushNotifications() {
         PushNotifications.register {
-            UIPasteboard.general.string = self.tokens.latestDeviceToken
+            if let latestDeviceToken = Current.store.state.session.latestDeviceToken {
+                UIPasteboard.general.string = latestDeviceToken
+            }
         }
     }
 

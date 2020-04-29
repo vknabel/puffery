@@ -35,14 +35,16 @@ struct GettingStartedPage: View {
         registrationInProgress = true
 
         PushNotifications.register {
-            let createDeviceRequest = Current.tokens.latestDeviceToken.map {
+            let createDeviceRequest = Current.store.state.session.latestDeviceToken.map {
                 CreateDeviceRequest(token: $0)
             }
             Current.api.register(user: CreateUserRequest(device: createDeviceRequest)).task { result in
                 switch result {
                 case .success:
                     self.registrationError = nil
-                    self.onFinish()
+                    DispatchQueue.main.async {
+                        self.onFinish()
+                    }
                 case let .failure(error):
                     self.registrationInProgress = false
                     self.registrationError = error

@@ -14,10 +14,7 @@ final class VaporAPI: API {
     private(set) lazy var jsonDecoder = updateObject(JSONDecoder(), mut(\JSONDecoder.dateDecodingStrategy, .iso8601))
     private(set) lazy var jsonEncoder = updateObject(JSONEncoder(), mut(\JSONEncoder.dateEncodingStrategy, .iso8601))
 
-    private let tokens: TokenRepository
-
-    init(tokens: TokenRepository, baseURL: URL) {
-        self.tokens = tokens
+    init(baseURL: URL) {
         let internalStrategy = URLSessionRequestFetchingStrategy(baseURL: baseURL)
         defaultStrategy = LoggingRequestFetchingStrategy(internalStrategy) {
             switch $0 {
@@ -37,13 +34,13 @@ final class VaporAPI: API {
         Endpoint(strategy: strategy ?? defaultStrategy)
             .update { $0.addValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type") }
             .update {
-                if let sessionToken = self.tokens.sessionToken {
+                if let sessionToken = Current.store.state.session.sessionToken {
                     $0.addValue("Bearer \(sessionToken)", forHTTPHeaderField: "Authorization")
                 }
             }
             .handle { fetchingError in
                 if case .statusCode(401) = fetchingError.reason {
-                    Current.tokens.sessionToken = nil // TODO: changes not triggered
+                    Current.store.commit(.updateSession(nil))
                 }
             }
     }
@@ -57,7 +54,7 @@ final class VaporAPI: API {
             .encoding(body: createUser, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode, TokenResponse.self)
             .perform { tokenResponse in
-                self.tokens.sessionToken = tokenResponse.token
+                Current.store.commit(.updateSession(tokenResponse))
             }
     }
 
@@ -87,7 +84,7 @@ final class VaporAPI: API {
         endpoint().post("confirmations", "login", confirmation)
             .decoding(jsonDecoder.decode, TokenResponse.self)
             .perform { tokenResponse in
-                self.tokens.sessionToken = tokenResponse.token
+                Current.store.commit(.updateSession(tokenResponse))
             }
     }
 
@@ -100,7 +97,7 @@ final class VaporAPI: API {
             .encoding(body: createDevice, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode, DeviceResponse.self)
             .perform { deviceResponse in
-                self.tokens.latestDeviceToken = deviceResponse.token
+                Current.store.commit(.updateDeviceToken(deviceResponse.token))
             }
     }
 
@@ -113,7 +110,7 @@ final class VaporAPI: API {
             .encoding(body: createOrUpdateDevice, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode, DeviceResponse.self)
             .perform { deviceResponse in
-                self.tokens.latestDeviceToken = deviceResponse.token
+                Current.store.commit(.updateDeviceToken(deviceResponse.token))
             }
     }
 

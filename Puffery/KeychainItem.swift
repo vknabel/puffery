@@ -17,8 +17,7 @@ struct KeychainItem {
     private let access: KeychainSwiftAccessOptions?
 
     var wrappedValue: Value? {
-        get { keychain.get(key) }
-        set {
+        willSet {
             if let newValue = newValue {
                 keychain.set(newValue, forKey: key, withAccess: access)
             } else {
@@ -31,5 +30,7 @@ struct KeychainItem {
         self.keychain = keychain
         self.key = key
         self.access = access
+        
+        wrappedValue = keychain.get(key)
     }
 }

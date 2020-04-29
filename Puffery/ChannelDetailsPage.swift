@@ -14,7 +14,6 @@ struct ChannelDetailsPage: View {
     var channel: Channel?
 
     private var api: API { Current.api }
-    private var tokens: TokenRepository { Current.tokens }
     @State var displaysChannelSettings = false
 
     var loadMessagesPublisher: AnyPublisher<[Message], FetchingError> {
