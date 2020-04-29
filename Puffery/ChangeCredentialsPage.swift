@@ -11,27 +11,17 @@ import SwiftUI
 
 struct ChangeCredentialsPage: View {
     @State var email = ""
-    @State var password = ""
-    @State var passwordRepeat = ""
-
-    @State var oldPassword = ""
 
     var body: some View {
         Fetching(currentProfilePublisher) { profile in
             VStack {
-                TextField("E-Mail", text: self.$email)
+                TextField(profile.email ?? "E-Mail", text: self.$email)
                     .keyboardType(.emailAddress)
                     .textContentType(.emailAddress)
-                TextField("Password", text: self.$password)
-                    .textContentType(.password)
-                TextField("Password Repeat", text: self.$passwordRepeat)
-                    .textContentType(.password)
 
-                TextField("Old Password", text: self.$oldPassword)
-                    .textContentType(.password)
                 Button(action: self.performUpdate) {
-                    Text("Login")
-                }.disabled(self.email.isEmpty && self.password.count < 8 || self.oldPassword.isEmpty && profile.email != nil || self.password != self.passwordRepeat)
+                    Text("Update")
+                }.disabled(self.email.isEmpty)
             }
         }.navigationBarTitle("Edit Profile")
     }
@@ -42,10 +32,7 @@ struct ChangeCredentialsPage: View {
 
     func performUpdate() {
         Current.api.updateProfile(credentials: UpdateCredentialsRequest(
-            email: email.nonEmpty,
-            password: password.nonEmpty,
-            oldPassword: oldPassword.nonEmpty
-        )).task { _ in
+            email: email.nonEmpty)).task { _ in
         }
     }
 }

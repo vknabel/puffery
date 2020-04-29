@@ -20,10 +20,14 @@ public func routes(_ app: Application) throws {
 
     let userController = UserController()
     app.post("register", use: userController.create)
-    app.grouped(UserCredentialsAuthenticator())
-        .post("login", use: userController.login)
+    app.post("login", use: userController.login)
+
+    let confirmationController = ConfirmationController()
+    app.post("confirmations", "login", ":confirmation_id", use: confirmationController.confirmLogin)
+    app.post("confirmations", "email", ":confirmation_id", use: confirmationController.confirmEmail)
+
     bearer.get("profile", use: userController.profile)
-    bearer.put("profile/credentials", use: userController.updateCredentials)
+    bearer.put("profile", use: userController.updateProfile)
 
     let subscribedChannelController = SubscribedChannelController()
     let messageController = MessageController()
@@ -35,6 +39,11 @@ public func routes(_ app: Application) throws {
     bearer.post("channels", use: subscribedChannelController.create)
     bearer.get("channels", use: subscribedChannelController.index)
 
+    app.post("notify", "email", use: { (req: Request) -> String in
+        print("notify/email:", (try? req.content.decode(String.self)) ?? "")
+        print("notify/email:", (try? req.content.decode([String: String].self).debugDescription) ?? "")
+        return ""
+    })
     app.post("notify", ":notify_key", use: messageController.publicNotify)
     bearer.get("channels", "messages", use: messageController.messagesForAllChannels)
     bearer.get("channels", ":subscription_id", "messages", use: messageController.index)

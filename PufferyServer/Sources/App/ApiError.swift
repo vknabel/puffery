@@ -5,6 +5,7 @@ struct ApiError: Error, DebuggableError, AbortError {
         case notifyKeyDoesNotMatch
         case channelNotFound
         case invalidCredentials
+        case confirmationExpired
     }
 
     var identifier: String {
@@ -19,6 +20,8 @@ struct ApiError: Error, DebuggableError, AbortError {
             return "Invalid notify key provided. Did you pick the receive only key?"
         case .invalidCredentials:
             return "Invalid credentials"
+        case .confirmationExpired:
+            return "Confirmation expired"
         }
     }
 
@@ -30,6 +33,8 @@ struct ApiError: Error, DebuggableError, AbortError {
             return .forbidden
         case .invalidCredentials:
             return .forbidden
+        case .confirmationExpired:
+            return .gone
         }
     }
 

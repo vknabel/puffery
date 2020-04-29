@@ -26,6 +26,13 @@ let package = Package(
 //        .package(url: "https://github.com/vapor/apns.git", .exact("1.0.0-rc.1")),
         .package(url: "https://github.com/vknabel/apns.git", .revision("d3eea3eb94aede320c66714efa5ff7b2316430c0")),
         .package(url: "https://github.com/kylebrowning/APNSwift.git", .exact("2.0.0-rc1")),
+
+        // 👩‍🔧 Jobs and Queues
+        .package(url: "https://github.com/vapor/queues.git", from: "1.0.0"),
+        .package(url: "https://github.com/vapor/queues-redis-driver.git", from: "1.0.0-rc"),
+
+        // ✉️
+        .package(url: "https://github.com/vapor-community/sendgrid.git", from: "4.0.0"),
     ],
     targets: [
         .target(name: "App", dependencies: [
@@ -34,6 +41,8 @@ let package = Package(
             .product(name: "Vapor", package: "vapor"),
             .product(name: "APNS", package: "apns"),
             .product(name: "JWT", package: "jwt"),
+            .product(name: "QueuesRedisDriver", package: "queues-redis-driver"),
+            .product(name: "SendGrid", package: "sendgrid"),
         ]),
         .target(name: "Run", dependencies: ["App"]),
         .testTarget(name: "AppTests", dependencies: ["App"]),

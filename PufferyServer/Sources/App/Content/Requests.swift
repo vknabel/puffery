@@ -3,23 +3,14 @@ import Vapor
 struct CreateUserRequest: Content {
     var device: CreateDeviceRequest?
     var email: String?
-    var password: String?
 }
 
-struct CreateCredentialsRequest: Content {
-    var email: String
-    var password: String
-}
-
-struct UpdateCredentialsRequest: Content {
+struct UpdateProfileRequest: Content {
     var email: String?
-    var password: String?
-    var oldPassword: String?
 }
 
 struct LoginUserRequest: Content {
     var email: String
-    var password: String
 }
 
 struct CreateChannelRequest: Content {

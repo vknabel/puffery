@@ -64,4 +64,42 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
+
+    func scene(_: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        for context in URLContexts {
+            var components = context.url.pathComponents
+                .filter { $0 != "/" }
+            let first = components.popFirst()
+            let second = components.popFirst()
+            let third = components.popFirst()
+
+            switch (first, second, third) {
+            case let ("confirmations", "login", confirmationID?):
+                Current.api.confirmLogin(confirmationID)
+                    .task { result in
+                        guard case let .success(tokenResponse) = result else {
+                            return
+                        }
+                        Current.tokens.sessionToken = tokenResponse.token
+                    }
+            case let ("confirmations", "email", confirmationID?):
+                Current.api.confirmEmail(confirmationID)
+                    .task { _ in }
+            default:
+                print("Unknown URL")
+            }
+        }
+
+        print(URLContexts)
+    }
+}
+
+extension Array {
+    mutating func popFirst() -> Element? {
+        if isEmpty {
+            return nil
+        } else {
+            return removeFirst()
+        }
+    }
 }

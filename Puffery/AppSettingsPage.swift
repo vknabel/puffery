@@ -16,7 +16,7 @@ struct AppSettingsPage: View {
         List {
             Section(header: Text("Account")) {
                 NavigationLink(destination: ChangeCredentialsPage()) {
-                    Text("Edit Profile")
+                    Text("Email")
                 }
 
                 Button(action: registerForPushNotifications) {

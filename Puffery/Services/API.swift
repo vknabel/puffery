@@ -13,9 +13,12 @@ protocol API {
     func docs() -> Endpoint<String?>
 
     func register(user createUser: CreateUserRequest) -> Endpoint<TokenResponse>
-    func login(user createUser: LoginUserRequest) -> Endpoint<TokenResponse>
+    func login(user createUser: LoginUserRequest) -> Endpoint<Void>
     func profile() -> Endpoint<UserResponse>
     func updateProfile(credentials: UpdateCredentialsRequest) -> Endpoint<UserResponse>
+
+    func confirmEmail(_ confirmation: String) -> Endpoint<Void>
+    func confirmLogin(_ confirmation: String) -> Endpoint<TokenResponse>
 
     func create(device createDevice: CreateDeviceRequest) -> Endpoint<DeviceResponse>
     func createOrUpdate(device deviceToken: String, contents: CreateOrUpdateDeviceRequest) -> Endpoint<DeviceResponse>

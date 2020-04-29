@@ -3,12 +3,17 @@ import Vapor
 struct UserResponse: Content {
     var id: UUID
     var email: String?
+    var isConfirmed: Bool
 }
 
 struct TokenResponse: Content {
     var token: String
     var user: UserResponse
 }
+
+struct LoginAttemptResponse: Content {}
+
+struct ConfirmedEmailResponse: Content {}
 
 struct SubscribedChannelResponse: Content {
     /// Actually the ID of the Subscription!

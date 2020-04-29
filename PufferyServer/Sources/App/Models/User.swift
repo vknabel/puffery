@@ -10,18 +10,18 @@ final class User: Model, Authenticatable {
     @Field(key: "email")
     var email: String?
 
-    @Field(key: "password_hash")
-    var passwordHash: String?
+    @Field(key: "is_confirmed")
+    var isConfirmed: Bool
 
     @Children(for: \.$user)
     var subscriptions: [Subscription]
 
     init() {}
 
-    init(id: UUID? = nil, email: String?, passwordHash: String?) {
+    init(id: UUID? = nil, email: String?, isConfirmed: Bool = false) {
         self.id = id
         self.email = email
-        self.passwordHash = passwordHash
+        self.isConfirmed = isConfirmed
     }
 }
 
