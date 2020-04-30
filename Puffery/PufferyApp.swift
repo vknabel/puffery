@@ -8,36 +8,26 @@
 
 import SwiftUI
 
-enum AppMode: Equatable {
-    case gettingStarted
-    case requiresPushNotifications
-    case mainApp
-    case loading
-}
-
 struct SelectPufferyApp: View {
-    @State var mode = AppMode.loading
     @ObservedObject var store = Current.store
 
     var body: some View {
         ZStack {
-            ActivityIndicator(isAnimating: mode == .loading)
-            Text(store.state.session.sessionToken ?? "no")
             PufferyApp()
                 .onAppear(perform: PushNotifications.register)
-                .show(when: store.state.session.isLoggedIn() || mode == .mainApp)
+                .show(when: store.state.session.sessionToken != nil)
+
             GettingStartedPage(onFinish: determineCurrentNotificationSettings)
-                .show(when: mode == .gettingStarted)
-            Text("Requires Push Notifications").show(when: mode == .requiresPushNotifications)
+                .show(when: store.state.session.sessionToken == nil)
         }.onAppear(perform: determineCurrentNotificationSettings)
     }
 
     func determineCurrentNotificationSettings() {
-        guard !store.state.session.isLoggedIn() else {
-            mode = .mainApp
-            return
-        }
-        mode = .gettingStarted
+//        guard !store.state.session.isLoggedIn() else {
+//            mode = .mainApp
+//            return
+//        }
+//        mode = .gettingStarted
 //        mode = .loading
 //
 //        UNUserNotificationCenter.current().getNotificationSettings { settings in

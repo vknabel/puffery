@@ -28,6 +28,8 @@ protocol API {
     func messages(ofChannel: Channel) -> Endpoint<[MessageResponse]>
     func subscribe(_ createSubscription: CreateSubscriptionRequest) -> Endpoint<SubscribedChannelResponse>
     func channels() -> Endpoint<[SubscribedChannelResponse]>
+    func sharedChannels() -> Endpoint<[SubscribedChannelResponse]>
+    func ownChannels() -> Endpoint<[SubscribedChannelResponse]>
 
     func notify(_ createMessage: CreateMessageRequest) -> Endpoint<NotifyMessageResponse>
 }

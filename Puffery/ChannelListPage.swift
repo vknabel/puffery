@@ -18,31 +18,43 @@ struct ChannelListPage: View {
     @State private var selectedAllChannels = UIDevice.current.model == "iPad"
 
     var body: some View {
-        Fetching(loadChannelsPublisher, empty: self.channelsHeader) { channels in
+        ZStack {
             List {
                 Section {
                     NavigationLink(destination: ChannelDetailsPage(), isActive: self.$selectedAllChannels) {
                         Text("All")
                     }
                 }
-                Section(header: self.channelsHeader) {
-                    ForEach(channels) { channel in
-                        NavigationLink(destination: ChannelDetailsPage(channel: channel)) {
-                            Text(channel.title)
+
+                Section(header: channelsHeader("Own Channels")) {
+                    Fetching(loadOwnChannelsPublisher, empty: self.noChannelsFound()) { channels in
+                        ForEach(channels) { channel in
+                            NavigationLink(destination: ChannelDetailsPage(channel: channel)) {
+                                Text(channel.title)
+                            }
                         }
                     }
                 }
-            }
-            .roundedListStyle()
+
+                Section(header: channelsHeader("Shared Channels")) {
+                    Fetching(loadSharedChannelsPublisher, empty: self.noChannelsFound()) { channels in
+                        ForEach(channels) { channel in
+                            NavigationLink(destination: ChannelDetailsPage(channel: channel)) {
+                                Text(channel.title)
+                            }
+                        }
+                    }
+                }
+            }.roundedListStyle()
         }
         .navigationBarTitle("Puffery")
         .navigationBarItems(trailing: settingsNavigationBarItem)
         .onAppear { Current.tracker.record("channels") }
     }
 
-    var channelsHeader: some View {
+    func channelsHeader(_ title: String) -> some View {
         HStack {
-            Text("Channels")
+            Text(title)
             Spacer()
 
             Button(action: { self.presentsChannelCreation.toggle() }) {
@@ -55,10 +67,17 @@ struct ChannelListPage: View {
         }
     }
 
+    func noChannelsFound(_: String = "No Channels") -> some View {
+        HStack {
+            Spacer()
+            Text("Keine Channels").opacity(0.5)
+            Spacer()
+        }
+    }
+
     var settingsNavigationBarItem: some View {
         Button(action: { self.presentsSettings.toggle() }) {
-            Image(systemName: "person.crop.circle")
-                .padding()
+            Image(systemName: "person.crop.circle").font(.system(size: 21))
         }.sheet(isPresented: $presentsSettings) {
             NavigationView {
                 AppSettingsPage()
@@ -66,9 +85,15 @@ struct ChannelListPage: View {
         }
     }
 
-    var loadChannelsPublisher: AnyPublisher<[Channel], FetchingError> {
+    var loadOwnChannelsPublisher: AnyPublisher<[Channel], FetchingError> {
         shouldReload.prepend(())
-            .flatMap(api.channels().publisher)
+            .flatMap(api.ownChannels().publisher)
+            .eraseToAnyPublisher()
+    }
+
+    var loadSharedChannelsPublisher: AnyPublisher<[Channel], FetchingError> {
+        shouldReload.prepend(())
+            .flatMap(api.sharedChannels().publisher)
             .eraseToAnyPublisher()
     }
 }

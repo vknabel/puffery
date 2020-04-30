@@ -20,7 +20,7 @@ var Current: World = {
     let config = Config.prod()
     var store = Store()
     let api = VaporAPI(baseURL: config.apiURL)
-    
+
     let trackingDisabled: Bool
     #if DEBUG
         trackingDisabled = true

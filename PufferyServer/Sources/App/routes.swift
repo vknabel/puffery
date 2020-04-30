@@ -38,6 +38,8 @@ public func routes(_ app: Application) throws {
 
     bearer.post("channels", use: subscribedChannelController.create)
     bearer.get("channels", use: subscribedChannelController.index)
+    bearer.get("channels", "shared", use: subscribedChannelController.indexShared)
+    bearer.get("channels", "own", use: subscribedChannelController.indexOwn)
 
     app.post("notify", "email", use: { (req: Request) -> String in
         print("notify/email:", (try? req.content.decode(String.self)) ?? "")

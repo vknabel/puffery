@@ -22,9 +22,29 @@ final class SubscribedChannelController {
         let user = try req.auth.require(User.self)
 
         return user.$subscriptions.query(on: req.db)
-//            .join(Channel.self, on: \Channel.$id == \Subscription.$channel.$id)
             .with(\.$channel)
-//            .alsoDecode(Channel.self)
+            .sort(\Subscription.$createdAt, .descending)
+            .all()
+            .flatMapThrowing { try $0.map(SubscribedChannelResponse.init) }
+    }
+
+    func indexShared(_ req: Request) throws -> Future<[SubscribedChannelResponse]> {
+        let user = try req.auth.require(User.self)
+
+        return user.$subscriptions.query(on: req.db)
+            .filter(\Subscription.$canNotify == false)
+            .with(\.$channel)
+            .sort(\Subscription.$createdAt, .descending)
+            .all()
+            .flatMapThrowing { try $0.map(SubscribedChannelResponse.init) }
+    }
+
+    func indexOwn(_ req: Request) throws -> Future<[SubscribedChannelResponse]> {
+        let user = try req.auth.require(User.self)
+
+        return user.$subscriptions.query(on: req.db)
+            .filter(\Subscription.$canNotify == true)
+            .with(\.$channel)
             .sort(\Subscription.$createdAt, .descending)
             .all()
             .flatMapThrowing { try $0.map(SubscribedChannelResponse.init) }

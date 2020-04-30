@@ -28,9 +28,9 @@ struct AppSettingsPage: View {
                     Text("Acknowledgements")
                 }
             }
-            
+
             Section {
-                Button(action: { Current.store.commit(.updateSession(nil)) }) {
+                Button(action: logout) {
                     Text("Logout").foregroundColor(.red)
                 }
             }
@@ -53,6 +53,13 @@ struct AppSettingsPage: View {
 
     func dismiss() {
         presentationMode.wrappedValue.dismiss()
+    }
+
+    func logout() {
+        dismiss()
+        DispatchQueue.main.async {
+            Current.store.commit(.updateSession(nil))
+        }
     }
 }
 

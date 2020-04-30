@@ -1,24 +1,24 @@
+import Combine
 import Foundation
 import KeychainSwift
 import Overture
-import Combine
 
 var subscription: AnyObject?
 
 final class Store: ObservableObject {
     let objectWillChange: ObservableObjectPublisher = ObservableObjectPublisher()
-    
+
     fileprivate(set) var state = GlobalState() {
         willSet {
-            objectWillChange.send()
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+            }
         }
     }
 
     init() {
         state.session.latestDeviceToken = deviceKeychain.get("latestDeviceToken")
         state.session.sessionToken = cloudKeychain.get("sessionToken")
-        
-        subscription = self.objectWillChange.sink(receiveValue: { print("updated", self.state) })
     }
 
     private let deviceKeychain: KeychainSwift = update(KeychainSwift(), mut(\.synchronizable, false))
@@ -32,7 +32,7 @@ enum GlobalCommit {
 
 struct GlobalState {
     var session = Session()
-    
+
 //    var channels = [Channel]()
 //    var messages = [Message]()
 }
@@ -41,7 +41,7 @@ struct Session: Equatable {
     var latestDeviceToken: String?
     var sessionToken: String?
     var profile: UserResponse?
-    
+
     func isLoggedIn() -> Bool {
         sessionToken != nil
     }
@@ -50,10 +50,10 @@ struct Session: Equatable {
 extension Store {
     func commit(_ action: GlobalCommit) {
 //        DispatchQueue.main.async {
-            self.commitOnMain(action)
+        commitOnMain(action)
 //        }
     }
-    
+
     private func commitOnMain(_ action: GlobalCommit) {
         print("Action:", action)
         switch action {
@@ -68,7 +68,7 @@ extension Store {
             cloudKeychain.delete("sessionToken")
             state.session.sessionToken = nil
             state.session.profile = nil
-            
+
         case let .updateSession(token?):
             cloudKeychain.set(token.token, forKey: "sessionToken")
             state.session.sessionToken = token.token

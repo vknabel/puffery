@@ -30,7 +30,7 @@ struct KeychainItem {
         self.keychain = keychain
         self.key = key
         self.access = access
-        
+
         wrappedValue = keychain.get(key)
     }
 }

@@ -110,12 +110,66 @@
         }
       },
       {
+        "package": "queues",
+        "repositoryURL": "https://github.com/vapor/queues.git",
+        "state": {
+          "branch": null,
+          "revision": "302a29b2b3410aac240908bc7995e20fead18459",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "queues-redis-driver",
+        "repositoryURL": "https://github.com/vapor/queues-redis-driver.git",
+        "state": {
+          "branch": null,
+          "revision": "2212b5daf46a35de6da1ea91af2e0cc927247ccb",
+          "version": "1.0.0-rc.3"
+        }
+      },
+      {
+        "package": "redis-kit",
+        "repositoryURL": "https://github.com/vapor/redis-kit.git",
+        "state": {
+          "branch": null,
+          "revision": "9ef8f9dc472d022c4e94e5388ccf3c87ad83e2cb",
+          "version": "1.0.0-beta.5"
+        }
+      },
+      {
+        "package": "RediStack",
+        "repositoryURL": "https://gitlab.com/mordil/RediStack.git",
+        "state": {
+          "branch": null,
+          "revision": "b462bdcf3f3008b23f29ba02b1639bebf13948a0",
+          "version": "1.0.0-alpha.9"
+        }
+      },
+      {
         "package": "routing-kit",
         "repositoryURL": "https://github.com/vapor/routing-kit.git",
         "state": {
           "branch": null,
           "revision": "e7f2d5bd36dc65a9edb303541cb678515a7fece3",
           "version": "4.1.0"
+        }
+      },
+      {
+        "package": "sendgrid",
+        "repositoryURL": "https://github.com/vapor-community/sendgrid.git",
+        "state": {
+          "branch": null,
+          "revision": "c744bc4398bd8dec50e3a6cfb0cdeca1aa853c07",
+          "version": "4.0.0"
+        }
+      },
+      {
+        "package": "sendgrid-kit",
+        "repositoryURL": "https://github.com/vapor-community/sendgrid-kit.git",
+        "state": {
+          "branch": null,
+          "revision": "49f4b1d210219d9e8728f6fb4bcb5ae510e40a2e",
+          "version": "1.0.0"
         }
       },
       {
