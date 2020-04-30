@@ -41,11 +41,7 @@ public func routes(_ app: Application) throws {
     bearer.get("channels", "shared", use: subscribedChannelController.indexShared)
     bearer.get("channels", "own", use: subscribedChannelController.indexOwn)
 
-    app.post("notify", "email", use: { (req: Request) -> String in
-        print("notify/email:", (try? req.content.decode(String.self)) ?? "")
-        print("notify/email:", (try? req.content.decode([String: String].self).debugDescription) ?? "")
-        return ""
-    })
+    app.post("notify", "inbound-email", use: messageController.publicEmail)
     app.post("notify", ":notify_key", use: messageController.publicNotify)
     bearer.get("channels", "messages", use: messageController.messagesForAllChannels)
     bearer.get("channels", ":subscription_id", "messages", use: messageController.index)

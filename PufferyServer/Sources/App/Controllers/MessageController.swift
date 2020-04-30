@@ -2,6 +2,13 @@ import APNS
 import Fluent
 import Vapor
 
+struct InboundEmail: Codable, Content {
+    var from: String
+    var to: String
+    var subject: String
+    var text: String
+}
+
 final class MessageController {
 //    /// Returns a list of all `Todo`s.
 //    func index(_ req: Request) throws -> Future<[Todo]> {
@@ -47,6 +54,30 @@ final class MessageController {
             }
             .flatMapThrowing { channel in
                 try Message(channel: channel, title: createMessage.title, body: createMessage.body, color: createMessage.color)
+            }
+            .flatMap { message in self.saveAndNotify(req, message: message) }
+            .flatMapThrowing { message in try NotifyMessageResponse(message) }
+    }
+
+    func publicEmail(_ req: Request) throws -> EventLoopFuture<NotifyMessageResponse> {
+        let inboundEmail = try req.content.decode(InboundEmail.self)
+        let notifyKey = String(inboundEmail.to.prefix(while: { $0 != "@" }))
+        return Channel.query(on: req.db)
+            .filter(\.$notifyKey, .equal, notifyKey)
+            .first()
+            .flatMapThrowing { (channel) throws -> Channel in
+                guard let channel = channel else {
+                    throw ApiError(.channelNotFound)
+                }
+                return channel
+            }
+            .flatMapThrowing { channel in
+                try Message(
+                    channel: channel,
+                    title: inboundEmail.subject,
+                    body: inboundEmail.text,
+                    color: nil
+                )
             }
             .flatMap { message in self.saveAndNotify(req, message: message) }
             .flatMapThrowing { message in try NotifyMessageResponse(message) }
