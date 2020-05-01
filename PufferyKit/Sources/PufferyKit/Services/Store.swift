@@ -1,0 +1,79 @@
+import Combine
+import Foundation
+import KeychainSwift
+import Overture
+import APIDefinition
+
+var subscription: AnyObject?
+
+public final class Store: ObservableObject {
+    public let objectWillChange: ObservableObjectPublisher = ObservableObjectPublisher()
+
+    fileprivate(set) var state = GlobalState() {
+        willSet {
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+            }
+        }
+    }
+
+    public init() {
+        state.session.latestDeviceToken = deviceKeychain.get("latestDeviceToken")
+        state.session.sessionToken = cloudKeychain.get("sessionToken")
+    }
+
+    private let deviceKeychain: KeychainSwift = update(KeychainSwift(), mut(\.synchronizable, false))
+    private let cloudKeychain: KeychainSwift = update(KeychainSwift(), mut(\.synchronizable, true))
+}
+
+public enum GlobalCommit {
+    case updateDeviceToken(String?)
+    case updateSession(TokenResponse?)
+}
+
+public struct GlobalState {
+    public var session = Session()
+
+//    var channels = [Channel]()
+//    var messages = [Message]()
+}
+
+public struct Session: Equatable {
+    public var latestDeviceToken: String?
+    public var sessionToken: String?
+    public var profile: UserResponse?
+
+    public func isLoggedIn() -> Bool {
+        sessionToken != nil
+    }
+}
+
+extension Store {
+    public func commit(_ action: GlobalCommit) {
+//        DispatchQueue.main.async {
+        commitOnMain(action)
+//        }
+    }
+
+    private func commitOnMain(_ action: GlobalCommit) {
+        print("Action:", action)
+        switch action {
+        case .updateDeviceToken(nil):
+            deviceKeychain.delete("latestDeviceToken")
+            state.session.latestDeviceToken = nil
+        case let .updateDeviceToken(token?):
+            deviceKeychain.set(token, forKey: "latestDeviceToken")
+            state.session.latestDeviceToken = token
+
+        case .updateSession(nil):
+            cloudKeychain.delete("sessionToken")
+            state.session.sessionToken = nil
+            state.session.profile = nil
+
+        case let .updateSession(token?):
+            cloudKeychain.set(token.token, forKey: "sessionToken")
+            state.session.sessionToken = token.token
+            state.session.profile = token.user
+        }
+    }
+}

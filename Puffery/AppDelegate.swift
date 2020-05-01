@@ -8,6 +8,8 @@
 
 import CoreData
 import UIKit
+import PufferyKit
+import APIDefinition
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

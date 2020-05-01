@@ -1,5 +1,6 @@
 import Fluent
 import Vapor
+import APIDefinition
 
 final class UserController {
     func create(_ req: Request) throws -> EventLoopFuture<TokenResponse> {
@@ -79,7 +80,7 @@ final class UserController {
 }
 
 extension UpdateProfileRequest: Validatable {
-    static func validations(_ validations: inout Validations) {
+    public static func validations(_ validations: inout Validations) {
         validations.add("email", as: String.self, is: .email, required: true)
     }
 }

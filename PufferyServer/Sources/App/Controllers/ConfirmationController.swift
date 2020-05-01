@@ -1,5 +1,6 @@
 import Fluent
 import Vapor
+import APIDefinition
 
 final class ConfirmationController {
     func confirmLogin(_ req: Request) throws -> EventLoopFuture<TokenResponse> {

@@ -4,13 +4,15 @@ import PackageDescription
 let package = Package(
     name: "PufferyServer",
     platforms: [
-        .macOS(.v10_15),
+        .macOS(.v10_15), .iOS(.v13),
     ],
     products: [
         .library(name: "PufferyServer", targets: ["App"]),
         .executable(name: "puffery", targets: ["Run"]),
     ],
     dependencies: [
+        .package(name: "APIDefinition", path: "../APIDefinition"),
+        
         // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
 
@@ -43,6 +45,7 @@ let package = Package(
             .product(name: "JWT", package: "jwt"),
             .product(name: "QueuesRedisDriver", package: "queues-redis-driver"),
             .product(name: "SendGrid", package: "sendgrid"),
+            "APIDefinition",
         ]),
         .target(name: "Run", dependencies: ["App"]),
         .testTarget(name: "AppTests", dependencies: ["App"]),

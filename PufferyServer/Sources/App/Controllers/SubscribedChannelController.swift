@@ -1,5 +1,6 @@
 import Fluent
 import Vapor
+import APIDefinition
 
 final class SubscribedChannelController {
     func create(_ req: Request) throws -> Future<SubscribedChannelResponse> {
@@ -81,9 +82,11 @@ final class SubscribedChannelController {
 
 extension SubscribedChannelResponse {
     init(subscription: Subscription) throws {
-        id = try subscription.requireID()
-        title = subscription.channel.title
-        receiveOnlyKey = subscription.channel.receiveOnlyKey
-        notifyKey = subscription.canNotify ? subscription.channel.notifyKey : nil
+        self.init(
+            id: try subscription.requireID(),
+            title: subscription.channel.title,
+            receiveOnlyKey: subscription.channel.receiveOnlyKey,
+            notifyKey: subscription.canNotify ? subscription.channel.notifyKey : nil
+        )
     }
 }
