@@ -86,33 +86,6 @@ struct ChannelSettingsPage: View {
             Text("Cancel")
         }
     }
-    
-    func copyPrivateTokenToPasteboard() {
-        UIPasteboard.general.string = channel.notifyKey
-        hasJustCopiedPrivateToken = true
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.hasJustCopiedPrivateToken = false
-        }
-    }
-
-    func copyPublicTokenToPasteboard() {
-        UIPasteboard.general.string = channel.receiveOnlyKey
-        hasJustCopiedPublicToken = true
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.hasJustCopiedPublicToken = false
-        }
-    }
-    
-    func copyEmailToPasteboard() {
-        UIPasteboard.general.string = "\(channel.notifyKey)@parse.puffery.app"
-        hasJustCopiedPrivateToken = true
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.hasJustCopiedPrivateToken = false
-        }
-    }
 
     func save() {
         dismiss()
