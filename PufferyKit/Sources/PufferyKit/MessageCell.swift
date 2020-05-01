@@ -24,7 +24,7 @@ struct MessageCell: View {
         .padding()
         .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
         .background(message.color)
-        .colorScheme(ColorScheme.dark)
+        .foregroundColor(message.color.foregroundColor)
         .cornerRadius(15)
         .shadow(radius: 8)
     }
@@ -43,7 +43,17 @@ extension Message.Color: View {
             return SwiftUI.Color.red
         case .gray:
             return SwiftUI.Color.gray
+        case .pink:
+            return SwiftUI.Color.pink
+        case .purple:
+            return SwiftUI.Color.purple
+        case .yellow:
+            return SwiftUI.Color.yellow
         }
+    }
+    
+    var foregroundColor: Color? {
+        .white
     }
 }
 

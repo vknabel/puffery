@@ -17,7 +17,7 @@ extension Message: Identifiable {
     }
 
     public enum Color: String, Codable {
-        case blue, orange, green, red, gray
+        case blue, orange, green, red, gray, pink, purple, yellow
 
         static var unspecified: Color {
             .gray
