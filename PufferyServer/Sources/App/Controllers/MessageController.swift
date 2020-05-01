@@ -3,22 +3,18 @@ import Fluent
 import Vapor
 
 struct InboundEmail: Codable, Content {
-    var from: String
-    var to: String
+    var envelope: Envelope
     var subject: String
     var text: String
+
+    struct Envelope: Codable {
+        var from: String
+        var to: String
+    }
 }
 
 final class MessageController {
-//    /// Returns a list of all `Todo`s.
-//    func index(_ req: Request) throws -> Future<[Todo]> {
-//        return Todo.query(on: req).all()
-//    }
-
     func create(_ req: Request) throws -> EventLoopFuture<MessageResponse> {
-        // TODO: Instead of Message, own Request without channelID
-        // TODO: Actually push to apple for all subscriptions
-
         let user = try req.auth.require(User.self)
         let createMessage = try req.content.decode(CreateMessageRequest.self)
 
@@ -61,7 +57,7 @@ final class MessageController {
 
     func publicEmail(_ req: Request) throws -> EventLoopFuture<NotifyMessageResponse> {
         let inboundEmail = try req.content.decode(InboundEmail.self)
-        let notifyKey = String(inboundEmail.to.prefix(while: { $0 != "@" }))
+        let notifyKey = String(inboundEmail.envelope.to.prefix(while: { $0 != "@" }))
         return Channel.query(on: req.db)
             .filter(\.$notifyKey, .equal, notifyKey)
             .first()
@@ -107,7 +103,6 @@ final class MessageController {
             }
     }
 
-    // TODO:
     func messagesForAllChannels(_ req: Request) throws -> EventLoopFuture<[MessageResponse]> {
         let user = try req.auth.require(User.self)
 
