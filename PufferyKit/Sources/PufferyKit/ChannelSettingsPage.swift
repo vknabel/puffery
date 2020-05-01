@@ -17,7 +17,7 @@ struct ChannelSettingsPage: View {
 
     var body: some View {
         List {
-            Section {
+            Section(footer: Text("Share the Notify Key to allow others to BLARGH. If sufficient, just share the Receive Only Key to allow others to get BLARGHed.")) {
                 HStack {
                     Text("Name")
                     Spacer()
@@ -25,29 +25,42 @@ struct ChannelSettingsPage: View {
                         .foregroundColor(.secondary)
                 }
 
-                Button(action: copyPrivateTokenToPasteboard) {
-                    HStack {
-                        Text("Notify Key")
-                            .foregroundColor(.primary)
-                        Spacer()
-                        channel.notifyKey.map { token in
-                            Text(hasJustCopiedPrivateToken ? "Copied!" : token)
-                                .lineLimit(1)
-                        }
-                    }
+                channel.notifyKey.map { notifyKey in
+                    CopyContentsCell(
+                        title: "Notify Key",
+                        teaser: notifyKey,
+                        contents: notifyKey
+                    )
                 }
-
-                Button(action: copyPublicTokenToPasteboard) {
-                    HStack {
-                        Text("Receive Only Key")
-                            .foregroundColor(.primary)
-                        Spacer()
-                        Text(hasJustCopiedPublicToken ? "Copied!" : channel.receiveOnlyKey)
-                            .lineLimit(1)
-                    }
+                
+                CopyContentsCell(
+                    title: "Receive Only Key",
+                    teaser: channel.receiveOnlyKey,
+                    contents: channel.receiveOnlyKey
+                )
+            }
+            
+            channel.notifyKey.map { notifyKey in
+                Section(header: Text("How can I BLARGH!?")) {
+                    CopyContentsCell(
+                        title: "Using CURL",
+                        teaser: "curl \(Current.config.apiURL.absoluteString)/notify/:notify-key",
+                        contents: """
+                        curl "\(Current.config.apiURL.absoluteString)/notify/\(notifyKey)" \\
+                        --form-string "title=Hello from \(channel.title)" \\
+                        --form-string "body=Some details" \\
+                        --form-string "color=green"
+                        """
+                    )
+                    
+                    CopyContentsCell(
+                        title: "Using E-Mail",
+                        teaser: ":notify-key@parse.puffery.app",
+                        contents: "\(notifyKey)@parse.puffery.app"
+                    )
                 }
             }
-
+            
             Section {
                 Button(action: {}) {
                     Text("Unsubscribe from channel")
@@ -73,7 +86,7 @@ struct ChannelSettingsPage: View {
             Text("Cancel")
         }
     }
-
+    
     func copyPrivateTokenToPasteboard() {
         UIPasteboard.general.string = channel.notifyKey
         hasJustCopiedPrivateToken = true
@@ -91,6 +104,15 @@ struct ChannelSettingsPage: View {
             self.hasJustCopiedPublicToken = false
         }
     }
+    
+    func copyEmailToPasteboard() {
+        UIPasteboard.general.string = "\(channel.notifyKey)@parse.puffery.app"
+        hasJustCopiedPrivateToken = true
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.hasJustCopiedPrivateToken = false
+        }
+    }
 
     func save() {
         dismiss()
@@ -98,6 +120,34 @@ struct ChannelSettingsPage: View {
 
     func dismiss() {
         presentationMode.wrappedValue.dismiss()
+    }
+}
+
+struct CopyContentsCell: View {
+    @State var hasJustCopied = false
+    
+    var title: String
+    var teaser: String
+    var contents: String
+    
+    var body: some View {
+        Button(action: copyToPasteboard) {
+            HStack {
+                Text(title).foregroundColor(.primary)
+                Spacer()
+                Text(hasJustCopied ? "Copied!" : teaser)
+                        .lineLimit(1)
+            }
+        }
+    }
+    
+    func copyToPasteboard() {
+        UIPasteboard.general.string = contents
+        hasJustCopied = true
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.hasJustCopied = false
+        }
     }
 }
 

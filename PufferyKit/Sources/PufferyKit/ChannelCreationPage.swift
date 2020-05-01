@@ -22,12 +22,12 @@ struct ChannelCreationPage: View {
 
     var body: some View {
         Form {
-            Section {
+            Section(footer: Text("The title of your new Channel. You can share it with other later. To add an existing Channel to your owns, enter its notify key.")) {
                 TextField("Title", text: $title, onCommit: createChannel)
             }
             Section {
                 Button(action: createChannel) {
-                    Text(isUUID ? "Join" : "Create")
+                    Text(isUUID ? "Subscribe" : "Create")
                 }.disabled(title.isEmpty)
             }
         }.navigationBarTitle("Create Channel", displayMode: NavigationBarItem.TitleDisplayMode.inline)
@@ -40,7 +40,7 @@ struct ChannelCreationPage: View {
 
     var createNavigationItem: some View {
         Button(action: createChannel) {
-            Text(isUUID ? "Join" : "Create").fontWeight(.bold)
+            Text(isUUID ? "Subscribe" : "Create").fontWeight(.bold)
         }
     }
 

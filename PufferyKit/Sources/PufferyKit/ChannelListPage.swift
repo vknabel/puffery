@@ -14,6 +14,7 @@ struct ChannelListPage: View {
 
     @State var presentsSettings = false
     @State var presentsChannelCreation = false
+    @State var presentsChannelSubscription = false
     @State var shouldReload = PassthroughSubject<Void, FetchingError>()
     @State private var selectedAllChannels = UIDevice.current.model == "iPad"
 
@@ -26,7 +27,7 @@ struct ChannelListPage: View {
                     }
                 }
 
-                Section(header: channelsHeader("Own Channels")) {
+                Section(header: createChannelHeader()) {
                     Fetching(loadOwnChannelsPublisher, empty: self.noChannelsFound()) { channels in
                         ForEach(channels) { channel in
                             NavigationLink(destination: ChannelDetailsPage(channel: channel)) {
@@ -36,7 +37,7 @@ struct ChannelListPage: View {
                     }
                 }
 
-                Section(header: channelsHeader("Shared Channels")) {
+                Section(header: subscribeChannelHeader()) {
                     Fetching(loadSharedChannelsPublisher, empty: self.noChannelsFound()) { channels in
                         ForEach(channels) { channel in
                             NavigationLink(destination: ChannelDetailsPage(channel: channel)) {
@@ -52,17 +53,34 @@ struct ChannelListPage: View {
         .onAppear { Current.tracker.record("channels") }
     }
 
-    func channelsHeader(_ title: String) -> some View {
+    func createChannelHeader() -> some View {
+        channelsHeader("Own Channels", actionText: "Create", action: { self.presentsChannelCreation.toggle() })
+            .sheet(isPresented: $presentsChannelCreation, onDismiss: shouldReload.send) {
+                NavigationView {
+                    ChannelCreationPage()
+                }.navigationViewStyle(StackNavigationViewStyle())
+            }
+    }
+    
+    func subscribeChannelHeader() -> some View {
+        channelsHeader("Subscribed Channels", actionText: "Subscribe", action: { self.presentsChannelSubscription.toggle() })
+            .sheet(isPresented: $presentsChannelSubscription, onDismiss: shouldReload.send) {
+                NavigationView {
+                    ChannelSubscribingPage()
+                }.navigationViewStyle(StackNavigationViewStyle())
+            }
+    }
+    
+    func channelsHeader(_ title: String, actionText: String, action: @escaping () -> Void) -> some View {
         HStack {
             Text(title)
             Spacer()
 
-            Button(action: { self.presentsChannelCreation.toggle() }) {
-                Image(systemName: "plus.circle").font(.body)
-            }.sheet(isPresented: $presentsChannelCreation, onDismiss: shouldReload.send) {
-                NavigationView {
-                    ChannelCreationPage()
-                }.navigationViewStyle(StackNavigationViewStyle())
+            Button(action: action) {
+                HStack {
+                    Text(actionText)
+                    Image(systemName: "plus.circle").font(.body)
+                }
             }
         }
     }
