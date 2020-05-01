@@ -1,6 +1,6 @@
 .git
 .build
+.swiftpm
 DerivedData
 Package.resolved
 *.xcodeproj
-

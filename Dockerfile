@@ -8,11 +8,12 @@ WORKDIR /build
 # This creates a cached layer that can be reused
 # as long as your Package.swift/Package.resolved
 # files do not change.
-COPY ./Package.* ./
+COPY ./PufferyServer/Package.* ./
+COPY ./APIDefinition ../APIDefinition
 RUN swift package resolve
 
 # Copy entire repo into container
-COPY . .
+COPY ./PufferyServer .
 
 # Compile with optimizations
 RUN swift build \

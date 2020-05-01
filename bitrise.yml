@@ -68,7 +68,7 @@ app:
   envs:
     - opts:
         is_expand: false
-      BITRISE_PROJECT_PATH: Puffery.xcodeproj
+      BITRISE_PROJECT_PATH: Clients.xcworkspace
     - opts:
         is_expand: false
       BITRISE_SCHEME: Puffery
