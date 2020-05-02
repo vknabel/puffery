@@ -58,6 +58,12 @@ struct ChannelSettingsPage: View {
                         teaser: ":notify-key@parse.puffery.app",
                         contents: "\(notifyKey)@parse.puffery.app"
                     )
+                    
+                    Button(action: {
+                        UIApplication.shared.open(URL(string: "https://www.icloud.com/shortcuts/a31bac2a25a4457f9214fbe44bf3ff44")!)
+                    }) {
+                        Text("Add to Shortcuts")
+                    }
                 }
             }
             
