@@ -15,11 +15,11 @@ extension Channel: Identifiable {}
 
 #if DEBUG
     extension Channel {
-        static var puffery: Channel {
+        public static var puffery: Channel {
             Channel(id: UUID(), title: "Puffery", receiveOnlyKey: UUID().uuidString, notifyKey: UUID().uuidString)
         }
 
-        static var plants: Channel {
+        public static var plants: Channel {
             Channel(id: UUID(), title: "Plants", receiveOnlyKey: UUID().uuidString, notifyKey: UUID().uuidString)
         }
     }

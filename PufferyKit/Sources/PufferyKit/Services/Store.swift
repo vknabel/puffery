@@ -9,7 +9,7 @@ var subscription: AnyObject?
 public final class Store: ObservableObject {
     public let objectWillChange: ObservableObjectPublisher = ObservableObjectPublisher()
 
-    fileprivate(set) var state = GlobalState() {
+    public fileprivate(set) var state = GlobalState() {
         willSet {
             DispatchQueue.main.async {
                 self.objectWillChange.send()
@@ -22,8 +22,8 @@ public final class Store: ObservableObject {
         state.session.sessionToken = cloudKeychain.get("sessionToken")
     }
 
-    private let deviceKeychain: KeychainSwift = update(KeychainSwift(), mut(\.synchronizable, false))
-    private let cloudKeychain: KeychainSwift = update(KeychainSwift(), mut(\.synchronizable, true))
+    private let deviceKeychain: KeychainSwift = update(KeychainSwift(), mut(\.synchronizable, false), mut(\.accessGroup, "BG9UY79792.com.vknabel.puffery.shared"))
+    private let cloudKeychain: KeychainSwift = update(KeychainSwift(), mut(\.synchronizable, true), mut(\.accessGroup, "BG9UY79792.com.vknabel.puffery.shared"))
 }
 
 public enum GlobalCommit {

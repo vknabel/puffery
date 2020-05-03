@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Puffery Intents.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Puffery IntentsUI.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Puffery.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +22,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>BA952508245EC51900FFC9E3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BA952511245EC51900FFC9E3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>BAF1545F2444BB4400EDB97B</key>
 		<dict>
 			<key>primary</key>

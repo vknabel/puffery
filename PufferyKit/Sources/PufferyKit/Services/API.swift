@@ -32,5 +32,5 @@ public protocol API {
     func sharedChannels() -> Endpoint<[SubscribedChannelResponse]>
     func ownChannels() -> Endpoint<[SubscribedChannelResponse]>
 
-    func notify(_ createMessage: CreateMessageRequest) -> Endpoint<NotifyMessageResponse>
+    func notify(key notifyKey: String, _ createMessage: CreateMessageRequest) -> Endpoint<NotifyMessageResponse>
 }

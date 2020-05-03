@@ -8,7 +8,7 @@
 
 import SwiftUI
 import UIKit
-import PufferyKit
+import PufferyUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?

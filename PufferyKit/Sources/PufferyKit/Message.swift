@@ -19,7 +19,7 @@ extension Message: Identifiable {
     public enum Color: String, Codable {
         case blue, orange, green, red, gray, pink, purple, yellow
 
-        static var unspecified: Color {
+        public static var unspecified: Color {
             .gray
         }
     }
@@ -27,7 +27,7 @@ extension Message: Identifiable {
 
 #if DEBUG
     extension Message {
-        static var testflight: Message {
+        public static var testflight: Message {
             Message(
                 id: UUID(),
                 title: "New TestFlight version available",
@@ -38,7 +38,7 @@ extension Message: Identifiable {
             )
         }
 
-        static var dockerImage: Message {
+        public static var dockerImage: Message {
             Message(
                 id: UUID(),
                 title: "New Docker image pushed",

@@ -41,6 +41,12 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>NotiyChannelIntent</string>
+		<string>OwnChannelsIntent</string>
+		<string>SubscribedChannelsIntent</string>
+	</array>
 	<key>PUFFERY_API_URL</key>
 	<string>https://vapor.puffery.app</string>
 	<key>UIApplicationSceneManifest</key>

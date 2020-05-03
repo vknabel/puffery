@@ -60,7 +60,7 @@ struct ChannelSettingsPage: View {
                     )
                     
                     Button(action: {
-                        UIApplication.shared.open(URL(string: "https://www.icloud.com/shortcuts/a31bac2a25a4457f9214fbe44bf3ff44")!)
+                        UIApplication.shared.open(URL(string: "https://www.icloud.com/shortcuts/3596f5d512404b2f9e19e488d4bbf3a0")!)
                     }) {
                         Text("Add to Shortcuts")
                     }
