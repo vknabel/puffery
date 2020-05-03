@@ -67,6 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BA8F8649245F122D0019B818 /* Puffery Intents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Puffery Intents.entitlements"; sourceTree = "<group>"; };
 		BA923F2B245EFAA9008BD6C9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		BA923F2E245EFAC0008BD6C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
 		BA923F31245EFACF008BD6C9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Intents.strings; sourceTree = "<group>"; };
@@ -147,6 +148,7 @@
 		BA95250A245EC51900FFC9E3 /* Puffery Intents */ = {
 			isa = PBXGroup;
 			children = (
+				BA8F8649245F122D0019B818 /* Puffery Intents.entitlements */,
 				BA952533245EE15800FFC9E3 /* Puffery IntentsDebug.entitlements */,
 				BA95250B245EC51900FFC9E3 /* IntentHandler.swift */,
 				BA952537245EEDF200FFC9E3 /* Puffery+Intent.swift */,
@@ -507,8 +509,9 @@
 		BA952524245EC51900FFC9E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Puffery Intents/Puffery Intents.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = BG9UY79792;
 				INFOPLIST_FILE = "Puffery Intents/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -519,6 +522,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vknabel.puffery.Puffery-Intents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Puffery Intents App Store";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
