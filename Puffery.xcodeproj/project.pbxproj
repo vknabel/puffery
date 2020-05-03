@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA923F2C245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA923F2F245EFAC0008BD6C9 /* Intents.intentdefinition */; };
+		BA923F2D245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA923F2F245EFAC0008BD6C9 /* Intents.intentdefinition */; };
+		BA923F34245EFE94008BD6C9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA923F36245EFE94008BD6C9 /* Localizable.strings */; };
 		BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94F0C2244BA4030087924C /* UserNotifications.framework */; };
 		BA95250C245EC51900FFC9E3 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95250B245EC51900FFC9E3 /* IntentHandler.swift */; };
 		BA952521245EC51900FFC9E3 /* Puffery Intents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BA952509245EC51900FFC9E3 /* Puffery Intents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BA95252A245EC54700FFC9E3 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA952529245EC54700FFC9E3 /* Intents.intentdefinition */; };
-		BA95252B245EC85C00FFC9E3 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA952529245EC54700FFC9E3 /* Intents.intentdefinition */; };
 		BA95252E245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95252D245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift */; };
 		BA952530245ED78500FFC9E3 /* PufferyUI in Frameworks */ = {isa = PBXBuildFile; productRef = BA95252F245ED78500FFC9E3 /* PufferyUI */; };
 		BA952532245ED7A300FFC9E3 /* PufferyKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA952531245ED7A300FFC9E3 /* PufferyKit */; };
@@ -66,13 +67,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BA923F2B245EFAA9008BD6C9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		BA923F2E245EFAC0008BD6C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
+		BA923F31245EFACF008BD6C9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Intents.strings; sourceTree = "<group>"; };
+		BA923F35245EFE94008BD6C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BA923F37245EFE9B008BD6C9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BA94F0C0244BA2E80087924C /* Puffery.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Puffery.entitlements; sourceTree = "<group>"; };
 		BA94F0C2244BA4030087924C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		BA952509245EC51900FFC9E3 /* Puffery Intents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Puffery Intents.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA95250B245EC51900FFC9E3 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		BA95250D245EC51900FFC9E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA952513245EC51900FFC9E3 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
-		BA952529245EC54700FFC9E3 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		BA95252D245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListChannelsIntentHandler.swift; sourceTree = "<group>"; };
 		BA952533245EE15800FFC9E3 /* Puffery IntentsDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Puffery IntentsDebug.entitlements"; sourceTree = "<group>"; };
 		BA952535245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyChannelIntentHandler.swift; sourceTree = "<group>"; };
@@ -147,7 +152,7 @@
 				BA952537245EEDF200FFC9E3 /* Puffery+Intent.swift */,
 				BA95252D245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift */,
 				BA952535245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift */,
-				BA952529245EC54700FFC9E3 /* Intents.intentdefinition */,
+				BA923F2F245EFAC0008BD6C9 /* Intents.intentdefinition */,
 				BA95250D245EC51900FFC9E3 /* Info.plist */,
 			);
 			path = "Puffery Intents";
@@ -186,6 +191,7 @@
 				BAF154712444BB4600EDB97B /* LaunchScreen.storyboard */,
 				BAF154742444BB4600EDB97B /* Info.plist */,
 				BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */,
+				BA923F36245EFE94008BD6C9 /* Localizable.strings */,
 				BAF1546E2444BB4600EDB97B /* Preview Content */,
 			);
 			path = Puffery;
@@ -331,6 +337,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = BAF154572444BB4400EDB97B;
 			packageReferences = (
@@ -362,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAF154732444BB4600EDB97B /* LaunchScreen.storyboard in Resources */,
+				BA923F34245EFE94008BD6C9 /* Localizable.strings in Resources */,
 				BAF154702444BB4600EDB97B /* Preview Assets.xcassets in Resources */,
 				BAF1546D2444BB4600EDB97B /* Assets.xcassets in Resources */,
 			);
@@ -388,7 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA95252A245EC54700FFC9E3 /* Intents.intentdefinition in Sources */,
+				BA923F2D245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */,
 				BA95252E245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift in Sources */,
 				BA952536245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift in Sources */,
 				BA95250C245EC51900FFC9E3 /* IntentHandler.swift in Sources */,
@@ -402,7 +410,7 @@
 			files = (
 				BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */,
 				BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */,
-				BA95252B245EC85C00FFC9E3 /* Intents.intentdefinition in Sources */,
+				BA923F2C245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */,
 				BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,10 +452,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		BA923F2F245EFAC0008BD6C9 /* Intents.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA923F2E245EFAC0008BD6C9 /* Base */,
+				BA923F31245EFACF008BD6C9 /* de */,
+			);
+			name = Intents.intentdefinition;
+			sourceTree = "<group>";
+		};
+		BA923F36245EFE94008BD6C9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA923F35245EFE94008BD6C9 /* en */,
+				BA923F37245EFE9B008BD6C9 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		BAF154712444BB4600EDB97B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BAF154722444BB4600EDB97B /* Base */,
+				BA923F2B245EFAA9008BD6C9 /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -502,6 +529,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -562,6 +590,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

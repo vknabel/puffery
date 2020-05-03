@@ -24,7 +24,7 @@ struct ChannelDetailsPage: View {
         Fetching(loadMessagesPublisher, empty: self.noMessages) { messages in
             MessageList(messages: messages)
         }
-        .navigationBarTitle(self.channel?.title ?? "All")
+        .navigationBarTitle(self.channel?.title ?? NSLocalizedString("ChannelDetails.All", comment: "All"))
         .navigationBarItems(trailing:
             channel.map { channel in
                 Button(action: { self.displaysChannelSettings.toggle() }) {
@@ -43,38 +43,24 @@ struct ChannelDetailsPage: View {
 
     var noMessages: some View {
         VStack(spacing: 8) {
-            Text("No messages, yet.")
+            Text("ChannelDetails.NoMessages.Title")
             noMessageHelperText().map(Text.init(_:))
 
-            noMessageCodeExampleText().map { codeExample in
-                Text(codeExample).padding().onTapGesture {
-                    UIPasteboard.general.string = codeExample
-                }
-                .font(.system(Font.TextStyle.footnote, design: .monospaced))
-            }
+            channel?.notifyKey.map({ notifyKey in
+                Text("ChannelSettings.HowTo.CURL.Teaser url:\(Current.config.apiURL.absoluteString)").padding().onTapGesture {
+                    UIPasteboard.general.string = String(format: NSLocalizedString("ChannelSettings.HowTo.CURL.Contents url:%@ notify:%@ title:%@", comment: ""), Current.config.apiURL.absoluteString, notifyKey, self.channel!.title)
+                }.font(.system(Font.TextStyle.footnote, design: .monospaced))
+            })
         }
     }
 
     func noMessageHelperText() -> String? {
         if channel?.notifyKey != nil {
-            return "Create your own messages!"
+            return "ChannelDetails.NoMessages.HelperNotify"
         } else if channel != nil {
-            return "Stay tuned for the author!"
+            return "ChannelDetails.NoMessages.HelperReceive"
         } else {
-            return "Create new channels or messages!"
-        }
-    }
-
-    func noMessageCodeExampleText() -> String? {
-        if let channel = channel, let privateToken = channel.notifyKey {
-            return """
-            curl "\(Current.config.apiURL.absoluteString)/notify/\(privateToken)" \\
-            --form-string "title=Hello from \(channel.title)" \\
-            --form-string "body=Some details" \\
-            --form-string "color=green"
-            """
-        } else {
-            return nil
+            return "ChannelDetails.NoMessages.HelperAll"
         }
     }
 }

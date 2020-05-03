@@ -22,15 +22,15 @@ struct ChannelSubscribingPage: View {
 
     var body: some View {
         Form {
-            Section(footer: Text("Insert a notify key or a receive only key.")) {
-                TextField("Channel Key", text: $channelKey, onCommit: createChannel)
+            Section(footer: Text("ChannelSubscribing.Basic.Explanation")) {
+                TextField("ChannelSubscribing.Basic.ChannelKey", text: $channelKey, onCommit: createChannel)
             }
             Section {
                 Button(action: createChannel) {
-                    Text("Subscribe")
+                    Text("ChannelSubscribing.Subscribe")
                 }.disabled(!isUUID)
             }
-        }.navigationBarTitle("Subscribe Channel", displayMode: NavigationBarItem.TitleDisplayMode.inline)
+        }.navigationBarTitle("ChannelSubscribing.Title", displayMode: NavigationBarItem.TitleDisplayMode.inline)
             .navigationBarItems(
                 leading: cancelNavigationItem,
                 trailing: createNavigationItem
@@ -45,13 +45,13 @@ struct ChannelSubscribingPage: View {
 
     var createNavigationItem: some View {
         Button(action: createChannel) {
-            Text("Subscribe").fontWeight(.bold)
+            Text("ChannelSubscribing.Subscribe").fontWeight(.bold)
         }
     }
 
     var cancelNavigationItem: some View {
         Button(action: dismiss) {
-            Text("Cancel")
+            Text("ChannelSubscribing.Cancel")
         }
     }
 

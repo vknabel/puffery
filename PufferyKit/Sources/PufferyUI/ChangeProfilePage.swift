@@ -1,5 +1,5 @@
 //
-//  ChangeCredentialsPage.swift
+//  ChangeProfilePage.swift
 //  Puffery
 //
 //  Created by Valentin Knabel on 27.04.20.
@@ -10,13 +10,13 @@ import Combine
 import SwiftUI
 import APIDefinition
 
-struct ChangeCredentialsPage: View {
+struct ChangeProfilePage: View {
     @State var email = ""
 
     var body: some View {
         Fetching(currentProfilePublisher) { profile in
             VStack {
-                TextField(profile.email ?? "E-Mail", text: self.$email)
+                TextField(profile.email ?? NSLocalizedString("Profile.Email.Placeholder", comment: "Email"), text: self.$email)
                     .keyboardType(.emailAddress)
                     .textContentType(.emailAddress)
 
@@ -24,7 +24,7 @@ struct ChangeCredentialsPage: View {
                     Text("Update")
                 }.disabled(self.email.isEmpty)
             }
-        }.navigationBarTitle("Edit Profile")
+        }.navigationBarTitle("Profile.Email.Title")
     }
 
     var currentProfilePublisher: AnyPublisher<UserResponse, FetchingError> {

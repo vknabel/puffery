@@ -1,0 +1,82 @@
+/* 
+  Localizable.strings
+  Puffery
+
+  Created by Valentin Knabel on 03.05.20.
+  Copyright © 2020 Valentin Knabel. All rights reserved.
+*/
+
+"Acknowledgements.Title" = "Acknowledgements";
+"Acknowledgements.Assets.SectionHeader" = "Assets";
+"Acknowledgements.Assets.InlineByAuthor %@" = "made by %@ from www.flaticon.com";
+"Acknowledgements.Assets.ByAuthor %@" = "Icon made by %@ from www.flaticon.com";
+
+"Acknowledgements.Code.SectionHeader" = "Code";
+
+
+"Settings.Title" = "Settings";
+"Settings.Done" = "Done";
+"Settings.Account.SectionHeader" = "Account";
+"Settings.Account.ChangeEmail" = "Change Email";
+"Settings.Acknowledgements.Link" = "Acknowledgements";
+
+"Settings.Session.Logout" = "Logout";
+
+"Profile.Email.Title" = "Edit Profile";
+"Profile.Email.Placeholder" = "Email";
+"Profile.Email.Update" = "Update";
+
+"CreateChannel.Title" = "Create Channel";
+"CreateChannel.Basic.Title" = "Title";
+"CreateChannel.Basic.Explanation" = "The title of your new Channel. You can share it with others later. To add an existing Channel to your owns, enter its notify key.";
+"CreateChannel.Actions.Subscribe" = "Subscribe";
+"CreateChannel.Actions.Create" = "Create";
+
+"ChannelDetails.All" = "All";
+"ChannelDetails.NoMessages.Title" = "No messages, yet.";
+"ChannelDetails.NoMessages.HelperNotify" = "Create your own messages!";
+"ChannelDetails.NoMessages.HelperReceive" = "Stay tuned for the author!";
+"ChannelDetails.NoMessages.HelperAll" = "Create new channels or messages!";
+
+"ChannelList.All" = "All";
+"ChannelList.Title" = "Puffery";
+"ChannelList.OwnChannels.SectionTitle" = "Own Channels";
+"ChannelList.OwnChannels.New" = "Create";
+"ChannelList.SubscribeChannels.SectionTitle" = "Subscribed Channels";
+"ChannelList.SubscribeChannels.New" = "Subscribe";
+"ChannelList.NoChannels" = "No Channels";
+
+"ChannelSettings.Basic.Explanation" = "Share the Notify Key to allow others to BLARGH. If sufficient, just share the Receive Only Key to allow others to get BLARGHed.";
+"ChannelSettings.Basic.Name" = "Name";
+"ChannelSettings.Basic.NotifyKey" = "Notify Key";
+"ChannelSettings.Basic.ReceiveOnlyKey" = "Receive Only Key";
+"ChannelSettings.HowTo.SectionTitle" = "How can I BLARGH!?";
+"ChannelSettings.HowTo.CURL.Title" = "Using CURL";
+"ChannelSettings.HowTo.CURL.Teaser url:%@" = "curl %@/notify/:notify-key";
+"ChannelSettings.HowTo.CURL.Contents url:%@ notify:%@ title:%@" = "curl '%@' \\\
+--form-string 'title=Hello from %@' \\\
+--form-string 'body=Some details' \\\
+--form-string 'color=green' \
+";
+"ChannelSettings.HowTo.Email.Title" = "Using Email";
+"ChannelSettings.HowTo.Email.Teaser" = ":notify-key@parse.puffery.app";
+"ChannelSettings.HowTo.Email.Contents notify:%@" = "%@@parse.puffery.app";
+"ChannelSettings.HowTo.Copied" = "Copied!";
+
+"ChannelSettings.HowTo.Shortcuts.Action" = "Add example Shortcut";
+"ChannelSettings.Actions.Unsubscribe" = "Unsubscribe from channel";
+"ChannelSettings.Actions.Save" = "Save";
+"ChannelSettings.Actions.Cancel" = "Cancel";
+
+"ChannelSubscribing.Title" = "Subscribe Channel";
+"ChannelSubscribing.Basic.Explanation" = "Insert a notify key or a receive only key.";
+"ChannelSubscribing.Basic.ChannelKey" = "Channel Key";
+"ChannelSubscribing.Subscribe" = "Subscribe";
+"ChannelSubscribing.Cancel" = "Cancel";
+
+"Fetching.Retry" = "Retry";
+
+"GettingStarted.Registration.Anonymous" = "Register anonymously";
+"GettingStarted.Registration.Failed" = "Regitstration failed";
+"GettingStarted.Login.EmailPlaceholder" = "Email";
+"GettingStarted.Login.Perform" = "Login";

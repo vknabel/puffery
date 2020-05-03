@@ -14,7 +14,7 @@ struct AcknowledgementsPage: View {
 
     var body: some View {
         List {
-            Section(header: Text("Assets")) {
+            Section(header: Text("Acknowledgements.Assets.SectionHeader")) {
                 ForEach(assets) { asset in
                     NavigationLink(destination: FlaticonAssetPage(asset: asset)) {
                         HStack {
@@ -22,7 +22,7 @@ struct AcknowledgementsPage: View {
 
                             VStack(alignment: .leading) {
                                 Text(asset.name)
-                                Text("made by \(asset.author) from www.flaticon.com")
+                                Text("Acknowledgements.Assets.InlineByAuthor \(asset.author)")
                                     .font(.footnote)
                             }
                         }
@@ -30,7 +30,7 @@ struct AcknowledgementsPage: View {
                 }
             }.show(when: !assets.isEmpty)
 
-            Section(header: Text("Code")) {
+            Section(header: Text("Acknowledgements.Code.SectionHeader")) {
                 ForEach(licenses) { license in
                     NavigationLink(destination: LicensePage(license: license)) {
                         Text(license.name)
@@ -38,7 +38,7 @@ struct AcknowledgementsPage: View {
                 }
             }.show(when: !licenses.isEmpty)
         }.roundedListStyle()
-            .navigationBarTitle("Acknowledgements", displayMode: .inline)
+            .navigationBarTitle("Acknowledgements.Title", displayMode: .inline)
             .onAppear { Current.tracker.record("acknowledgements") }
     }
 
@@ -84,7 +84,7 @@ struct FlaticonAssetPage: View {
     var body: some View {
         VStack {
             Image(asset.name)
-            Text("Icon made by Freepik from www.flaticon.com").navigationBarItems(trailing: Button(action: openLicense) {
+            Text("Acknowledgements.Assets.ByAuthor \(asset.author)").navigationBarItems(trailing: Button(action: openLicense) {
                 Image(systemName: "safari").padding()
             })
         }

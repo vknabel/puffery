@@ -23,7 +23,7 @@ struct ChannelListPage: View {
             List {
                 Section {
                     NavigationLink(destination: ChannelDetailsPage(), isActive: self.$selectedAllChannels) {
-                        Text("All")
+                        Text("ChannelList.All")
                     }
                 }
 
@@ -48,13 +48,13 @@ struct ChannelListPage: View {
                 }
             }.roundedListStyle()
         }
-        .navigationBarTitle("Puffery")
+        .navigationBarTitle("ChannelList.Title")
         .navigationBarItems(trailing: settingsNavigationBarItem)
         .onAppear { Current.tracker.record("channels") }
     }
 
     func createChannelHeader() -> some View {
-        channelsHeader("Own Channels", actionText: "Create", action: { self.presentsChannelCreation.toggle() })
+        channelsHeader("ChannelList.OwnChannels.SectionTitle", actionText: "ChannelList.OwnChannels.New", action: { self.presentsChannelCreation.toggle() })
             .sheet(isPresented: $presentsChannelCreation, onDismiss: shouldReload.send) {
                 NavigationView {
                     ChannelCreationPage()
@@ -63,7 +63,7 @@ struct ChannelListPage: View {
     }
     
     func subscribeChannelHeader() -> some View {
-        channelsHeader("Subscribed Channels", actionText: "Subscribe", action: { self.presentsChannelSubscription.toggle() })
+        channelsHeader("ChannelList.SubscribeChannels.SectionTitle", actionText: "ChannelList.SubscribeChannels.New", action: { self.presentsChannelSubscription.toggle() })
             .sheet(isPresented: $presentsChannelSubscription, onDismiss: shouldReload.send) {
                 NavigationView {
                     ChannelSubscribingPage()
@@ -71,7 +71,7 @@ struct ChannelListPage: View {
             }
     }
     
-    func channelsHeader(_ title: String, actionText: String, action: @escaping () -> Void) -> some View {
+    func channelsHeader(_ title: LocalizedStringKey, actionText: LocalizedStringKey, action: @escaping () -> Void) -> some View {
         HStack {
             Text(title)
             Spacer()
@@ -85,10 +85,10 @@ struct ChannelListPage: View {
         }
     }
 
-    func noChannelsFound(_: String = "No Channels") -> some View {
+    func noChannelsFound(_ emptyTitle: LocalizedStringKey = "ChannelList.NoChannels") -> some View {
         HStack {
             Spacer()
-            Text("Keine Channels").opacity(0.5)
+            Text(emptyTitle).opacity(0.5)
             Spacer()
         }
     }

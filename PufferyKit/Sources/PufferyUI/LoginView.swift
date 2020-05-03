@@ -17,12 +17,12 @@ struct LoginView: View {
 
     var body: some View {
         VStack {
-            TextField("E-Mail", text: $email)
+            TextField("GettingStarted.Login.EmailPlaceholder", text: $email)
                 .keyboardType(.emailAddress)
                 .textContentType(.emailAddress)
                 .disabled(logginIn)
             Button(action: performLogin) {
-                Text("Login")
+                Text("GettingStarted.Login.Perform")
             }.disabled(email.isEmpty || logginIn)
         }
     }

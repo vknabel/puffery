@@ -14,24 +14,20 @@ struct AppSettingsPage: View {
     var body: some View {
         List {
             Section(header: Text("Account")) {
-                NavigationLink(destination: ChangeCredentialsPage()) {
-                    Text("Email")
-                }
-
-                Button(action: registerForPushNotifications) {
-                    Text("Copy notification token")
+                NavigationLink(destination: ChangeProfilePage()) {
+                    Text("Settings.Account.ChangeEmail")
                 }
             }
 
             Section {
                 NavigationLink(destination: AcknowledgementsPage()) {
-                    Text("Acknowledgements")
+                    Text("Settings.Acknowledgements.Link")
                 }
             }
 
             Section {
                 Button(action: logout) {
-                    Text("Logout").foregroundColor(.red)
+                    Text("Settings.Session.Logout").foregroundColor(.red)
                 }
             }
         }

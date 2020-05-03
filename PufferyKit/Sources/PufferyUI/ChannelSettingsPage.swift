@@ -17,9 +17,9 @@ struct ChannelSettingsPage: View {
 
     var body: some View {
         List {
-            Section(footer: Text("Share the Notify Key to allow others to BLARGH. If sufficient, just share the Receive Only Key to allow others to get BLARGHed.")) {
+            Section(footer: Text("ChannelSettings.Basic.Explanation")) {
                 HStack {
-                    Text("Name")
+                    Text("ChannelSettings.Basic.Name")
                     Spacer()
                     Text(channel.title)
                         .foregroundColor(.secondary)
@@ -27,49 +27,44 @@ struct ChannelSettingsPage: View {
 
                 channel.notifyKey.map { notifyKey in
                     CopyContentsCell(
-                        title: "Notify Key",
+                        title: "ChannelSettings.Basic.NotifyKey",
                         teaser: notifyKey,
                         contents: notifyKey
                     )
                 }
                 
                 CopyContentsCell(
-                    title: "Receive Only Key",
+                    title: "ChannelSettings.Basic.ReceiveOnlyKey",
                     teaser: channel.receiveOnlyKey,
                     contents: channel.receiveOnlyKey
                 )
             }
             
             channel.notifyKey.map { notifyKey in
-                Section(header: Text("How can I BLARGH!?")) {
+                Section(header: Text("ChannelSettings.HowTo.SectionTitle")) {
                     CopyContentsCell(
-                        title: "Using CURL",
-                        teaser: "curl \(Current.config.apiURL.absoluteString)/notify/:notify-key",
-                        contents: """
-                        curl "\(Current.config.apiURL.absoluteString)/notify/\(notifyKey)" \\
-                        --form-string "title=Hello from \(channel.title)" \\
-                        --form-string "body=Some details" \\
-                        --form-string "color=green"
-                        """
+                        title: "ChannelSettings.HowTo.CURL.Title",
+                        teaser: "ChannelSettings.HowTo.CURL.Teaser url:\(Current.config.apiURL.absoluteString)",
+                        contents: "ChannelSettings.HowTo.CURL.Contents url:\(Current.config.apiURL.absoluteString) notify:\(notifyKey) title:\(channel.title)"
                     )
                     
                     CopyContentsCell(
-                        title: "Using E-Mail",
-                        teaser: ":notify-key@parse.puffery.app",
-                        contents: "\(notifyKey)@parse.puffery.app"
+                        title: "ChannelSettings.HowTo.Email.Title",
+                        teaser: "ChannelSettings.HowTo.Email.Teaser",
+                        contents: "ChannelSettings.HowTo.Email.Contents notify:\(notifyKey)"
                     )
                     
                     Button(action: {
                         UIApplication.shared.open(URL(string: "https://www.icloud.com/shortcuts/3596f5d512404b2f9e19e488d4bbf3a0")!)
                     }) {
-                        Text("Add to Shortcuts")
+                        Text("ChannelSettings.HowTo.Shortcuts.Action")
                     }
                 }
             }
             
             Section {
                 Button(action: {}) {
-                    Text("Unsubscribe from channel")
+                    Text("ChannelSettings.Actions.Unsubscribe")
                 }.accentColor(.red)
             }
         }
@@ -83,13 +78,13 @@ struct ChannelSettingsPage: View {
 
     var saveNavigationItem: some View {
         Button(action: dismiss) {
-            Text("Save").fontWeight(.bold)
+            Text("ChannelSettings.Actions.Save").fontWeight(.bold)
         }
     }
 
     var cancelNavigationItem: some View {
         Button(action: dismiss) {
-            Text("Cancel")
+            Text("ChannelSettings.Actions.Cancel")
         }
     }
 
@@ -114,7 +109,7 @@ struct CopyContentsCell: View {
             HStack {
                 Text(title).foregroundColor(.primary)
                 Spacer()
-                Text(hasJustCopied ? "Copied!" : teaser)
+                Text(hasJustCopied ? "ChannelSettings.HowTo.Copied" : teaser)
                         .lineLimit(1)
             }
         }

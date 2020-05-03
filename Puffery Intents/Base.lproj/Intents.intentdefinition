@@ -308,7 +308,7 @@
 							<key>INIntentParameterPromptDialogCustom</key>
 							<true/>
 							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Which channel do you to BLARGH?!</string>
+							<string>Which channel do you want to BLARGH?!</string>
 							<key>INIntentParameterPromptDialogFormatStringID</key>
 							<string>TiTEkD</string>
 							<key>INIntentParameterPromptDialogType</key>

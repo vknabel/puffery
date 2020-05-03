@@ -19,10 +19,10 @@ struct GettingStartedPage: View {
     var body: some View {
         VStack {
             Button(action: registerForPushNotifications) {
-                Text("Register anonymously")
+                Text("GettingStarted.Registration.Anonymous")
             }.disabled(registrationInProgress).onAppear { Current.tracker.record("GettingStartedPage") }
                 .alert(item: $registrationError) { error in
-                    Alert(title: Text("Registration failed"), message: Text(error.localizedDescription))
+                    Alert(title: Text("GettingStarted.Registration.Failed"), message: Text(error.localizedDescription))
                 }
             LoginView(onFinish: onFinish)
         }
