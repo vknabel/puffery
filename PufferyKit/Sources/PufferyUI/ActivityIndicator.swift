@@ -11,7 +11,7 @@ import UIKit
 
 struct ActivityIndicator: UIViewRepresentable {
     var isAnimating: Bool
-    var style: UIActivityIndicatorView.Style = .large
+    var style: UIActivityIndicatorView.Style = .medium
 
     func makeUIView(context _: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
         let indicator = UIActivityIndicatorView(style: style)

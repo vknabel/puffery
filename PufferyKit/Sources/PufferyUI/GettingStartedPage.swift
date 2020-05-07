@@ -17,41 +17,21 @@ struct GettingStartedPage: View {
     @State var registrationError: FetchingError?
 
     var body: some View {
-        VStack {
-            Button(action: registerForPushNotifications) {
-                Text("GettingStarted.Registration.Anonymous")
-            }.disabled(registrationInProgress).onAppear { Current.tracker.record("GettingStartedPage") }
-                .alert(item: $registrationError) { error in
-                    Alert(title: Text("GettingStarted.Registration.Failed"), message: Text(error.localizedDescription))
-                }
-            LoginView(onFinish: onFinish)
+        Waves {
+            RegistrationPage(onFinish: self.onFinish)
         }
+//        VStack {
+//            Button(action: registerForPushNotifications) {
+//                Text("GettingStarted.Registration.Anonymous")
+//            }.disabled(registrationInProgress).onAppear { Current.tracker.record("GettingStartedPage") }
+//                .alert(item: $registrationError) { error in
+//                    Alert(title: Text("GettingStarted.Registration.Failed"), message: Text(error.localizedDescription))
+//                }
+//            LoginView(onFinish: onFinish)
+//        }
 //        .alert(isPresented: $showingAlert) {
 //            Alert(title: Text("Important message"), message: Text("Wear sunscreen"), dismissButton: .default(Text("Got it!")))
 //        }
-    }
-
-    func registerForPushNotifications() {
-        registrationError = nil
-        registrationInProgress = true
-
-        PushNotifications.register {
-            let createDeviceRequest = Current.store.state.session.latestDeviceToken.map {
-                CreateDeviceRequest(token: $0)
-            }
-            Current.api.register(user: CreateUserRequest(device: createDeviceRequest)).task { result in
-                switch result {
-                case .success:
-                    self.registrationError = nil
-                    DispatchQueue.main.async {
-                        self.onFinish()
-                    }
-                case let .failure(error):
-                    self.registrationInProgress = false
-                    self.registrationError = error
-                }
-            }
-        }
     }
 }
 

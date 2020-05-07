@@ -20,6 +20,7 @@ struct LoginView: View {
             TextField("GettingStarted.Login.EmailPlaceholder", text: $email)
                 .keyboardType(.emailAddress)
                 .textContentType(.emailAddress)
+                .autocapitalization(.none)
                 .disabled(logginIn)
             Button(action: performLogin) {
                 Text("GettingStarted.Login.Perform")

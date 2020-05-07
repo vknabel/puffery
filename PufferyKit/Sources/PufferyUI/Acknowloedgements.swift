@@ -20,13 +20,14 @@ struct FlaticonAsset: Identifiable, Codable {
     var id: String { name }
 
     var name: String
+    var assetName: String
     var author: String
     var source: URL
 }
 
 extension FlaticonAsset {
     static let assets: [FlaticonAsset] = [
-        FlaticonAsset(name: "Kugelfisch", author: "Freepik", source: URL(string: "https://www.flaticon.com/de/kostenloses-icon/kugelfisch_774951")!),
+        FlaticonAsset(name: "Kugelfisch", assetName: "KugelfischSettings", author: "Freepik", source: URL(string: "https://www.flaticon.com/de/kostenloses-icon/kugelfisch_774951")!),
     ]
 }
 

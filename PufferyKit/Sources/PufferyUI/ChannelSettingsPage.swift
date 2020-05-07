@@ -28,15 +28,15 @@ struct ChannelSettingsPage: View {
                 channel.notifyKey.map { notifyKey in
                     CopyContentsCell(
                         title: "ChannelSettings.Basic.NotifyKey",
-                        teaser: notifyKey,
-                        contents: notifyKey
+                        teaser: "\(notifyKey)",
+                        contents: "\(notifyKey)"
                     )
                 }
                 
                 CopyContentsCell(
                     title: "ChannelSettings.Basic.ReceiveOnlyKey",
-                    teaser: channel.receiveOnlyKey,
-                    contents: channel.receiveOnlyKey
+                    teaser: "\(channel.receiveOnlyKey)",
+                    contents: "\(channel.receiveOnlyKey)"
                 )
             }
             
@@ -100,9 +100,9 @@ struct ChannelSettingsPage: View {
 struct CopyContentsCell: View {
     @State var hasJustCopied = false
     
-    var title: String
-    var teaser: String
-    var contents: String
+    var title: LocalizedStringKey
+    var teaser: LocalizedStringKey
+    var contents: LocalizedStringKey
     
     var body: some View {
         Button(action: copyToPasteboard) {
@@ -116,7 +116,7 @@ struct CopyContentsCell: View {
     }
     
     func copyToPasteboard() {
-        UIPasteboard.general.string = contents
+        UIPasteboard.general.string = String(describing: contents)
         hasJustCopied = true
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
