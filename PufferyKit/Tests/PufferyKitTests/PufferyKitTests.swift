@@ -1,5 +1,5 @@
-import XCTest
 @testable import PufferyKit
+import XCTest
 
 final class PufferyKitTests: XCTestCase {
     func testExample() {

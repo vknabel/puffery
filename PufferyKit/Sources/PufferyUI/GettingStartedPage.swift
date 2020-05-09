@@ -6,9 +6,9 @@
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
+import APIDefinition
 import SwiftUI
 import UserNotifications
-import APIDefinition
 
 struct GettingStartedPage: View {
     var onFinish: () -> Void

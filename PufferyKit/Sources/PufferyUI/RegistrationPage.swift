@@ -1,6 +1,6 @@
 //
 //  RegistrationPage.swift
-//  
+//
 //
 //  Created by Valentin Knabel on 03.05.20.
 //
@@ -9,18 +9,18 @@ import SwiftUI
 
 struct RegistrationPage: View {
     var onFinish: () -> Void
-    
+
     @ObservedObject private var keyboard = Keyboard()
-    
+
     @State var email: String = ""
     @State var inProgress = false
     @State var registrationError: FetchingError?
     @State var shouldCheckEmails = false
-    
+
     var body: some View {
         VStack {
             Spacer()
-            
+
             Button(action: performRegister) {
                 Text("GettingStarted.Registration.Anonymous")
             }.buttonStyle(RichButtonStyle())
@@ -29,7 +29,7 @@ struct RegistrationPage: View {
                 .disabled(inProgress)
 
             Spacer()
-            
+
             HStack {
                 VStack { Divider() }
                 Text("OR")
@@ -37,7 +37,7 @@ struct RegistrationPage: View {
                     .font(.headline)
                 VStack { Divider() }
             }.show(when: !keyboard.isActive).transition(.opacity)
-            
+
             VStack {
                 TextField("GettingStarted.Login.EmailPlaceholder", text: $email, onCommit: performLogin)
                     .multilineTextAlignment(.center)
@@ -60,14 +60,15 @@ struct RegistrationPage: View {
                     VStack {
                         Image(systemName: "envelope.badge.fill")
                             .font(.largeTitle)
+                            .lineLimit(nil)
                             .foregroundColor(.accentColor)
                             .padding()
-                        
+
                         Text("Registration.Email.Title")
                             .font(.headline)
                         Text("Registration.Email.Recepient email:\(self.email)")
                             .font(.subheadline)
-                        
+
                         Button(action: self.openMailApp) {
                             HStack {
                                 Text("Registration.Email.OpenApp")
@@ -80,11 +81,11 @@ struct RegistrationPage: View {
             .padding()
             .padding(.bottom, keyboard.currentHeight)
             .animation(.default)
-            
+
             Spacer()
         }.buttonStyle(RichButtonStyle())
     }
-    
+
     func performLogin() {
         guard !email.isEmpty else {
             return
@@ -113,7 +114,7 @@ struct RegistrationPage: View {
             }
         }
     }
-    
+
     func performRegister() {
         registrationError = nil
         inProgress = true
@@ -126,28 +127,27 @@ struct RegistrationPage: View {
                 .task(self.handleRegister(result:))
         }
     }
-    
+
     func openMailApp() {
         let mailURL = URL(string: "message://")!
         if UIApplication.shared.canOpenURL(mailURL) {
             UIApplication.shared.open(mailURL, options: [:], completionHandler: nil)
-         }
+        }
     }
-    
+
     private func handleRegister(result: Result<TokenResponse, FetchingError>) {
         switch result {
         case .success:
-            self.registrationError = nil
+            registrationError = nil
             DispatchQueue.main.async {
                 self.onFinish()
             }
         case let .failure(error):
-            self.inProgress = false
-            self.registrationError = error
+            inProgress = false
+            registrationError = error
         }
     }
 }
-
 
 #if DEBUG
     struct RegistrationPage_Previews: PreviewProvider {

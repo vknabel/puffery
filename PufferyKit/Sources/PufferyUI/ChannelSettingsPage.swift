@@ -32,14 +32,14 @@ struct ChannelSettingsPage: View {
                         contents: "\(notifyKey)"
                     )
                 }
-                
+
                 CopyContentsCell(
                     title: "ChannelSettings.Basic.ReceiveOnlyKey",
                     teaser: "\(channel.receiveOnlyKey)",
                     contents: "\(channel.receiveOnlyKey)"
                 )
             }
-            
+
             channel.notifyKey.map { notifyKey in
                 Section(header: Text("ChannelSettings.HowTo.SectionTitle")) {
                     CopyContentsCell(
@@ -47,13 +47,13 @@ struct ChannelSettingsPage: View {
                         teaser: "ChannelSettings.HowTo.CURL.Teaser url:\(Current.config.apiURL.absoluteString)",
                         contents: "ChannelSettings.HowTo.CURL.Contents url:\(Current.config.apiURL.absoluteString) notify:\(notifyKey) title:\(channel.title)"
                     )
-                    
+
                     CopyContentsCell(
                         title: "ChannelSettings.HowTo.Email.Title",
                         teaser: "ChannelSettings.HowTo.Email.Teaser",
                         contents: "ChannelSettings.HowTo.Email.Contents notify:\(notifyKey)"
                     )
-                    
+
                     Button(action: {
                         UIApplication.shared.open(URL(string: "https://www.icloud.com/shortcuts/3596f5d512404b2f9e19e488d4bbf3a0")!)
                     }) {
@@ -61,7 +61,7 @@ struct ChannelSettingsPage: View {
                     }
                 }
             }
-            
+
             Section {
                 Button(action: {}) {
                     Text("ChannelSettings.Actions.Unsubscribe")
@@ -99,22 +99,22 @@ struct ChannelSettingsPage: View {
 
 struct CopyContentsCell: View {
     @State var hasJustCopied = false
-    
+
     var title: LocalizedStringKey
     var teaser: LocalizedStringKey
     var contents: LocalizedStringKey
-    
+
     var body: some View {
         Button(action: copyToPasteboard) {
             HStack {
                 Text(title).foregroundColor(.primary)
                 Spacer()
                 Text(hasJustCopied ? "ChannelSettings.HowTo.Copied" : teaser)
-                        .lineLimit(1)
+                    .lineLimit(1)
             }
         }
     }
-    
+
     func copyToPasteboard() {
         UIPasteboard.general.string = String(describing: contents)
         hasJustCopied = true

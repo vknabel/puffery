@@ -46,11 +46,11 @@ struct ChannelDetailsPage: View {
             Text("ChannelDetails.NoMessages.Title")
             noMessageHelperText().map { Text($0) }
 
-            channel?.notifyKey.map({ notifyKey in
+            channel?.notifyKey.map { notifyKey in
                 Text("ChannelSettings.HowTo.CURL.Teaser url:\(Current.config.apiURL.absoluteString)").padding().onTapGesture {
                     UIPasteboard.general.string = String(format: NSLocalizedString("ChannelSettings.HowTo.CURL.Contents url:%@ notify:%@ title:%@", comment: ""), Current.config.apiURL.absoluteString, notifyKey, self.channel!.title)
                 }.font(.system(Font.TextStyle.footnote, design: .monospaced))
-            })
+            }
         }
     }
 

@@ -28,7 +28,7 @@ public struct FetchingError: Error, Identifiable {
         case encoding(Error)
         case decoding(Error)
         case statusCode(Int)
-        
+
         public func statusCode(_ statuses: Int...) -> Bool {
             if case let .statusCode(code) = self {
                 return statuses.contains(code)

@@ -1,8 +1,8 @@
+import APIDefinition
 import Combine
 import Foundation
 import KeychainSwift
 import Overture
-import APIDefinition
 
 var subscription: AnyObject?
 

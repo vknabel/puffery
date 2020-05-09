@@ -61,7 +61,7 @@ struct ChannelListPage: View {
                 }.navigationViewStyle(StackNavigationViewStyle())
             }
     }
-    
+
     func subscribeChannelHeader() -> some View {
         channelsHeader("ChannelList.SubscribeChannels.SectionTitle", actionText: "ChannelList.SubscribeChannels.New", action: { self.presentsChannelSubscription.toggle() })
             .sheet(isPresented: $presentsChannelSubscription, onDismiss: shouldReload.send) {
@@ -70,7 +70,7 @@ struct ChannelListPage: View {
                 }.navigationViewStyle(StackNavigationViewStyle())
             }
     }
-    
+
     func channelsHeader(_ title: LocalizedStringKey, actionText: LocalizedStringKey, action: @escaping () -> Void) -> some View {
         HStack {
             Text(title)

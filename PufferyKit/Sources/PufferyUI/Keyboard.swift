@@ -1,6 +1,6 @@
 //
 //  Keyboard.swift
-//  
+//
 //
 //  Created by Valentin Knabel on 07.05.20.
 //
@@ -29,7 +29,7 @@ final class Keyboard: ObservableObject {
         }
     }
 
-    @objc func keyBoardWillHide(notification: Notification) {
+    @objc func keyBoardWillHide(notification _: Notification) {
         currentHeight = 0
         isActive = false
     }

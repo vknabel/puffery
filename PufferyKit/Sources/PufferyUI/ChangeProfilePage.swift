@@ -6,9 +6,9 @@
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
+import APIDefinition
 import Combine
 import SwiftUI
-import APIDefinition
 
 struct ChangeProfilePage: View {
     @ObservedObject private var keyboard = Keyboard()
@@ -32,8 +32,7 @@ struct ChangeProfilePage: View {
                         RoundedRectangle(cornerRadius: 8, style: .continuous)
                             .fill(Color.secondary.opacity(self.keyboard.isActive ? 0.75 : 0.25))
                     )
-                
-                
+
                 Button(action: self.performUpdate) {
                     Text(profile.email == nil || profile.email == "" ? LocalizedStringKey("Associate") : "Change")
                 }
@@ -54,7 +53,7 @@ struct ChangeProfilePage: View {
         guard !email.isEmpty else {
             return
         }
-        
+
         Current.api.updateProfile(credentials: UpdateProfileRequest(email: email.nonEmpty))
             .task { result in
                 switch result {
@@ -63,9 +62,9 @@ struct ChangeProfilePage: View {
                 case let .failure(error):
                     print(error)
                 }
-        }
+            }
     }
-    
+
     func dismiss() {
         presentationMode.wrappedValue.dismiss()
     }

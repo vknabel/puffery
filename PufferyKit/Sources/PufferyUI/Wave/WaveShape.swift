@@ -1,6 +1,6 @@
 //
 //  WaveShape.swift
-//  
+//
 //
 //  Created by Valentin Knabel on 04.05.20.
 //
@@ -13,9 +13,9 @@ struct WaveShape: View {
     let amplitude: Double
 
     @State var hasOffset = false
-    
+
     let calc: (Double) -> Double
-    
+
     var body: some View {
         Path { path in
             let height = amplitude * 2
@@ -39,16 +39,16 @@ struct WaveShape: View {
                 CGPoint(x: width, y: y(width) + amplitude),
                 CGPoint(x: width, y: height),
                 CGPoint(x: 0, y: height),
-                CGPoint(x: 0, y: y(0) + amplitude)
+                CGPoint(x: 0, y: y(0) + amplitude),
             ])
         }
-            .frame(width: CGFloat(width), height: CGFloat(amplitude) * 2)
+        .frame(width: CGFloat(width), height: CGFloat(amplitude) * 2)
     }
 }
 
 extension Sequence {
     fileprivate func pairwise() -> AnySequence<(Element, Element)> {
-        return AnySequence<(Element, Element)> { () -> AnyIterator<(Element, Element)> in
+        AnySequence<(Element, Element)> { () -> AnyIterator<(Element, Element)> in
             var iterator = self.makeIterator()
             var previous = iterator.next()
             return AnyIterator { () -> (Element, Element)? in

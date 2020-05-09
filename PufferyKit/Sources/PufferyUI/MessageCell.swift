@@ -51,7 +51,7 @@ extension Message.Color: View {
             return SwiftUI.Color.yellow
         }
     }
-    
+
     var foregroundColor: Color? {
         .white
     }

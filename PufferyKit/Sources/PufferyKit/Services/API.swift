@@ -6,9 +6,9 @@
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
+import APIDefinition
 import Combine
 import Foundation
-import APIDefinition
 
 public protocol API {
     func docs() -> Endpoint<String?>

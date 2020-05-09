@@ -6,8 +6,8 @@
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
-import SwiftUI
 import APIDefinition
+import SwiftUI
 
 struct LoginView: View {
     var onFinish: () -> Void

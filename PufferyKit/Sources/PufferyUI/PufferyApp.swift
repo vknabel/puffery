@@ -12,7 +12,7 @@ public struct SelectPufferyApp: View {
     @ObservedObject var store = Current.store
 
     public init() {}
-    
+
     public var body: some View {
         ZStack {
             PufferyApp()

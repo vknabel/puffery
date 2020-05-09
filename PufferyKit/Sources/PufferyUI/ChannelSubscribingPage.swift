@@ -6,9 +6,9 @@
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
+import APIDefinition
 import SwiftUI
 import UserNotifications
-import APIDefinition
 
 struct ChannelSubscribingPage: View {
     @State var channelKey: String = ""
@@ -17,7 +17,7 @@ struct ChannelSubscribingPage: View {
     var isUUID: Bool {
         UUID(uuidString: channelKey) != nil
     }
-    
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {

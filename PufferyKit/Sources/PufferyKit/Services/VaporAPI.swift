@@ -6,9 +6,9 @@
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
+import APIDefinition
 import Foundation
 import Overture
-import APIDefinition
 
 final class VaporAPI: API {
     private let defaultStrategy: RequestFetchingStrategy

@@ -6,8 +6,8 @@
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
-import Foundation
 import APIDefinition
+import Foundation
 
 public typealias Channel = SubscribedChannelResponse
 

@@ -12,10 +12,12 @@ let package = Package(
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
             name: "PufferyUI",
-            targets: ["PufferyUI"]),
+            targets: ["PufferyUI"]
+        ),
         .library(
             name: "PufferyKit",
-            targets: ["PufferyKit"]),
+            targets: ["PufferyKit"]
+        ),
     ],
     dependencies: [
         .package(name: "APIDefinition", path: "../APIDefinition"),
@@ -32,7 +34,8 @@ let package = Package(
             name: "PufferyUI",
             dependencies: [
                 "PufferyKit",
-            ]),
+            ]
+        ),
         .target(
             name: "PufferyKit",
             dependencies: [
@@ -40,9 +43,11 @@ let package = Package(
                 "KeychainSwift",
                 "AckeeTracker",
                 "APIDefinition",
-            ]),
+            ]
+        ),
         .testTarget(
             name: "PufferyKitTests",
-            dependencies: ["PufferyKit"]),
+            dependencies: ["PufferyKit"]
+        ),
     ]
 )
