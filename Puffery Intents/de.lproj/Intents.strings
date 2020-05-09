@@ -1,10 +1,10 @@
-"2CEv27" = "Was möchtest du BLARGHen?!";
+"2CEv27" = "Was möchtest du senden?!";
 
-"3i86ta" = "Worum dreht sich dein BLARGH?";
+"3i86ta" = "Worum dreht sich deine Benachrichtigung?";
 
 "4qmcEn" = "Grün";
 
-"7pFvC1" = "Channel";
+"7pFvC1" = "Channels";
 
 "8lP3JP" = "Titel";
 
@@ -14,7 +14,7 @@
 
 "GHDi5m" = "Farbe";
 
-"JbdGJO" = "Lädt deine eigenen Channel, die später zum Versenden verwendet werden können.";
+"JbdGJO" = "Lädt deine eigenen Channels, die später zum Versenden verwendet werden können.";
 
 "JxZmbg" = "Orange";
 
@@ -26,11 +26,11 @@
 
 "N45ftg" = "Nur zur Sicherheit, meintest du ‘${channel}’?";
 
-"OQC7Bb" = "Lädt deine abonnierten Channel. Diese können nicht zum Benachrichtigen verwendet werden.";
+"OQC7Bb" = "Lädt deine abonnierten Channels. Diese können nicht zum Benachrichtigen verwendet werden.";
 
 "SdsiQp" = "Blau";
 
-"TiTEkD" = "Welchen Channel willst blarghen?!";
+"TiTEkD" = "Welchen Channel willst benachrichtigen?!";
 
 "Ty9YiD" = "Rot";
 
@@ -38,7 +38,7 @@
 
 "VaiJjK" = "Farbe";
 
-"WceaHZ" = "Eigene Channel";
+"WceaHZ" = "Eigene Channels";
 
 "XrQ6ja" = "Welcher?";
 
@@ -50,7 +50,7 @@
 
 "dwp57W" = "Text";
 
-"gZnnP0" = "Channel";
+"gZnnP0" = "Channels";
 
 "keYLBt-4qmcEn" = "Es gibt ${count} Möglichkeiten für ‘Green’.";
 
@@ -100,7 +100,7 @@
 
 "tO0Lyc" = "Notify-Key";
 
-"tZgIH4" = "BLARGH eine Nachricht zu einem Channel.";
+"tZgIH4" = "Sende eine Nachricht zu einem Channel.";
 
 "u3cTOZ" = "Channel";
 

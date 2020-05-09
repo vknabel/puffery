@@ -36,8 +36,6 @@
 			<array/>
 			<key>IntentsSupported</key>
 			<array>
-				<string>INSearchForMessagesIntent</string>
-				<string>INSetMessageAttributeIntent</string>
 				<string>NotiyChannelIntent</string>
 				<string>OwnChannelsIntent</string>
 				<string>SubscribedChannelsIntent</string>

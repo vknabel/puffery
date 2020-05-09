@@ -128,7 +128,7 @@
 			<key>INIntentConfigurable</key>
 			<true/>
 			<key>INIntentDescription</key>
-			<string>BLARGH a message to a channel.</string>
+			<string>Send a message to a channel.</string>
 			<key>INIntentDescriptionID</key>
 			<string>tZgIH4</string>
 			<key>INIntentIneligibleForSuggestions</key>
@@ -173,7 +173,7 @@
 							<key>INIntentParameterPromptDialogCustom</key>
 							<true/>
 							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>What is your BLARGH about?</string>
+							<string>What is your notification about?</string>
 							<key>INIntentParameterPromptDialogFormatStringID</key>
 							<string>3i86ta</string>
 							<key>INIntentParameterPromptDialogType</key>
@@ -209,7 +209,7 @@
 							<key>INIntentParameterPromptDialogCustom</key>
 							<true/>
 							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>What do you want to BLARGH?!</string>
+							<string>What do you want to send?!</string>
 							<key>INIntentParameterPromptDialogFormatStringID</key>
 							<string>2CEv27</string>
 							<key>INIntentParameterPromptDialogType</key>
@@ -308,7 +308,7 @@
 							<key>INIntentParameterPromptDialogCustom</key>
 							<true/>
 							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Which channel do you want to BLARGH?!</string>
+							<string>Which channel do you want to notify?!</string>
 							<key>INIntentParameterPromptDialogFormatStringID</key>
 							<string>TiTEkD</string>
 							<key>INIntentParameterPromptDialogType</key>

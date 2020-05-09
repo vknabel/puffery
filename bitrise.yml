@@ -46,6 +46,11 @@ workflows:
       - set-xcode-build-number@1:
           inputs:
             - plist_path: Puffery/Info.plist
+          title: "Puffery: Set Xcode Project Build Number"
+      - set-xcode-build-number@1:
+          inputs:
+            - plist_path: Puffery Intents/Info.plist
+          title: "Puffery Intent: Set Xcode Project Build Number"
       - xcode-archive@2: {}
       - deploy-to-itunesconnect-application-loader@0:
           inputs:
@@ -58,11 +63,10 @@ workflows:
           inputs:
             - content:
                 "#!/usr/bin/env bash\n# fail if any commands fails\nset -e\n# debug
-                log\nset -x\n\n# write your script here\ncurl -X \"POST\" \"https://api.puffery.app/notify\"
+                log\nset -x\n\n# write your script here\ncurl -X \"POST\" \"https://vapor.puffery.app/notify/$PUFFERY_CHANNEL\"
                 \\\n     -H 'Content-Type: application/json; charset=utf-8' \\\n     -d
                 \"{ \n  \\\"title\\\": \\\"New Puffery build $BITRISE_BUILD_NUMBER\\\",\n
-                \ \\\"body\\\": \\\"$BITRISE_GIT_MESSAGE\\\",\n  \\\"channelToken\\\":
-                \\\"$PUFFERY_CHANNEL\\\"\n}\"\n"
+                \ \\\"body\\\": \\\"$BITRISE_GIT_MESSAGE\\\",\n  \\\"color\\\": \\\"blue\\\",\n}\"\n"
           title: Puffery
 app:
   envs:
