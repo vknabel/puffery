@@ -24,7 +24,8 @@
 
 "Profile.Email.Title" = "Profil bearbeiten";
 "Profile.Email.Placeholder" = "E-Mail";
-"Profile.Email.Update" = "Ändern";
+"Profile.Email.Change" = "Ändern";
+"Profile.Email.Associate" = "Verknüpfen";
 
 "CreateChannel.Title" = "Channel erstellen";
 "CreateChannel.Basic.Title" = "Titel";
@@ -80,3 +81,7 @@
 "GettingStarted.Registration.Failed" = "Registrierung fehlgeschlagen";
 "GettingStarted.Login.EmailPlaceholder" = "E-Mail";
 "GettingStarted.Login.Perform" = "Einloggen";
+
+"Registration.Email.Title" = "Wir haben dir einen Link zum Einloggen per E-Mail geschickt";
+"Registration.Email.Recepient email:%@" = "Gesendet an %@";
+"Registration.Email.OpenApp" = "Mail öffnen";

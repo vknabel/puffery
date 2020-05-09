@@ -12,7 +12,7 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "APIDefinition", path: "../APIDefinition"),
-        
+
         // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
 

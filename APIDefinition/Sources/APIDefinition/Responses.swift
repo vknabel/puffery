@@ -4,7 +4,7 @@ public struct UserResponse: Codable, Equatable {
     public var id: UUID
     public var email: String?
     public var isConfirmed: Bool
-    
+
     public init(id: UUID, email: String?, isConfirmed: Bool) {
         self.id = id
         self.email = email
@@ -15,7 +15,7 @@ public struct UserResponse: Codable, Equatable {
 public struct TokenResponse: Codable {
     public var token: String
     public var user: UserResponse
-    
+
     public init(token: String, user: UserResponse) {
         self.token = token
         self.user = user
@@ -36,7 +36,7 @@ public struct SubscribedChannelResponse: Codable {
     public var title: String
     public var receiveOnlyKey: String
     public var notifyKey: String?
-    
+
     public init(id: UUID, title: String, receiveOnlyKey: String, notifyKey: String?) {
         self.id = id
         self.title = title
@@ -52,7 +52,7 @@ public struct MessageResponse: Codable {
     public var colorName: String?
     public var channel: UUID
     public var createdAt: Date
-    
+
     public init(
         id: UUID,
         title: String,
@@ -96,7 +96,7 @@ public struct DeviceResponse: Codable {
     public var id: UUID
     public var token: String
     public var isProduction: Bool
-    
+
     public init(
         id: UUID,
         token: String,

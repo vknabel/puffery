@@ -1,5 +1,5 @@
-import Vapor
 import APIDefinition
+import Vapor
 
 extension APIDefinition.ConfirmedEmailResponse: Content {}
 extension APIDefinition.CreateChannelRequest: Content {}

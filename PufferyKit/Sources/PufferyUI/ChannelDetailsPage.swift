@@ -44,7 +44,7 @@ struct ChannelDetailsPage: View {
     var noMessages: some View {
         VStack(spacing: 8) {
             Text("ChannelDetails.NoMessages.Title")
-            noMessageHelperText().map(Text.init(_:))
+            noMessageHelperText().map { Text($0) }
 
             channel?.notifyKey.map({ notifyKey in
                 Text("ChannelSettings.HowTo.CURL.Teaser url:\(Current.config.apiURL.absoluteString)").padding().onTapGesture {
@@ -54,7 +54,7 @@ struct ChannelDetailsPage: View {
         }
     }
 
-    func noMessageHelperText() -> String? {
+    func noMessageHelperText() -> LocalizedStringKey? {
         if channel?.notifyKey != nil {
             return "ChannelDetails.NoMessages.HelperNotify"
         } else if channel != nil {

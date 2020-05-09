@@ -38,6 +38,9 @@ final class URLSessionRequestFetchingStrategy: RequestFetchingStrategy {
 
     @discardableResult
     func task<R>(_ endpoint: Endpoint<R>, receive: @escaping (Result<R, FetchingError>) -> Void) -> URLSessionDataTask? {
+        let receive = { result in
+            DispatchQueue.main.async { receive(result) }
+        }
         do {
             let request = try update(URLRequest(url: baseURL), endpoint.encode)
             let task = session.dataTask(with: request) { data, urlResponse, error in
@@ -69,9 +72,11 @@ final class URLSessionRequestFetchingStrategy: RequestFetchingStrategy {
                         self.decode(endpoint, request: request, data: dataAndResponse.data, response: dataAndResponse.response, receive: next)
                     }
                 }
+                .receive(on: DispatchQueue.main)
                 .eraseToAnyPublisher()
         } catch {
             return Fail(error: FetchingError(reason: .encoding(error), request: nil, data: nil))
+                .receive(on: DispatchQueue.main)
                 .eraseToAnyPublisher()
         }
     }

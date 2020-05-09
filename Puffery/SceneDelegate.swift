@@ -6,9 +6,9 @@
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
+import PufferyUI
 import SwiftUI
 import UIKit
-import PufferyUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -32,6 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(rootView: contentView)
             self.window = window
+            window.tintColor = #colorLiteral(red: 0.4352941176, green: 0.8196078431, blue: 0.6039215686, alpha: 1)
             window.makeKeyAndVisible()
         }
     }

@@ -1,7 +1,7 @@
+import APIDefinition
 import APNS
 import Fluent
 import Vapor
-import APIDefinition
 
 struct InboundEmail: Codable, Content {
     var envelope: Envelope

@@ -29,12 +29,13 @@ struct LoginView: View {
     }
 
     func performLogin() {
-        logginIn = true
-        Current.api.login(user: LoginUserRequest(
-            email: email
-        )).task { _ in
-            self.onFinish()
-            self.logginIn = false
-        }
+//        logginIn = true
+//        Current.api.login(user: LoginUserRequest(
+//            email: email,
+//            device:
+//        )).task { _ in
+//            self.onFinish()
+//            self.logginIn = false
+//        }
     }
 }

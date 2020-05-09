@@ -1,6 +1,6 @@
+import APIDefinition
 import Fluent
 import Vapor
-import APIDefinition
 
 final class SubscribedChannelController {
     func create(_ req: Request) throws -> Future<SubscribedChannelResponse> {

@@ -1,5 +1,5 @@
-import Vapor
 import APIDefinition
+import Vapor
 
 final class DeviceController {
     func create(_ req: Request) throws -> Future<DeviceResponse> {

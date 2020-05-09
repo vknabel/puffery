@@ -11,19 +11,38 @@ import SwiftUI
 import APIDefinition
 
 struct ChangeProfilePage: View {
+    @ObservedObject private var keyboard = Keyboard()
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     @State var email = ""
+    @State var inProgress = false
 
     var body: some View {
         Fetching(currentProfilePublisher) { profile in
             VStack {
-                TextField(profile.email ?? NSLocalizedString("Profile.Email.Placeholder", comment: "Email"), text: self.$email)
+                TextField(profile.email ?? NSLocalizedString("Profile.Email.Placeholder", comment: "Email"), text: self.$email, onCommit: self.performUpdate)
+                    .multilineTextAlignment(.center)
                     .keyboardType(.emailAddress)
                     .textContentType(.emailAddress)
-
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .disabled(self.inProgress)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+                            .fill(Color.secondary.opacity(self.keyboard.isActive ? 0.75 : 0.25))
+                    )
+                
+                
                 Button(action: self.performUpdate) {
-                    Text("Update")
-                }.disabled(self.email.isEmpty)
+                    Text(profile.email == nil || profile.email == "" ? LocalizedStringKey("Associate") : "Change")
+                }
+                .disabled(self.email.isEmpty)
+                .buttonStyle(RichButtonStyle())
             }
+            .padding()
+            .padding(.bottom, self.keyboard.currentHeight)
+            .animation(.default)
         }.navigationBarTitle("Profile.Email.Title")
     }
 
@@ -32,9 +51,23 @@ struct ChangeProfilePage: View {
     }
 
     func performUpdate() {
-        Current.api.updateProfile(credentials: UpdateProfileRequest(
-            email: email.nonEmpty)).task { _ in
+        guard !email.isEmpty else {
+            return
         }
+        
+        Current.api.updateProfile(credentials: UpdateProfileRequest(email: email.nonEmpty))
+            .task { result in
+                switch result {
+                case .success:
+                    self.dismiss()
+                case let .failure(error):
+                    print(error)
+                }
+        }
+    }
+    
+    func dismiss() {
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

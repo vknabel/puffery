@@ -24,7 +24,8 @@
 
 "Profile.Email.Title" = "Edit Profile";
 "Profile.Email.Placeholder" = "Email";
-"Profile.Email.Update" = "Update";
+"Profile.Email.Change" = "Change";
+"Profile.Email.Associate" = "Associate";
 
 "CreateChannel.Title" = "Create Channel";
 "CreateChannel.Basic.Title" = "Title";
@@ -80,3 +81,7 @@
 "GettingStarted.Registration.Failed" = "Regitstration failed";
 "GettingStarted.Login.EmailPlaceholder" = "Email";
 "GettingStarted.Login.Perform" = "Login";
+
+"Registration.Email.Title" = "We sent you a link to log in by email";
+"Registration.Email.Recepient email:%@" = "Sent to %@";
+"Registration.Email.OpenApp" = "Open Mail";

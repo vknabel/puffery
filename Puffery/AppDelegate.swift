@@ -6,10 +6,10 @@
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
-import CoreData
-import UIKit
-import PufferyKit
 import APIDefinition
+import CoreData
+import PufferyKit
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

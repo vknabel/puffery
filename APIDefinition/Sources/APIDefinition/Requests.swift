@@ -20,9 +20,11 @@ public struct UpdateProfileRequest: Codable {
 
 public struct LoginUserRequest: Codable {
     public var email: String
+    public var device: CreateDeviceRequest?
 
-    public init(email: String) {
+    public init(email: String, device: CreateDeviceRequest?) {
         self.email = email
+        self.device = device
     }
 }
 
