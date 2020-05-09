@@ -69,12 +69,14 @@ struct RegistrationPage: View {
                         Text("Registration.Email.Recepient email:\(self.email)")
                             .font(.subheadline)
 
+                        #if !canImport(Cocoa)
                         Button(action: self.openMailApp) {
                             HStack {
                                 Text("Registration.Email.OpenApp")
                                 Image(systemName: "chevron.right")
                             }
                         }
+                        #endif
                     }
                 }
             }
