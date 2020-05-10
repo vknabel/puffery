@@ -21,23 +21,19 @@ struct ChangeProfilePage: View {
         Fetching(currentProfilePublisher) { profile in
             VStack {
                 TextField(profile.email ?? NSLocalizedString("Profile.Email.Placeholder", comment: "Email"), text: self.$email, onCommit: self.performUpdate)
+                    .textFieldStyle(RoundedTextFieldStyle())
                     .multilineTextAlignment(.center)
                     .keyboardType(.emailAddress)
                     .textContentType(.emailAddress)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
                     .disabled(self.inProgress)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .fill(Color.secondary.opacity(self.keyboard.isActive ? 0.75 : 0.25))
-                    )
 
                 Button(action: self.performUpdate) {
                     Text(profile.email == nil || profile.email == "" ? LocalizedStringKey("Associate") : "Change")
                 }
                 .disabled(self.email.isEmpty)
-                .buttonStyle(RichButtonStyle())
+                .buttonStyle(RoundedButtonStyle())
             }
             .padding()
             .padding(.bottom, self.keyboard.currentHeight)

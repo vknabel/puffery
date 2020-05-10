@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RichButtonStyle: ButtonStyle {
+struct RoundedButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .padding(20)
@@ -35,7 +35,7 @@ struct RichButtonStyle: ButtonStyle {
                 Spacer()
                 Button(action: {}) {
                     Text("Button")
-                }.buttonStyle(RichButtonStyle())
+                }.buttonStyle(RoundedButtonStyle())
                 Spacer()
             }
         }
