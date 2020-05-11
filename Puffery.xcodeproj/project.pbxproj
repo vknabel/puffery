@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA8E673C2469FB93004F05F3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = BA8E673B2469FB93004F05F3 /* ComposableArchitecture */; };
+		BA8E673D2469FB93004F05F3 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = BA8E673B2469FB93004F05F3 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		BA8E673F2469FB93004F05F3 /* ComposableArchitectureTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = BA8E673E2469FB93004F05F3 /* ComposableArchitectureTestSupport */; };
+		BA8E67402469FB93004F05F3 /* ComposableArchitectureTestSupport in Embed Frameworks */ = {isa = PBXBuildFile; productRef = BA8E673E2469FB93004F05F3 /* ComposableArchitectureTestSupport */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		BA923F2C245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA923F2F245EFAC0008BD6C9 /* Intents.intentdefinition */; };
 		BA923F2D245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA923F2F245EFAC0008BD6C9 /* Intents.intentdefinition */; };
 		BA923F34245EFE94008BD6C9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA923F36245EFE94008BD6C9 /* Localizable.strings */; };
@@ -53,6 +57,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		BA8E67412469FB93004F05F3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BA8E673D2469FB93004F05F3 /* ComposableArchitecture in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA8E67422469FB93004F05F3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BA8E67402469FB93004F05F3 /* ComposableArchitectureTestSupport in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BA952522245EC51900FFC9E3 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +141,7 @@
 			files = (
 				BA952530245ED78500FFC9E3 /* PufferyUI in Frameworks */,
 				BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */,
+				BA8E673C2469FB93004F05F3 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA8E673F2469FB93004F05F3 /* ComposableArchitectureTestSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +284,7 @@
 				BAF1545D2444BB4400EDB97B /* Frameworks */,
 				BAF1545E2444BB4400EDB97B /* Resources */,
 				BA952522245EC51900FFC9E3 /* Embed App Extensions */,
+				BA8E67412469FB93004F05F3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -265,6 +294,7 @@
 			name = Puffery;
 			packageProductDependencies = (
 				BA95252F245ED78500FFC9E3 /* PufferyUI */,
+				BA8E673B2469FB93004F05F3 /* ComposableArchitecture */,
 			);
 			productName = Puffery;
 			productReference = BAF154602444BB4400EDB97B /* Puffery.app */;
@@ -277,6 +307,7 @@
 				BAF154752444BB4600EDB97B /* Sources */,
 				BAF154762444BB4600EDB97B /* Frameworks */,
 				BAF154772444BB4600EDB97B /* Resources */,
+				BA8E67422469FB93004F05F3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -284,6 +315,9 @@
 				BAF1547B2444BB4600EDB97B /* PBXTargetDependency */,
 			);
 			name = PufferyTests;
+			packageProductDependencies = (
+				BA8E673E2469FB93004F05F3 /* ComposableArchitectureTestSupport */,
+			);
 			productName = WakeTests;
 			productReference = BAF154792444BB4600EDB97B /* PufferyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -345,6 +379,7 @@
 			packageReferences = (
 				BA96015E2452208C00667BDD /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				BA411FAC24544E0600E0AC32 /* XCRemoteSwiftPackageReference "AckeeTracker-Swift" */,
+				BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = BAF154612444BB4400EDB97B /* Products */;
 			projectDirPath = "";
@@ -845,6 +880,14 @@
 				minimumVersion = 0.1.0;
 			};
 		};
+		BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.2;
+			};
+		};
 		BA96015E2452208C00667BDD /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
@@ -856,6 +899,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BA8E673B2469FB93004F05F3 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		BA8E673E2469FB93004F05F3 /* ComposableArchitectureTestSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitectureTestSupport;
+		};
 		BA95252F245ED78500FFC9E3 /* PufferyUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PufferyUI;
