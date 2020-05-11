@@ -10,7 +10,7 @@ struct InboundEmail: Codable, Content {
 
     struct Envelope: Codable {
         var from: String
-        var to: String
+        var to: [String]
     }
 }
 
@@ -58,7 +58,7 @@ final class MessageController {
 
     func publicEmail(_ req: Request) throws -> EventLoopFuture<NotifyMessageResponse> {
         let inboundEmail = try req.content.decode(InboundEmail.self)
-        let notifyKey = String(inboundEmail.envelope.to.prefix(while: { $0 != "@" }))
+        let notifyKey = String(inboundEmail.envelope.to.first?.prefix(while: { $0 != "@" }) ?? "")
         return Channel.query(on: req.db)
             .filter(\.$notifyKey, .equal, notifyKey)
             .first()
