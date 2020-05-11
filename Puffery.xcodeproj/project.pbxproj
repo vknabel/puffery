@@ -12,7 +12,7 @@
 		BA923F34245EFE94008BD6C9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA923F36245EFE94008BD6C9 /* Localizable.strings */; };
 		BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94F0C2244BA4030087924C /* UserNotifications.framework */; };
 		BA95250C245EC51900FFC9E3 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95250B245EC51900FFC9E3 /* IntentHandler.swift */; };
-		BA952521245EC51900FFC9E3 /* Puffery Intents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BA952509245EC51900FFC9E3 /* Puffery Intents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BA952521245EC51900FFC9E3 /* Puffery Intents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BA952509245EC51900FFC9E3 /* Puffery Intents.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BA95252E245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95252D245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift */; };
 		BA952530245ED78500FFC9E3 /* PufferyUI in Frameworks */ = {isa = PBXBuildFile; productRef = BA95252F245ED78500FFC9E3 /* PufferyUI */; };
 		BA952532245ED7A300FFC9E3 /* PufferyKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA952531245ED7A300FFC9E3 /* PufferyKit */; };
@@ -438,6 +438,7 @@
 /* Begin PBXTargetDependency section */
 		BA952520245EC51900FFC9E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = BA952508245EC51900FFC9E3 /* Puffery Intents */;
 			targetProxy = BA95251F245EC51900FFC9E3 /* PBXContainerItemProxy */;
 		};
@@ -501,6 +502,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vknabel.puffery.Puffery-Intents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -524,6 +526,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Puffery Intents App Store";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

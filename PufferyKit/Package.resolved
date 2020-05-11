@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "swift-composable-architecture",
+        "repositoryURL": "https://github.com/pointfreeco/swift-composable-architecture.git",
+        "state": {
+          "branch": null,
+          "revision": "bcb10ae7683636c126e99f751443e9464df726e8",
+          "version": "0.1.2"
+        }
+      },
+      {
         "package": "Overture",
         "repositoryURL": "https://github.com/pointfreeco/swift-overture.git",
         "state": {

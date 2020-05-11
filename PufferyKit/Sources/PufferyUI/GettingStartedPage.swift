@@ -9,16 +9,23 @@
 import APIDefinition
 import SwiftUI
 import UserNotifications
+import ComposableArchitecture
 
 struct GettingStartedPage: View {
     var onFinish: () -> Void
 
     @State var registrationInProgress = false
     @State var registrationError: FetchingError?
+    
+    @State var registrationStore = ComposableArchitecture.Store<RegistrationState, RegistrationAction>(
+        initialState: RegistrationState(),
+        reducer: registrationReducer,
+        environment: RegistrationEnvironment.live()
+    )
 
     var body: some View {
         Waves {
-            RegistrationPage(onFinish: self.onFinish)
+            RegistrationPage(onFinish: self.onFinish, store: self.registrationStore)
         }
 //        VStack {
 //            Button(action: registerForPushNotifications) {

@@ -10,7 +10,7 @@ import Combine
 import Foundation
 import Overture
 
-public struct FetchingError: Error, Identifiable {
+public struct FetchingError: Error, Identifiable, Equatable {
     public var id = UUID()
 
     public var reason: Reason
@@ -36,6 +36,10 @@ public struct FetchingError: Error, Identifiable {
                 return false
             }
         }
+    }
+    
+    public static func == (lhs: FetchingError, rhs: FetchingError) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 
