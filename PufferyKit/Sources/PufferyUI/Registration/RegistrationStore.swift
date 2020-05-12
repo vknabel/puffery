@@ -35,12 +35,11 @@ enum RegistrationAction {
     // TODO: remove onFinish
     case shouldRegister(onFinish: () -> Void)
     case shouldLogin(onFinish: () -> Void)
-    
+
     case showCheckEmails(Bool)
-    
+
     case activityFinished
     case activityFailed(FetchingError)
-    
 }
 
 let registrationReducer = Reducer<
@@ -64,26 +63,26 @@ let registrationReducer = Reducer<
     case let .activityFailed(error):
         state.activity = .failed(error)
         return .none
-        
+
     case let .shouldLogin(onFinish: onFinish):
         state.activity = .inProgress
-        
+
         return environment.loginEffect(state.email)
             .handleEvents(receiveOutput: { onFinish() })
             .transform(to: RegistrationAction.activityFinished)
             .prepend(RegistrationAction.showCheckEmails(true))
-            .catch { (fetchingError) in
+            .catch { fetchingError in
                 Effect<RegistrationAction, Never>(value: RegistrationAction.activityFailed(fetchingError))
             }
             .eraseToEffect()
 
     case let .shouldRegister(onFinish: onFinish):
         state.activity = .inProgress
-        
+
         return environment.registerEffect(state.email)
             .handleEvents(receiveOutput: { _ in onFinish() })
             .transform(to: RegistrationAction.activityFinished)
-            .catch { (fetchingError) in
+            .catch { fetchingError in
                 Effect<RegistrationAction, Never>(value: RegistrationAction.activityFailed(fetchingError))
             }
             .eraseToEffect()

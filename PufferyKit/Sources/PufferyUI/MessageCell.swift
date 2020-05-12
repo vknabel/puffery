@@ -16,9 +16,8 @@ struct MessageCell: View {
 //            message.sender.icon.imageView
             VStack(alignment: .leading) {
                 SelectableText(message.title, font: UIFont.preferredFont(forTextStyle: .headline))
-                    
+
                 SelectableText(message.body, font: UIFont.preferredFont(forTextStyle: .subheadline))
-                    
             }
         }
         .padding()
@@ -67,16 +66,16 @@ extension Message.Color: View {
 
 struct SelectableText: UIViewRepresentable {
     typealias UIViewType = UITextView
-    
+
     var text: String
     var font: UIFont
-    
+
     init(_ text: String, font: UIFont) {
         self.text = text
         self.font = font
     }
-    
-    func makeUIView(context: Context) -> UITextView {
+
+    func makeUIView(context _: Context) -> UITextView {
         let textView = UITextView()
         textView.backgroundColor = .clear
         textView.isEditable = false
@@ -94,12 +93,11 @@ struct SelectableText: UIViewRepresentable {
 //        textField.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }
-    
-    func updateUIView(_ uiView: UITextView, context: Context) {
+
+    func updateUIView(_: UITextView, context _: Context) {
 //        uiView.text = text
 //        uiView.font = font
 //        let fixedWidth = uiView.frame.size.width
 //        let newSize = uiView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-
     }
 }

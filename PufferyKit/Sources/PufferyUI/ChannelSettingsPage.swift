@@ -45,13 +45,13 @@ struct ChannelSettingsPage: View {
                     CopyContentsCell(
                         title: "ChannelSettings.HowTo.CURL.Title",
                         teaser: "ChannelSettings.HowTo.CURL.Teaser url:\(Current.config.apiURL.absoluteString)",
-                        contents: "ChannelSettings.HowTo.CURL.Contents url:\(Current.config.apiURL.absoluteString) notify:\(notifyKey) title:\(channel.title)"
+                        contents: String(format: NSLocalizedString("ChannelSettings.HowTo.CURL.Contents url:%@ notify:%@ title:%@", comment: ""), Current.config.apiURL.absoluteString, notifyKey, channel.title)
                     )
 
                     CopyContentsCell(
                         title: "ChannelSettings.HowTo.Email.Title",
                         teaser: "ChannelSettings.HowTo.Email.Teaser",
-                        contents: "ChannelSettings.HowTo.Email.Contents notify:\(notifyKey)"
+                        contents: String(format: NSLocalizedString("ChannelSettings.HowTo.Email.Contents notify:%@", comment: ""), notifyKey)
                     )
 
                     Button(action: {
@@ -102,7 +102,7 @@ struct CopyContentsCell: View {
 
     var title: LocalizedStringKey
     var teaser: LocalizedStringKey
-    var contents: LocalizedStringKey
+    var contents: String
 
     var body: some View {
         Button(action: copyToPasteboard) {

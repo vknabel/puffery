@@ -29,7 +29,7 @@ struct ChannelDetailsPage: View {
             channel.map { channel in
                 Button(action: { self.displaysChannelSettings.toggle() }) {
                     Image(systemName: "wrench")
-                        .padding()
+                        .font(.system(size: 21))
                         .sheet(isPresented: self.$displaysChannelSettings) {
                             NavigationView {
                                 ChannelSettingsPage(channel: channel)

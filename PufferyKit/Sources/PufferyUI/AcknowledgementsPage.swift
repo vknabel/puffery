@@ -18,7 +18,7 @@ struct AcknowledgementsPage: View {
                 ForEach(assets) { asset in
                     NavigationLink(destination: FlaticonAssetPage(asset: asset)) {
                         HStack {
-                            Image(asset.name)
+                            Image(asset.assetName)
 
                             VStack(alignment: .leading) {
                                 Text(asset.name)
@@ -83,7 +83,7 @@ struct FlaticonAssetPage: View {
 
     var body: some View {
         VStack {
-            Image(asset.name)
+            Image(asset.assetName)
             Text("Acknowledgements.Assets.ByAuthor \(asset.author)").navigationBarItems(trailing: Button(action: openLicense) {
                 Image(systemName: "safari").padding()
             })

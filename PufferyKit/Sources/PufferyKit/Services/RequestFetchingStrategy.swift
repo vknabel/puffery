@@ -37,9 +37,9 @@ public struct FetchingError: Error, Identifiable, Equatable {
             }
         }
     }
-    
+
     public static func == (lhs: FetchingError, rhs: FetchingError) -> Bool {
-        return lhs.id == rhs.id
+        lhs.id == rhs.id
     }
 }
 

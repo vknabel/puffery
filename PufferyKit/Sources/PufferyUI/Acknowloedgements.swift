@@ -56,7 +56,7 @@ extension License {
         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
         SOFTWARE.
         """),
-        
+
         License(name: "KeychainSwift", source: URL(string: "https://github.com/evgenyneu/keychain-swift")!, licenseText: """
         The MIT License
 

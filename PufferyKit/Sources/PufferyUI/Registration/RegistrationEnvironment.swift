@@ -1,13 +1,13 @@
 //
 //  RegistrationEnvironment.swift
-//  
+//
 //
 //  Created by Valentin Knabel on 10.05.20.
 //
 
-import Foundation
 import Combine
 import ComposableArchitecture
+import Foundation
 
 public struct RegistrationEnvironment {
     public var loginEffect: (String) -> Effect<Void, FetchingError>
@@ -18,11 +18,12 @@ extension RegistrationEnvironment {
     public static func live() -> RegistrationEnvironment {
         RegistrationEnvironment(
             loginEffect: RegistrationEnvironment.loginEffect,
-            registerEffect: RegistrationEnvironment.registerEffect(email:))
+            registerEffect: RegistrationEnvironment.registerEffect(email:)
+        )
     }
-    
+
     private static func loginEffect(email: String) -> Effect<Void, FetchingError> {
-        return registerPushNotificationsEffect()
+        registerPushNotificationsEffect()
             .transformError()
             .flatMap { token in
                 Current.api.login(user: LoginUserRequest(
@@ -32,13 +33,13 @@ extension RegistrationEnvironment {
                     .publisher()
                     .catch { error in
                         RegistrationEnvironment.registerOnLoginFailure(email: email, error: error)
-                }
+                    }
             }
             .eraseToEffect()
     }
 
     private static func registerEffect(email: String? = nil) -> Effect<TokenResponse, FetchingError> {
-        return registerPushNotificationsEffect()
+        registerPushNotificationsEffect()
             .mapError { (_: Never) -> FetchingError in }
             .flatMap { (token: String?) -> AnyPublisher<TokenResponse, FetchingError> in
                 let createDeviceRequest = token.map {
@@ -49,7 +50,7 @@ extension RegistrationEnvironment {
             }
             .eraseToEffect()
     }
-    
+
     private static func registerPushNotificationsEffect() -> Effect<String?, Never> {
         Future { resolve in
             PushNotifications.register {
@@ -57,12 +58,12 @@ extension RegistrationEnvironment {
             }
         }.eraseToEffect()
     }
-    
+
     private static func registerOnLoginFailure(email: String, error: FetchingError) -> AnyPublisher<Void, FetchingError> {
         if error.reason.statusCode(403, 404) {
-            return self.registerEffect(email: email)
+            return registerEffect(email: email)
                 .map { _ in }
-            .eraseToAnyPublisher()
+                .eraseToAnyPublisher()
         } else {
             return Fail(error: error).eraseToAnyPublisher()
         }
@@ -76,7 +77,7 @@ extension Publisher {
 }
 
 extension Publisher where Failure == Never {
-    func transformError<E: Error>(to errorType: E.Type = E.self) -> Publishers.MapError<Self, E> {
+    func transformError<E: Error>(to _: E.Type = E.self) -> Publishers.MapError<Self, E> {
         mapError { (_: Never) -> E in }
     }
 }

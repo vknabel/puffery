@@ -7,16 +7,16 @@
 //
 
 import APIDefinition
+import ComposableArchitecture
 import SwiftUI
 import UserNotifications
-import ComposableArchitecture
 
 struct GettingStartedPage: View {
     var onFinish: () -> Void
 
     @State var registrationInProgress = false
     @State var registrationError: FetchingError?
-    
+
     @State var registrationStore = ComposableArchitecture.Store<RegistrationState, RegistrationAction>(
         initialState: RegistrationState(),
         reducer: registrationReducer,

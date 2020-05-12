@@ -5,8 +5,8 @@
 //  Created by Valentin Knabel on 03.05.20.
 //
 
-import SwiftUI
 import ComposableArchitecture
+import SwiftUI
 
 struct RegistrationPage: View {
     var onFinish: () -> Void
@@ -37,7 +37,7 @@ struct RegistrationPage: View {
                 }.show(when: !self.keyboard.isActive).transition(.opacity)
 
                 VStack {
-                    TextField("GettingStarted.Login.EmailPlaceholder", text: Binding(get: {viewModel.email}, set: {viewModel.send(.updateEmail($0))}), onCommit: { viewModel.send(.shouldRegister(onFinish: self.onFinish)) })
+                    TextField("GettingStarted.Login.EmailPlaceholder", text: Binding(get: { viewModel.email }, set: { viewModel.send(.updateEmail($0)) }), onCommit: { viewModel.send(.shouldRegister(onFinish: self.onFinish)) })
                         .textFieldStyle(RoundedTextFieldStyle())
                         .multilineTextAlignment(.center)
                         .keyboardType(.emailAddress)
@@ -51,9 +51,9 @@ struct RegistrationPage: View {
                     }
                     .disabled(viewModel.email.isEmpty || viewModel.activity.inProgress)
                     .sheet(isPresented: viewModel.binding(
-                            get: { $0.shouldCheckEmails },
-                            send: RegistrationAction.showCheckEmails
-                        )
+                        get: { $0.shouldCheckEmails },
+                        send: RegistrationAction.showCheckEmails
+                    )
                     ) {
                         EmailConfirmationPage(email: viewModel.email)
                     }
