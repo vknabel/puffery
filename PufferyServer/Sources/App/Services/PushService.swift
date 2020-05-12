@@ -30,7 +30,7 @@ struct PushService {
                         "message": .string(message.id?.uuidString ?? "nil"),
                     ])
                     return device.delete(on: self.req.db)
-                } else if let .badRequest(.unregistered) = error as? APNSwiftError.ResponseError {
+                } else if case .badRequest(.unregistered) = error as? APNSwiftError.ResponseError {
                     self.req.logger.info("APN Removing unregistered", metadata: [
                         "token": .string(device.token),
                         "message": .string(message.id?.uuidString ?? "nil"),
