@@ -64,7 +64,7 @@
 "ChannelSettings.HowTo.Email.Contents notify:%@" = "%@@notify.puffery.app";
 "ChannelSettings.HowTo.Copied" = "Kopiert!";
 
-"ChannelSettings.HowTo.Shortcuts.Action" = "Beispiel Kurzbefehlt hinzufpgen";
+"ChannelSettings.HowTo.Shortcuts.Action" = "Beispiel Kurzbefehl hinzufügen";
 "ChannelSettings.Actions.Unsubscribe" = "Channel-Abonnement beenden";
 "ChannelSettings.Actions.Save" = "Speichern";
 "ChannelSettings.Actions.Cancel" = "Abbrechen";
