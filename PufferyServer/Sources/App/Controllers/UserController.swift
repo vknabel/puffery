@@ -4,6 +4,7 @@ import Vapor
 
 final class UserController {
     func create(_ req: Request) throws -> EventLoopFuture<TokenResponse> {
+        try CreateUserRequest.validate(req)
         let createRequest = try req.content.decode(CreateUserRequest.self)
         let newUser = User(email: createRequest.email)
 
@@ -82,5 +83,12 @@ final class UserController {
 extension UpdateProfileRequest: Validatable {
     public static func validations(_ validations: inout Validations) {
         validations.add("email", as: String.self, is: .email, required: true)
+    }
+}
+
+extension CreateUserRequest: Validatable {
+    public static func validations(_ validations: inout Validations) {
+        validations.add("email", as: String.self, is: .email, required: false)
+        
     }
 }
