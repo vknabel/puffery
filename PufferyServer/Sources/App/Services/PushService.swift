@@ -14,7 +14,7 @@ struct PushService {
     func notifyDevices(message: Message) -> EventLoopFuture<Void> {
         notifiableDeviceTokens(message: message)
             .flatMap { devices in
-                let apnsSends = devices.filter { !$0.token.isEmpty }.map { device in
+                let apnsSends = devices.unique(\.token).filter { !$0.token.isEmpty }.map { device in
                     self.send(message: message, to: device)
                 }
                 return self.req.eventLoop.flatten(apnsSends)
@@ -69,5 +69,12 @@ struct PushService {
             .join(Channel.self, on: \Subscription.$channel.$id == \Channel.$id)
             .filter(Channel.self, \Channel.$id == message.$channel.id)
             .all()
+    }
+}
+
+private extension Sequence {
+    func unique<V: Hashable>(_ prop: (Iterator.Element) -> V) -> [Iterator.Element] {
+        var seen: Set<V> = []
+        return filter { seen.insert(prop($0)).inserted }
     }
 }
