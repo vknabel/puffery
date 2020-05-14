@@ -25,5 +25,8 @@ public func configure(_ app: Application) throws {
     try migrate(app)
     try apns(app)
     try routes(app)
-    try app.queues.startInProcessJobs(on: .default)
+
+    if Environment.get("PUFFERY_IN_PROCESS_JOBS") == "1" {
+        try app.queues.startInProcessJobs(on: .default)
+    }
 }
