@@ -54,8 +54,6 @@ let registrationReducer = Reducer<
     case let .showCheckEmails(shows):
         state.shouldCheckEmails = shows
         return .none
-    case .shouldRegister where state.email.isEmpty || state.activity.inProgress:
-        return .none
 
     case .activityFinished:
         state.activity = .idle
@@ -76,10 +74,13 @@ let registrationReducer = Reducer<
             }
             .eraseToEffect()
 
+    case .shouldRegister where state.activity.inProgress:
+        return .none
+
     case let .shouldRegister(onFinish: onFinish):
         state.activity = .inProgress
 
-        return environment.registerEffect(state.email)
+        return environment.registerEffect(nil)
             .handleEvents(receiveOutput: { _ in onFinish() })
             .transform(to: RegistrationAction.activityFinished)
             .catch { fetchingError in
