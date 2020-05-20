@@ -91,11 +91,7 @@ final class MessageController {
                 return subscription
             }
             .flatMap { (subscription: Subscription) in
-                Message.query(on: req.db)
-                    .filter(\Message.$channel.$id, .equal, subscription.$channel.id)
-                    .filter(\Message.$createdAt, .greaterThanOrEqual, subscription.createdAt ?? Date.distantPast)
-                    .sort(\.$createdAt, .descending)
-                    .all()
+                req.messages.latest(for: subscription)
                     .flatMapThrowing { messages in
                         try messages.map { message in
                             try MessageResponse(message, subscription: subscription)
@@ -107,26 +103,12 @@ final class MessageController {
     func messagesForAllChannels(_ req: Request) throws -> EventLoopFuture<[MessageResponse]> {
         let user = try req.auth.require(User.self)
 
-        return try Subscription.query(on: req.db)
-            .filter(\Subscription.$user.$id == user.requireID())
-            .sort(\.$createdAt, .descending)
-            .all()
-            .flatMap { (subscriptions: [Subscription]) in
-                let messageResponses = subscriptions.map { subscription in
-                    Message.query(on: req.db)
-                        .filter(\Message.$channel.$id, .equal, subscription.$channel.id)
-                        .sort(\.$createdAt, .descending)
-                        .all()
-                        .flatMapThrowing { messages in
-                            try messages.map { try MessageResponse($0, subscription: subscription) }
-                        }
+        return req.subscriptions.all(of: user)
+            .flatMap(req.messages.latestSubscribed(for:))
+            .flatMapThrowing { messages in
+                try messages.map {
+                    try MessageResponse($0.message, subscription: $0.subscription)
                 }
-                return req.eventLoop.flatten(messageResponses)
-                    .map { responses in
-                        responses
-                            .flatMap { $0 }
-                            .sorted(by: { $0.createdAt > $1.createdAt })
-                    }
             }
     }
 

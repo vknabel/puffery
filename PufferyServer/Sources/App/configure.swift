@@ -15,7 +15,13 @@ public func configure(_ app: Application) throws {
     ), as: DatabaseID.psql)
 
     try app.queues.use(.redis(url: Environment.get("REDIS_URL") ?? "redis://localhost:6379"))
-    app.sendgrid.initialize() // SENDGRID_API_KEY
+    
+    if Environment.process.SENDGRID_API_KEY != nil {
+        app.sendgrid.initialize() // SENDGRID_API_KEY
+    } else {
+        app.logger.warning("Missing SENDGRID_API_KEY. Deactivate emails.")
+    }
+    
     let emailJob = SendEmailJob()
     app.queues.add(emailJob)
 
@@ -26,7 +32,8 @@ public func configure(_ app: Application) throws {
     try apns(app)
     try routes(app)
 
-    if Environment.get("PUFFERY_IN_PROCESS_JOBS") == "1" {
+    if let inProcessJobs = Environment.get("PUFFERY_IN_PROCESS_JOBS")?.lowercased(),
+        ["true", "yes", "1"].contains(inProcessJobs) {
         try app.queues.startInProcessJobs(on: .default)
     }
 }

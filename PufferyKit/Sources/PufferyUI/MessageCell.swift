@@ -15,9 +15,10 @@ struct MessageCell: View {
         HStack {
 //            message.sender.icon.imageView
             VStack(alignment: .leading) {
-                SelectableText(message.title, font: UIFont.preferredFont(forTextStyle: .headline))
+                Text(message.title)
+                    .font(.headline)
 
-                SelectableText(message.body, font: UIFont.preferredFont(forTextStyle: .subheadline))
+                SelectableTextView(message.body, font: UIFont.preferredFont(forTextStyle: .subheadline))
             }
         }
         .padding()
@@ -64,7 +65,7 @@ extension Message.Color: View {
     }
 #endif
 
-struct SelectableText: UIViewRepresentable {
+struct SelectableTextView: UIViewRepresentable {
     typealias UIViewType = UITextView
 
     var text: String

@@ -34,6 +34,7 @@
 "CreateChannel.Actions.Create" = "Create";
 
 "ChannelDetails.All" = "All";
+"ChannelDetails.LimitedMessages" = "Only the newest messages will be shown.";
 "ChannelDetails.NoMessages.Title" = "No messages, yet.";
 "ChannelDetails.NoMessages.HelperNotify" = "Create your own messages!";
 "ChannelDetails.NoMessages.HelperReceive" = "Stay tuned for the author!";
@@ -47,11 +48,11 @@
 "ChannelList.SubscribeChannels.New" = "Subscribe";
 "ChannelList.NoChannels" = "No Channels";
 
-"ChannelSettings.Basic.Explanation" = "Share the Notify Key to allow others to BLARGH. If sufficient, just share the Receive Only Key to allow others to get BLARGHed.";
+"ChannelSettings.Basic.Explanation" = "Share the Notify Key to allow others notifying you. If sufficient, just share the Receive Only Key to keep others up to date.";
 "ChannelSettings.Basic.Name" = "Name";
 "ChannelSettings.Basic.NotifyKey" = "Notify Key";
 "ChannelSettings.Basic.ReceiveOnlyKey" = "Receive Only Key";
-"ChannelSettings.HowTo.SectionTitle" = "How can I BLARGH!?";
+"ChannelSettings.HowTo.SectionTitle" = "What now?";
 "ChannelSettings.HowTo.CURL.Title" = "Using CURL";
 "ChannelSettings.HowTo.CURL.Teaser url:%@" = "curl %@/notify/:notify-key";
 "ChannelSettings.HowTo.CURL.Contents url:%@ notify:%@ title:%@" = "curl '%@' \\\

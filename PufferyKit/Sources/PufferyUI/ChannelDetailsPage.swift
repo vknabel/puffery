@@ -22,7 +22,9 @@ struct ChannelDetailsPage: View {
 
     var body: some View {
         Fetching(loadMessagesPublisher, empty: self.noMessages) { messages in
-            MessageList(messages: messages)
+            VStack {
+                MessageList(messages: messages)
+            }
         }
         .navigationBarTitle(self.channel?.title ?? NSLocalizedString("ChannelDetails.All", comment: "All"))
         .navigationBarItems(trailing:

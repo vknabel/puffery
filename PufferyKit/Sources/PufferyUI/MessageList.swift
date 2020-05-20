@@ -17,6 +17,8 @@ struct MessageList: View {
                 ForEach(messages) { message in
                     MessageCell(message: message)
                 }
+                Text("ChannelDetails.LimitedMessages")
+                    .font(.footnote)
             }
             .padding()
         }

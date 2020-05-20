@@ -30,7 +30,6 @@ let package = Package(
         .package(url: "https://github.com/kylebrowning/APNSwift.git", .exact("2.0.0-rc1")),
 
         // 👩‍🔧 Jobs and Queues
-        .package(url: "https://github.com/vapor/queues.git", from: "1.0.0"),
         .package(url: "https://github.com/vapor/queues-redis-driver.git", from: "1.0.0-rc"),
 
         // ✉️

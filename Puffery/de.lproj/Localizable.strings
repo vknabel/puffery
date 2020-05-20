@@ -34,6 +34,7 @@
 "CreateChannel.Actions.Create" = "Erstellen";
 
 "ChannelDetails.All" = "Alle";
+"ChannelDetails.LimitedMessages" = "Es werden nur die neusten Nachrichten angezeigt.";
 "ChannelDetails.NoMessages.Title" = "Noch keine Nachrichten.";
 "ChannelDetails.NoMessages.HelperNotify" = "Erstelle deine eigenen Nachrichten!";
 "ChannelDetails.NoMessages.HelperReceive" = "Warte auf eine Nachricht vom Autor.";
@@ -47,11 +48,11 @@
 "ChannelList.SubscribeChannels.New" = "Abonnieren";
 "ChannelList.NoChannels" = "Keine Channel";
 
-"ChannelSettings.Basic.Explanation" = "Teile deinen Notify-Key, mit anderen und BLARGHed zusammen! Wenn andere nur BLARGHs empfangen sollen, reicht der Abonnement-Key.";
+"ChannelSettings.Basic.Explanation" = "Teile deinen Notify-Key mit anderen, um dich zu benachrichtigen. Willst du andere benachrichtigen, verwende den Abonnement-Key.";
 "ChannelSettings.Basic.Name" = "Name";
 "ChannelSettings.Basic.NotifyKey" = "Notify-Key";
 "ChannelSettings.Basic.ReceiveOnlyKey" = "Abonnement-Key";
-"ChannelSettings.HowTo.SectionTitle" = "Was zum BLARGH!?";
+"ChannelSettings.HowTo.SectionTitle" = "Was nun?";
 "ChannelSettings.HowTo.CURL.Title" = "Per CURL";
 "ChannelSettings.HowTo.CURL.Teaser url:%@" = "curl %@/notify/:notify-key";
 "ChannelSettings.HowTo.CURL.Contents url:%@ notify:%@ title:%@" = "curl '%@' \\\

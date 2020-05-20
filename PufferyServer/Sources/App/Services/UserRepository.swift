@@ -6,7 +6,7 @@ extension Request {
 }
 
 struct UserRepository {
-    var req: Request
+    let req: Request
 
     func sendLoginConfirmation(_ user: User) -> EventLoopFuture<Void> {
         guard let emailAddress = user.email else {
