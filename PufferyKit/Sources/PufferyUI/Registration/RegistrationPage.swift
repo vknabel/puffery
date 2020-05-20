@@ -64,6 +64,7 @@ struct RegistrationPage: View {
 
                 Spacer()
             }.buttonStyle(RoundedButtonStyle())
+            .trackAppearence("registration", using: Current.tracker)
         }
     }
 }

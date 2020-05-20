@@ -50,7 +50,7 @@ struct ChannelListPage: View {
         }
         .navigationBarTitle("ChannelList.Title")
         .navigationBarItems(trailing: settingsNavigationBarItem)
-        .onAppear { Current.tracker.record("channels") }
+        .trackAppearence("channels", using: Current.tracker)
     }
 
     func createChannelHeader() -> some View {

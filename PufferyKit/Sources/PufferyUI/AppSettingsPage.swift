@@ -35,8 +35,8 @@ struct AppSettingsPage: View {
         .navigationBarTitle("Settings", displayMode: .inline)
         .navigationBarItems(trailing: Button(action: dismiss) {
             Text("Settings.Done").fontWeight(.bold)
-            })
-        .onAppear { Current.tracker.record("settings") }
+        })
+        .trackAppearence("settings", using: Current.tracker)
     }
 
     func registerForPushNotifications() {

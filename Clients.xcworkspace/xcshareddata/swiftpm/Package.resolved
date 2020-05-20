@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "AckeeTracker",
-        "repositoryURL": "https://github.com/vknabel/AckeeTracker-Swift.git",
-        "state": {
-          "branch": null,
-          "revision": "1ba25182f92f2fbe088066d4b02f7d3c6561fec3",
-          "version": "0.1.0"
-        }
-      },
-      {
         "package": "KeychainSwift",
         "repositoryURL": "https://github.com/evgenyneu/keychain-swift.git",
         "state": {

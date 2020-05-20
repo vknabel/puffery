@@ -378,7 +378,6 @@
 			mainGroup = BAF154572444BB4400EDB97B;
 			packageReferences = (
 				BA96015E2452208C00667BDD /* XCRemoteSwiftPackageReference "keychain-swift" */,
-				BA411FAC24544E0600E0AC32 /* XCRemoteSwiftPackageReference "AckeeTracker-Swift" */,
 				BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = BAF154612444BB4400EDB97B /* Products */;
@@ -875,14 +874,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BA411FAC24544E0600E0AC32 /* XCRemoteSwiftPackageReference "AckeeTracker-Swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/vknabel/AckeeTracker-Swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
-			};
-		};
 		BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";

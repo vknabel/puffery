@@ -35,7 +35,7 @@ struct ChannelSubscribingPage: View {
                 leading: cancelNavigationItem,
                 trailing: createNavigationItem
             )
-            .onAppear { Current.tracker.record("channels/subscribe") }
+            .trackAppearence("channels/subscribe", using: Current.tracker)
             .onAppear {
                 if let subscription = UIPasteboard.general.strings?.compactMap(UUID.init(uuidString:)).first {
                     self.channelKey = subscription.uuidString

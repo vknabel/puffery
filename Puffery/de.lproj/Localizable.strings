@@ -34,7 +34,7 @@
 "CreateChannel.Actions.Create" = "Erstellen";
 
 "ChannelDetails.All" = "Alle";
-"ChannelDetails.LimitedMessages" = "Es werden nur die neusten Nachrichten angezeigt.";
+"ChannelDetails.LimitedMessages" = "Es werden nur die neuesten Nachrichten angezeigt.";
 "ChannelDetails.NoMessages.Title" = "Noch keine Nachrichten.";
 "ChannelDetails.NoMessages.HelperNotify" = "Erstelle deine eigenen Nachrichten!";
 "ChannelDetails.NoMessages.HelperReceive" = "Warte auf eine Nachricht vom Autor.";

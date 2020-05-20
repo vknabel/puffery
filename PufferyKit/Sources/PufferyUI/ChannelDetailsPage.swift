@@ -40,7 +40,7 @@ struct ChannelDetailsPage: View {
                 }
             }
         )
-        .onAppear { Current.tracker.record("channels/:id") }
+        .trackAppearence("channels/:id", using: Current.tracker)
     }
 
     var noMessages: some View {
