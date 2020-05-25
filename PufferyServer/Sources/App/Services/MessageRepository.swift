@@ -33,7 +33,7 @@ struct MessageRepository {
             .map { responses in
                 responses
                     .flatMap { $0 }
-                    .sorted()
+                    .sorted(>)
                     .prefix(30)
             }
             .map(Array.init(_:))
