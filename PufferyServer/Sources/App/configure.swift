@@ -15,13 +15,13 @@ public func configure(_ app: Application) throws {
     ), as: DatabaseID.psql)
 
     try app.queues.use(.redis(url: Environment.get("REDIS_URL") ?? "redis://localhost:6379"))
-    
+
     if Environment.process.SENDGRID_API_KEY != nil {
         app.sendgrid.initialize() // SENDGRID_API_KEY
     } else {
         app.logger.warning("Missing SENDGRID_API_KEY. Deactivate emails.")
     }
-    
+
     let emailJob = SendEmailJob()
     app.queues.add(emailJob)
 

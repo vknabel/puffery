@@ -10,16 +10,16 @@ extension Request {
 struct MessageRepository {
     let eventLoop: EventLoop
     let db: Database
-    
+
     func latest(for subscription: Subscription) -> EventLoopFuture<[Message]> {
-        return Message.query(on: db)
+        Message.query(on: db)
             .filter(\Message.$channel.$id, .equal, subscription.$channel.id)
             .filter(\Message.$createdAt, .greaterThanOrEqual, subscription.createdAt ?? Date.distantPast)
             .sort(\.$createdAt, .descending)
             .limit(20)
             .all()
     }
-    
+
     func latestSubscribed(for subscriptions: [Subscription]) -> EventLoopFuture<[SubscriptionMessage]> {
         let messageResponses = subscriptions.map { subscription in
             self.latest(for: subscription)
@@ -27,13 +27,13 @@ struct MessageRepository {
                     messages.map {
                         SubscriptionMessage(message: $0, subscription: subscription)
                     }
-            }
+                }
         }
         return eventLoop.flatten(messageResponses)
             .map { responses in
                 responses
                     .flatMap { $0 }
-                    .sorted(>)
+                    .sorted(by: >)
                     .prefix(30)
             }
             .map(Array.init(_:))

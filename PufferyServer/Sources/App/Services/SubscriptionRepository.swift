@@ -10,7 +10,7 @@ extension Request {
 struct SubscriptionRepository {
     let eventLoop: EventLoop
     let db: Database
-    
+
     func all(of user: User) -> EventLoopFuture<[Subscription]> {
         do {
             return try Subscription.query(on: db)
