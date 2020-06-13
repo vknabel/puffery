@@ -1,12 +1,14 @@
 import Foundation
 
-public final class DurationRecorder {
+@objc public class DurationRecorder: NSObject {
     private let server: AckeeServer
     private var sessionTimer: Timer?
     internal var record: Record? {
         didSet {
-            sessionTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { [weak self] _ in
-                self?.ping()
+            DispatchQueue.main.async {
+                self.sessionTimer =  Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { [weak self] _ in
+                    self?.ping()
+                }
             }
         }
     }
@@ -15,17 +17,19 @@ public final class DurationRecorder {
         self.server = server
     }
 
-    private func ping() {
+    @objc private func ping() {
         guard let record = record else {
             return
         }
         server.update(record: record)
     }
 
-    public func cancel() {}
+    public func cancel() {
+        sessionTimer?.invalidate()
+    }
 
     deinit {
-        sessionTimer?.invalidate()
+        cancel()
     }
 }
 

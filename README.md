@@ -10,6 +10,7 @@
 | `APNS_KEY_ID`             | Key ID for Auth Key.                | Only required for push notifications                                     |
 | `APNS_TEAM_ID`            | Team ID for Auth Key.               | Only required for push notifications                                     |
 | `APNS_KEY_PATH`           | Path to private auth key for APNS.  | `private/AuthKey_$APNS_KEY_ID.p8`                                        |
+| `APNS_ENVIRONMENT`        | Path to private auth key for APNS.  | `production`                                                             |
 | `SENDGRID_API_KEY`        | API Key for sending emails.         | Only required for emails                                                 |
 
 ## Run Server
@@ -18,6 +19,8 @@
 $ cd PufferyServer
 $ swift run puffery serve --hostname 0.0.0.0 --auto-migrate
 ```
+
+To access your server from the mobile app add `127.0.0.1 local.puffery.app` to `/etc/hosts` and select the `Puffery (Local)` scheme.
 
 ## Routes
 

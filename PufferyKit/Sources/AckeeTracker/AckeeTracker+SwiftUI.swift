@@ -19,10 +19,14 @@
         var body: some View {
             content
                 .onAppear(perform: {
-                    self.recorder = self.tracker.recordPresence(self.location)
+                    DispatchQueue.main.async {
+                        self.recorder = self.tracker.recordPresence(self.location)
+                    }
             })
                 .onDisappear(perform: {
-                    self.recorder = nil
+                    DispatchQueue.main.async {
+                        self.recorder = nil
+                    }
             })
         }
     }

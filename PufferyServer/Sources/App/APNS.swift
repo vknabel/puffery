@@ -3,7 +3,8 @@ import Vapor
 
 public func apns(_ app: Application) throws {
     guard let keyID = Environment.get("APNS_KEY_ID"),
-        let teamID = Environment.get("APNS_TEAM_ID") else {
+        let teamID = Environment.get("APNS_TEAM_ID"),
+        let environment = try APNSwiftConfiguration.Environment(key: "APNS_ENVIRONMENT") else {
         app.logger.warning("Missing APNS_KEY_ID, APNS_TEAM_ID. Disabling notifications.")
         return
     }
@@ -16,7 +17,30 @@ public func apns(_ app: Application) throws {
             teamIdentifier: teamID
         ),
         topic: "com.vknabel.puffery",
-        environment: .production,
+        environment: environment,
         logger: app.logger
     )
+}
+
+extension APNSwiftConfiguration.Environment {
+    public init?(key: String) throws {
+        switch Environment.get(key) {
+        case "production":
+            self = .production
+        case "sandbox":
+            self = .sandbox
+        case let given?:
+            throw UnsupportedAPNSEnvrionment(given: given)
+        case nil:
+            return nil
+        }
+    }
+
+    private struct UnsupportedAPNSEnvrionment: Error {
+        let given: String
+
+        var localizedDescription: String {
+            return #"Unsupported APNS Envrionment: "\#(given)". Only supports "production" and "staging""#
+        }
+    }
 }

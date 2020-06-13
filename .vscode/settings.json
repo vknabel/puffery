@@ -2,5 +2,13 @@
   "[swift]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "vknabel.vscode-swiftformat"
-  }
+  },
+  "swift.targets": [
+    {
+      "name": "Puffery",
+      "path": "Puffery",
+      "sources": ["**/*.swift"],
+      "compilerArguments": ["-target", "iOS"]
+    }
+  ]
 }

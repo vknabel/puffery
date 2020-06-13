@@ -55,8 +55,8 @@
 "ChannelSettings.HowTo.SectionTitle" = "Was nun?";
 "ChannelSettings.HowTo.CURL.Title" = "Per CURL";
 "ChannelSettings.HowTo.CURL.Teaser url:%@" = "curl %@/notify/:notify-key";
-"ChannelSettings.HowTo.CURL.Contents url:%@ notify:%@ title:%@" = "curl '%@' \\\
---form-string 'title=Hallo von %@' \\\
+"ChannelSettings.HowTo.CURL.Contents url:%@ notify:%@ title:%@" = "curl '%@/notify/%@' \\\
+--form-string 'title=Hallo %@' \\\
 --form-string 'body=Ein paar Details wären nett' \\\
 --form-string 'color=green' \
 ";

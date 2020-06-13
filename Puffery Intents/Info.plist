@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>ACKEE_APP_URL</key>
-	<string>puffery://puffery.app</string>
+	<string>$(ACKEE_APP_URL)</string>
 	<key>ACKEE_DOMAIN_ID</key>
-	<string>dd72344d-8238-4ca4-838e-422e42e2555b</string>
+	<string>$(ACKEE_DOMAIN_ID)</string>
 	<key>ACKEE_SERVER_URL</key>
-	<string>https://ack.knabel.dev</string>
+	<string>$(ACKEE_SERVER_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -47,6 +47,17 @@
 		<string>$(PRODUCT_MODULE_NAME).IntentHandler</string>
 	</dict>
 	<key>PUFFERY_API_URL</key>
-	<string>https://vapor.puffery.app</string>
+	<string>$(PUFFERY_API_URL)</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>vapor.puffery.local</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 </dict>
 </plist>
