@@ -14,23 +14,22 @@ let package = Package(
         .package(name: "APIDefinition", path: "../APIDefinition"),
 
         // 💧 A server-side Swift web framework.
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.9.0"),
 
         // 🔵 Swift ORM (queries, models, relations, etc) built on Postegres.
-        .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0-rc"),
-        .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0-rc"),
+        .package(url: "https://github.com/vapor/fluent.git", from: "4.0.0-rc.3.1"),
+        .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.0.0"),
 
         // 👤 Authentication and Authorization layer for Fluent.
 //        .package(url: "https://github.com/vapor/auth.git", from: "2.0.0"),
-        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0-rc"),
+        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0-rc.2.1"),
 
         // 📱 APNS Push Notifications
-//        .package(url: "https://github.com/vapor/apns.git", .exact("1.0.0-rc.1")),
-        .package(url: "https://github.com/vknabel/apns.git", .revision("d3eea3eb94aede320c66714efa5ff7b2316430c0")),
+        .package(url: "https://github.com/vapor/apns.git", .exact("1.0.0-rc.1.1")),
         .package(url: "https://github.com/kylebrowning/APNSwift.git", .exact("2.0.0-rc1")),
 
         // 👩‍🔧 Jobs and Queues
-        .package(url: "https://github.com/vapor/queues-redis-driver.git", from: "1.0.0-rc"),
+        .package(url: "https://github.com/vapor/queues-redis-driver.git", from: "1.0.0-rc.3"),
 
         // ✉️
         .package(url: "https://github.com/vapor-community/sendgrid.git", from: "4.0.0"),

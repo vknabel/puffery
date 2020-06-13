@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BA8E673C2469FB93004F05F3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = BA8E673B2469FB93004F05F3 /* ComposableArchitecture */; };
-		BA8E673D2469FB93004F05F3 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = BA8E673B2469FB93004F05F3 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		BA8E673F2469FB93004F05F3 /* ComposableArchitectureTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = BA8E673E2469FB93004F05F3 /* ComposableArchitectureTestSupport */; };
 		BA8E67402469FB93004F05F3 /* ComposableArchitectureTestSupport in Embed Frameworks */ = {isa = PBXBuildFile; productRef = BA8E673E2469FB93004F05F3 /* ComposableArchitectureTestSupport */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		BA923F2C245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA923F2F245EFAC0008BD6C9 /* Intents.intentdefinition */; };
@@ -22,6 +20,7 @@
 		BA952532245ED7A300FFC9E3 /* PufferyKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA952531245ED7A300FFC9E3 /* PufferyKit */; };
 		BA952536245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA952535245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift */; };
 		BA952538245EEDF200FFC9E3 /* Puffery+Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA952537245EEDF200FFC9E3 /* Puffery+Intent.swift */; };
+		BAC3D8212494D3E300BF33BF /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = BAC3D8202494D3E300BF33BF /* ComposableArchitecture */; };
 		BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154632444BB4400EDB97B /* AppDelegate.swift */; };
 		BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154652444BB4400EDB97B /* SceneDelegate.swift */; };
 		BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */; };
@@ -63,7 +62,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BA8E673D2469FB93004F05F3 /* ComposableArchitecture in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,7 +139,7 @@
 			files = (
 				BA952530245ED78500FFC9E3 /* PufferyUI in Frameworks */,
 				BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */,
-				BA8E673C2469FB93004F05F3 /* ComposableArchitecture in Frameworks */,
+				BAC3D8212494D3E300BF33BF /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +292,7 @@
 			name = Puffery;
 			packageProductDependencies = (
 				BA95252F245ED78500FFC9E3 /* PufferyUI */,
-				BA8E673B2469FB93004F05F3 /* ComposableArchitecture */,
+				BAC3D8202494D3E300BF33BF /* ComposableArchitecture */,
 			);
 			productName = Puffery;
 			productReference = BAF154602444BB4400EDB97B /* Puffery.app */;
@@ -893,11 +891,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BA8E673B2469FB93004F05F3 /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
-		};
 		BA8E673E2469FB93004F05F3 /* ComposableArchitectureTestSupport */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
@@ -910,6 +903,11 @@
 		BA952531245ED7A300FFC9E3 /* PufferyKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PufferyKit;
+		};
+		BAC3D8202494D3E300BF33BF /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
 

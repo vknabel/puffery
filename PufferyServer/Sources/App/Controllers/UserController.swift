@@ -15,8 +15,10 @@ final class UserController {
             .flatMap { _ -> EventLoopFuture<Void> in
                 if let device = createRequest.device {
                     do {
-                        return try DeviceToken(user: newUser, token: device.token, isProduction: device.isProduction ?? true)
-                            .create(on: req.db)
+                        return try DeviceToken(
+                            user: newUser, token: device.token, isProduction: device.isProduction ?? true
+                        )
+                        .create(on: req.db)
                     } catch {
                         return req.eventLoop.makeFailedFuture(error)
                     }
