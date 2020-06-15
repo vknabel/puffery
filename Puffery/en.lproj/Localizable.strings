@@ -70,6 +70,10 @@
 "ChannelSettings.Actions.Save" = "Save";
 "ChannelSettings.Actions.Cancel" = "Cancel";
 
+"ChannelSettings.ConfirmUnsubscribe.Title" = "Unsubscribe";
+"ChannelSettings.ConfirmUnsubscribe.Message" = "You won't receive any notifications for this channel anymore.";
+"ChannelSettings.ConfirmUnsubscribe.Unsubscribe" = "Unsubscribe";
+
 "ChannelSubscribing.Title" = "Subscribe Channel";
 "ChannelSubscribing.Basic.Explanation" = "Insert a notify key or a receive only key.";
 "ChannelSubscribing.Basic.ChannelKey" = "Channel Key";

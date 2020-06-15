@@ -139,6 +139,13 @@ final class VaporAPI: API {
             .encoding(body: createSubscription, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode)
     }
+    
+    func unsubscribe(_ subscription: SubscribedChannelResponse) -> Endpoint<SubscribedChannelDeletedResponse> {
+        endpoint()
+            .delete("channels", subscription.id.uuidString)
+            .encoding(body: subscription, using: jsonEncoder.encode)
+            .decoding(jsonDecoder.decode)
+    }
 
     func notify(key notifyKey: String, _ createMessage: CreateMessageRequest) -> Endpoint<NotifyMessageResponse> {
         endpoint().post("notify", notifyKey).encoding(body: createMessage, using: jsonEncoder.encode)

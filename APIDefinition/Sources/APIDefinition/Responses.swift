@@ -45,6 +45,10 @@ public struct SubscribedChannelResponse: Codable {
     }
 }
 
+public struct SubscribedChannelDeletedResponse: Codable {
+    public init() {}
+}
+
 public struct MessageResponse: Codable {
     public var id: UUID
     public var title: String

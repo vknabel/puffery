@@ -3,7 +3,7 @@ import Fluent
 import Vapor
 
 final class SubscribedChannelController {
-    func create(_ req: Request) throws -> Future<SubscribedChannelResponse> {
+    func create(_ req: Request) throws -> EventLoopFuture<SubscribedChannelResponse> {
         let user = try req.auth.require(User.self)
         let createChannel = try req.content.decode(CreateChannelRequest.self)
         let channel = Channel(title: createChannel.title)
@@ -19,7 +19,16 @@ final class SubscribedChannelController {
             }
     }
 
-    func index(_ req: Request) throws -> Future<[SubscribedChannelResponse]> {
+    func unsubscribe(_ req: Request) throws -> EventLoopFuture<SubscribedChannelDeletedResponse> {
+        let user = try req.auth.require(User.self)
+        return req.subscriptions.find(req.parameters.get("subscription_id"), of: user)
+            .flatMap { subscription in
+                subscription.delete(force: true, on: req.db)
+            }
+            .transform(to: SubscribedChannelDeletedResponse())
+    }
+
+    func index(_ req: Request) throws -> EventLoopFuture<[SubscribedChannelResponse]> {
         let user = try req.auth.require(User.self)
 
         return user.$subscriptions.query(on: req.db)
@@ -29,7 +38,7 @@ final class SubscribedChannelController {
             .flatMapThrowing { try $0.map(SubscribedChannelResponse.init) }
     }
 
-    func indexShared(_ req: Request) throws -> Future<[SubscribedChannelResponse]> {
+    func indexShared(_ req: Request) throws -> EventLoopFuture<[SubscribedChannelResponse]> {
         let user = try req.auth.require(User.self)
 
         return user.$subscriptions.query(on: req.db)
@@ -40,7 +49,7 @@ final class SubscribedChannelController {
             .flatMapThrowing { try $0.map(SubscribedChannelResponse.init) }
     }
 
-    func indexOwn(_ req: Request) throws -> Future<[SubscribedChannelResponse]> {
+    func indexOwn(_ req: Request) throws -> EventLoopFuture<[SubscribedChannelResponse]> {
         let user = try req.auth.require(User.self)
 
         return user.$subscriptions.query(on: req.db)
@@ -51,7 +60,7 @@ final class SubscribedChannelController {
             .flatMapThrowing { try $0.map(SubscribedChannelResponse.init) }
     }
 
-    func subscribe(_ req: Request) throws -> Future<SubscribedChannelResponse> {
+    func subscribe(_ req: Request) throws -> EventLoopFuture<SubscribedChannelResponse> {
         let user = try req.auth.require(User.self)
         let createSubscription = try req.content.decode(CreateSubscriptionRequest.self)
 

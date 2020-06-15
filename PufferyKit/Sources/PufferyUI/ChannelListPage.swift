@@ -103,14 +103,20 @@ struct ChannelListPage: View {
         }
     }
 
+    var didUnsubscribedFromChannel = NotificationCenter.default.publisher(for: .didUnsubscribeFromChannel)
+        .transformError(to: FetchingError.self)
+        .transform(to: ())
+    
     var loadOwnChannelsPublisher: AnyPublisher<[Channel], FetchingError> {
-        shouldReload.prepend(())
+        shouldReload.merge(with: didUnsubscribedFromChannel)
+            .prepend(())
             .flatMap(api.ownChannels().publisher)
             .eraseToAnyPublisher()
     }
 
     var loadSharedChannelsPublisher: AnyPublisher<[Channel], FetchingError> {
-        shouldReload.prepend(())
+        shouldReload.merge(with: didUnsubscribedFromChannel)
+            .prepend(())
             .flatMap(api.sharedChannels().publisher)
             .eraseToAnyPublisher()
     }

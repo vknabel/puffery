@@ -14,6 +14,7 @@ extension APIDefinition.LoginUserRequest: Content {}
 extension APIDefinition.MessageResponse: Content {}
 extension APIDefinition.NotifyMessageResponse: Content {}
 extension APIDefinition.SubscribedChannelResponse: Content {}
+extension APIDefinition.SubscribedChannelDeletedResponse: Content {}
 extension APIDefinition.TokenResponse: Content {}
 extension APIDefinition.UpdateProfileRequest: Content {}
 extension APIDefinition.UserResponse: Content {}

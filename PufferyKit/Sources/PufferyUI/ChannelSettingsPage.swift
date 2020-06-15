@@ -13,6 +13,7 @@ struct ChannelSettingsPage: View {
 
     @State var hasJustCopiedPrivateToken = false
     @State var hasJustCopiedPublicToken = false
+    @State var displaysUnsubscribePrompt = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
@@ -63,9 +64,21 @@ struct ChannelSettingsPage: View {
             }
 
             Section {
-                Button(action: {}) {
+                Button(action: requestUnsubscribe) {
                     Text("ChannelSettings.Actions.Unsubscribe")
-                }.accentColor(.red)
+                }
+                .accentColor(.red)
+                .alert(isPresented: $displaysUnsubscribePrompt) { () -> Alert in
+                    Alert(
+                        title: Text("ChannelSettings.ConfirmUnsubscribe.Title"),
+                        message: Text("ChannelSettings.ConfirmUnsubscribe.Message"),
+                        primaryButton: Alert.Button.cancel(),
+                        secondaryButton: Alert.Button.destructive(
+                            Text("ChannelSettings.ConfirmUnsubscribe.Unsubscribe"),
+                            action: performUnsubscribe
+                        )
+                    )
+                }
             }
         }
         .roundedListStyle()
@@ -86,6 +99,20 @@ struct ChannelSettingsPage: View {
     var cancelNavigationItem: some View {
         Button(action: dismiss) {
             Text("ChannelSettings.Actions.Cancel")
+        }
+    }
+
+    func requestUnsubscribe() {
+        displaysUnsubscribePrompt = true
+    }
+    
+    func performUnsubscribe() {
+        self.presentationMode.wrappedValue.dismiss()
+
+        Current.api.unsubscribe(channel).task { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                NotificationCenter.default.post(Notification(name: .didUnsubscribeFromChannel))
+            }
         }
     }
 

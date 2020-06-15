@@ -70,6 +70,10 @@
 "ChannelSettings.Actions.Save" = "Speichern";
 "ChannelSettings.Actions.Cancel" = "Abbrechen";
 
+"ChannelSettings.ConfirmUnsubscribe.Title" = "Abonnement beenden";
+"ChannelSettings.ConfirmUnsubscribe.Message" = "Du wirst von diesem Channel keine Benachrichtigungen mehr erhalten.";
+"ChannelSettings.ConfirmUnsubscribe.Unsubscribe" = "Unsubscribe";
+
 "ChannelSubscribing.Title" = "Channel abonnieren";
 "ChannelSubscribing.Basic.Explanation" = "Entweder einen Notify- oder einen Abonnement-Key einfügen.";
 "ChannelSubscribing.Basic.ChannelKey" = "Channel-Key";
