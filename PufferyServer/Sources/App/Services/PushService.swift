@@ -12,17 +12,36 @@ struct PushService {
     let req: Request
 
     func notifyDevices(message: Message) -> EventLoopFuture<Void> {
-        notifiableDeviceTokens(message: message)
-            .flatMap { devices in
-                let apnsSends = devices.unique(\.token).filter { !$0.token.isEmpty }.map { device in
-                    self.send(message: message, to: device)
-                }
-                return self.req.eventLoop.flatten(apnsSends)
+        return notifiableSubscriptions(message: message)
+            .flatMap { subscriptions in
+                self.req.eventLoop.flatten(
+                    subscriptions.map { subscription in
+                        self.notifyDevices(subscription: subscription, message: message)
+                    }
+                )
+        }
+    }
+    
+    private func notifyDevices(subscription: Subscription, message: Message) -> EventLoopFuture<Void> {
+        notifiableDeviceTokens(subscription: subscription)
+            .map { tokens in
+                tokens.unique(\.token).filter { !$0.token.isEmpty }
             }
+        .flatMap { tokens in
+            self.req.eventLoop.flatten(
+                tokens.map { self.send(message: message, to: $0, for: subscription) }
+            )
+        }
     }
 
-    private func send(message: Message, to device: DeviceToken) -> EventLoopFuture<Void> {
-        req.apns.send(apnPayload(for: message), to: device.token)
+    private func send(message: Message, to device: DeviceToken, for subscription: Subscription) -> EventLoopFuture<Void> {
+        let notif: SubscribedChannelNotification
+        do {
+            notif = try subscribedChannelNotification(for: message, subscription: subscription)
+        } catch {
+            return req.eventLoop.makeFailedFuture(error)
+        }
+        return req.apns.send(notif, to: device.token)
             .flatMapError { (error) -> EventLoopFuture<Void> in
                 if case .badRequest(.badDeviceToken) = error as? APNSwiftError.ResponseError {
                     self.req.logger.info("APN Removing bad device token", metadata: [
@@ -46,28 +65,30 @@ struct PushService {
             }
     }
 
-    private func apnPayload(for message: Message) -> APNSwiftPayload {
-        APNSwiftPayload(
-            alert: APNSwiftPayload.APNSwiftAlert(
-                title: "\(message.channel.title): \(message.title)",
-                body: message.body,
-                titleLocKey: nil,
-                titleLocArgs: nil,
-                actionLocKey: nil,
-                locKey: nil,
-                locArgs: nil,
-                launchImage: nil
-            ),
-            badge: 1
+    private func subscribedChannelNotification(for message: Message, subscription: Subscription) throws -> SubscribedChannelNotification {
+        try SubscribedChannelNotification(
+            subscription: subscription,
+            aps: APNSwiftPayload(
+                alert: APNSwiftPayload.APNSwiftAlert(
+                    title: "\(message.channel.title): \(message.title)",
+                    body: message.body
+                ),
+                badge: 1
+            )
         )
     }
 
-    private func notifiableDeviceTokens(message: Message) -> EventLoopFuture<[DeviceToken]> {
+    private func notifiableSubscriptions(message: Message) -> EventLoopFuture<[Subscription]> {
+        Subscription.query(on: req.db)
+            .filter(Subscription.self, \Subscription.$channel.$id == message.$channel.id)
+            .all()
+    }
+    
+    private func notifiableDeviceTokens(subscription: Subscription) -> EventLoopFuture<[DeviceToken]> {
         DeviceToken.query(on: req.db)
             .join(User.self, on: \DeviceToken.$user.$id == \User.$id, method: .inner)
-            .join(Subscription.self, on: \User.$id == \Subscription.$user.$id)
-            .join(Channel.self, on: \Subscription.$channel.$id == \Channel.$id)
-            .filter(Channel.self, \Channel.$id == message.$channel.id)
+            .join(Subscription.self, on: \User.$id == \Subscription.$user.$id, method: .inner)
+            .filter(Subscription.self, \Subscription.$channel.$id == subscription.$user.id)
             .all()
     }
 }
@@ -76,5 +97,15 @@ private extension Sequence {
     func unique<V: Hashable>(_ prop: (Iterator.Element) -> V) -> [Iterator.Element] {
         var seen: Set<V> = []
         return filter { seen.insert(prop($0)).inserted }
+    }
+}
+
+private struct SubscribedChannelNotification: APNSwiftNotification {
+    let subscribedChannelID: UUID
+    let aps: APNSwiftPayload
+
+    init(subscription: Subscription, aps: APNSwiftPayload) throws {
+        self.subscribedChannelID = try subscription.requireID()
+        self.aps = aps
     }
 }

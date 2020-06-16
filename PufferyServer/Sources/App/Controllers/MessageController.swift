@@ -30,7 +30,7 @@ final class MessageController {
                 body: createMessage.body,
                 color: createMessage.color
             )
-            return message.create(on: req.db)
+            return self.saveAndNotify(req, message: message)
                 .flatMapThrowing { _ in
                     try MessageResponse(message, subscription: subscription)
                 }
