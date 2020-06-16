@@ -51,8 +51,10 @@
 "ChannelSettings.Basic.Explanation" = "Share the Notify Key to allow others notifying you. If sufficient, just share the Receive Only Key to keep others up to date.";
 "ChannelSettings.Basic.Name" = "Name";
 "ChannelSettings.Basic.NotifyKey" = "Notify Key";
+"ChannelSettings.Basic.InvitePublishers" = "Share to invite publishers";
 "ChannelSettings.Basic.ReceiveOnlyKey" = "Receive Only Key";
-"ChannelSettings.HowTo.SectionTitle" = "What now?";
+"ChannelSettings.Basic.InviteSubscribers" = "Invite subscribers";
+"ChannelSettings.HowTo.SectionTitle" = "How to send notifications?";
 "ChannelSettings.HowTo.CURL.Title" = "Using CURL";
 "ChannelSettings.HowTo.CURL.Teaser url:%@" = "curl %@/notify/:notify-key";
 "ChannelSettings.HowTo.CURL.Contents url:%@ notify:%@ title:%@" = "curl '%@/notify/%@' \\\

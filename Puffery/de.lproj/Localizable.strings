@@ -51,8 +51,10 @@
 "ChannelSettings.Basic.Explanation" = "Teile deinen Notify-Key mit anderen, um dich zu benachrichtigen. Willst du andere benachrichtigen, verwende den Abonnement-Key.";
 "ChannelSettings.Basic.Name" = "Name";
 "ChannelSettings.Basic.NotifyKey" = "Notify-Key";
+"ChannelSettings.Basic.InvitePublishers" = "Autoren einladen";
 "ChannelSettings.Basic.ReceiveOnlyKey" = "Abonnement-Key";
-"ChannelSettings.HowTo.SectionTitle" = "Was nun?";
+"ChannelSettings.Basic.InviteSubscribers" = "Abonnenten einladen";
+"ChannelSettings.HowTo.SectionTitle" = "Wie versende ich Benachrichtigungen?";
 "ChannelSettings.HowTo.CURL.Title" = "Per CURL";
 "ChannelSettings.HowTo.CURL.Teaser url:%@" = "curl %@/notify/:notify-key";
 "ChannelSettings.HowTo.CURL.Contents url:%@ notify:%@ title:%@" = "curl '%@/notify/%@' \\\

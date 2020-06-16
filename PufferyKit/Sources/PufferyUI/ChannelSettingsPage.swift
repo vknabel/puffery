@@ -14,6 +14,7 @@ struct ChannelSettingsPage: View {
     @State var hasJustCopiedPrivateToken = false
     @State var hasJustCopiedPublicToken = false
     @State var displaysUnsubscribePrompt = false
+    @State var subscriptionToken: String?
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
@@ -29,15 +30,38 @@ struct ChannelSettingsPage: View {
                 channel.notifyKey.map { notifyKey in
                     CopyContentsCell(
                         title: "ChannelSettings.Basic.NotifyKey",
-                        teaser: "\(notifyKey)",
+                        teaser: "\(String(notifyKey.prefix(8)))…",
                         contents: "\(notifyKey)"
                     )
+                }
+                channel.notifyKey.map { notifyKey in
+                    Button(action: { self.subscriptionToken = notifyKey }) {
+                        HStack(spacing: 10) {
+                            Image(systemName: "square.and.arrow.up")
+                            Text("ChannelSettings.Basic.InvitePublishers")
+                        }
+                    }
                 }
 
                 CopyContentsCell(
                     title: "ChannelSettings.Basic.ReceiveOnlyKey",
-                    teaser: "\(channel.receiveOnlyKey)",
+                    teaser: "\(String(channel.receiveOnlyKey.prefix(8)))…",
                     contents: "\(channel.receiveOnlyKey)"
+                )
+                Button(action: { self.subscriptionToken = self.channel.receiveOnlyKey }) {
+                    HStack(spacing: 10) {
+                        Image(systemName: "square.and.arrow.up")
+                        Text("ChannelSettings.Basic.InviteSubscribers")
+                    }
+                }
+            }
+            .sheet(string: $subscriptionToken) { subscriptionToken in
+                ShareSheet(
+                    activityItems: [
+                        "puffery://puffery.app/channels/subscribe/\(subscriptionToken)",
+                    ],
+                    applicationActivities: nil,
+                    completionWithItemsHandler: nil
                 )
             }
 

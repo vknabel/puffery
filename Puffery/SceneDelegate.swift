@@ -84,12 +84,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             case let ("confirmations", "email", confirmationID?):
                 Current.api.confirmEmail(confirmationID)
                     .task { _ in }
+            case let ("channels", "subscribe", receiveOrNotifyKey?):
+                let createRequest = CreateSubscriptionRequest(receiveOrNotifyKey: receiveOrNotifyKey)
+                Current.api.subscribe(createRequest)
+                    .task { _ in
+                        NotificationCenter.default.post(
+                            name: .didSubscribeFromChannel,
+                            object: nil
+                        )
+                    }
             default:
                 print("Unknown URL")
             }
         }
-
-        print(URLContexts)
     }
 }
 
