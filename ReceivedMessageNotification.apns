@@ -1,0 +1,14 @@
+{
+    "Simulator Target Bundle": "com.vknabel.puffery",
+    "aps": {
+        "alert": {
+            "title": "Debug: A new Test arrived",
+            "body": "Some new details",
+        },
+        "sound": "default",
+        "badge": 1
+    },
+    "subscribedChannelID": "912732A6-7A55-4A97-B80C-327BE73525EF",
+    "receivedMessageID":   "DEADBEEF-DEAD-BEEF-DEAD-BEEFDEADBEEF"
+}
+

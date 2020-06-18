@@ -89,7 +89,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 Current.api.subscribe(createRequest)
                     .task { _ in
                         NotificationCenter.default.post(
-                            name: .didSubscribeFromChannel,
+                            name: .didSubscribeToChannel,
                             object: nil
                         )
                     }

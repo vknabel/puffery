@@ -1,14 +1,14 @@
-import UIKit
 import SwiftUI
+import UIKit
 
 struct ShareSheet: UIViewControllerRepresentable {
     typealias Callback = UIActivityViewController.CompletionWithItemsHandler
-    
+
     let activityItems: [Any]
     let applicationActivities: [UIActivity]?
     let completionWithItemsHandler: UIActivityViewController.CompletionWithItemsHandler?
-    
-    func makeUIViewController(context: Context) -> UIActivityViewController {
+
+    func makeUIViewController(context _: Context) -> UIActivityViewController {
         let controller = UIActivityViewController(
             activityItems: activityItems,
             applicationActivities: applicationActivities
@@ -16,8 +16,6 @@ struct ShareSheet: UIViewControllerRepresentable {
         controller.completionWithItemsHandler = completionWithItemsHandler
         return controller
     }
-    
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
-        
-    }
+
+    func updateUIViewController(_: UIActivityViewController, context _: Context) {}
 }

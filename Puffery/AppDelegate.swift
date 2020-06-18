@@ -10,12 +10,16 @@ import APIDefinition
 import CoreData
 import PufferyKit
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    lazy var notifications = NoitifcationsService()
+
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        true
+        UNUserNotificationCenter.current().delegate = notifications
+
+        return true
     }
 
     // MARK: UISceneSession Lifecycle

@@ -38,7 +38,7 @@ extension IntentColor {
             self = .yellow
         }
     }
-    
+
     var toPuffery: PufferyKit.Message.Color {
         switch self {
         case .blue:
@@ -66,8 +66,8 @@ extension IntentColor {
 extension IntentMessage {
     convenience init(fromPuffery pufferyMessage: PufferyKit.NotifyMessageResponse) {
         self.init(identifier: pufferyMessage.id.uuidString, display: pufferyMessage.title)
-        self.title = pufferyMessage.title
-        self.body = pufferyMessage.body
-        self.color = IntentColor(fromPuffery: pufferyMessage.color.flatMap(Message.Color.init(rawValue:)) ?? Message.Color.unspecified)
+        title = pufferyMessage.title
+        body = pufferyMessage.body
+        color = IntentColor(fromPuffery: pufferyMessage.color.flatMap(Message.Color.init(rawValue:)) ?? Message.Color.unspecified)
     }
 }

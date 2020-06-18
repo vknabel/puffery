@@ -129,9 +129,9 @@ struct ChannelSettingsPage: View {
     func requestUnsubscribe() {
         displaysUnsubscribePrompt = true
     }
-    
+
     func performUnsubscribe() {
-        self.presentationMode.wrappedValue.dismiss()
+        presentationMode.wrappedValue.dismiss()
 
         Current.api.unsubscribe(channel).task { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

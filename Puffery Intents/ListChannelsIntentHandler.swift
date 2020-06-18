@@ -10,7 +10,7 @@ import Intents
 import PufferyKit
 
 @objc class ListChannelsIntentHandler: NSObject, OwnChannelsIntentHandling, SubscribedChannelsIntentHandling {
-    func handle(intent: OwnChannelsIntent, completion: @escaping (OwnChannelsIntentResponse) -> Void) {
+    func handle(intent _: OwnChannelsIntent, completion: @escaping (OwnChannelsIntentResponse) -> Void) {
         handleChannelListResponse(endpoint: Current.api.ownChannels()) { result in
             switch result {
             case let .success(intentChannels):
@@ -27,25 +27,25 @@ import PufferyKit
             }
         }
     }
-    
-    func handle(intent: SubscribedChannelsIntent, completion: @escaping (SubscribedChannelsIntentResponse) -> Void) {
+
+    func handle(intent _: SubscribedChannelsIntent, completion: @escaping (SubscribedChannelsIntentResponse) -> Void) {
         handleChannelListResponse(endpoint: Current.api.sharedChannels()) { result in
-                   switch result {
-                   case let .success(intentChannels):
-                       let channelsIntentResponse = SubscribedChannelsIntentResponse(code: .success, userActivity: nil)
-                       channelsIntentResponse.channels = intentChannels
-                       completion(channelsIntentResponse)
-                   case let .failure(error):
-                       switch error.reason {
-                       case .statusCode(401):
-                           completion(SubscribedChannelsIntentResponse(code: .failureRequiringAppLaunch, userActivity: nil))
-                       case _:
-                           completion(SubscribedChannelsIntentResponse(code: .failure, userActivity: nil))
-                       }
-                   }
-               }
+            switch result {
+            case let .success(intentChannels):
+                let channelsIntentResponse = SubscribedChannelsIntentResponse(code: .success, userActivity: nil)
+                channelsIntentResponse.channels = intentChannels
+                completion(channelsIntentResponse)
+            case let .failure(error):
+                switch error.reason {
+                case .statusCode(401):
+                    completion(SubscribedChannelsIntentResponse(code: .failureRequiringAppLaunch, userActivity: nil))
+                case _:
+                    completion(SubscribedChannelsIntentResponse(code: .failure, userActivity: nil))
+                }
+            }
+        }
     }
-    
+
     private func handleChannelListResponse(endpoint: Endpoint<[SubscribedChannelResponse]>, _ completion: @escaping (Result<[IntentChannel], FetchingError>) -> Void) {
         endpoint.task { result in
             switch result {

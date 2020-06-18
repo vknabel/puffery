@@ -139,7 +139,7 @@ final class VaporAPI: API {
             .encoding(body: createSubscription, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode)
     }
-    
+
     func unsubscribe(_ subscription: SubscribedChannelResponse) -> Endpoint<SubscribedChannelDeletedResponse> {
         endpoint()
             .delete("channels", subscription.id.uuidString)

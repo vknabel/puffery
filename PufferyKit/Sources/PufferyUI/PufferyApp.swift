@@ -6,6 +6,7 @@
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 
 public struct SelectPufferyApp: View {
@@ -54,11 +55,44 @@ public struct SelectPufferyApp: View {
 }
 
 struct PufferyApp: View {
+    @State var cancellableSet = Set<AnyCancellable>()
+    @State var deepLinkedChannel: Channel?
+
     var body: some View {
         NavigationView {
             ChannelListPage()
         }
+        .sheet(item: $deepLinkedChannel) { channel in
+            NavigationView {
+                ChannelDetailsPage(channel: channel, displaysChannelSettings: false)
+            }
+        }
+        .onDisappear {
+            self.cancellableSet = []
+        }
+        .onAppear {
+            self.deepLinkedMessage
+                .receive(on: RunLoop.main)
+                .assign(to: \.deepLinkedChannel, on: self)
+                .store(in: &self.cancellableSet)
+        }
     }
+
+    var deepLinkedMessage = NotificationCenter.default.publisher(for: .receivedMessage)
+        .map { notif in
+            notif.userInfo!["ReceivedMessageNotification"] as! ReceivedMessageNotification
+        }
+        .flatMap { notif in
+            Current.api.channels()
+                .publisher()
+                .map {
+                    $0.first(where: { $0.id == notif.subscribedChannelID })
+                }
+                .removeDuplicates(by: { $0?.id == $1?.id })
+                .catch { _ in
+                    Empty()
+                }
+        }
 }
 
 extension View {

@@ -31,9 +31,9 @@ import PufferyKit
             }
         }
     }
-    
+
     // MARK: Resolve
-    
+
     func resolveTitle(for intent: NotiyChannelIntent, with completion: @escaping (INStringResolutionResult) -> Void) {
         if let title = intent.title {
             completion(INStringResolutionResult.success(with: title))
@@ -41,7 +41,7 @@ import PufferyKit
             completion(INStringResolutionResult.needsValue())
         }
     }
-    
+
     func resolveBody(for intent: NotiyChannelIntent, with completion: @escaping (INStringResolutionResult) -> Void) {
         if let body = intent.body {
             completion(INStringResolutionResult.success(with: body))
@@ -49,11 +49,11 @@ import PufferyKit
             completion(INStringResolutionResult.needsValue())
         }
     }
-    
+
     func resolveColor(for intent: NotiyChannelIntent, with completion: @escaping (IntentColorResolutionResult) -> Void) {
         completion(IntentColorResolutionResult.success(with: intent.color))
     }
-    
+
     func resolveChannel(for intent: NotiyChannelIntent, with completion: @escaping (IntentChannelResolutionResult) -> Void) {
         if let intentChannel = intent.channel {
             completion(IntentChannelResolutionResult.success(with: intentChannel))

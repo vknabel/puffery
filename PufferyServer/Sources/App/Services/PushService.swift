@@ -12,26 +12,26 @@ struct PushService {
     let req: Request
 
     func notifyDevices(message: Message) -> EventLoopFuture<Void> {
-        return notifiableSubscriptions(message: message)
+        notifiableSubscriptions(message: message)
             .flatMap { subscriptions in
                 self.req.eventLoop.flatten(
                     subscriptions.map { subscription in
                         self.notifyDevices(subscription: subscription, message: message)
                     }
                 )
-        }
+            }
     }
-    
+
     private func notifyDevices(subscription: Subscription, message: Message) -> EventLoopFuture<Void> {
         notifiableDeviceTokens(subscription: subscription)
             .map { tokens in
                 tokens.unique(\.token).filter { !$0.token.isEmpty }
             }
-        .flatMap { tokens in
-            self.req.eventLoop.flatten(
-                tokens.map { self.send(message: message, to: $0, for: subscription) }
-            )
-        }
+            .flatMap { tokens in
+                self.req.eventLoop.flatten(
+                    tokens.map { self.send(message: message, to: $0, for: subscription) }
+                )
+            }
     }
 
     private func send(message: Message, to device: DeviceToken, for subscription: Subscription) -> EventLoopFuture<Void> {
@@ -66,7 +66,8 @@ struct PushService {
     }
 
     private func subscribedChannelNotification(for message: Message, subscription: Subscription) throws -> SubscribedChannelNotification {
-        try SubscribedChannelNotification(
+        try ReceivedMessageNotification(
+            message: message,
             subscription: subscription,
             aps: APNSwiftPayload(
                 alert: APNSwiftPayload.APNSwiftAlert(
@@ -83,7 +84,7 @@ struct PushService {
             .filter(Subscription.self, \Subscription.$channel.$id == message.$channel.id)
             .all()
     }
-    
+
     private func notifiableDeviceTokens(subscription: Subscription) -> EventLoopFuture<[DeviceToken]> {
         DeviceToken.query(on: req.db)
             .join(User.self, on: \DeviceToken.$user.$id == \User.$id, method: .inner)
@@ -100,12 +101,14 @@ private extension Sequence {
     }
 }
 
-private struct SubscribedChannelNotification: APNSwiftNotification {
+private struct ReceivedMessageNotification: APNSwiftNotification {
+    let receivedMessageID: UUID
     let subscribedChannelID: UUID
     let aps: APNSwiftPayload
 
-    init(subscription: Subscription, aps: APNSwiftPayload) throws {
-        self.subscribedChannelID = try subscription.requireID()
+    init(message: Message, subscription: Subscription, aps: APNSwiftPayload) throws {
+        subscribedChannelID = try subscription.requireID()
+        receivedMessageID = try message.requireID()
         self.aps = aps
     }
 }

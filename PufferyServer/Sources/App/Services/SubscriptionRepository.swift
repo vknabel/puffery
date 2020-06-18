@@ -21,9 +21,9 @@ struct SubscriptionRepository {
             return eventLoop.future(error: error)
         }
     }
-    
+
     func find(_ id: UUID?, of user: User) -> EventLoopFuture<Subscription> {
-        return Subscription.find(id, on: db)
+        Subscription.find(id, on: db)
             .flatMapThrowing { (subscription: Subscription?) -> Subscription in
                 guard let subscription = subscription, subscription.$user.id == user.id else {
                     throw ApiError(.channelNotFound)

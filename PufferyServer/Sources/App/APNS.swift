@@ -40,7 +40,7 @@ extension APNSwiftConfiguration.Environment {
         let given: String
 
         var localizedDescription: String {
-            return #"Unsupported APNS Envrionment: "\#(given)". Only supports "production" and "staging""#
+            #"Unsupported APNS Envrionment: "\#(given)". Only supports "production" and "staging""#
         }
     }
 }

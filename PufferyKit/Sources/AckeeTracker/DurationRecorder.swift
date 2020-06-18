@@ -6,7 +6,7 @@ import Foundation
     internal var record: Record? {
         didSet {
             DispatchQueue.main.async {
-                self.sessionTimer =  Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { [weak self] _ in
+                self.sessionTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { [weak self] _ in
                     self?.ping()
                 }
             }
