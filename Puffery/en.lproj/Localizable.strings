@@ -13,6 +13,8 @@
 
 "Acknowledgements.Code.SectionHeader" = "Code";
 
+"PrivacyPolicy.Title" = "Privacy Policy";
+"TermsAndConditions.Title" = "Terms and Conditions";
 
 "Settings.Title" = "Settings";
 "Settings.Done" = "Done";
@@ -86,6 +88,7 @@
 
 "GettingStarted.Registration.Anonymous" = "Register anonymously";
 "GettingStarted.Registration.Failed" = "Regitstration failed";
+"GettingStarted.Registration.TermsAndConditions" = "Our general terms and conditions apply.";
 "GettingStarted.Login.EmailPlaceholder" = "Email";
 "GettingStarted.Login.Perform" = "Login";
 

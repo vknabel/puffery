@@ -53,7 +53,7 @@ struct Waves<Content: View>: View {
                 }.frame(height: 150)
                     .zIndex(12)
 
-                WaveShape(width: Double(proxy.size.width) + 50, step: 1, amplitude: 10) { x in
+                WaveShape(width: Double(proxy.size.width) + 50, step: 4, amplitude: 10) { x in
                     sin(x / 50 * .pi)
                 }
                 .foregroundColor(Color("LagoonLightBlue"))
@@ -71,7 +71,7 @@ struct Waves<Content: View>: View {
                             startPoint: UnitPoint.bottomLeading,
                             endPoint: .topTrailing
                         )
-                        self.content().edgesIgnoringSafeArea([])
+                        self.content().zIndex(15).edgesIgnoringSafeArea([])
                     }
                     .frame(height: gradientProxy.size.height + CGFloat(2 * self.amplitude))
                     .offset(x: 0, y: CGFloat(-2 * self.amplitude))

@@ -19,7 +19,10 @@ struct UserRepository {
                     try Email(
                         subject: "Log in to Puffery",
                         email: emailAddress,
-                        contents: "Push the button: \(confirmation.url())"
+                        contents: """
+                        Click on the sign-in link below:
+                        \(confirmation.url())
+                        """
                     )
                 }
                 .flatMap { email in
@@ -41,7 +44,10 @@ struct UserRepository {
                     try Email(
                         subject: "Confirm Puffery Account Email",
                         email: emailAddress,
-                        contents: "Push the button: \(confirmation.url())"
+                        contents: """
+                        To confirm your mail address, click on the link below:
+                        \(confirmation.url())
+                        """
                     )
                 }
                 .flatMap { email in

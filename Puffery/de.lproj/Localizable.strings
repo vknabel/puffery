@@ -13,6 +13,8 @@
 
 "Acknowledgements.Code.SectionHeader" = "Code";
 
+"PrivacyPolicy.Title" = "Datenschutzerklärung";
+"TermsAndConditions.Title" = "AGB";
 
 "Settings.Title" = "Einstellungen";
 "Settings.Done" = "Fertig";

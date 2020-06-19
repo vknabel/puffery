@@ -20,6 +20,12 @@ struct AppSettingsPage: View {
             }
 
             Section {
+                NavigationLink(destination: PrivacyPolicy()) {
+                    Text("PrivacyPolicy.Title")
+                }
+                NavigationLink(destination: TermsAndConditions()) {
+                    Text("TermsAndConditions.Title")
+                }
                 NavigationLink(destination: AcknowledgementsPage()) {
                     Text("Settings.Acknowledgements.Link")
                 }

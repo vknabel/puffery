@@ -19,13 +19,16 @@ struct RegistrationPage: View {
             VStack {
                 Spacer()
 
-                Button(action: { viewModel.send(.shouldRegister(onFinish: self.onFinish)) }) {
-                    Text("GettingStarted.Registration.Anonymous")
-                }.buttonStyle(RoundedButtonStyle())
-                    .show(when: !self.keyboard.isActive)
-                    .transition(.opacity)
-                    .disabled(viewModel.activity.inProgress)
-
+                VStack {
+                    Button(action: { viewModel.send(.shouldRegister(onFinish: self.onFinish)) }) {
+                        Text("GettingStarted.Registration.Anonymous")
+                    }
+                        .buttonStyle(RoundedButtonStyle())
+                        .show(when: !self.keyboard.isActive)
+                        .transition(.opacity)
+                        .disabled(viewModel.activity.inProgress)
+                    RegistrationTerms()
+                }
                 Spacer()
 
                 HStack {
@@ -57,6 +60,8 @@ struct RegistrationPage: View {
                     ) {
                         EmailConfirmationPage(email: viewModel.email)
                     }
+                    
+                    RegistrationTerms()
                 }
                 .padding()
                 .padding(.bottom, self.keyboard.currentHeight)
