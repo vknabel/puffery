@@ -17,7 +17,7 @@ public struct PrivacyPolicy: View {
 
                 **Information Collection and Use**
 
-                For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information, including but not limited to IP Adress, Push Notification Device Tokens. The information that I request will be retained on your device and is not collected by me in any way.
+                For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information, including but not limited to Push Notification Device Tokens, Email Address. The information that I request will be retained on your device and is not collected by me in any way.
 
                 **Log Data**
 

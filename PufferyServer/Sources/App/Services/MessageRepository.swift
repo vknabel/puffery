@@ -14,7 +14,6 @@ struct MessageRepository {
     func latest(for subscription: Subscription) -> EventLoopFuture<[Message]> {
         Message.query(on: db)
             .filter(\Message.$channel.$id, .equal, subscription.$channel.id)
-            .filter(\Message.$createdAt, .greaterThanOrEqual, subscription.createdAt ?? Date.distantPast)
             .sort(\.$createdAt, .descending)
             .limit(20)
             .all()
