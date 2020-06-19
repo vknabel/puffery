@@ -22,8 +22,12 @@ struct SubscriptionRepository {
         }
     }
 
-    func find(_ id: UUID?, of user: User) -> EventLoopFuture<Subscription> {
-        Subscription.find(id, on: db)
+    func find(_ id: UUID?, of user: User, where queries: (QueryBuilder<Subscription>) -> QueryBuilder<Subscription> = { $0 }) -> EventLoopFuture<Subscription> {
+        guard let id = id else {
+            return eventLoop.makeFailedFuture(ApiError(.channelNotFound))
+        }
+        return queries(Subscription.query(on: db).filter(\.$id == id))
+            .first()
             .flatMapThrowing { (subscription: Subscription?) -> Subscription in
                 guard let subscription = subscription, subscription.$user.id == user.id else {
                     throw ApiError(.channelNotFound)

@@ -157,6 +157,11 @@ final class VaporAPI: API {
             .decoding(jsonDecoder.decode)
     }
 
+    func channel(id: UUID) -> Endpoint<SubscribedChannelResponse> {
+        endpoint().get("channels", id.uuidString)
+            .decoding(jsonDecoder.decode)
+    }
+
     func sharedChannels() -> Endpoint<[SubscribedChannelResponse]> {
         endpoint().get("channels", "shared")
             .decoding(jsonDecoder.decode)

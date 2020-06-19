@@ -30,6 +30,7 @@ public protocol API {
     func subscribe(_ createSubscription: CreateSubscriptionRequest) -> Endpoint<SubscribedChannelResponse>
     func unsubscribe(_ subscription: SubscribedChannelResponse) -> Endpoint<SubscribedChannelDeletedResponse>
     func channels() -> Endpoint<[SubscribedChannelResponse]>
+    func channel(id: UUID) -> Endpoint<SubscribedChannelResponse>
     func sharedChannels() -> Endpoint<[SubscribedChannelResponse]>
     func ownChannels() -> Endpoint<[SubscribedChannelResponse]>
 

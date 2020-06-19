@@ -83,14 +83,12 @@ struct PufferyApp: View {
             notif.userInfo!["ReceivedMessageNotification"] as! ReceivedMessageNotification
         }
         .flatMap { notif in
-            Current.api.channels()
+            Current.api.channel(id: notif.subscribedChannelID)
                 .publisher()
-                .map {
-                    $0.first(where: { $0.id == notif.subscribedChannelID })
-                }
-                .removeDuplicates(by: { $0?.id == $1?.id })
+                .removeDuplicates(by: { $0.id == $1.id })
+                .map(Optional.some)
                 .catch { _ in
-                    Empty()
+                    Just(nil)
                 }
         }
 }

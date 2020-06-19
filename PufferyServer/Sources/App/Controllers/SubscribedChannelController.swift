@@ -3,6 +3,14 @@ import Fluent
 import Vapor
 
 final class SubscribedChannelController {
+    func details(_ req: Request) throws -> EventLoopFuture<SubscribedChannelResponse> {
+        let user = try req.auth.require(User.self)
+        return req.subscriptions.find(req.parameters.get("subscription_id"), of: user, where: { $0.with(\.$channel) })
+            .flatMapThrowing { subscription in
+                try SubscribedChannelResponse(subscription: subscription)
+            }
+    }
+
     func create(_ req: Request) throws -> EventLoopFuture<SubscribedChannelResponse> {
         let user = try req.auth.require(User.self)
         let createChannel = try req.content.decode(CreateChannelRequest.self)

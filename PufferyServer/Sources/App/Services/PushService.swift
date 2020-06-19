@@ -35,7 +35,7 @@ struct PushService {
     }
 
     private func send(message: Message, to device: DeviceToken, for subscription: Subscription) -> EventLoopFuture<Void> {
-        let notif: SubscribedChannelNotification
+        let notif: ReceivedMessageNotification
         do {
             notif = try subscribedChannelNotification(for: message, subscription: subscription)
         } catch {
@@ -65,7 +65,7 @@ struct PushService {
             }
     }
 
-    private func subscribedChannelNotification(for message: Message, subscription: Subscription) throws -> SubscribedChannelNotification {
+    private func subscribedChannelNotification(for message: Message, subscription: Subscription) throws -> ReceivedMessageNotification {
         try ReceivedMessageNotification(
             message: message,
             subscription: subscription,

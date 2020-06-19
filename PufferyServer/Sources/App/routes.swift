@@ -37,6 +37,7 @@ public func routes(_ app: Application) throws {
     bearer.put("devices", ":device_token", use: deviceController.createOrUpdate)
 
     bearer.post("channels", use: subscribedChannelController.create)
+    bearer.get("channels", ":subscription_id", use: subscribedChannelController.details)
     bearer.delete("channels", ":subscription_id", use: subscribedChannelController.unsubscribe)
     bearer.get("channels", use: subscribedChannelController.index)
     bearer.get("channels", "shared", use: subscribedChannelController.indexShared)
