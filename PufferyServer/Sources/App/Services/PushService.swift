@@ -86,10 +86,16 @@ struct PushService {
     }
 
     private func notifiableDeviceTokens(subscription: Subscription) -> EventLoopFuture<[DeviceToken]> {
-        DeviceToken.query(on: req.db)
+        let subscriptionId: UUID
+        do {
+            subscriptionId = try subscription.requireID()
+        } catch {
+            return req.eventLoop.makeFailedFuture(error)
+        }
+        return DeviceToken.query(on: req.db)
             .join(User.self, on: \DeviceToken.$user.$id == \User.$id, method: .inner)
-            .join(Subscription.self, on: \User.$id == \Subscription.$user.$id, method: .inner)
-            .filter(Subscription.self, \Subscription.$channel.$id == subscription.$user.id)
+            .join(Subscription.self, on: \User.$id == \Subscription.$user.$id)
+            .filter(Subscription.self, \Subscription.$id == subscriptionId)
             .all()
     }
 }
