@@ -6,6 +6,11 @@
   Copyright © 2020 Valentin Knabel. All rights reserved.
 */
 
+"Error.Http.StatusCode %d" = "An unknown error occured (%d).";
+"Error.Http.404NotFound" = "Not found.";
+"Error.Http.500InternalServerError" = "An internal server error occurred.";
+"Error.Http.503ServiceUnavailable" = "The server is temporarily not available. Try again later.";
+
 "Acknowledgements.Title" = "Acknowledgements";
 "Acknowledgements.Assets.SectionHeader" = "Assets";
 "Acknowledgements.Assets.InlineByAuthor %@" = "made by %@ from www.flaticon.com";

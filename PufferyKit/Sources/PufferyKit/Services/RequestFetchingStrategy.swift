@@ -41,6 +41,25 @@ public struct FetchingError: Error, Identifiable, Equatable {
     public static func == (lhs: FetchingError, rhs: FetchingError) -> Bool {
         lhs.id == rhs.id
     }
+    
+    public var localizedDescription: String {
+        switch self.reason {
+        case let .http(error):
+            return error.localizedDescription
+        case let .encoding(error):
+            return error.localizedDescription
+        case let .decoding(error):
+            return error.localizedDescription
+        case .statusCode(404):
+            return NSLocalizedString("Error.Http.404NotFound", comment: "")
+        case .statusCode(500):
+            return NSLocalizedString("Error.Http.500InternalServerError", comment: "")
+        case .statusCode(503):
+            return NSLocalizedString("Error.Http.503ServiceUnavailable", comment: "")
+        case let .statusCode(status):
+            return String(format: NSLocalizedString("Error.Http.StatusCode %d", comment: ""), status)
+        }
+    }
 }
 
 public protocol RequestFetchingStrategy {

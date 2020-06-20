@@ -6,6 +6,11 @@
   Copyright © 2020 Valentin Knabel. All rights reserved.
 */
 
+"Error.Http.StatusCode %d" = "Ein unbekannter Fehler ist aufgetreten (%d).";
+"Error.Http.404NotFound" = "Nicht gefunden.";
+"Error.Http.500InternalServerError" = "Ein interner Serverfehler ist aufgetreten.";
+"Error.Http.503ServiceUnavailable" = "Der Server ist temporär nicht verfügbar. Versuche es später noch einmal.";
+
 "Acknowledgements.Title" = "Danksagungen";
 "Acknowledgements.Assets.SectionHeader" = "Assets";
 "Acknowledgements.Assets.InlineByAuthor %@" = "erstellt von %@ auf www.flaticon.com";
@@ -88,6 +93,7 @@
 
 "GettingStarted.Registration.Anonymous" = "Anonym registrieren";
 "GettingStarted.Registration.Failed" = "Registrierung fehlgeschlagen";
+"GettingStarted.Registration.TermsAndConditions" = "Es gelten unsere AGB.";
 "GettingStarted.Login.EmailPlaceholder" = "E-Mail";
 "GettingStarted.Login.Perform" = "Einloggen";
 

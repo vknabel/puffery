@@ -8,6 +8,7 @@
 import ComposableArchitecture
 import Foundation
 import PufferyKit
+import Combine
 
 struct RegistrationState: Equatable {
     var email = ""
@@ -25,6 +26,14 @@ struct RegistrationState: Equatable {
                 return true
             } else {
                 return false
+            }
+        }
+        
+        var failedError: FetchingError? {
+            if case let .failed(error) = self {
+                return error
+            } else {
+                return nil
             }
         }
     }
@@ -67,8 +76,12 @@ let registrationReducer = Reducer<
 
         return environment.loginEffect(state.email)
             .handleEvents(receiveOutput: { onFinish() })
-            .transform(to: RegistrationAction.activityFinished)
-            .prepend(RegistrationAction.showCheckEmails(true))
+            .flatMap { _ in
+                [
+                    RegistrationAction.activityFinished,
+                    RegistrationAction.showCheckEmails(true)
+                ].publisher.transformError()
+            }
             .catch { fetchingError in
                 Effect<RegistrationAction, Never>(value: RegistrationAction.activityFailed(fetchingError))
             }
