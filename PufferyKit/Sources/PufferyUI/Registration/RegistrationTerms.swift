@@ -10,7 +10,7 @@ struct RegistrationTerms: View {
             }.sheet(isPresented: self.$displaysTermsAndConditions) {
                 NavigationView {
                     TermsAndConditions()
-                }
+                }.navigationViewStyle(StackNavigationViewStyle())
             }
             .buttonStyle(PlainButtonStyle())
             .opacity(0.5)

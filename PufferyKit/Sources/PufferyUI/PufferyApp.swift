@@ -61,7 +61,9 @@ struct PufferyApp: View {
     var body: some View {
         NavigationView {
             ChannelListPage()
+            ChannelDetailsPage()
         }
+        .navigationViewStyle(DoubleColumnNavigationViewStyle())
         .sheet(item: $deepLinkedChannel) { channel in
             NavigationView {
                 ChannelDetailsPage(channel: channel, displaysChannelSettings: false)

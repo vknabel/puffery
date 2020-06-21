@@ -9,6 +9,11 @@
 import Combine
 import SwiftUI
 
+enum ChannelSelection: Hashable {
+    case all
+    case channel(Channel)
+}
+
 struct ChannelListPage: View {
     private var api: API { Current.api }
 
@@ -16,13 +21,15 @@ struct ChannelListPage: View {
     @State var presentsChannelCreation = false
     @State var presentsChannelSubscription = false
     @State var shouldReload = PassthroughSubject<Void, FetchingError>()
-    @State private var selectedAllChannels = UIDevice.current.model == "iPad"
-
+    @State var selection: ChannelSelection? = UIDevice.current.model == "iPad"
+        ? .all
+        : nil
+    
     var body: some View {
         ZStack {
             List {
                 Section {
-                    NavigationLink(destination: ChannelDetailsPage(), isActive: self.$selectedAllChannels) {
+                    NavigationLink(destination: ChannelDetailsPage(), tag: .all, selection: $selection) {
                         Text("ChannelList.All")
                     }
                 }
@@ -30,7 +37,7 @@ struct ChannelListPage: View {
                 Section(header: createChannelHeader()) {
                     Fetching(loadOwnChannelsPublisher, empty: self.noChannelsFound()) { channels in
                         ForEach(channels) { channel in
-                            NavigationLink(destination: ChannelDetailsPage(channel: channel)) {
+                            NavigationLink(destination: ChannelDetailsPage(channel: channel), tag: .channel(channel), selection: self.$selection) {
                                 Text(channel.title)
                             }
                         }
@@ -40,7 +47,7 @@ struct ChannelListPage: View {
                 Section(header: subscribeChannelHeader()) {
                     Fetching(loadSharedChannelsPublisher, empty: self.noChannelsFound()) { channels in
                         ForEach(channels) { channel in
-                            NavigationLink(destination: ChannelDetailsPage(channel: channel)) {
+                            NavigationLink(destination: ChannelDetailsPage(channel: channel), tag: .channel(channel), selection: self.$selection) {
                                 Text(channel.title)
                             }
                         }

@@ -27,7 +27,7 @@ struct Waves<Content: View>: View {
                         .modifier(SwimAnimation(duration: 6, offset: 5))
                 }.padding(.bottom)
 
-                WaveShape(width: Double(proxy.size.width) + 50, step: 1, amplitude: 10) { x in
+                WaveShape(width: Double(proxy.size.width) + 50, step: 2, amplitude: 10) { x in
                     sin(x / 50 * .pi)
                 }
                 .foregroundColor(Color("LagoonLightBlue"))

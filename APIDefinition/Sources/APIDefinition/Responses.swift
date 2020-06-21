@@ -30,7 +30,7 @@ public struct ConfirmedEmailResponse: Codable {
     public init() {}
 }
 
-public struct SubscribedChannelResponse: Codable {
+public struct SubscribedChannelResponse: Codable, Hashable {
     /// Actually the ID of the Subscription!
     public var id: UUID
     public var title: String
