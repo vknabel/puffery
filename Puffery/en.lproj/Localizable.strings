@@ -89,6 +89,12 @@
 "ChannelSubscribing.Subscribe" = "Subscribe";
 "ChannelSubscribing.Cancel" = "Cancel";
 
+"ChannelSubscribingAlert.Title" = "Subscribe Channel";
+"ChannelSubscribingAlert.Message" = "Do you want to receive notifications for this channel?";
+"ChannelSubscribingAlert.Receive" = "Notify";
+"ChannelSubscribingAlert.Silent" = "No";
+"ChannelSubscribingAlert.Cancel" = "Cancel";
+
 "Fetching.Retry" = "Retry";
 
 "GettingStarted.Registration.Anonymous" = "Register anonymously";

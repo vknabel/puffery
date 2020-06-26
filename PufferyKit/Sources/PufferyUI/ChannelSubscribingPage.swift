@@ -12,6 +12,7 @@ import UserNotifications
 
 struct ChannelSubscribingPage: View {
     @State var channelKey: String = ""
+    @State var receiveNotifications: Bool = PushNotifications.hasBeenRequested
     private var api: API { Current.api }
 
     var isUUID: Bool {
@@ -24,6 +25,7 @@ struct ChannelSubscribingPage: View {
         Form {
             Section(footer: Text("ChannelSubscribing.Basic.Explanation")) {
                 TextField("ChannelSubscribing.Basic.ChannelKey", text: $channelKey, onCommit: createChannel)
+                Toggle("ChannelSubscribing.Basic.ReceiveNotifications", isOn: Binding(get: { self.receiveNotifications }, set: self.registerAndSetReceiveNotifications))
             }
             Section {
                 Button(action: createChannel) {
@@ -54,12 +56,20 @@ struct ChannelSubscribingPage: View {
             Text("ChannelSubscribing.Cancel")
         }
     }
+    
+    func registerAndSetReceiveNotifications(_ newValue: Bool) {
+        if newValue == true, !PushNotifications.hasBeenRequested {
+            PushNotifications.register {
+                self.receiveNotifications = newValue
+            }
+        } else {
+            self.receiveNotifications = newValue
+        }
+    }
 
     func createChannel() {
-        PushNotifications.register {
-            self.api.subscribe(CreateSubscriptionRequest(receiveOrNotifyKey: self.channelKey))
-                .task(self.receiveChannel(result:))
-        }
+        self.api.subscribe(CreateSubscriptionRequest(receiveOrNotifyKey: self.channelKey, isSilent: !self.receiveNotifications))
+            .task(self.receiveChannel(result:))
     }
 
     func receiveChannel(result: Result<SubscribedChannelResponse, FetchingError>) {

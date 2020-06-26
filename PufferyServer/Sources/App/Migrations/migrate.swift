@@ -15,6 +15,7 @@ func migrate(_ app: Application) throws {
         _2020_04_27_UniqueUserEmailsAndDeletionRulesMigration(),
         _2020_04_28_CreateConfirmationMigration(),
         _2020_04_28_ReplaceUserPasswordWithVerifiedFlagMigration(),
+        _2020_06_26_SilentSubscriptionMigration(),
     ]
     migrations.forEach {
         app.migrations.add($0)

@@ -45,14 +45,6 @@ struct AppSettingsPage: View {
         .trackAppearence("settings", using: Current.tracker)
     }
 
-    func registerForPushNotifications() {
-        PushNotifications.register {
-            if let latestDeviceToken = Current.store.state.session.latestDeviceToken {
-                UIPasteboard.general.string = latestDeviceToken
-            }
-        }
-    }
-
     func dismiss() {
         presentationMode.wrappedValue.dismiss()
     }

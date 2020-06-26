@@ -82,7 +82,7 @@ struct PushService {
     private func notifiableSubscriptions(message: Message) -> EventLoopFuture<[Subscription]> {
         Subscription.query(on: req.db)
             .filter(Subscription.self, \Subscription.$channel.$id == message.$channel.id)
-            .filter(Subscription.self, \Subscription.$isSilent == true)
+            .filter(Subscription.self, \Subscription.$isSilent != true)
             .all()
     }
 

@@ -39,6 +39,7 @@
 "CreateChannel.Basic.Explanation" = "Der Titel deines neuen Channels. Du kannst ihn später mit anderen teilen. Um einen existierenden Channel hinzuzufügen, gib den Notify-Key ein.";
 "CreateChannel.Actions.Subscribe" = "Abonnieren";
 "CreateChannel.Actions.Create" = "Erstellen";
+"CreateChannel.Basic.ReceiveNotifications" = "Benachrichtigungen erhalten";
 
 "ChannelDetails.All" = "Alle";
 "ChannelDetails.LimitedMessages" = "Es werden nur die neuesten Nachrichten angezeigt.";
@@ -88,6 +89,13 @@
 "ChannelSubscribing.Basic.ChannelKey" = "Channel-Key";
 "ChannelSubscribing.Subscribe" = "Abonnieren";
 "ChannelSubscribing.Cancel" = "Abbrechen";
+"ChannelSubscribing.Basic.ReceiveNotifications" = "Benachrichtigungen erhalten";
+
+"ChannelSubscribingAlert.Title" = "Channel abonnieren";
+"ChannelSubscribingAlert.Message" = "Möchtest du zu diesem Channel Benachrichtigungen erhalten?";
+"ChannelSubscribingAlert.Receive" = "Benachrichtigen";
+"ChannelSubscribingAlert.Silent" = "Nein";
+"ChannelSubscribingAlert.Cancel" = "Abbrechen";
 
 "Fetching.Retry" = "Erneut versuchen";
 

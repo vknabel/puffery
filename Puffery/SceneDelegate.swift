@@ -71,41 +71,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         for context in URLContexts {
-            var components = context.url.pathComponents
-                .filter { $0 != "/" }
-            let first = components.popFirst()
-            let second = components.popFirst()
-            let third = components.popFirst()
-
-            switch (first, second, third) {
-            case let ("confirmations", "login", confirmationID?):
-                Current.api.confirmLogin(confirmationID)
-                    .task { _ in }
-            case let ("confirmations", "email", confirmationID?):
-                Current.api.confirmEmail(confirmationID)
-                    .task { _ in }
-            case let ("channels", "subscribe", receiveOrNotifyKey?):
-                let createRequest = CreateSubscriptionRequest(receiveOrNotifyKey: receiveOrNotifyKey)
-                Current.api.subscribe(createRequest)
-                    .task { _ in
-                        NotificationCenter.default.post(
-                            name: .didSubscribeToChannel,
-                            object: nil
-                        )
-                    }
-            default:
-                print("Unknown URL")
-            }
-        }
-    }
-}
-
-extension Array {
-    mutating func popFirst() -> Element? {
-        if isEmpty {
-            return nil
-        } else {
-            return removeFirst()
+            DeepLinking.open(context: context, rootViewController: window?.rootViewController)
         }
     }
 }

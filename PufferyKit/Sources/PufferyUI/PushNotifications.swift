@@ -10,12 +10,23 @@ import Foundation
 import UIKit
 import UserNotifications
 
-enum PushNotifications {
-    static func register() {
+public enum PushNotifications {
+    private static let hasBeenRequestedDefaultsKey = "PushNotifications.hasBeenRequestedDefaultsKey"
+    public static var hasBeenRequested: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: hasBeenRequestedDefaultsKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: hasBeenRequestedDefaultsKey)
+        }
+    }
+    
+    public static func register() {
         register {}
     }
 
-    static func register(_ onFinish: @escaping () -> Void) {
+    public static func register(_ onFinish: @escaping () -> Void) {
+        hasBeenRequested = true
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge]) {
                 granted, _ in

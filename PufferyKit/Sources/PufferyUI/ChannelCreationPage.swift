@@ -12,6 +12,8 @@ import UserNotifications
 
 struct ChannelCreationPage: View {
     @State var title: String = ""
+    @State var receiveNotifications: Bool = PushNotifications.hasBeenRequested
+    
     private var api: API { Current.api }
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -24,6 +26,7 @@ struct ChannelCreationPage: View {
         Form {
             Section(footer: Text("CreateChannel.Basic.Explanation")) {
                 TextField("CreateChannel.Basic.Title", text: $title, onCommit: createChannel)
+                Toggle("CreateChannel.Basic.ReceiveNotifications", isOn: Binding(get: { self.receiveNotifications }, set: self.registerAndSetReceiveNotifications))
             }
             Section {
                 Button(action: createChannel) {
@@ -49,16 +52,24 @@ struct ChannelCreationPage: View {
             Text("Cancel")
         }
     }
+    
+    func registerAndSetReceiveNotifications(_ newValue: Bool) {
+        if newValue == true, !PushNotifications.hasBeenRequested {
+            PushNotifications.register {
+                self.receiveNotifications = newValue
+            }
+        } else {
+            self.receiveNotifications = newValue
+        }
+    }
 
     func createChannel() {
-        PushNotifications.register {
-            if self.isUUID {
-                self.api.subscribe(CreateSubscriptionRequest(receiveOrNotifyKey: self.title))
-                    .task(self.receiveChannel(result:))
-            } else {
-                self.api.createChannel(CreateChannelRequest(title: self.title))
-                    .task(self.receiveChannel(result:))
-            }
+        if self.isUUID {
+            self.api.subscribe(CreateSubscriptionRequest(receiveOrNotifyKey: self.title, isSilent: !self.receiveNotifications))
+                .task(self.receiveChannel(result:))
+        } else {
+            self.api.createChannel(CreateChannelRequest(title: self.title, isSilent: !self.receiveNotifications))
+                .task(self.receiveChannel(result:))
         }
     }
 

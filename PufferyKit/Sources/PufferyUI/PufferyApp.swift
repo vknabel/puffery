@@ -17,7 +17,6 @@ public struct SelectPufferyApp: View {
     public var body: some View {
         ZStack {
             PufferyApp()
-                .onAppear(perform: PushNotifications.register)
                 .show(when: store.state.session.sessionToken != nil)
 
             GettingStartedPage(onFinish: determineCurrentNotificationSettings)
