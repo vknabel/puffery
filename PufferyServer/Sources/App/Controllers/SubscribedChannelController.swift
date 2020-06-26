@@ -17,10 +17,22 @@ final class SubscribedChannelController {
         let channel = Channel(title: createChannel.title)
         return channel
             .create(on: req.db)
-            .flatMap { _ in
-                let subscription = try Subscription(user: user, channel: channel, canNotify: true, isSilent: createChannel.isSilent)
-                return subscription.create(on: req.db)
-                    .transform(to: subscription)
+            .flatMapThrowing { _ in try Subscription(user: user, channel: channel, canNotify: true, isSilent: createChannel.isSilent) }
+            .flatMap { subscription in
+                subscription.create(on: req.db).transform(to: subscription)
+            }
+            .flatMapThrowing { subscription in
+                try SubscribedChannelResponse(subscription: subscription)
+            }
+    }
+    
+    func update(_ req: Request) throws -> EventLoopFuture<SubscribedChannelResponse> {
+        let user = try req.auth.require(User.self)
+        let updateSubscription = try req.content.decode(UpdateSubscriptionRequest.self)
+        return req.subscriptions.find(req.parameters.get("subscription_id"), of: user, where: { $0.with(\.$channel) })
+            .flatMap { subscription in
+                subscription.isSilent = updateSubscription.isSilent
+                return subscription.save(on: req.db).transform(to: subscription)
             }
             .flatMapThrowing { subscription in
                 try SubscribedChannelResponse(subscription: subscription)
@@ -104,7 +116,8 @@ extension SubscribedChannelResponse {
             id: try subscription.requireID(),
             title: subscription.channel.title,
             receiveOnlyKey: subscription.channel.receiveOnlyKey,
-            notifyKey: subscription.canNotify ? subscription.channel.notifyKey : nil
+            notifyKey: subscription.canNotify ? subscription.channel.notifyKey : nil,
+            isSilent: subscription.isSilent
         )
     }
 }

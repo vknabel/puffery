@@ -39,6 +39,7 @@
 "CreateChannel.Basic.Explanation" = "The title of your new Channel. You can share it with others later. To add an existing Channel to your owns, enter its notify key.";
 "CreateChannel.Actions.Subscribe" = "Subscribe";
 "CreateChannel.Actions.Create" = "Create";
+"CreateChannel.Basic.ReceiveNotifications" = "Receive Notifications";
 
 "ChannelDetails.All" = "All";
 "ChannelDetails.LimitedMessages" = "Only the newest messages will be shown.";
@@ -55,12 +56,13 @@
 "ChannelList.SubscribeChannels.New" = "Subscribe";
 "ChannelList.NoChannels" = "No Channels";
 
-"ChannelSettings.Basic.Explanation" = "Share the Notify Key to allow others notifying you. If sufficient, just share the Receive Only Key to keep others up to date.";
 "ChannelSettings.Basic.Name" = "Name";
-"ChannelSettings.Basic.NotifyKey" = "Notify Key";
-"ChannelSettings.Basic.InvitePublishers" = "Share to invite publishers";
-"ChannelSettings.Basic.ReceiveOnlyKey" = "Receive Only Key";
-"ChannelSettings.Basic.InviteSubscribers" = "Invite subscribers";
+"ChannelSettings.Basic.ReceiveNotifications" = "Receive Notifications";
+"ChannelSettings.Share.Explanation" = "Share the Notify Key to allow others notifying you. If sufficient, just share the Receive Only Key to keep others up to date.";
+"ChannelSettings.Share.NotifyKey" = "Notify Key";
+"ChannelSettings.Share.InvitePublishers" = "Share to invite publishers";
+"ChannelSettings.Share.ReceiveOnlyKey" = "Receive Only Key";
+"ChannelSettings.Share.InviteSubscribers" = "Invite subscribers";
 "ChannelSettings.HowTo.SectionTitle" = "How to send notifications?";
 "ChannelSettings.HowTo.CURL.Title" = "Using CURL";
 "ChannelSettings.HowTo.CURL.Teaser url:%@" = "curl %@/notify/:notify-key";
@@ -76,14 +78,14 @@
 
 "ChannelSettings.HowTo.Shortcuts.Action" = "Add example Shortcut";
 "ChannelSettings.Actions.Unsubscribe" = "Unsubscribe from channel";
-"ChannelSettings.Actions.Save" = "Save";
-"ChannelSettings.Actions.Cancel" = "Cancel";
+"ChannelSettings.Actions.Done" = "Done";
 
 "ChannelSettings.ConfirmUnsubscribe.Title" = "Unsubscribe";
 "ChannelSettings.ConfirmUnsubscribe.Message" = "You won't receive any notifications for this channel anymore.";
 "ChannelSettings.ConfirmUnsubscribe.Unsubscribe" = "Unsubscribe";
 
 "ChannelSubscribing.Title" = "Subscribe Channel";
+"ChannelSubscribing.Basic.ReceiveNotifications" = "Receive Notifications";
 "ChannelSubscribing.Basic.Explanation" = "Insert a notify key or a receive only key.";
 "ChannelSubscribing.Basic.ChannelKey" = "Channel Key";
 "ChannelSubscribing.Subscribe" = "Subscribe";

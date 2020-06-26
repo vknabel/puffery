@@ -28,6 +28,7 @@ public protocol API {
     func messages() -> Endpoint<[Message]>
     func messages(ofChannel: Channel) -> Endpoint<[MessageResponse]>
     func subscribe(_ createSubscription: CreateSubscriptionRequest) -> Endpoint<SubscribedChannelResponse>
+    func update(subscription: SubscribedChannelResponse, updateSubscription: UpdateSubscriptionRequest) -> Endpoint<SubscribedChannelResponse>
     func unsubscribe(_ subscription: SubscribedChannelResponse) -> Endpoint<SubscribedChannelDeletedResponse>
     func channels() -> Endpoint<[SubscribedChannelResponse]>
     func channel(id: UUID) -> Endpoint<SubscribedChannelResponse>

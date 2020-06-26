@@ -48,6 +48,15 @@ public struct CreateSubscriptionRequest: Codable {
     }
 }
 
+public struct UpdateSubscriptionRequest: Codable {
+    public var isSilent: Bool = false
+
+    public init(isSilent: Bool) {
+        self.isSilent = isSilent
+    }
+}
+
+
 public struct CreateMessageRequest: Codable {
     public var title: String
     public var body: String

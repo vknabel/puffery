@@ -36,12 +36,14 @@ public struct SubscribedChannelResponse: Codable, Hashable {
     public var title: String
     public var receiveOnlyKey: String
     public var notifyKey: String?
+    public var isSilent: Bool
 
-    public init(id: UUID, title: String, receiveOnlyKey: String, notifyKey: String?) {
+    public init(id: UUID, title: String, receiveOnlyKey: String, notifyKey: String?, isSilent: Bool) {
         self.id = id
         self.title = title
         self.receiveOnlyKey = receiveOnlyKey
         self.notifyKey = notifyKey
+        self.isSilent = isSilent
     }
 }
 

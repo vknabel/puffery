@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ChannelSettingsPage: View {
-    var channel: Channel
+    @State var channel: Channel
 
     @State var hasJustCopiedPrivateToken = false
     @State var hasJustCopiedPublicToken = false
@@ -19,17 +19,21 @@ struct ChannelSettingsPage: View {
 
     var body: some View {
         List {
-            Section(footer: Text("ChannelSettings.Basic.Explanation")) {
+            Section() {
                 HStack {
                     Text("ChannelSettings.Basic.Name")
                     Spacer()
                     Text(channel.title)
                         .foregroundColor(.secondary)
                 }
-
+                
+                Toggle("ChannelSettings.Basic.ReceiveNotifications", isOn: Binding(get: { !self.channel.isSilent }, set: self.registerAndSetReceiveNotifications))
+            }
+            
+            Section(header: Text("ChannelSettings.Share.Title"), footer: Text("ChannelSettings.Share.Explanation")) {
                 channel.notifyKey.map { notifyKey in
                     CopyContentsCell(
-                        title: "ChannelSettings.Basic.NotifyKey",
+                        title: "ChannelSettings.Share.NotifyKey",
                         teaser: "\(String(notifyKey.prefix(8)))…",
                         contents: "\(notifyKey)"
                     )
@@ -44,14 +48,14 @@ struct ChannelSettingsPage: View {
                 }
 
                 CopyContentsCell(
-                    title: "ChannelSettings.Basic.ReceiveOnlyKey",
+                    title: "ChannelSettings.Share.ReceiveOnlyKey",
                     teaser: "\(String(channel.receiveOnlyKey.prefix(8)))…",
                     contents: "\(channel.receiveOnlyKey)"
                 )
                 Button(action: { self.subscriptionToken = self.channel.receiveOnlyKey }) {
                     HStack(spacing: 10) {
                         Image(systemName: "square.and.arrow.up")
-                        Text("ChannelSettings.Basic.InviteSubscribers")
+                        Text("ChannelSettings.Share.InviteSubscribers")
                     }
                 }
             }
@@ -107,22 +111,13 @@ struct ChannelSettingsPage: View {
         }
         .roundedListStyle()
         .navigationBarTitle("\(channel.title)", displayMode: NavigationBarItem.TitleDisplayMode.inline)
-        .navigationBarItems(
-            leading: cancelNavigationItem,
-            trailing: saveNavigationItem
-        )
+        .navigationBarItems(trailing: saveNavigationItem)
         .trackAppearence("channels/:id/settings", using: Current.tracker)
     }
 
     var saveNavigationItem: some View {
         Button(action: dismiss) {
-            Text("ChannelSettings.Actions.Save").fontWeight(.bold)
-        }
-    }
-
-    var cancelNavigationItem: some View {
-        Button(action: dismiss) {
-            Text("ChannelSettings.Actions.Cancel")
+            Text("ChannelSettings.Actions.Done").fontWeight(.bold)
         }
     }
 
@@ -138,6 +133,23 @@ struct ChannelSettingsPage: View {
                 NotificationCenter.default.post(Notification(name: .didUnsubscribeFromChannel))
             }
         }
+    }
+    
+    func registerAndSetReceiveNotifications(_ newValue: Bool) {
+        if newValue == true, !PushNotifications.hasBeenRequested {
+            PushNotifications.register {
+                self.channel.isSilent = !newValue
+            }
+        } else {
+            self.channel.isSilent = !newValue
+        }
+        
+        Current.api.update(subscription: channel, updateSubscription: UpdateSubscriptionRequest(isSilent: channel.isSilent))
+            .task({ _ in
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .didChangeChannel, object: nil)
+                }
+            })
     }
 
     func save() {
