@@ -23,7 +23,7 @@ extension RegistrationEnvironment {
     }
 
     private static func loginEffect(email: String) -> Effect<Void, FetchingError> {
-        registerPushNotificationsEffect()
+        alreadyRequestedTokenEffect()
             .transformError()
             .flatMap { token in
                 Current.api.login(user: LoginUserRequest(
@@ -39,7 +39,7 @@ extension RegistrationEnvironment {
     }
 
     private static func registerEffect(email: String? = nil) -> Effect<TokenResponse, FetchingError> {
-        registerPushNotificationsEffect()
+        alreadyRequestedTokenEffect()
             .mapError { (_: Never) -> FetchingError in }
             .flatMap { (token: String?) -> AnyPublisher<TokenResponse, FetchingError> in
                 let createDeviceRequest = token.map {
@@ -51,6 +51,18 @@ extension RegistrationEnvironment {
             .eraseToEffect()
     }
 
+    private static func alreadyRequestedTokenEffect() -> Effect<String?, Never> {
+        Future { resolve in
+            guard PushNotifications.hasBeenRequested else {
+                resolve(.success(nil))
+                return
+            }
+            PushNotifications.register {
+                resolve(.success(Current.store.state.session.latestDeviceToken))
+            }
+        }.eraseToEffect()
+    }
+    
     private static func registerPushNotificationsEffect() -> Effect<String?, Never> {
         Future { resolve in
             PushNotifications.register {

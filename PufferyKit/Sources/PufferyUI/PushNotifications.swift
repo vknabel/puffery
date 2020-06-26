@@ -31,7 +31,12 @@ public enum PushNotifications {
             .requestAuthorization(options: [.alert, .sound, .badge]) {
                 granted, _ in
                 print("Permission granted: \(granted)")
-                guard granted else { return }
+                guard granted else {
+                    DispatchQueue.main.async {
+                        onFinish()
+                    }
+                    return
+                }
                 UNUserNotificationCenter.current().getNotificationSettings { settings in
                     guard settings.authorizationStatus == .authorized else { return }
                     DispatchQueue.main.async {
