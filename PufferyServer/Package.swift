@@ -46,6 +46,6 @@ let package = Package(
             "APIDefinition",
         ]),
         .target(name: "Run", dependencies: ["App"]),
-        .testTarget(name: "AppTests", dependencies: ["App"]),
+        .testTarget(name: "AppTests", dependencies: ["App", .product(name: "XCTVapor", package: "vapor")]),
     ]
 )

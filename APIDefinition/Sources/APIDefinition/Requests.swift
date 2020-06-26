@@ -30,17 +30,21 @@ public struct LoginUserRequest: Codable {
 
 public struct CreateChannelRequest: Codable {
     public var title: String
+    public var isSilent: Bool = false
 
-    public init(title: String) {
+    public init(title: String, isSilent: Bool) {
         self.title = title
+        self.isSilent = isSilent
     }
 }
 
 public struct CreateSubscriptionRequest: Codable {
     public var receiveOrNotifyKey: String
+    public var isSilent: Bool = false
 
-    public init(receiveOrNotifyKey: String) {
+    public init(receiveOrNotifyKey: String, isSilent: Bool) {
         self.receiveOrNotifyKey = receiveOrNotifyKey
+        self.isSilent = isSilent
     }
 }
 

@@ -18,7 +18,7 @@ final class SubscribedChannelController {
         return channel
             .create(on: req.db)
             .flatMap { _ in
-                let subscription = try Subscription(user: user, channel: channel, canNotify: true)
+                let subscription = try Subscription(user: user, channel: channel, canNotify: true, isSilent: createChannel.isSilent)
                 return subscription.create(on: req.db)
                     .transform(to: subscription)
             }
@@ -85,7 +85,8 @@ final class SubscribedChannelController {
                 let subscription = try Subscription(
                     user: user,
                     channel: channel,
-                    canNotify: channel.notifyKey == createSubscription.receiveOrNotifyKey
+                    canNotify: channel.notifyKey == createSubscription.receiveOrNotifyKey,
+                    isSilent: createSubscription.isSilent
                 )
                 return subscription.create(on: req.db).flatMapThrowing { _ in
                     try SubscribedChannelResponse(subscription: subscription)

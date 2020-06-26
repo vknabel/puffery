@@ -5,7 +5,7 @@ import FluentSQL
 struct _2020_04_27_UniqueUserEmailsAndDeletionRulesMigration: Migration {
     func prepare(on database: Database) -> EventLoopFuture<Void> {
         database.transaction { database in
-            let sql = (database as! PostgresDatabase).sql()
+            let sql = database as! SQLDatabase
             let migrations: [SQLQueryString] = [
                 """
                 ALTER TABLE users
@@ -45,7 +45,7 @@ struct _2020_04_27_UniqueUserEmailsAndDeletionRulesMigration: Migration {
 
     func revert(on database: Database) -> EventLoopFuture<Void> {
         database.transaction { database in
-            let sql = (database as! PostgresDatabase).sql()
+            let sql = database as! SQLDatabase
             let migrations: [SQLQueryString] = [
                 """
                 ALTER TABLE users
