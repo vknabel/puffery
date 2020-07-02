@@ -51,7 +51,7 @@ final class VaporAPI: API {
     }
 
     func register(user createUser: CreateUserRequest) -> Endpoint<TokenResponse> {
-        endpoint().post("register")
+        endpoint().post("api", "v1", "register")
             .encoding(body: createUser, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode, TokenResponse.self)
             .perform { tokenResponse in
@@ -60,29 +60,29 @@ final class VaporAPI: API {
     }
 
     func login(user credentials: LoginUserRequest) -> Endpoint<Void> {
-        endpoint().post("login")
+        endpoint().post("api", "v1", "login")
             .encoding(body: credentials, using: jsonEncoder.encode)
             .ignoreValue()
     }
 
     func profile() -> Endpoint<UserResponse> {
-        endpoint().get("profile")
+        endpoint().get("api", "v1", "profile")
             .decoding(jsonDecoder.decode, UserResponse.self)
     }
 
     func updateProfile(credentials: UpdateProfileRequest) -> Endpoint<UserResponse> {
-        endpoint().put("profile")
+        endpoint().put("api", "v1", "profile")
             .encoding(body: credentials, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode, UserResponse.self)
     }
 
     func confirmEmail(_ confirmation: String) -> Endpoint<Void> {
-        endpoint().put("confirmations", "email", confirmation)
+        endpoint().put("api", "v1", "confirmations", "email", confirmation)
             .ignoreValue()
     }
 
     func confirmLogin(_ confirmation: String) -> Endpoint<TokenResponse> {
-        endpoint().post("confirmations", "login", confirmation)
+        endpoint().post("api", "v1", "confirmations", "login", confirmation)
             .decoding(jsonDecoder.decode, TokenResponse.self)
             .perform { tokenResponse in
                 Current.store.commit(.updateSession(tokenResponse))
@@ -94,7 +94,7 @@ final class VaporAPI: API {
         #if DEBUG
             createDevice.isProduction = false
         #endif
-        return endpoint().post("devices")
+        return endpoint().post("api", "v1", "devices")
             .encoding(body: createDevice, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode, DeviceResponse.self)
             .perform { deviceResponse in
@@ -107,7 +107,7 @@ final class VaporAPI: API {
         #if DEBUG
             createOrUpdateDevice.isProduction = false
         #endif
-        return endpoint().put("devices", deviceToken)
+        return endpoint().put("api", "v1", "devices", deviceToken)
             .encoding(body: createOrUpdateDevice, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode, DeviceResponse.self)
             .perform { deviceResponse in
@@ -116,66 +116,66 @@ final class VaporAPI: API {
     }
 
     func createChannel(_ createChannel: CreateChannelRequest) -> Endpoint<SubscribedChannelResponse> {
-        endpoint().post("channels")
+        endpoint().post("api", "v1", "channels")
             .encoding(body: createChannel, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode)
     }
 
     func messages() -> Endpoint<[Message]> {
         endpoint()
-            .get("channels", "messages")
+            .get("api", "v1", "channels", "messages")
             .decoding(jsonDecoder.decode)
     }
 
     func messages(ofChannel channel: Channel) -> Endpoint<[Message]> {
         endpoint()
-            .get("channels", channel.id.uuidString, "messages")
+            .get("api", "v1", "channels", channel.id.uuidString, "messages")
             .decoding(jsonDecoder.decode)
     }
 
     func subscribe(_ createSubscription: CreateSubscriptionRequest) -> Endpoint<SubscribedChannelResponse> {
         endpoint()
-            .post("channels", "subscribe")
+            .post("api", "v1", "channels", "subscribe")
             .encoding(body: createSubscription, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode)
     }
     
     func update(subscription: SubscribedChannelResponse, updateSubscription: UpdateSubscriptionRequest) -> Endpoint<SubscribedChannelResponse> {
         endpoint()
-            .post("channels", subscription.id.uuidString)
+            .post("api", "v1", "channels", subscription.id.uuidString)
             .encoding(body: updateSubscription, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode)
     }
 
     func unsubscribe(_ subscription: SubscribedChannelResponse) -> Endpoint<SubscribedChannelDeletedResponse> {
         endpoint()
-            .delete("channels", subscription.id.uuidString)
+            .delete("api", "v1", "channels", subscription.id.uuidString)
             .encoding(body: subscription, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode)
     }
 
     func notify(key notifyKey: String, _ createMessage: CreateMessageRequest) -> Endpoint<NotifyMessageResponse> {
-        endpoint().post("notify", notifyKey).encoding(body: createMessage, using: jsonEncoder.encode)
+        endpoint().post("api", "v1", "notify", notifyKey).encoding(body: createMessage, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode)
     }
 
     func channels() -> Endpoint<[SubscribedChannelResponse]> {
-        endpoint().get("channels")
+        endpoint().get("api", "v1", "channels")
             .decoding(jsonDecoder.decode)
     }
 
     func channel(id: UUID) -> Endpoint<SubscribedChannelResponse> {
-        endpoint().get("channels", id.uuidString)
+        endpoint().get("api", "v1", "channels", id.uuidString)
             .decoding(jsonDecoder.decode)
     }
 
     func sharedChannels() -> Endpoint<[SubscribedChannelResponse]> {
-        endpoint().get("channels", "shared")
+        endpoint().get("api", "v1", "channels", "shared")
             .decoding(jsonDecoder.decode)
     }
 
     func ownChannels() -> Endpoint<[SubscribedChannelResponse]> {
-        endpoint().get("channels", "own")
+        endpoint().get("api", "v1", "channels", "own")
             .decoding(jsonDecoder.decode)
     }
 }

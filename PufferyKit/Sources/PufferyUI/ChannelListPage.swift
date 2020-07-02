@@ -126,6 +126,7 @@ struct ChannelListPage: View {
             .merge(with: didChangeChannel)
             .prepend(())
             .flatMap(api.ownChannels().publisher)
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 
@@ -135,6 +136,7 @@ struct ChannelListPage: View {
             .merge(with: didChangeChannel)
             .prepend(())
             .flatMap(api.sharedChannels().publisher)
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 }

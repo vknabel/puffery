@@ -16,15 +16,17 @@ public func routes(_ app: Application) throws {
     // POST notify/:private
     // POST subscriptions
 
-    let bearer = app.grouped(UserToken.authenticator()).grouped(UserBearerAuthenticator())
+    let apiV1 = app.grouped("api", "v1")
+    
+    let bearer = apiV1.grouped(UserToken.authenticator()).grouped(UserBearerAuthenticator())
 
     let userController = UserController()
-    app.post("register", use: userController.create)
-    app.post("login", use: userController.login)
+    apiV1.post("register", use: userController.create)
+    apiV1.post("login", use: userController.login)
 
     let confirmationController = ConfirmationController()
-    app.post("confirmations", "login", ":confirmation_id", use: confirmationController.confirmLogin)
-    app.post("confirmations", "email", ":confirmation_id", use: confirmationController.confirmEmail)
+    apiV1.post("confirmations", "login", ":confirmation_id", use: confirmationController.confirmLogin)
+    apiV1.post("confirmations", "email", ":confirmation_id", use: confirmationController.confirmEmail)
 
     bearer.get("profile", use: userController.profile)
     bearer.put("profile", use: userController.updateProfile)
@@ -44,8 +46,8 @@ public func routes(_ app: Application) throws {
     bearer.get("channels", "shared", use: subscribedChannelController.indexShared)
     bearer.get("channels", "own", use: subscribedChannelController.indexOwn)
 
-    app.on(.POST, "notify", "inbound-email", body: HTTPBodyStreamStrategy.collect(maxSize: nil), use: messageController.publicEmail)
-    app.post("notify", ":notify_key", use: messageController.publicNotify)
+    apiV1.on(.POST, "notify", "inbound-email", body: HTTPBodyStreamStrategy.collect(maxSize: nil), use: messageController.publicEmail)
+    apiV1.post("notify", ":notify_key", use: messageController.publicNotify)
     bearer.get("channels", "messages", use: messageController.messagesForAllChannels)
     bearer.get("channels", ":subscription_id", "messages", use: messageController.index)
     bearer.post("channels", ":subscription_id", "messages", use: messageController.create)
