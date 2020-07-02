@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32A0C57CFA3DE34BD789DD26 /* Pods_Puffery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE241F933A12C10244CD9336 /* Pods_Puffery.framework */; };
+		6053427FE94B3C5DC83C1CA8 /* Pods_Puffery_Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1768E6472E80098A0AF74C63 /* Pods_Puffery_Intents.framework */; };
+		A842CEDF15BB9DFF5CCCBF3F /* Pods_PufferyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D4170DA16869CB1BE73F6B /* Pods_PufferyTests.framework */; };
 		BA231223249C036F00AE13F1 /* NoitifcationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA231222249C036F00AE13F1 /* NoitifcationsService.swift */; };
 		BA231225249C040A00AE13F1 /* ReceivedMessageNotification.apns in Resources */ = {isa = PBXBuildFile; fileRef = BA231224249C040A00AE13F1 /* ReceivedMessageNotification.apns */; };
 		BA923F2C245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA923F2F245EFAC0008BD6C9 /* Intents.intentdefinition */; };
@@ -16,11 +19,11 @@
 		BA95250C245EC51900FFC9E3 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95250B245EC51900FFC9E3 /* IntentHandler.swift */; };
 		BA952521245EC51900FFC9E3 /* Puffery Intents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BA952509245EC51900FFC9E3 /* Puffery Intents.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BA95252E245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95252D245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift */; };
-		BA952530245ED78500FFC9E3 /* PufferyUI in Frameworks */ = {isa = PBXBuildFile; productRef = BA95252F245ED78500FFC9E3 /* PufferyUI */; };
-		BA952532245ED7A300FFC9E3 /* PufferyKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA952531245ED7A300FFC9E3 /* PufferyKit */; };
+		BA952530245ED78500FFC9E3 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = BA95252F245ED78500FFC9E3 /* SwiftPackageProductDependency */; };
+		BA952532245ED7A300FFC9E3 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = BA952531245ED7A300FFC9E3 /* SwiftPackageProductDependency */; };
 		BA952536245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA952535245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift */; };
 		BA952538245EEDF200FFC9E3 /* Puffery+Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA952537245EEDF200FFC9E3 /* Puffery+Intent.swift */; };
-		BAC3D8212494D3E300BF33BF /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = BAC3D8202494D3E300BF33BF /* ComposableArchitecture */; };
+		BAC3D8212494D3E300BF33BF /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = BAC3D8202494D3E300BF33BF /* SwiftPackageProductDependency */; };
 		BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154632444BB4400EDB97B /* AppDelegate.swift */; };
 		BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154652444BB4400EDB97B /* SceneDelegate.swift */; };
 		BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */; };
@@ -29,6 +32,7 @@
 		BAF154732444BB4600EDB97B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF154712444BB4600EDB97B /* LaunchScreen.storyboard */; };
 		BAF1547E2444BB4600EDB97B /* PufferyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1547D2444BB4600EDB97B /* PufferyTests.swift */; };
 		BAF154892444BB4600EDB97B /* PufferyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154882444BB4600EDB97B /* PufferyUITests.swift */; };
+		F25AA33E7BE56265A1CA76E8 /* Pods_Puffery_PufferyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E8D789007774DA43F625497 /* Pods_Puffery_PufferyUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +94,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F10D59CED9AC997F766BB00 /* Pods-Puffery-PufferyUITests.local debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puffery-PufferyUITests.local debug.xcconfig"; path = "Target Support Files/Pods-Puffery-PufferyUITests/Pods-Puffery-PufferyUITests.local debug.xcconfig"; sourceTree = "<group>"; };
+		1768E6472E80098A0AF74C63 /* Pods_Puffery_Intents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Puffery_Intents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E8D789007774DA43F625497 /* Pods_Puffery_PufferyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Puffery_PufferyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2037A4F50C5A798D87DE20E4 /* Pods-Puffery Intents.local debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puffery Intents.local debug.xcconfig"; path = "Target Support Files/Pods-Puffery Intents/Pods-Puffery Intents.local debug.xcconfig"; sourceTree = "<group>"; };
+		35424805AFAEA3B4BA66D0C9 /* Pods-PufferyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PufferyTests.release.xcconfig"; path = "Target Support Files/Pods-PufferyTests/Pods-PufferyTests.release.xcconfig"; sourceTree = "<group>"; };
+		61D3ECB2AB4AB731AC86A4BA /* Pods-Puffery-PufferyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puffery-PufferyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Puffery-PufferyUITests/Pods-Puffery-PufferyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		67D4170DA16869CB1BE73F6B /* Pods_PufferyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PufferyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		809BE758EEBEA6C0F726CF5B /* Pods-PufferyTests.local debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PufferyTests.local debug.xcconfig"; path = "Target Support Files/Pods-PufferyTests/Pods-PufferyTests.local debug.xcconfig"; sourceTree = "<group>"; };
+		873B52210CC68F89B149762F /* Pods-PufferyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PufferyTests.debug.xcconfig"; path = "Target Support Files/Pods-PufferyTests/Pods-PufferyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A51C2191F906221D8076928C /* Pods-Puffery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puffery.release.xcconfig"; path = "Target Support Files/Pods-Puffery/Pods-Puffery.release.xcconfig"; sourceTree = "<group>"; };
+		AD777C417FA9176004A6595F /* Pods-Puffery Intents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puffery Intents.release.xcconfig"; path = "Target Support Files/Pods-Puffery Intents/Pods-Puffery Intents.release.xcconfig"; sourceTree = "<group>"; };
 		BA1B71942495205700572516 /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 		BA1B719A249521B800572516 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		BA231222249C036F00AE13F1 /* NoitifcationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoitifcationsService.swift; sourceTree = "<group>"; };
@@ -125,6 +140,11 @@
 		BAF154842444BB4600EDB97B /* PufferyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PufferyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF154882444BB4600EDB97B /* PufferyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PufferyUITests.swift; sourceTree = "<group>"; };
 		BAF1548A2444BB4600EDB97B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE241F933A12C10244CD9336 /* Pods_Puffery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Puffery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5F036CC505CD1F8F5E23CB9 /* Pods-Puffery-PufferyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puffery-PufferyUITests.release.xcconfig"; path = "Target Support Files/Pods-Puffery-PufferyUITests/Pods-Puffery-PufferyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E9A3337200F8A90DD1BFCC25 /* Pods-Puffery.local debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puffery.local debug.xcconfig"; path = "Target Support Files/Pods-Puffery/Pods-Puffery.local debug.xcconfig"; sourceTree = "<group>"; };
+		EB6C34D37F1DC0E9CFBCB3D7 /* Pods-Puffery Intents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puffery Intents.debug.xcconfig"; path = "Target Support Files/Pods-Puffery Intents/Pods-Puffery Intents.debug.xcconfig"; sourceTree = "<group>"; };
+		FB797C93AAC5675E417DFC1D /* Pods-Puffery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puffery.debug.xcconfig"; path = "Target Support Files/Pods-Puffery/Pods-Puffery.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +152,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA952532245ED7A300FFC9E3 /* PufferyKit in Frameworks */,
+				BA952532245ED7A300FFC9E3 /* BuildFile in Frameworks */,
+				6053427FE94B3C5DC83C1CA8 /* Pods_Puffery_Intents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,9 +161,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA952530245ED78500FFC9E3 /* PufferyUI in Frameworks */,
+				BA952530245ED78500FFC9E3 /* BuildFile in Frameworks */,
 				BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */,
-				BAC3D8212494D3E300BF33BF /* ComposableArchitecture in Frameworks */,
+				BAC3D8212494D3E300BF33BF /* BuildFile in Frameworks */,
+				32A0C57CFA3DE34BD789DD26 /* Pods_Puffery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A842CEDF15BB9DFF5CCCBF3F /* Pods_PufferyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,18 +180,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F25AA33E7BE56265A1CA76E8 /* Pods_Puffery_PufferyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B4A1F9B4B2830FC515538DA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FB797C93AAC5675E417DFC1D /* Pods-Puffery.debug.xcconfig */,
+				E9A3337200F8A90DD1BFCC25 /* Pods-Puffery.local debug.xcconfig */,
+				A51C2191F906221D8076928C /* Pods-Puffery.release.xcconfig */,
+				EB6C34D37F1DC0E9CFBCB3D7 /* Pods-Puffery Intents.debug.xcconfig */,
+				2037A4F50C5A798D87DE20E4 /* Pods-Puffery Intents.local debug.xcconfig */,
+				AD777C417FA9176004A6595F /* Pods-Puffery Intents.release.xcconfig */,
+				61D3ECB2AB4AB731AC86A4BA /* Pods-Puffery-PufferyUITests.debug.xcconfig */,
+				0F10D59CED9AC997F766BB00 /* Pods-Puffery-PufferyUITests.local debug.xcconfig */,
+				E5F036CC505CD1F8F5E23CB9 /* Pods-Puffery-PufferyUITests.release.xcconfig */,
+				873B52210CC68F89B149762F /* Pods-PufferyTests.debug.xcconfig */,
+				809BE758EEBEA6C0F726CF5B /* Pods-PufferyTests.local debug.xcconfig */,
+				35424805AFAEA3B4BA66D0C9 /* Pods-PufferyTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		BA94F0C1244BA4020087924C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				BA96015C2452204200667BDD /* Security.framework */,
 				BA94F0C2244BA4030087924C /* UserNotifications.framework */,
 				BA952513245EC51900FFC9E3 /* IntentsUI.framework */,
+				DE241F933A12C10244CD9336 /* Pods_Puffery.framework */,
+				1768E6472E80098A0AF74C63 /* Pods_Puffery_Intents.framework */,
+				1E8D789007774DA43F625497 /* Pods_Puffery_PufferyUITests.framework */,
+				67D4170DA16869CB1BE73F6B /* Pods_PufferyTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -200,6 +248,7 @@
 				BA95250A245EC51900FFC9E3 /* Puffery Intents */,
 				BAF154612444BB4400EDB97B /* Products */,
 				BA94F0C1244BA4020087924C /* Frameworks */,
+				8B4A1F9B4B2830FC515538DA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -264,6 +313,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BA952528245EC51900FFC9E3 /* Build configuration list for PBXNativeTarget "Puffery Intents" */;
 			buildPhases = (
+				3DA6E1B529BC6C0D4B21DF6D /* [CP] Check Pods Manifest.lock */,
 				BA952505245EC51900FFC9E3 /* Sources */,
 				BA952506245EC51900FFC9E3 /* Frameworks */,
 				BA952507245EC51900FFC9E3 /* Resources */,
@@ -274,7 +324,7 @@
 			);
 			name = "Puffery Intents";
 			packageProductDependencies = (
-				BA952531245ED7A300FFC9E3 /* PufferyKit */,
+				BA952531245ED7A300FFC9E3 /* SwiftPackageProductDependency */,
 			);
 			productName = "Puffery Intents";
 			productReference = BA952509245EC51900FFC9E3 /* Puffery Intents.appex */;
@@ -284,11 +334,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BAF1548D2444BB4600EDB97B /* Build configuration list for PBXNativeTarget "Puffery" */;
 			buildPhases = (
+				218895951962AF8205D43650 /* [CP] Check Pods Manifest.lock */,
 				BAF1545C2444BB4400EDB97B /* Sources */,
 				BAF1545D2444BB4400EDB97B /* Frameworks */,
 				BAF1545E2444BB4400EDB97B /* Resources */,
 				BA952522245EC51900FFC9E3 /* Embed App Extensions */,
 				BA8E67412469FB93004F05F3 /* Embed Frameworks */,
+				345B5502787A8E7292772374 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -297,8 +349,8 @@
 			);
 			name = Puffery;
 			packageProductDependencies = (
-				BA95252F245ED78500FFC9E3 /* PufferyUI */,
-				BAC3D8202494D3E300BF33BF /* ComposableArchitecture */,
+				BA95252F245ED78500FFC9E3 /* SwiftPackageProductDependency */,
+				BAC3D8202494D3E300BF33BF /* SwiftPackageProductDependency */,
 			);
 			productName = Puffery;
 			productReference = BAF154602444BB4400EDB97B /* Puffery.app */;
@@ -308,6 +360,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BAF154902444BB4600EDB97B /* Build configuration list for PBXNativeTarget "PufferyTests" */;
 			buildPhases = (
+				37EBC8E86DCEB0B4EF468015 /* [CP] Check Pods Manifest.lock */,
 				BAF154752444BB4600EDB97B /* Sources */,
 				BAF154762444BB4600EDB97B /* Frameworks */,
 				BAF154772444BB4600EDB97B /* Resources */,
@@ -316,12 +369,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				BA40457B24AE41C8005B2F59 /* PBXTargetDependency */,
 				BAF1547B2444BB4600EDB97B /* PBXTargetDependency */,
 			);
 			name = PufferyTests;
-			packageProductDependencies = (
-			);
 			productName = WakeTests;
 			productReference = BAF154792444BB4600EDB97B /* PufferyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -330,9 +380,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BAF154932444BB4600EDB97B /* Build configuration list for PBXNativeTarget "PufferyUITests" */;
 			buildPhases = (
+				5ADC82F2FB395739686885D4 /* [CP] Check Pods Manifest.lock */,
 				BAF154802444BB4600EDB97B /* Sources */,
 				BAF154812444BB4600EDB97B /* Frameworks */,
 				BAF154822444BB4600EDB97B /* Resources */,
+				D4D759BDCAD8E6297D5E90EA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -381,8 +433,8 @@
 			);
 			mainGroup = BAF154572444BB4400EDB97B;
 			packageReferences = (
-				BA96015E2452208C00667BDD /* XCRemoteSwiftPackageReference "keychain-swift" */,
-				BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				BA96015E2452208C00667BDD /* RemoteSwiftPackageReference */,
+				BA8E673A2469FB93004F05F3 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = BAF154612444BB4400EDB97B /* Products */;
 			projectDirPath = "";
@@ -432,6 +484,131 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		218895951962AF8205D43650 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Puffery-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		345B5502787A8E7292772374 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Puffery/Pods-Puffery-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Puffery/Pods-Puffery-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Puffery/Pods-Puffery-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		37EBC8E86DCEB0B4EF468015 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PufferyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3DA6E1B529BC6C0D4B21DF6D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Puffery Intents-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5ADC82F2FB395739686885D4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Puffery-PufferyUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4D759BDCAD8E6297D5E90EA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Puffery-PufferyUITests/Pods-Puffery-PufferyUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Puffery-PufferyUITests/Pods-Puffery-PufferyUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Puffery-PufferyUITests/Pods-Puffery-PufferyUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BA952505245EC51900FFC9E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -476,10 +653,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BA40457B24AE41C8005B2F59 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = BA40457A24AE41C8005B2F59 /* ComposableArchitecture */;
-		};
 		BA952520245EC51900FFC9E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -593,6 +766,7 @@
 		};
 		BA1B71962495210F00572516 /* Local Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9A3337200F8A90DD1BFCC25 /* Pods-Puffery.local debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -620,6 +794,7 @@
 		};
 		BA1B71972495210F00572516 /* Local Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 809BE758EEBEA6C0F726CF5B /* Pods-PufferyTests.local debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -642,6 +817,7 @@
 		};
 		BA1B71982495210F00572516 /* Local Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F10D59CED9AC997F766BB00 /* Pods-Puffery-PufferyUITests.local debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -662,6 +838,7 @@
 		};
 		BA1B71992495210F00572516 /* Local Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2037A4F50C5A798D87DE20E4 /* Pods-Puffery Intents.local debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Puffery Intents/Puffery IntentsDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -685,6 +862,7 @@
 		};
 		BA952523245EC51900FFC9E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB6C34D37F1DC0E9CFBCB3D7 /* Pods-Puffery Intents.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Puffery Intents/Puffery IntentsDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -708,6 +886,7 @@
 		};
 		BA952524245EC51900FFC9E3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD777C417FA9176004A6595F /* Pods-Puffery Intents.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Puffery Intents/Puffery Intents.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -850,6 +1029,7 @@
 		};
 		BAF1548E2444BB4600EDB97B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB797C93AAC5675E417DFC1D /* Pods-Puffery.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -877,6 +1057,7 @@
 		};
 		BAF1548F2444BB4600EDB97B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A51C2191F906221D8076928C /* Pods-Puffery.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -907,6 +1088,7 @@
 		};
 		BAF154912444BB4600EDB97B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 873B52210CC68F89B149762F /* Pods-PufferyTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -929,6 +1111,7 @@
 		};
 		BAF154922444BB4600EDB97B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35424805AFAEA3B4BA66D0C9 /* Pods-PufferyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -951,6 +1134,7 @@
 		};
 		BAF154942444BB4600EDB97B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61D3ECB2AB4AB731AC86A4BA /* Pods-Puffery-PufferyUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -971,6 +1155,7 @@
 		};
 		BAF154952444BB4600EDB97B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5F036CC505CD1F8F5E23CB9 /* Pods-Puffery-PufferyUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1045,7 +1230,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+		BA8E673A2469FB93004F05F3 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
 			requirement = {
@@ -1053,7 +1238,7 @@
 				minimumVersion = 0.1.2;
 			};
 		};
-		BA96015E2452208C00667BDD /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+		BA96015E2452208C00667BDD /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
 			requirement = {
@@ -1064,22 +1249,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BA40457A24AE41C8005B2F59 /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
-		};
-		BA95252F245ED78500FFC9E3 /* PufferyUI */ = {
+		BA95252F245ED78500FFC9E3 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PufferyUI;
 		};
-		BA952531245ED7A300FFC9E3 /* PufferyKit */ = {
+		BA952531245ED7A300FFC9E3 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PufferyKit;
 		};
-		BAC3D8202494D3E300BF33BF /* ComposableArchitecture */ = {
+		BAC3D8202494D3E300BF33BF /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			package = BA8E673A2469FB93004F05F3 /* RemoteSwiftPackageReference */;
 			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */

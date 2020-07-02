@@ -11,6 +11,7 @@ import CoreData
 import PufferyKit
 import UIKit
 import UserNotifications
+import Instabug
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = notifications
+        
+        Instabug.start(withToken: "88e7078239c304aef087906e97d1d722", invocationEvents: [.shake, .screenshot])
 
         return true
     }

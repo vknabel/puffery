@@ -29,7 +29,7 @@ extension AckeeServer {
 
     func update(record: Record) {
         dependencies.fetch(
-            createRequest("POST", ["domains", configuration.domainId, "records", record.id])
+            createRequest("PATCH", ["domains", configuration.domainId, "records", record.id])
         ) { _, _, _ in }
     }
 
