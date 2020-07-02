@@ -1,0 +1,61 @@
+@testable import App
+import APIDefinition
+import XCTVapor
+
+final class SendMessageTests: PufferyTestCase {
+    func testPublicNotifyNotFound() throws {
+        let content = CreateMessageRequest(
+            title: "Hello World!",
+            body: "How are you?",
+            color: nil
+        )
+        try app.testPublicNotify(key: UUID(), content, usingApiPrefix: false) { (res) in
+            XCTAssertEqual(res.status, .notFound)
+        }
+    }
+    
+    func testPublicNotify() throws {
+        // TODO: seed user and channel
+        
+        let content = CreateMessageRequest(
+            title: "Hello World!",
+            body: "How are you?",
+            color: nil
+        )
+        try app.testPublicNotify(key: UUID(), content, usingApiPrefix: false) { (res) in
+            XCTAssertEqual(res.status, .ok)
+            let message = try res.content.decode(NotifyMessageResponse.self)
+            XCTAssertEqual(message.title, content.title)
+            XCTAssertEqual(message.body, content.body)
+            XCTAssertEqual(message.color, content.color)
+            
+            XCTAssertNotNil(self.sentMessage)
+            XCTAssertEqual(self.sentMessage?.id, message.id)
+            XCTAssertEqual(self.sentMessage?.title, content.title)
+            XCTAssertEqual(self.sentMessage?.body, content.body)
+            XCTAssertEqual(self.sentMessage?.color, content.color)
+        }
+    }
+}
+
+private extension Application {
+    @discardableResult
+    func testPublicNotify(
+        key: UUID,
+        _ content: CreateMessageRequest,
+        usingApiPrefix: Bool,
+        file: StaticString = #file,
+        line: UInt = #line,
+        afterResponse: @escaping (XCTHTTPResponse) throws -> ()) throws -> XCTApplicationTester {
+        try test(
+            .POST, (usingApiPrefix ? "api/v1/" : "") + "notify",
+            headers: ["Content-Type": "application/json", "Accept": "application/json"],
+            file: file,
+            line: line,
+            beforeRequest: { req in
+                try req.content.encode(content)
+            },
+            afterResponse: afterResponse
+        )
+    }
+}

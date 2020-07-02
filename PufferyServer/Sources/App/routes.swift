@@ -48,6 +48,7 @@ public func routes(_ app: Application) throws {
 
     apiV1.on(.POST, "notify", "inbound-email", body: HTTPBodyStreamStrategy.collect(maxSize: nil), use: messageController.publicEmail)
     apiV1.post("notify", ":notify_key", use: messageController.publicNotify)
+    app.post("notify", ":notify_key", use: messageController.publicNotify)
     bearer.get("channels", "messages", use: messageController.messagesForAllChannels)
     bearer.get("channels", ":subscription_id", "messages", use: messageController.index)
     bearer.post("channels", ":subscription_id", "messages", use: messageController.create)

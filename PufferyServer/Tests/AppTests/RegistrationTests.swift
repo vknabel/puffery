@@ -62,7 +62,7 @@ private extension Application {
         line: UInt = #line,
         afterResponse: @escaping (XCTHTTPResponse) throws -> ()) throws -> XCTApplicationTester {
         try test(
-            .POST, "register",
+            .POST, "api/v1/register",
             headers: ["Content-Type": "application/json", "Accept": "application/json"],
             file: file,
             line: line,

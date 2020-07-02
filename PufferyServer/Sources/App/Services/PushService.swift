@@ -2,13 +2,21 @@ import APNS
 import Fluent
 import Vapor
 
+struct PushServiceFactoryStorageKey: StorageKey {
+    typealias Value = (Request) -> PushService
+}
+
 extension Request {
     var push: PushService {
-        .init(req: self)
+        (storage[PushServiceFactoryStorageKey.self] ?? APNSPushService.init(req:))(self)
     }
 }
 
-struct PushService {
+protocol PushService {
+    func notifyDevices(message: Message) -> EventLoopFuture<Void>
+}
+
+struct APNSPushService: PushService {
     let req: Request
 
     func notifyDevices(message: Message) -> EventLoopFuture<Void> {

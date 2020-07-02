@@ -1,0 +1,48 @@
+name: puffery
+version: 1.0.0
+scripts:
+  test-server:
+    run:
+      - test-setup
+      - swift-test
+      - test-teardown
+    scripts:
+      swift-test:
+        command: cd PufferyServer && swift test
+        env:
+          PUFFERY_IN_PROCESS_JOBS: "false"
+          DATABASE_URL: postgres://puffery-test:puffery-test@localhost:5431/puffery-test
+          REDIS_URL: redis://localhost:6378
+  test-setup:
+    run:
+      - start-test-db
+      - start-test-redis
+    scripts:
+      start-test-db: |
+        docker stop psql-puffery-test || true
+        docker run --rm \
+          --env POSTGRES_USER=puffery-test \
+          --env POSTGRES_DB=puffery-test \
+          --env POSTGRES_PASSWORD=puffery-test \
+          --name "psql-puffery-test" \
+          --detach \
+          --publish 5431:5432 \
+          postgres:11-alpine
+      start-test-redis: |
+        docker stop redis-puffery-test || true
+        docker run --rm \
+          --name "redis-puffery-test" \
+          --detach \
+          --publish 6378:6379 \
+          redis \
+          redis-server --appendonly yes
+  test-teardown:
+    run:
+      - stop-test-db
+      - stop-test-redis
+    scripts:
+      stop-test-db: |
+        docker stop psql-puffery-test
+      stop-test-redis: |
+        docker stop redis-puffery-test
+
