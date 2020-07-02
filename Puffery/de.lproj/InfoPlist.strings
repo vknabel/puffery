@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Puffery
+
+  Created by Valentin Knabel on 02.07.20.
+  Copyright © 2020 Valentin Knabel. All rights reserved.
+*/
+NSMicrophoneUsageDescription = "Puffery benötigt Zugriff auf dein Mikrofon, um Aufnahmen anzuhängen.";
+NSPhotoLibraryUsageDescription = "Puffery benötigt Zugriff auf deine Fotos, damit du Bilder anhängen kannst.";
