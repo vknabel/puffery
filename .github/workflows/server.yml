@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: cd PufferyServer && swift build
       - name: Run tests
-        run: cd PufferyServer && swift test
+        run: cd PufferyServer && swift test --enable-test-discovery
         env:
           PUFFERY_IN_PROCESS_JOBS: "false"
           DATABASE_URL: postgres://puffery-test:puffery-test@postgres:5432/puffery-test
