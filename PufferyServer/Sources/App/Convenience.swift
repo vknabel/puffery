@@ -10,7 +10,7 @@ extension Model {
             .with(relationKey)
             .first()
     }
-    
+
     public func saving(on db: Database) -> EventLoopFuture<Self> {
         save(on: db).map { _ in self }
     }

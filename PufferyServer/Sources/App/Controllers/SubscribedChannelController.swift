@@ -25,7 +25,7 @@ final class SubscribedChannelController {
                 try SubscribedChannelResponse(subscription: subscription)
             }
     }
-    
+
     func update(_ req: Request) throws -> EventLoopFuture<SubscribedChannelResponse> {
         let user = try req.auth.require(User.self)
         let updateSubscription = try req.content.decode(UpdateSubscriptionRequest.self)

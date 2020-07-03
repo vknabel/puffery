@@ -15,7 +15,7 @@ final class Subscription: Model {
     var canNotify: Bool
     @Field(key: "is_silent")
     var isSilent: Bool
-    
+
     @Timestamp(key: "updated_at", on: .update)
     var updatedAt: Date?
     @Timestamp(key: "created_at", on: .create)

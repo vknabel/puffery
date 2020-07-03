@@ -19,17 +19,17 @@ struct ChannelSettingsPage: View {
 
     var body: some View {
         List {
-            Section() {
+            Section {
                 HStack {
                     Text("ChannelSettings.Basic.Name")
                     Spacer()
                     Text(channel.title)
                         .foregroundColor(.secondary)
                 }
-                
+
                 Toggle("ChannelSettings.Basic.ReceiveNotifications", isOn: Binding(get: { !self.channel.isSilent }, set: self.registerAndSetReceiveNotifications))
             }
-            
+
             Section(header: Text("ChannelSettings.Share.Title"), footer: Text("ChannelSettings.Share.Explanation")) {
                 channel.notifyKey.map { notifyKey in
                     CopyContentsCell(
@@ -134,22 +134,22 @@ struct ChannelSettingsPage: View {
             }
         }
     }
-    
+
     func registerAndSetReceiveNotifications(_ newValue: Bool) {
         if newValue == true, !PushNotifications.hasBeenRequested {
             PushNotifications.register {
                 self.channel.isSilent = !newValue
             }
         } else {
-            self.channel.isSilent = !newValue
+            channel.isSilent = !newValue
         }
-        
+
         Current.api.update(subscription: channel, updateSubscription: UpdateSubscriptionRequest(isSilent: channel.isSilent))
-            .task({ _ in
+            .task { _ in
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: .didChangeChannel, object: nil)
                 }
-            })
+            }
     }
 
     func save() {

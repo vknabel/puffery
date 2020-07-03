@@ -1,5 +1,5 @@
-import Vapor
 @testable import App
+import Vapor
 
 extension Application {
     func seedUser(email: String? = nil, isConfirmed: Bool = false) throws -> User {
@@ -7,13 +7,13 @@ extension Application {
             .saving(on: db)
             .wait()
     }
-    
+
     func seedChannel(title: String = "My Test Channel") throws -> App.Channel {
         try App.Channel(title: title)
             .saving(on: db)
             .wait()
     }
-    
+
     func seedSubscription(
         user: User,
         channel: App.Channel,

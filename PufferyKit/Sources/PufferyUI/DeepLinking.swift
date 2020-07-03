@@ -27,7 +27,7 @@ public enum DeepLinking {
                         )
                     }
             }
-            
+
             let alert = UIAlertController(title: "ChannelSubscribingAlert.Title", message: "ChannelSubscribingAlert.Message", preferredStyle: UIAlertController.Style.actionSheet)
             alert.addAction(UIAlertAction(
                 title: "ChannelSubscribingAlert.Receive",
@@ -36,7 +36,8 @@ public enum DeepLinking {
                     PushNotifications.register {
                         subscribe(isSilent: false)
                     }
-            }))
+                }
+            ))
             alert.addAction(UIAlertAction(
                 title: "ChannelSubscribingAlert.Silent",
                 style: .default,
@@ -50,7 +51,7 @@ public enum DeepLinking {
     }
 }
 
-fileprivate extension Array {
+private extension Array {
     mutating func popFirst() -> Element? {
         if isEmpty {
             return nil

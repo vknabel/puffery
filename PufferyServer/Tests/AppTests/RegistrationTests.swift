@@ -1,11 +1,11 @@
-import App
 import APIDefinition
+import App
 import XCTVapor
 
 final class RegistrationTests: PufferyTestCase {
     func testBasicRegistration() throws {
         let content = CreateUserRequest(device: nil)
-        
+
         try app.testValidPostRegister(content) { res in
             XCTAssertEqual(res.status, .ok)
             let token = try res.content.decode(TokenResponse.self)
@@ -13,10 +13,10 @@ final class RegistrationTests: PufferyTestCase {
             XCTAssertNil(token.user.email)
         }
     }
-    
+
     func testRegistrationWithDevice() throws {
         let content = CreateUserRequest(device: CreateDeviceRequest(token: "my-random-token", isProduction: false))
-        
+
         try app.testValidPostRegister(content) { res in
             XCTAssertEqual(res.status, .ok)
             let token = try res.content.decode(TokenResponse.self)
@@ -30,7 +30,7 @@ final class RegistrationTests: PufferyTestCase {
             device: nil,
             email: "hello-puffery@mail.com"
         )
-        
+
         try app.testValidPostRegister(content) { res in
             XCTAssertEqual(res.status, .ok)
             let token = try res.content.decode(TokenResponse.self)
@@ -38,13 +38,13 @@ final class RegistrationTests: PufferyTestCase {
             XCTAssertEqual(token.user.email, "hello-puffery@mail.com")
         }
     }
-    
+
     func testRegistrationWithDeviceAndEmail() throws {
         let content = CreateUserRequest(
             device: CreateDeviceRequest(token: "my-random-token", isProduction: false),
             email: "hello-puffery@mail.com"
         )
-        
+
         try app.testValidPostRegister(content) { res in
             XCTAssertEqual(res.status, .ok)
             let token = try res.content.decode(TokenResponse.self)
@@ -60,7 +60,8 @@ private extension Application {
         _ content: CreateUserRequest,
         file: StaticString = #file,
         line: UInt = #line,
-        afterResponse: @escaping (XCTHTTPResponse) throws -> ()) throws -> XCTApplicationTester {
+        afterResponse: @escaping (XCTHTTPResponse) throws -> Void
+    ) throws -> XCTApplicationTester {
         try test(
             .POST, "api/v1/register",
             headers: ["Content-Type": "application/json", "Accept": "application/json"],

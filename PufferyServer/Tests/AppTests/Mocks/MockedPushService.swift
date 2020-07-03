@@ -1,11 +1,11 @@
 @testable import App
-import XCTest
 import Vapor
+import XCTest
 
 struct MockedPushService: PushService {
     let req: Request
     let receiveMessage: (Message) -> Void
-    
+
     func notifyDevices(message: Message) -> EventLoopFuture<Void> {
         receiveMessage(message)
         return req.eventLoop.makeSucceededFuture(())
@@ -20,7 +20,7 @@ extension Application {
         }
         return self
     }
-    
+
     @discardableResult
     func unmockPushService() -> Application {
         storage[PushServiceFactoryStorageKey.self] = nil

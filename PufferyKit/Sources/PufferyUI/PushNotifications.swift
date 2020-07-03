@@ -20,7 +20,7 @@ public enum PushNotifications {
             UserDefaults.standard.set(newValue, forKey: hasBeenRequestedDefaultsKey)
         }
     }
-    
+
     public static func register() {
         register {}
     }

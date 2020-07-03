@@ -139,7 +139,7 @@ final class VaporAPI: API {
             .encoding(body: createSubscription, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode)
     }
-    
+
     func update(subscription: SubscribedChannelResponse, updateSubscription: UpdateSubscriptionRequest) -> Endpoint<SubscribedChannelResponse> {
         endpoint()
             .post("api", "v1", "channels", subscription.id.uuidString)

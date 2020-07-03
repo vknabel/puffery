@@ -13,7 +13,7 @@ import UserNotifications
 struct ChannelCreationPage: View {
     @State var title: String = ""
     @State var receiveNotifications: Bool = PushNotifications.hasBeenRequested
-    
+
     private var api: API { Current.api }
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -52,24 +52,24 @@ struct ChannelCreationPage: View {
             Text("Cancel")
         }
     }
-    
+
     func registerAndSetReceiveNotifications(_ newValue: Bool) {
         if newValue == true, !PushNotifications.hasBeenRequested {
             PushNotifications.register {
                 self.receiveNotifications = newValue
             }
         } else {
-            self.receiveNotifications = newValue
+            receiveNotifications = newValue
         }
     }
 
     func createChannel() {
-        if self.isUUID {
-            self.api.subscribe(CreateSubscriptionRequest(receiveOrNotifyKey: self.title, isSilent: !self.receiveNotifications))
-                .task(self.receiveChannel(result:))
+        if isUUID {
+            api.subscribe(CreateSubscriptionRequest(receiveOrNotifyKey: title, isSilent: !receiveNotifications))
+                .task(receiveChannel(result:))
         } else {
-            self.api.createChannel(CreateChannelRequest(title: self.title, isSilent: !self.receiveNotifications))
-                .task(self.receiveChannel(result:))
+            api.createChannel(CreateChannelRequest(title: title, isSilent: !receiveNotifications))
+                .task(receiveChannel(result:))
         }
     }
 
