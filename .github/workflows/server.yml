@@ -15,15 +15,17 @@ on:
       - "APIDefinition/**"
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: YOCKOW/Action-setup-swift@v1.1.2
+      - name: Resolve
+        run: cd PufferyServer && swift package resolve
       - name: Build
-        run: cd PufferyServer && swift build -v
+        run: cd PufferyServer && swift build
       - name: Run tests
-        run: cd PufferyServer && swift test -v
+        run: cd PufferyServer && swift test
         env:
           PUFFERY_IN_PROCESS_JOBS: "false"
           DATABASE_URL: postgres://puffery-test:puffery-test@postgres:5432/puffery-test
