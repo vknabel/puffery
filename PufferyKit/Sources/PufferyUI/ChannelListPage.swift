@@ -24,7 +24,7 @@ struct ChannelListPage: View {
     @State var selection: ChannelSelection? = UIDevice.current.model == "iPad"
         ? .all
         : nil
-    
+
     var body: some View {
         ZStack {
             List {

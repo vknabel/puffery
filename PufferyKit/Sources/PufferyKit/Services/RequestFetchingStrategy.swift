@@ -41,9 +41,9 @@ public struct FetchingError: Error, Identifiable, Equatable {
     public static func == (lhs: FetchingError, rhs: FetchingError) -> Bool {
         lhs.id == rhs.id
     }
-    
+
     public var localizedDescription: String {
-        switch self.reason {
+        switch reason {
         case let .http(error):
             return error.localizedDescription
         case let .encoding(error):

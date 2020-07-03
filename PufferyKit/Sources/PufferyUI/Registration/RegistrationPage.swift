@@ -23,11 +23,11 @@ struct RegistrationPage: View {
                     Button(action: { viewModel.send(.shouldRegister(onFinish: self.onFinish)) }) {
                         Text("GettingStarted.Registration.Anonymous")
                     }
-                        .buttonStyle(RoundedButtonStyle())
-                        .show(when: !self.keyboard.isActive)
-                        .transition(.opacity)
-                        .disabled(viewModel.activity.inProgress)
-                    
+                    .buttonStyle(RoundedButtonStyle())
+                    .show(when: !self.keyboard.isActive)
+                    .transition(.opacity)
+                    .disabled(viewModel.activity.inProgress)
+
                     RegistrationTerms()
                 }
                 Spacer()
@@ -61,7 +61,7 @@ struct RegistrationPage: View {
                     ) {
                         EmailConfirmationPage(email: viewModel.email)
                     }
-                    
+
                     RegistrationTerms()
                 }
                 .padding()
@@ -69,12 +69,12 @@ struct RegistrationPage: View {
                 .animation(.default)
 
                 Spacer()
-            }   .buttonStyle(RoundedButtonStyle())
+            }.buttonStyle(RoundedButtonStyle())
                 .trackAppearence("registration", using: Current.tracker)
                 .alert(item: Binding.constant(viewModel.activity.failedError)) {
-                        Alert(
-                            title: Text("GettingStarted.Registration.Failed"),
-                            message: Text($0.localizedDescription)
+                    Alert(
+                        title: Text("GettingStarted.Registration.Failed"),
+                        message: Text($0.localizedDescription)
                     )
                 }
         }

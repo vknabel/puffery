@@ -17,7 +17,7 @@ public func routes(_ app: Application) throws {
     // POST subscriptions
 
     let apiV1 = app.grouped("api", "v1")
-    
+
     let bearer = apiV1.grouped(UserToken.authenticator()).grouped(UserBearerAuthenticator())
 
     let userController = UserController()

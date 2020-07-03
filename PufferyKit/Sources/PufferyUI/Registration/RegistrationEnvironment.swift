@@ -62,7 +62,7 @@ extension RegistrationEnvironment {
             }
         }.eraseToEffect()
     }
-    
+
     private static func registerPushNotificationsEffect() -> Effect<String?, Never> {
         Future { resolve in
             PushNotifications.register {

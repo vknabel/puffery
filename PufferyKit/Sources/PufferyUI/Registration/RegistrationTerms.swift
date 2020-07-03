@@ -2,7 +2,7 @@ import SwiftUI
 
 struct RegistrationTerms: View {
     @State var displaysTermsAndConditions = false
-    
+
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
             Button("GettingStarted.Registration.TermsAndConditions") {

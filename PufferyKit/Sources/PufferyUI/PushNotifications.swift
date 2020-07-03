@@ -7,8 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import UserNotifications
+#if canImport(UIKit)
+    import UIKit
+#endif
 
 public enum PushNotifications {
     private static let hasBeenRequestedDefaultsKey = "PushNotifications.hasBeenRequestedDefaultsKey"
@@ -20,7 +22,7 @@ public enum PushNotifications {
             UserDefaults.standard.set(newValue, forKey: hasBeenRequestedDefaultsKey)
         }
     }
-    
+
     public static func register() {
         register {}
     }
@@ -42,8 +44,10 @@ public enum PushNotifications {
                     DispatchQueue.main.async {
                         #if targetEnvironment(simulator)
                             Current.store.commit(.updateDeviceToken(nil))
-                        #else
+                        #elseif canImport(UIKit)
                             UIApplication.shared.registerForRemoteNotifications()
+                        #else
+                            Current.store.commit(.updateDeviceToken(nil))
                         #endif
                         onFinish()
                     }

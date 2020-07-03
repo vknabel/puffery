@@ -5,10 +5,10 @@
 //  Created by Valentin Knabel on 10.05.20.
 //
 
+import Combine
 import ComposableArchitecture
 import Foundation
 import PufferyKit
-import Combine
 
 struct RegistrationState: Equatable {
     var email = ""
@@ -28,7 +28,7 @@ struct RegistrationState: Equatable {
                 return false
             }
         }
-        
+
         var failedError: FetchingError? {
             if case let .failed(error) = self {
                 return error
@@ -79,7 +79,7 @@ let registrationReducer = Reducer<
             .flatMap { _ in
                 [
                     RegistrationAction.activityFinished,
-                    RegistrationAction.showCheckEmails(true)
+                    RegistrationAction.showCheckEmails(true),
                 ].publisher.transformError()
             }
             .catch { fetchingError in

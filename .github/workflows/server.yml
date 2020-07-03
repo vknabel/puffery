@@ -1,0 +1,60 @@
+name: Server
+
+on:
+  push:
+    paths:
+      - ".github/workflows/**"
+      - ".swift-version"
+      - "PufferyServer/**"
+      - "APIDefinition/**"
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+      - ".swift-version"
+      - "PufferyServer/**"
+      - "APIDefinition/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: puffery-test
+          POSTGRES_DB: puffery-test
+          POSTGRES_PASSWORD: puffery-test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      redis:
+        image: redis
+        env:
+          POSTGRES_USER: puffery-test
+          POSTGRES_DB: puffery-test
+          POSTGRES_PASSWORD: puffery-test
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: YOCKOW/Action-setup-swift@v1.1.2
+      - name: Resolve
+        run: cd PufferyServer && swift package resolve
+      - name: Build
+        run: cd PufferyServer && swift build
+      - name: Run tests
+        run: cd PufferyServer && swift test --enable-test-discovery
+        env:
+          PUFFERY_IN_PROCESS_JOBS: "false"
+          DATABASE_URL: postgres://puffery-test:puffery-test@localhost:5432/puffery-test
+          REDIS_URL: redis://localhost:6379

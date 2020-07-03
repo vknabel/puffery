@@ -56,20 +56,20 @@ struct ChannelSubscribingPage: View {
             Text("ChannelSubscribing.Cancel")
         }
     }
-    
+
     func registerAndSetReceiveNotifications(_ newValue: Bool) {
         if newValue == true, !PushNotifications.hasBeenRequested {
             PushNotifications.register {
                 self.receiveNotifications = newValue
             }
         } else {
-            self.receiveNotifications = newValue
+            receiveNotifications = newValue
         }
     }
 
     func createChannel() {
-        self.api.subscribe(CreateSubscriptionRequest(receiveOrNotifyKey: self.channelKey, isSilent: !self.receiveNotifications))
-            .task(self.receiveChannel(result:))
+        api.subscribe(CreateSubscriptionRequest(receiveOrNotifyKey: channelKey, isSilent: !receiveNotifications))
+            .task(receiveChannel(result:))
     }
 
     func receiveChannel(result: Result<SubscribedChannelResponse, FetchingError>) {

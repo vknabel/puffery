@@ -8,7 +8,7 @@ extension Notification.Name {
     public static var didSubscribeToChannel: Notification.Name {
         Notification.Name(rawValue: "DID_SUBSCRIBE_TO_CHANNEL")
     }
-    
+
     public static var didChangeChannel: Notification.Name {
         Notification.Name(rawValue: "DID_CHANGE_CHANNEL")
     }

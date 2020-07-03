@@ -7,25 +7,47 @@
 //
 
 import SwiftUI
-import UIKit
+#if canImport(UIKit)
+    import UIKit
 
-struct ActivityIndicator: UIViewRepresentable {
-    var isAnimating: Bool
-    var style: UIActivityIndicatorView.Style = .medium
+    struct ActivityIndicator: UIViewRepresentable {
+        typealias Style = UIActivityIndicatorView.Style
+        var isAnimating: Bool
+        var style: Style = .medium
 
-    func makeUIView(context _: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
-        let indicator = UIActivityIndicatorView(style: style)
-        indicator.hidesWhenStopped = true
-        return indicator
+        func makeUIView(context _: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
+            let indicator = UIActivityIndicatorView(style: style)
+            indicator.hidesWhenStopped = true
+            return indicator
+        }
+
+        func updateUIView(_ uiView: UIActivityIndicatorView, context _: UIViewRepresentableContext<ActivityIndicator>) {
+            isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
+        }
     }
 
-    func updateUIView(_ uiView: UIActivityIndicatorView, context _: UIViewRepresentableContext<ActivityIndicator>) {
-        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
+    struct UIActivityIndicator_Previews: PreviewProvider {
+        static var previews: some View {
+            ActivityIndicator(isAnimating: true, style: .large)
+        }
     }
-}
+#else
+    struct ActivityIndicator: UIView {
+        enum Style {
+            case medium, large
+        }
 
-struct ActivityIndicator_Previews: PreviewProvider {
-    static var previews: some View {
-        ActivityIndicator(isAnimating: true, style: .large)
+        var isAnimating: Bool
+        var style: Style = .medium
+
+        var body: some View {
+            Text("...")
+        }
     }
-}
+
+    struct TextActivityIndicator_Previews: PreviewProvider {
+        static var previews: some View {
+            ActivityIndicator(isAnimating: true, style: .large)
+        }
+    }
+#endif

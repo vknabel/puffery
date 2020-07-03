@@ -92,6 +92,8 @@ private extension AckeeTracker {
         let deviceName: String?
         #if canImport(UIKit)
             deviceName = UIDevice.current.model
+        #else
+            deviceName = nil
         #endif
 
         let osName: String?

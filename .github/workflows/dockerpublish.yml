@@ -10,6 +10,13 @@ on:
     tags:
       - v*
 
+    paths:
+      - ".github/workflows/**"
+      - ".swift-version"
+      - "PufferyServer/**"
+      - "APIDefinition/**"
+      - "Dockerfile"
+
   # Run tests for any PRs.
   pull_request:
 
