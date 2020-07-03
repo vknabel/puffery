@@ -2,9 +2,17 @@ name: Swift
 
 on:
   push:
-    branches: [master]
+    paths:
+      - ".github/workflows/**"
+      - ".swift-version"
+      - "PufferyServer/**"
+      - "APIDefinition/**"
   pull_request:
-    branches: [master]
+    paths:
+      - ".github/workflows/**"
+      - ".swift-version"
+      - "PufferyServer/**"
+      - "APIDefinition/**"
 
 jobs:
   build:
