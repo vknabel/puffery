@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "AckeeTracker",
-        "repositoryURL": "https://github.com/vknabel/AckeeTracker-Swift.git",
+        "package": "combine-schedulers",
+        "repositoryURL": "https://github.com/pointfreeco/combine-schedulers",
         "state": {
           "branch": null,
-          "revision": "1ba25182f92f2fbe088066d4b02f7d3c6561fec3",
-          "version": "0.1.0"
+          "revision": "afc84b6a3639198b7b8b6d79f04eb3c2ee590d29",
+          "version": "0.1.1"
         }
       },
       {
@@ -20,12 +20,21 @@
         }
       },
       {
+        "package": "swift-case-paths",
+        "repositoryURL": "https://github.com/pointfreeco/swift-case-paths",
+        "state": {
+          "branch": null,
+          "revision": "fb733d87aabb5b053ad782902f2f3d67e0a65ac5",
+          "version": "0.1.1"
+        }
+      },
+      {
         "package": "swift-composable-architecture",
         "repositoryURL": "https://github.com/pointfreeco/swift-composable-architecture.git",
         "state": {
           "branch": null,
-          "revision": "bcb10ae7683636c126e99f751443e9464df726e8",
-          "version": "0.1.2"
+          "revision": "b8c67d5d4f27ad3b2f772cf50f91c581fc94611c",
+          "version": "0.6.0"
         }
       },
       {
