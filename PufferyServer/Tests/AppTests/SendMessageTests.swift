@@ -9,20 +9,20 @@ final class SendMessageTests: PufferyTestCase {
             body: "How are you?",
             color: nil
         )
-        try app.testPublicNotify(key: UUID(), content, usingApiPrefix: false) { (res) in
+        try app.testPublicNotify(key: "", content, usingApiPrefix: false) { (res) in
             XCTAssertEqual(res.status, .notFound)
         }
     }
     
     func testPublicNotify() throws {
-        // TODO: seed user and channel
+        let channel = try app.seedChannel()
         
         let content = CreateMessageRequest(
             title: "Hello World!",
             body: "How are you?",
             color: nil
         )
-        try app.testPublicNotify(key: UUID(), content, usingApiPrefix: false) { (res) in
+        try app.testPublicNotify(key: channel.notifyKey, content, usingApiPrefix: false) { (res) in
             XCTAssertEqual(res.status, .ok)
             let message = try res.content.decode(NotifyMessageResponse.self)
             XCTAssertEqual(message.title, content.title)
@@ -41,14 +41,14 @@ final class SendMessageTests: PufferyTestCase {
 private extension Application {
     @discardableResult
     func testPublicNotify(
-        key: UUID,
+        key: String,
         _ content: CreateMessageRequest,
         usingApiPrefix: Bool,
         file: StaticString = #file,
         line: UInt = #line,
         afterResponse: @escaping (XCTHTTPResponse) throws -> ()) throws -> XCTApplicationTester {
         try test(
-            .POST, (usingApiPrefix ? "api/v1/" : "") + "notify",
+            .POST, (usingApiPrefix ? "api/v1/" : "") + "notify/\(key)",
             headers: ["Content-Type": "application/json", "Accept": "application/json"],
             file: file,
             line: line,

@@ -16,3 +16,27 @@ jobs:
         run: cd PufferyServer && swift build -v
       - name: Run tests
         run: cd PufferyServer && swift test -v
+        env:
+          PUFFERY_IN_PROCESS_JOBS: "false"
+          DATABASE_URL: postgres://puffery-test:puffery-test@postgres:5432/puffery-test
+          REDIS_URL: redis://redis:6379
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: puffery-test
+          POSTGRES_DB: puffery-test
+          POSTGRES_PASSWORD: puffery-test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis
+        env:
+          POSTGRES_USER: puffery-test
+          POSTGRES_DB: puffery-test
+          POSTGRES_PASSWORD: puffery-test
+        options: >-
+          redis-server --appendonly yes

@@ -8,7 +8,7 @@ struct PushServiceFactoryStorageKey: StorageKey {
 
 extension Request {
     var push: PushService {
-        (storage[PushServiceFactoryStorageKey.self] ?? APNSPushService.init(req:))(self)
+        (application.storage[PushServiceFactoryStorageKey.self] ?? APNSPushService.init(req:))(self)
     }
 }
 
