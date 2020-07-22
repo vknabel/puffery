@@ -26,28 +26,6 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>NSExtension</key>
-	<dict>
-		<key>NSExtensionAttributes</key>
-		<dict>
-			<key>IntentsRestrictedWhileLocked</key>
-			<array/>
-			<key>IntentsRestrictedWhileProtectedDataUnavailable</key>
-			<array/>
-			<key>IntentsSupported</key>
-			<array>
-				<string>NotiyChannelIntent</string>
-				<string>OwnChannelsIntent</string>
-				<string>SubscribedChannelsIntent</string>
-			</array>
-		</dict>
-		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.intents-service</string>
-		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).IntentHandler</string>
-	</dict>
-	<key>PUFFERY_API_URL</key>
-	<string>$(PUFFERY_API_URL)</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -59,5 +37,25 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>IntentsRestrictedWhileLocked</key>
+			<array/>
+			<key>IntentsRestrictedWhileProtectedDataUnavailable</key>
+			<array/>
+			<key>IntentsSupported</key>
+			<array>
+				<string>NotiyChannelIntent</string>
+			</array>
+		</dict>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.intents-service</string>
+		<key>NSExtensionPrincipalClass</key>
+		<string>$(PRODUCT_MODULE_NAME).IntentHandler</string>
+	</dict>
+	<key>PUFFERY_API_URL</key>
+	<string>$(PUFFERY_API_URL)</string>
 </dict>
 </plist>

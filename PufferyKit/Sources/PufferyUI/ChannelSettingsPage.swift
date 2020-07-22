@@ -30,7 +30,7 @@ struct ChannelSettingsPage: View {
                 Toggle("ChannelSettings.Basic.ReceiveNotifications", isOn: Binding(get: { !self.channel.isSilent }, set: self.registerAndSetReceiveNotifications))
             }
 
-            Section(header: Text("ChannelSettings.Share.Title"), footer: Text("ChannelSettings.Share.Explanation")) {
+            Section(header: Text("ChannelSettings.Share.SectionTitle"), footer: Text("ChannelSettings.Share.Explanation")) {
                 channel.notifyKey.map { notifyKey in
                     CopyContentsCell(
                         title: "ChannelSettings.Share.NotifyKey",
@@ -42,7 +42,7 @@ struct ChannelSettingsPage: View {
                     Button(action: { self.subscriptionToken = notifyKey }) {
                         HStack(spacing: 10) {
                             Image(systemName: "square.and.arrow.up")
-                            Text("ChannelSettings.Basic.InvitePublishers")
+                            Text("ChannelSettings.Share.InvitePublishers")
                         }
                     }
                 }
