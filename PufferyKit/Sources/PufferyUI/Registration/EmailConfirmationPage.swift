@@ -34,7 +34,11 @@ struct EmailConfirmationPage: View {
                     }
                 }
             #endif
-        }.padding()
+        }
+        .padding()
+        .onAppear {
+            PushNotifications.register()
+        }
     }
 
     private func openMailApp() {

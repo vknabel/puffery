@@ -39,14 +39,14 @@
 "CreateChannel.Basic.Explanation" = "Der Titel deines neuen Channels. Du kannst ihn später mit anderen teilen. Um einen existierenden Channel hinzuzufügen, gib den Notify-Key ein.";
 "CreateChannel.Actions.Subscribe" = "Abonnieren";
 "CreateChannel.Actions.Create" = "Erstellen";
-"CreateChannel.Basic.ReceiveNotifications" = "Benachrichtigungen erhalten";
+"CreateChannel.Basic.ReceiveNotifications" = "Neuigkeiten erhalten";
 
 "ChannelDetails.All" = "Alle";
-"ChannelDetails.LimitedMessages" = "Es werden nur die neuesten Nachrichten angezeigt.";
-"ChannelDetails.NoMessages.Title" = "Noch keine Nachrichten.";
-"ChannelDetails.NoMessages.HelperNotify" = "Erstelle deine eigenen Nachrichten!";
-"ChannelDetails.NoMessages.HelperReceive" = "Warte auf eine Nachricht vom Autor.";
-"ChannelDetails.NoMessages.HelperAll" = "Erstelle neue Channels und Nachrichten!";
+"ChannelDetails.LimitedMessages" = "Es werden nur die neuesten Neuigkeiten angezeigt.";
+"ChannelDetails.NoMessages.Title" = "Noch keine Neuigkeiten.";
+"ChannelDetails.NoMessages.HelperNotify" = "Erstelle deine eigenen Neuigkeiten!";
+"ChannelDetails.NoMessages.HelperReceive" = "Warte auf eine Neuigkeit vom Autor.";
+"ChannelDetails.NoMessages.HelperAll" = "Erstelle neue Channels und Neuigkeiten!";
 
 "ChannelList.All" = "Alle";
 "ChannelList.Title" = "Puffery";
@@ -58,6 +58,7 @@
 
 "ChannelSettings.Basic.Name" = "Name";
 "ChannelSettings.Basic.ReceiveNotifications" = "Benachrichtigungen erhalten";
+"ChannelSettings.Share.SectionTitle" = "Teilen";
 "ChannelSettings.Share.Explanation" = "Teile deinen Notify-Key mit anderen, um dich zu benachrichtigen. Willst du andere benachrichtigen, verwende den Abonnement-Key.";
 "ChannelSettings.Share.NotifyKey" = "Notify-Key";
 "ChannelSettings.Share.InvitePublishers" = "Autoren einladen";

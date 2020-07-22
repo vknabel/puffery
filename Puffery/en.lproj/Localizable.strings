@@ -42,11 +42,11 @@
 "CreateChannel.Basic.ReceiveNotifications" = "Receive Notifications";
 
 "ChannelDetails.All" = "All";
-"ChannelDetails.LimitedMessages" = "Only the newest messages will be shown.";
-"ChannelDetails.NoMessages.Title" = "No messages, yet.";
-"ChannelDetails.NoMessages.HelperNotify" = "Create your own messages!";
+"ChannelDetails.LimitedMessages" = "Only the latest news will be shown.";
+"ChannelDetails.NoMessages.Title" = "No news, yet.";
+"ChannelDetails.NoMessages.HelperNotify" = "Create your own news!";
 "ChannelDetails.NoMessages.HelperReceive" = "Stay tuned for the author!";
-"ChannelDetails.NoMessages.HelperAll" = "Create new channels or messages!";
+"ChannelDetails.NoMessages.HelperAll" = "Create channels or news!";
 
 "ChannelList.All" = "All";
 "ChannelList.Title" = "Puffery";
@@ -58,6 +58,7 @@
 
 "ChannelSettings.Basic.Name" = "Name";
 "ChannelSettings.Basic.ReceiveNotifications" = "Receive Notifications";
+"ChannelSettings.Share.SectionTitle" = "Share";
 "ChannelSettings.Share.Explanation" = "Share the Notify Key to allow others notifying you. If sufficient, just share the Receive Only Key to keep others up to date.";
 "ChannelSettings.Share.NotifyKey" = "Notify Key";
 "ChannelSettings.Share.InvitePublishers" = "Share to invite publishers";
