@@ -46,7 +46,7 @@ public func routes(_ app: Application) throws {
     bearer.get("channels", "shared", use: subscribedChannelController.indexShared)
     bearer.get("channels", "own", use: subscribedChannelController.indexOwn)
 
-    apiV1.on(.POST, "notify", "inbound-email", body: HTTPBodyStreamStrategy.collect(maxSize: nil), use: messageController.publicEmail)
+    apiV1.on(.POST, "notify-inbound-email", body: HTTPBodyStreamStrategy.collect(maxSize: nil), use: messageController.publicEmail)
     apiV1.post("notify", ":notify_key", use: messageController.publicNotify)
     app.post("notify", ":notify_key", use: messageController.publicNotify)
     bearer.get("channels", "messages", use: messageController.messagesForAllChannels)

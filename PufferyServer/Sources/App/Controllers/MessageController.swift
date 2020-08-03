@@ -8,9 +8,20 @@ struct InboundEmail: Codable, Content {
     var subject: String
     var text: String
 
+    init(envelope: Envelope, subject: String, text: String) {
+        self.envelope = envelope
+        self.subject = subject
+        self.text = text
+    }
+
     struct Envelope: Codable {
         var from: String
         var to: [String]
+
+        init(from: String, to: [String]) {
+            self.from = from
+            self.to = to
+        }
     }
 }
 
