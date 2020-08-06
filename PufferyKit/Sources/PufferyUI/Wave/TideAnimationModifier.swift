@@ -29,14 +29,14 @@ struct TideAnimation: ViewModifier {
                 }
             }
             .onAppear {
-                self.orientationChanges = NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
+                self.orientationChanges = sizeChangePublisher()
                     .receive(on: DispatchQueue.main)
                     .sink(receiveValue: { _ in
                         self.isRotating = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                             self.isRotating = false
                         }
-                })
+                    })
             }
     }
 }

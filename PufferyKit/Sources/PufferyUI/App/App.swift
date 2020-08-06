@@ -2,15 +2,13 @@ import UserNotifications
 
 public final class App {
     lazy var notifications = NotificationsService()
-    
-    public init() {
-        
-    }
-    
+
+    public init() {}
+
     public func bootstrap() {
         UNUserNotificationCenter.current().delegate = notifications
     }
-    
+
     public func didRegisterForRemoteNotifications(with deviceToken: Data) {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()

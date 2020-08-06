@@ -68,7 +68,7 @@ struct LicensePage: View {
         }
         .navigationBarItems(trailing: Button(action: openLicense) {
             Image(systemName: "safari").padding()
-            })
+        })
         .navigationBarTitle("\(license.name)", displayMode: .inline)
         .trackAppearence("acknowledgements/licenses/\(self.license.id)", using: Current.tracker)
     }

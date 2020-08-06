@@ -1,7 +1,7 @@
 import APIDefinition
 @testable import App
-import XCTVapor
 import Foundation
+import XCTVapor
 
 let jsonExampleEmail = """
 {
@@ -35,10 +35,10 @@ final class InboundEmailTests: PufferyTestCase {
             XCTAssertEqual(res.status, .notFound)
         }
     }
-    
+
     func testInboundEmailChannelFoundAndNotified() throws {
         let channel = try app.seedChannel()
-        
+
         let email = InboundEmail(
             envelope: InboundEmail.Envelope(from: "noreply@mock.com", to: ["\(channel.notifyKey)@notify.puffery.app"]),
             subject: "Mockingmail",

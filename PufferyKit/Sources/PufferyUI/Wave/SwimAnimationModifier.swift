@@ -29,7 +29,7 @@ struct SwimAnimation: ViewModifier {
                 }
             }
             .onAppear {
-                self.orientationChanges = NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
+                self.orientationChanges = sizeChangePublisher()
                     .receive(on: DispatchQueue.main)
                     .sink(receiveValue: { _ in
                         self.isRotating = true

@@ -120,7 +120,7 @@ struct ChannelListPage: View {
         let didChangeChannel = NotificationCenter.default.publisher(for: .didChangeChannel)
             .transformError(to: FetchingError.self)
             .transform(to: ())
-        
+
         loadOwnChannelsPublisher = shouldReload.merge(with: didUnsubscribedFromChannel)
             .merge(with: didSubscribeToChannel)
             .merge(with: didChangeChannel)
@@ -128,7 +128,7 @@ struct ChannelListPage: View {
             .flatMap(api.ownChannels().publisher)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
-        
+
         loadSharedChannelsPublisher = shouldReload.merge(with: didUnsubscribedFromChannel)
             .merge(with: didSubscribeToChannel)
             .merge(with: didChangeChannel)

@@ -9,7 +9,7 @@
 import Intents
 import PufferyKit
 
-//@objc class ListChannelsIntentHandler: NSObject, OwnChannelsIntentHandling, SubscribedChannelsIntentHandling {
+// @objc class ListChannelsIntentHandler: NSObject, OwnChannelsIntentHandling, SubscribedChannelsIntentHandling {
 //    func handle(intent _: OwnChannelsIntent, completion: @escaping (OwnChannelsIntentResponse) -> Void) {
 //        handleChannelListResponse(endpoint: Current.api.ownChannels()) { result in
 //            switch result {
@@ -63,4 +63,4 @@ import PufferyKit
 //            }
 //        }
 //    }
-//}
+// }

@@ -22,12 +22,12 @@
                     DispatchQueue.main.async {
                         self.recorder = self.tracker.recordPresence(self.location)
                     }
-            })
+                })
                 .onDisappear(perform: {
                     DispatchQueue.main.async {
                         self.recorder = nil
                     }
-            })
+                })
         }
     }
 

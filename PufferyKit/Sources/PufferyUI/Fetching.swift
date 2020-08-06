@@ -43,8 +43,8 @@ struct Fetching<V, E: Error, LoadingView: View, ErrorView: View, DataView: View>
             }
             latestResult?.success.map(data)
         }
-            .onAppear(perform: reloadData)
-            .onDisappear(perform: cancel)
+        .onAppear(perform: reloadData)
+        .onDisappear(perform: cancel)
     }
 
     private func reloadData() {

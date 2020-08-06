@@ -32,17 +32,18 @@ struct ChannelSubscribingPage: View {
                     Text("ChannelSubscribing.Subscribe")
                 }.disabled(!isUUID)
             }
-        }.navigationBarTitle("ChannelSubscribing.Title", displayMode: NavigationBarItem.TitleDisplayMode.inline)
-            .navigationBarItems(
-                leading: cancelNavigationItem,
-                trailing: createNavigationItem
-            )
-            .trackAppearence("channels/subscribe", using: Current.tracker)
-            .onAppear {
-                if let subscription = UIPasteboard.general.strings?.compactMap(UUID.init(uuidString:)).first {
-                    self.channelKey = subscription.uuidString
-                }
+        }
+        .navigationBarTitle("ChannelSubscribing.Title", displayMode: NavigationBarItem.TitleDisplayMode.inline)
+        .navigationBarItems(
+            leading: cancelNavigationItem,
+            trailing: createNavigationItem
+        )
+        .trackAppearence("channels/subscribe", using: Current.tracker)
+        .onAppear {
+            if let subscription = UIPasteboard.general.strings?.compactMap(UUID.init(uuidString:)).first {
+                self.channelKey = subscription.uuidString
             }
+        }
     }
 
     var createNavigationItem: some View {
