@@ -6,7 +6,6 @@ target 'Puffery' do
   use_frameworks!
 
   # Pods for Puffery
-  pod 'Instabug'
 
   target 'PufferyTests' do
     inherit! :search_paths
