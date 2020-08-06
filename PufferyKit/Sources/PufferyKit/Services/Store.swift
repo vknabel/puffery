@@ -50,12 +50,17 @@ public struct Session: Equatable {
 
 extension Store {
     public func commit(_ action: GlobalCommit) {
-//        DispatchQueue.main.async {
-        commitOnMain(action)
-//        }
+        if Thread.isMainThread {
+            commitOnMain(action)
+        } else {
+            DispatchQueue.main.async {
+                self.commitOnMain(action)
+            }
+        }
     }
 
     private func commitOnMain(_ action: GlobalCommit) {
+        assert(Thread.isMainThread)
         print("Action:", action)
         switch action {
         case .updateDeviceToken(nil):

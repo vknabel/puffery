@@ -20,7 +20,7 @@ struct ChannelListPage: View {
     @State var presentsSettings = false
     @State var presentsChannelCreation = false
     @State var presentsChannelSubscription = false
-    @State var shouldReload = PassthroughSubject<Void, FetchingError>()
+    @State var shouldReload: PassthroughSubject<Void, FetchingError> = PassthroughSubject<Void, FetchingError>()
     @State var selection: ChannelSelection? = UIDevice.current.model == "iPad"
         ? .all
         : nil
@@ -110,28 +110,26 @@ struct ChannelListPage: View {
         }
     }
 
-    var didUnsubscribedFromChannel = NotificationCenter.default.publisher(for: .didUnsubscribeFromChannel)
-        .transformError(to: FetchingError.self)
-        .transform(to: ())
-    var didSubscribeToChannel = NotificationCenter.default.publisher(for: .didSubscribeToChannel)
-        .transformError(to: FetchingError.self)
-        .transform(to: ())
-    var didChangeChannel = NotificationCenter.default.publisher(for: .didChangeChannel)
-        .transformError(to: FetchingError.self)
-        .transform(to: ())
-
-    var loadOwnChannelsPublisher: AnyPublisher<[Channel], FetchingError> {
-        shouldReload.merge(with: didUnsubscribedFromChannel)
+    init() {
+        let didUnsubscribedFromChannel = NotificationCenter.default.publisher(for: .didUnsubscribeFromChannel)
+            .transformError(to: FetchingError.self)
+            .transform(to: ())
+        let didSubscribeToChannel = NotificationCenter.default.publisher(for: .didSubscribeToChannel)
+            .transformError(to: FetchingError.self)
+            .transform(to: ())
+        let didChangeChannel = NotificationCenter.default.publisher(for: .didChangeChannel)
+            .transformError(to: FetchingError.self)
+            .transform(to: ())
+        
+        loadOwnChannelsPublisher = shouldReload.merge(with: didUnsubscribedFromChannel)
             .merge(with: didSubscribeToChannel)
             .merge(with: didChangeChannel)
             .prepend(())
             .flatMap(api.ownChannels().publisher)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
-    }
-
-    var loadSharedChannelsPublisher: AnyPublisher<[Channel], FetchingError> {
-        shouldReload.merge(with: didUnsubscribedFromChannel)
+        
+        loadSharedChannelsPublisher = shouldReload.merge(with: didUnsubscribedFromChannel)
             .merge(with: didSubscribeToChannel)
             .merge(with: didChangeChannel)
             .prepend(())
@@ -139,6 +137,9 @@ struct ChannelListPage: View {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+
+    var loadOwnChannelsPublisher: AnyPublisher<[Channel], FetchingError>!
+    var loadSharedChannelsPublisher: AnyPublisher<[Channel], FetchingError>!
 }
 
 #if DEBUG

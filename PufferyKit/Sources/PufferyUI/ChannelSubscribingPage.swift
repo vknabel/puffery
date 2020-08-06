@@ -58,6 +58,7 @@ struct ChannelSubscribingPage: View {
     }
 
     func registerAndSetReceiveNotifications(_ newValue: Bool) {
+        assert(Thread.isMainThread)
         if newValue == true, !PushNotifications.hasBeenRequested {
             PushNotifications.register {
                 self.receiveNotifications = newValue
@@ -73,6 +74,7 @@ struct ChannelSubscribingPage: View {
     }
 
     func receiveChannel(result: Result<SubscribedChannelResponse, FetchingError>) {
+        assert(Thread.isMainThread)
         switch result {
         case .success:
             dismiss()
@@ -82,6 +84,7 @@ struct ChannelSubscribingPage: View {
     }
 
     func dismiss() {
+        assert(Thread.isMainThread)
         presentationMode.wrappedValue.dismiss()
     }
 }

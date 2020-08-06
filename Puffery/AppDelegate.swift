@@ -8,20 +8,16 @@
 
 import APIDefinition
 import CoreData
-import Instabug
-import PufferyKit
+import PufferyUI
 import UIKit
 import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    lazy var notifications = NoitifcationsService()
-
+    lazy var pufferyApp = App()
+    
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        UNUserNotificationCenter.current().delegate = notifications
-
-        Instabug.start(withToken: "88e7078239c304aef087906e97d1d722", invocationEvents: [.shake, .screenshot])
-
+        pufferyApp.bootstrap()
         return true
     }
 
@@ -43,13 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-        let token = tokenParts.joined()
-        Current.store.commit(.updateDeviceToken(token))
-        if Current.store.state.session.isLoggedIn() {
-            Current.api.createOrUpdate(device: token, contents: CreateOrUpdateDeviceRequest())
-                .task { _ in }
-        }
+        pufferyApp.didRegisterForRemoteNotifications(with: deviceToken)
     }
 
     // MARK: - Core Data stack

@@ -1,17 +1,17 @@
-import UNUserNotificationCenter
+import UserNotifications
 
-public final class PufferyApp {
-    lazy var notifications = NoitifcationsService()
+public final class App {
+    lazy var notifications = NotificationsService()
     
     public init() {
         
     }
     
-    func bootstrap() {
+    public func bootstrap() {
         UNUserNotificationCenter.current().delegate = notifications
     }
     
-    func didRegisterForRemoteNotifications(with deviceToken: Data) {
+    public func didRegisterForRemoteNotifications(with deviceToken: Data) {
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         let token = tokenParts.joined()
         Current.store.commit(.updateDeviceToken(token))

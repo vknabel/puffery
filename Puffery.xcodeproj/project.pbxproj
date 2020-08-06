@@ -10,7 +10,6 @@
 		32A0C57CFA3DE34BD789DD26 /* Pods_Puffery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE241F933A12C10244CD9336 /* Pods_Puffery.framework */; };
 		6053427FE94B3C5DC83C1CA8 /* Pods_Puffery_Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1768E6472E80098A0AF74C63 /* Pods_Puffery_Intents.framework */; };
 		A842CEDF15BB9DFF5CCCBF3F /* Pods_PufferyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D4170DA16869CB1BE73F6B /* Pods_PufferyTests.framework */; };
-		BA231223249C036F00AE13F1 /* NoitifcationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA231222249C036F00AE13F1 /* NoitifcationsService.swift */; };
 		BA231225249C040A00AE13F1 /* ReceivedMessageNotification.apns in Resources */ = {isa = PBXBuildFile; fileRef = BA231224249C040A00AE13F1 /* ReceivedMessageNotification.apns */; };
 		BA923F2C245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA923F2F245EFAC0008BD6C9 /* Intents.intentdefinition */; };
 		BA923F2D245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA923F2F245EFAC0008BD6C9 /* Intents.intentdefinition */; };
@@ -108,7 +107,6 @@
 		AD777C417FA9176004A6595F /* Pods-Puffery Intents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Puffery Intents.release.xcconfig"; path = "Target Support Files/Pods-Puffery Intents/Pods-Puffery Intents.release.xcconfig"; sourceTree = "<group>"; };
 		BA1B71942495205700572516 /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 		BA1B719A249521B800572516 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
-		BA231222249C036F00AE13F1 /* NoitifcationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoitifcationsService.swift; sourceTree = "<group>"; };
 		BA231224249C040A00AE13F1 /* ReceivedMessageNotification.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReceivedMessageNotification.apns; sourceTree = "<group>"; };
 		BA8F8649245F122D0019B818 /* Puffery Intents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Puffery Intents.entitlements"; sourceTree = "<group>"; };
 		BA923F2B245EFAA9008BD6C9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 				BA94F0C0244BA2E80087924C /* Puffery.entitlements */,
 				BAF154632444BB4400EDB97B /* AppDelegate.swift */,
 				BAF154652444BB4400EDB97B /* SceneDelegate.swift */,
-				BA231222249C036F00AE13F1 /* NoitifcationsService.swift */,
 				BAF1546C2444BB4600EDB97B /* Assets.xcassets */,
 				BAF154712444BB4600EDB97B /* LaunchScreen.storyboard */,
 				BAF154742444BB4600EDB97B /* Info.plist */,
@@ -343,7 +340,6 @@
 				BAF1545E2444BB4400EDB97B /* Resources */,
 				BA952522245EC51900FFC9E3 /* Embed App Extensions */,
 				BA8E67412469FB93004F05F3 /* Embed Frameworks */,
-				345B5502787A8E7292772374 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -387,7 +383,6 @@
 				BAF154802444BB4600EDB97B /* Sources */,
 				BAF154812444BB4600EDB97B /* Frameworks */,
 				BAF154822444BB4600EDB97B /* Resources */,
-				D4D759BDCAD8E6297D5E90EA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -511,23 +506,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		345B5502787A8E7292772374 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Puffery/Pods-Puffery-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Puffery/Pods-Puffery-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Puffery/Pods-Puffery-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		37EBC8E86DCEB0B4EF468015 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -594,23 +572,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D4D759BDCAD8E6297D5E90EA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Puffery-PufferyUITests/Pods-Puffery-PufferyUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Puffery-PufferyUITests/Pods-Puffery-PufferyUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Puffery-PufferyUITests/Pods-Puffery-PufferyUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -632,7 +593,6 @@
 			files = (
 				BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */,
 				BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */,
-				BA231223249C036F00AE13F1 /* NoitifcationsService.swift in Sources */,
 				BA923F2C245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */,
 				BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */,
 			);

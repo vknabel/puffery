@@ -20,7 +20,6 @@ struct Fetching<V, E: Error, LoadingView: View, ErrorView: View, DataView: View>
 
     @State var latestResult: Result<V, E>?
     @State var operation: AnyCancellable?
-    @State var isLoading: AnyCancellable?
 
     init<P: Publisher>(
         _ fetch: P,
@@ -43,33 +42,36 @@ struct Fetching<V, E: Error, LoadingView: View, ErrorView: View, DataView: View>
                 self.error($0, self.retry)
             }
             latestResult?.success.map(data)
-        }.onAppear(perform: reloadData)
+        }
+            .onAppear(perform: reloadData)
             .onDisappear(perform: cancel)
     }
 
     private func reloadData() {
         operation = fetch.sink(
             receiveCompletion: { completion in
+                assert(Thread.isMainThread)
                 if case let .failure(error) = completion {
                     self.latestResult = .failure(error)
                 }
                 self.operation = nil
             },
             receiveValue: {
+                assert(Thread.isMainThread)
                 self.latestResult = .success($0)
             }
         )
     }
 
     private func retry() {
+        assert(Thread.isMainThread)
         latestResult = nil
         reloadData()
     }
 
     private func cancel() {
-        DispatchQueue.main.async {
-            self.operation = nil
-        }
+        assert(Thread.isMainThread)
+        operation = nil
     }
 }
 
