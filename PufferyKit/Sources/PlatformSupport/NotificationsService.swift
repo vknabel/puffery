@@ -23,7 +23,7 @@ import APIDefinition
 }
 
 public extension ReceivedMessageNotification {
-    public convenience init?(content: UNNotificationContent) {
+    convenience init?(content: UNNotificationContent) {
         if let channelUUIDString = content.userInfo["subscribedChannelID"] as? String,
             let channelID = UUID(uuidString: channelUUIDString),
             let messageUUIDString = content.userInfo["receivedMessageID"] as? String,

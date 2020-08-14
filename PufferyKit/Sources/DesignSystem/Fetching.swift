@@ -34,17 +34,17 @@ public struct Fetching<V, E: Error, LoadingView: View, ErrorView: View, DataView
     }
 
     public var body: some View {
-        VStack {
+        Group {
             if latestResult == nil {
                 loading()
+                    .onAppear(perform: reloadData)
             }
             latestResult?.failure.map {
                 self.error($0, self.retry)
+                    .onAppear(perform: reloadData)
             }
             latestResult?.success.map(data)
         }
-        .onAppear(perform: reloadData)
-        .onDisappear(perform: cancel)
     }
 
     private func reloadData() {
