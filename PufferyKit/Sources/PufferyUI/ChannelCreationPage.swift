@@ -50,7 +50,7 @@ struct ChannelCreationPage: View {
 
     var cancelNavigationItem: some View {
         Button(action: dismiss) {
-            Text("Cancel")
+            Text("CreateChannel.Cancel")
         }
     }
 

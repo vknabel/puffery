@@ -35,6 +35,7 @@
 "Profile.Email.Associate" = "Verknüpfen";
 
 "CreateChannel.Title" = "Channel erstellen";
+"CreateChannel.Cancel" = "Abbrechen";
 "CreateChannel.Basic.Title" = "Titel";
 "CreateChannel.Basic.Explanation" = "Der Titel deines neuen Channels. Du kannst ihn später mit anderen teilen. Um einen existierenden Channel hinzuzufügen, gib den Notify-Key ein.";
 "CreateChannel.Actions.Subscribe" = "Abonnieren";

@@ -35,6 +35,7 @@
 "Profile.Email.Associate" = "Associate";
 
 "CreateChannel.Title" = "Create Channel";
+"CreateChannel.Cancel" = "Cancel";
 "CreateChannel.Basic.Title" = "Title";
 "CreateChannel.Basic.Explanation" = "The title of your new Channel. You can share it with others later. To add an existing Channel to your owns, enter its notify key.";
 "CreateChannel.Actions.Subscribe" = "Subscribe";
