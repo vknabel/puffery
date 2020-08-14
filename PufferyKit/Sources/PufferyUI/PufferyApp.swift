@@ -8,6 +8,7 @@
 
 import Combine
 import SwiftUI
+import PlatformSupport
 
 public struct SelectPufferyApp: View {
     @ObservedObject var store = Current.store
@@ -92,16 +93,6 @@ struct PufferyApp: View {
                     Just(nil)
                 }
         }
-}
-
-extension View {
-    func show(when predicate: Bool) -> some View {
-        Group {
-            if predicate {
-                self
-            }
-        }
-    }
 }
 
 #if DEBUG

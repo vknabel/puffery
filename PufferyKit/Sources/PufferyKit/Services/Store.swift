@@ -60,7 +60,7 @@ extension Store {
     }
 
     private func commitOnMain(_ action: GlobalCommit) {
-        assert(Thread.isMainThread)
+        dispatchPrecondition(condition: .onQueue(.main))
         print("Action:", action)
         switch action {
         case .updateDeviceToken(nil):

@@ -10,7 +10,7 @@ import Combine
 import Foundation
 import SwiftUI
 
-struct Fetching<V, E: Error, LoadingView: View, ErrorView: View, DataView: View>: View {
+public struct Fetching<V, E: Error, LoadingView: View, ErrorView: View, DataView: View>: View {
     typealias Retry = () -> Void
 
     var fetch: AnyPublisher<V, E>
@@ -33,8 +33,8 @@ struct Fetching<V, E: Error, LoadingView: View, ErrorView: View, DataView: View>
         self.data = data
     }
 
-    var body: some View {
-        Group {
+    public var body: some View {
+        VStack {
             if latestResult == nil {
                 loading()
             }
@@ -50,27 +50,27 @@ struct Fetching<V, E: Error, LoadingView: View, ErrorView: View, DataView: View>
     private func reloadData() {
         operation = fetch.sink(
             receiveCompletion: { completion in
-                assert(Thread.isMainThread)
+                dispatchPrecondition(condition: .onQueue(.main))
                 if case let .failure(error) = completion {
                     self.latestResult = .failure(error)
                 }
                 self.operation = nil
             },
             receiveValue: {
-                assert(Thread.isMainThread)
+                dispatchPrecondition(condition: .onQueue(.main))
                 self.latestResult = .success($0)
             }
         )
     }
 
     private func retry() {
-        assert(Thread.isMainThread)
+        dispatchPrecondition(condition: .onQueue(.main))
         latestResult = nil
         reloadData()
     }
 
     private func cancel() {
-        assert(Thread.isMainThread)
+        dispatchPrecondition(condition: .onQueue(.main))
         operation = nil
     }
 }
@@ -93,7 +93,7 @@ private extension Result {
     }
 }
 
-extension Fetching where LoadingView == ActivityIndicator, ErrorView == AnyView {
+public extension Fetching where LoadingView == ActivityIndicator, ErrorView == AnyView {
     init<P: Publisher>(
         _ fetch: P,
         @ViewBuilder data: @escaping (V) -> DataView
@@ -113,7 +113,7 @@ extension Fetching where LoadingView == ActivityIndicator, ErrorView == AnyView 
     }
 }
 
-extension Fetching where LoadingView == ActivityIndicator, ErrorView == AnyView, DataView == AnyView, V: Collection {
+public extension Fetching where LoadingView == ActivityIndicator, ErrorView == AnyView, DataView == AnyView, V: Collection {
     init<P: Publisher, EmptyView: View, NonEmptyView: View>(
         _ fetch: P,
         @ViewBuilder empty: @escaping () -> EmptyView,
@@ -125,7 +125,7 @@ extension Fetching where LoadingView == ActivityIndicator, ErrorView == AnyView,
     }
 }
 
-extension Fetching where LoadingView == ActivityIndicator, ErrorView == AnyView, DataView == AnyView, V: Collection {
+public extension Fetching where LoadingView == ActivityIndicator, ErrorView == AnyView, DataView == AnyView, V: Collection {
     init<P: Publisher, EmptyView: View, NonEmptyView: View>(
         _ fetch: P,
         empty: @escaping @autoclosure () -> EmptyView,

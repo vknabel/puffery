@@ -39,6 +39,7 @@ let package = Package(
             name: "PufferyUI",
             dependencies: [
                 "PufferyKit",
+                "RegistrationModule",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]
         ),
@@ -63,5 +64,18 @@ let package = Package(
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]
         ),
+        
+        .target(name: "DesignSystem"),
+        .target(name: "PlatformSupport"),
+        .target(name: "PrivacyPolicyModule", dependencies: [
+            .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+        ]),
+        .target(name: "RegistrationModule", dependencies: [
+            "PufferyKit",
+            "DesignSystem",
+            "PlatformSupport",
+            "PrivacyPolicyModule",
+            .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+        ]),
     ]
 )

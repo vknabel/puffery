@@ -7,14 +7,22 @@
 
 import ComposableArchitecture
 import SwiftUI
+import PlatformSupport
+import DesignSystem
+import PufferyKit
 
-struct RegistrationPage: View {
+public struct RegistrationPage: View {
     var onFinish: () -> Void
 
     @ObservedObject private var keyboard = Keyboard()
     let store: ComposableArchitecture.Store<RegistrationState, RegistrationAction>
+    
+    public init(onFinish: @escaping () -> Void, store: ComposableArchitecture.Store<RegistrationState, RegistrationAction>) {
+        self.onFinish = onFinish
+        self.store = store
+    }
 
-    var body: some View {
+    public var body: some View {
         WithViewStore(self.store) { viewModel in
             VStack {
                 Spacer()

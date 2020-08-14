@@ -10,18 +10,18 @@ import SwiftUI
 #if canImport(UIKit)
     import UIKit
 
-    struct ActivityIndicator: UIViewRepresentable {
+    public struct ActivityIndicator: UIViewRepresentable {
         typealias Style = UIActivityIndicatorView.Style
         var isAnimating: Bool
         var style: Style = .medium
 
-        func makeUIView(context _: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
+        public func makeUIView(context _: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
             let indicator = UIActivityIndicatorView(style: style)
             indicator.hidesWhenStopped = true
             return indicator
         }
 
-        func updateUIView(_ uiView: UIActivityIndicatorView, context _: UIViewRepresentableContext<ActivityIndicator>) {
+        public func updateUIView(_ uiView: UIActivityIndicatorView, context _: UIViewRepresentableContext<ActivityIndicator>) {
             isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
         }
     }
@@ -32,15 +32,15 @@ import SwiftUI
         }
     }
 #else
-    struct ActivityIndicator: UIView {
-        enum Style {
+    public struct ActivityIndicator: UIView {
+        public enum Style {
             case medium, large
         }
 
         var isAnimating: Bool
         var style: Style = .medium
 
-        var body: some View {
+        public var body: some View {
             Text("...")
         }
     }

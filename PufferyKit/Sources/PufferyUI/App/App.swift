@@ -1,4 +1,5 @@
 import UserNotifications
+import PlatformSupport
 
 public final class App {
     lazy var notifications = NotificationsService()

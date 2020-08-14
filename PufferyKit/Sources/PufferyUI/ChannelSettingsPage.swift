@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import PlatformSupport
 
 struct ChannelSettingsPage: View {
     @State var channel: Channel

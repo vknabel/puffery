@@ -10,11 +10,13 @@ import ComposableArchitecture
 import Foundation
 import PufferyKit
 
-struct RegistrationState: Equatable {
+public struct RegistrationState: Equatable {
     var email = ""
     var activity = ActivityState.idle
 
     var shouldCheckEmails = false
+    
+    public init() {}
 
     enum ActivityState: Equatable {
         case idle
@@ -39,7 +41,7 @@ struct RegistrationState: Equatable {
     }
 }
 
-enum RegistrationAction {
+public enum RegistrationAction {
     case updateEmail(String)
     // TODO: remove onFinish
     case shouldRegister(onFinish: () -> Void)
@@ -51,7 +53,7 @@ enum RegistrationAction {
     case activityFailed(FetchingError)
 }
 
-let registrationReducer = Reducer<
+public let registrationReducer = Reducer<
     RegistrationState,
     RegistrationAction,
     RegistrationEnvironment

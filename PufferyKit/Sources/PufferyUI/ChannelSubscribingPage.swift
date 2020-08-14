@@ -9,6 +9,7 @@
 import APIDefinition
 import SwiftUI
 import UserNotifications
+import PlatformSupport
 
 struct ChannelSubscribingPage: View {
     @State var channelKey: String = ""
@@ -59,7 +60,7 @@ struct ChannelSubscribingPage: View {
     }
 
     func registerAndSetReceiveNotifications(_ newValue: Bool) {
-        assert(Thread.isMainThread)
+        dispatchPrecondition(condition: .onQueue(.main))
         if newValue == true, !PushNotifications.hasBeenRequested {
             PushNotifications.register {
                 self.receiveNotifications = newValue
@@ -75,7 +76,7 @@ struct ChannelSubscribingPage: View {
     }
 
     func receiveChannel(result: Result<SubscribedChannelResponse, FetchingError>) {
-        assert(Thread.isMainThread)
+        dispatchPrecondition(condition: .onQueue(.main))
         switch result {
         case .success:
             dismiss()
@@ -85,7 +86,7 @@ struct ChannelSubscribingPage: View {
     }
 
     func dismiss() {
-        assert(Thread.isMainThread)
+        dispatchPrecondition(condition: .onQueue(.main))
         presentationMode.wrappedValue.dismiss()
     }
 }

@@ -1,6 +1,8 @@
 import SwiftUI
 
 public struct TermsAndConditions: View {
+    public init() {}
+
     public var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack(alignment: HorizontalAlignment.leading, spacing: 12) {

@@ -8,6 +8,7 @@
 
 import Combine
 import SwiftUI
+import DesignSystem
 
 enum ChannelSelection: Hashable {
     case all

@@ -1,4 +1,5 @@
 import SwiftUI
+import PrivacyPolicyModule
 
 struct RegistrationTerms: View {
     @State var displaysTermsAndConditions = false

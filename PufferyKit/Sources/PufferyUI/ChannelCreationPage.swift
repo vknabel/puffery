@@ -9,6 +9,7 @@
 import APIDefinition
 import SwiftUI
 import UserNotifications
+import PlatformSupport
 
 struct ChannelCreationPage: View {
     @State var title: String = ""

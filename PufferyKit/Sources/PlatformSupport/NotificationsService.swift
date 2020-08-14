@@ -7,9 +7,10 @@
 //
 
 import UserNotifications
+import APIDefinition
 
-@objc class NotificationsService: NSObject, UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+@objc public class NotificationsService: NSObject, UNUserNotificationCenterDelegate {
+    public func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if let subscribedChannel = ReceivedMessageNotification(content: response.notification.request.content) {
             NotificationCenter.default.post(name: .receivedMessage, object: nil, userInfo: [
                 "ReceivedMessageNotification": subscribedChannel,
@@ -21,8 +22,8 @@ import UserNotifications
     }
 }
 
-extension ReceivedMessageNotification {
-    convenience init?(content: UNNotificationContent) {
+public extension ReceivedMessageNotification {
+    public convenience init?(content: UNNotificationContent) {
         if let channelUUIDString = content.userInfo["subscribedChannelID"] as? String,
             let channelID = UUID(uuidString: channelUUIDString),
             let messageUUIDString = content.userInfo["receivedMessageID"] as? String,

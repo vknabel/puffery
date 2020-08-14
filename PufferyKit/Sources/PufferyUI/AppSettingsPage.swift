@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import PrivacyPolicyModule
 
 struct AppSettingsPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>

@@ -1,4 +1,6 @@
 import PufferyKit
+import PlatformSupport
+
 #if canImport(UIKit)
     import UIKit
 

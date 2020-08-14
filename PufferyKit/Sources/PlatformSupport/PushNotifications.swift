@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PufferyKit
 import UserNotifications
 #if canImport(UIKit)
     import UIKit

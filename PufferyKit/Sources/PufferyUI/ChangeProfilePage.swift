@@ -9,6 +9,8 @@
 import APIDefinition
 import Combine
 import SwiftUI
+import DesignSystem
+import PlatformSupport
 
 struct ChangeProfilePage: View {
     @ObservedObject private var keyboard = Keyboard()

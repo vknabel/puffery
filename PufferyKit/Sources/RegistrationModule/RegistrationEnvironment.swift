@@ -8,6 +8,9 @@
 import Combine
 import ComposableArchitecture
 import Foundation
+import PufferyKit
+import PlatformSupport
+import PrivacyPolicyModule
 
 public struct RegistrationEnvironment {
     public var loginEffect: (String) -> Effect<Void, FetchingError>
@@ -83,13 +86,13 @@ extension RegistrationEnvironment {
 }
 
 extension Publisher {
-    func transform<T>(to value: @autoclosure @escaping () -> T) -> Publishers.Map<Self, T> {
+    public func transform<T>(to value: @autoclosure @escaping () -> T) -> Publishers.Map<Self, T> {
         map { _ in value() }
     }
 }
 
 extension Publisher where Failure == Never {
-    func transformError<E: Error>(to _: E.Type = E.self) -> Publishers.MapError<Self, E> {
+    public func transformError<E: Error>(to _: E.Type = E.self) -> Publishers.MapError<Self, E> {
         mapError { (_: Never) -> E in }
     }
 }

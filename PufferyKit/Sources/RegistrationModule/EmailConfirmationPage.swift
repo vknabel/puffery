@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PlatformSupport
 
 struct EmailConfirmationPage: View {
     let email: String

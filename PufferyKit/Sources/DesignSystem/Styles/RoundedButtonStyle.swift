@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-struct RoundedButtonStyle: ButtonStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
+public struct RoundedButtonStyle: ButtonStyle {
+    public init() {}
+
+    public func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .padding(20)
             .background(

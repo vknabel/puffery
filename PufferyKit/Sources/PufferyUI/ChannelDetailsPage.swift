@@ -8,6 +8,7 @@
 
 import Combine
 import SwiftUI
+import DesignSystem
 
 struct ChannelDetailsPage: View {
     var channel: Channel?

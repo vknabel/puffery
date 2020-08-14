@@ -10,6 +10,7 @@ import APIDefinition
 import ComposableArchitecture
 import SwiftUI
 import UserNotifications
+import RegistrationModule
 
 struct GettingStartedPage: View {
     var onFinish: () -> Void
