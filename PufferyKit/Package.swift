@@ -65,8 +65,14 @@ let package = Package(
             ]
         ),
         
-        .target(name: "DesignSystem"),
-        .target(name: "PlatformSupport"),
+        .target(name: "DesignSystem", dependencies: [
+            "PlatformSupport",
+            "PufferyKit",
+        ]),
+        .target(name: "PlatformSupport", dependencies: [
+            "APIDefinition",
+            "PufferyKit",
+        ]),
         .target(name: "PrivacyPolicyModule", dependencies: [
             .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
         ]),
