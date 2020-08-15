@@ -15,11 +15,11 @@
 		BA95250C245EC51900FFC9E3 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95250B245EC51900FFC9E3 /* IntentHandler.swift */; };
 		BA952521245EC51900FFC9E3 /* Puffery Intents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BA952509245EC51900FFC9E3 /* Puffery Intents.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BA95252E245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95252D245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift */; };
-		BA952530245ED78500FFC9E3 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = BA95252F245ED78500FFC9E3 /* SwiftPackageProductDependency */; };
-		BA952532245ED7A300FFC9E3 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = BA952531245ED7A300FFC9E3 /* SwiftPackageProductDependency */; };
+		BA952530245ED78500FFC9E3 /* PufferyUI in Frameworks */ = {isa = PBXBuildFile; productRef = BA95252F245ED78500FFC9E3 /* PufferyUI */; };
+		BA952532245ED7A300FFC9E3 /* PufferyKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA952531245ED7A300FFC9E3 /* PufferyKit */; };
 		BA952536245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA952535245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift */; };
 		BA952538245EEDF200FFC9E3 /* Puffery+Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA952537245EEDF200FFC9E3 /* Puffery+Intent.swift */; };
-		BAC3D8212494D3E300BF33BF /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = BAC3D8202494D3E300BF33BF /* SwiftPackageProductDependency */; };
+		BAC3D8212494D3E300BF33BF /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = BAC3D8202494D3E300BF33BF /* ComposableArchitecture */; };
 		BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154632444BB4400EDB97B /* AppDelegate.swift */; };
 		BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154652444BB4400EDB97B /* SceneDelegate.swift */; };
 		BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */; };
@@ -133,7 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA952532245ED7A300FFC9E3 /* BuildFile in Frameworks */,
+				BA952532245ED7A300FFC9E3 /* PufferyKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,9 +141,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA952530245ED78500FFC9E3 /* BuildFile in Frameworks */,
+				BA952530245ED78500FFC9E3 /* PufferyUI in Frameworks */,
 				BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */,
-				BAC3D8212494D3E300BF33BF /* BuildFile in Frameworks */,
+				BAC3D8212494D3E300BF33BF /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,7 +283,7 @@
 			);
 			name = "Puffery Intents";
 			packageProductDependencies = (
-				BA952531245ED7A300FFC9E3 /* SwiftPackageProductDependency */,
+				BA952531245ED7A300FFC9E3 /* PufferyKit */,
 			);
 			productName = "Puffery Intents";
 			productReference = BA952509245EC51900FFC9E3 /* Puffery Intents.appex */;
@@ -306,8 +306,8 @@
 			);
 			name = Puffery;
 			packageProductDependencies = (
-				BA95252F245ED78500FFC9E3 /* SwiftPackageProductDependency */,
-				BAC3D8202494D3E300BF33BF /* SwiftPackageProductDependency */,
+				BA95252F245ED78500FFC9E3 /* PufferyUI */,
+				BAC3D8202494D3E300BF33BF /* ComposableArchitecture */,
 			);
 			productName = Puffery;
 			productReference = BAF154602444BB4400EDB97B /* Puffery.app */;
@@ -387,8 +387,8 @@
 			);
 			mainGroup = BAF154572444BB4400EDB97B;
 			packageReferences = (
-				BA96015E2452208C00667BDD /* RemoteSwiftPackageReference */,
-				BA8E673A2469FB93004F05F3 /* RemoteSwiftPackageReference */,
+				BA96015E2452208C00667BDD /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = BAF154612444BB4400EDB97B /* Products */;
 			projectDirPath = "";
@@ -610,7 +610,7 @@
 				CODE_SIGN_ENTITLEMENTS = Puffery/PufferyDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Puffery/Preview Content\"";
 				DEVELOPMENT_TEAM = BG9UY79792;
 				ENABLE_PREVIEWS = YES;
@@ -678,6 +678,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Puffery Intents/Puffery IntentsDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_TEAM = BG9UY79792;
 				INFOPLIST_FILE = "Puffery Intents/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -702,6 +703,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Puffery Intents/Puffery IntentsDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_TEAM = BG9UY79792;
 				INFOPLIST_FILE = "Puffery Intents/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -726,6 +728,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Puffery Intents/Puffery Intents.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_TEAM = BG9UY79792;
 				INFOPLIST_FILE = "Puffery Intents/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -871,7 +874,7 @@
 				CODE_SIGN_ENTITLEMENTS = Puffery/PufferyDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Puffery/Preview Content\"";
 				DEVELOPMENT_TEAM = BG9UY79792;
 				ENABLE_PREVIEWS = YES;
@@ -900,7 +903,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Puffery/Preview Content\"";
 				DEVELOPMENT_TEAM = BG9UY79792;
 				ENABLE_PREVIEWS = YES;
@@ -1062,7 +1065,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BA8E673A2469FB93004F05F3 /* RemoteSwiftPackageReference */ = {
+		BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
 			requirement = {
@@ -1070,7 +1073,7 @@
 				minimumVersion = 0.1.2;
 			};
 		};
-		BA96015E2452208C00667BDD /* RemoteSwiftPackageReference */ = {
+		BA96015E2452208C00667BDD /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
 			requirement = {
@@ -1081,17 +1084,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BA95252F245ED78500FFC9E3 /* SwiftPackageProductDependency */ = {
+		BA95252F245ED78500FFC9E3 /* PufferyUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PufferyUI;
 		};
-		BA952531245ED7A300FFC9E3 /* SwiftPackageProductDependency */ = {
+		BA952531245ED7A300FFC9E3 /* PufferyKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PufferyKit;
 		};
-		BAC3D8202494D3E300BF33BF /* SwiftPackageProductDependency */ = {
+		BAC3D8202494D3E300BF33BF /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BA8E673A2469FB93004F05F3 /* RemoteSwiftPackageReference */;
+			package = BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
