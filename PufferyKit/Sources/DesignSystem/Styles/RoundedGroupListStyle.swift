@@ -9,11 +9,15 @@
 import SwiftUI
 
 extension View {
-    public func roundedListStyle() -> some View {
+    public func roundedListStyle(sidebar: Bool = false) -> some View {
         #if canImport(AppKit)
             return listStyle(DefaultListStyle())
         #else
-            return listStyle(GroupedListStyle())
+            if #available(iOS 14.0, *), sidebar {
+                return AnyView(listStyle(SidebarListStyle()))
+            } else {
+                return AnyView(listStyle(GroupedListStyle()))
+            }
         #endif
     }
 }

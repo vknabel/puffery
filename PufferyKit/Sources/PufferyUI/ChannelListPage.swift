@@ -25,6 +25,8 @@ struct ChannelListPage: View {
     @State var selection: ChannelSelection? = UIDevice.current.model == "iPad"
         ? .all
         : nil
+    
+    var isIpad: Bool { UIDevice.current.model == "iPad" }
 
     var body: some View {
         ZStack {
@@ -54,7 +56,7 @@ struct ChannelListPage: View {
                         }
                     }
                 }
-            }.roundedListStyle()
+            }.roundedListStyle(sidebar: false)
         }
         .navigationBarTitle("ChannelList.Title")
         .navigationBarItems(trailing: settingsNavigationBarItem)
@@ -88,7 +90,7 @@ struct ChannelListPage: View {
                 HStack {
                     Text(actionText)
                     Image(systemName: "plus.circle").font(.body)
-                }
+                }.foregroundColor(.accentColor)
             }
         }
     }
