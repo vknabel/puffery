@@ -7,8 +7,8 @@
 //
 
 import Combine
-import SwiftUI
 import DesignSystem
+import SwiftUI
 
 enum ChannelSelection: Hashable {
     case all
@@ -21,11 +21,11 @@ struct ChannelListPage: View {
     @State var presentsSettings = false
     @State var presentsChannelCreation = false
     @State var presentsChannelSubscription = false
-    @State var shouldReload: PassthroughSubject<Void, FetchingError> = PassthroughSubject<Void, FetchingError>()
+    @State var shouldReload = PassthroughSubject<Void, FetchingError>()
     @State var selection: ChannelSelection? = UIDevice.current.model == "iPad"
         ? .all
         : nil
-    
+
     var isIpad: Bool { UIDevice.current.model == "iPad" }
 
     var body: some View {
@@ -34,6 +34,11 @@ struct ChannelListPage: View {
                 Section {
                     NavigationLink(destination: ChannelDetailsPage(), tag: .all, selection: $selection) {
                         Text("ChannelList.All")
+                            .sheet(isPresented: $presentsChannelCreation, onDismiss: shouldReload.send) {
+                                NavigationView {
+                                    ChannelCreationPage()
+                                }.navigationViewStyle(StackNavigationViewStyle())
+                            }
                     }
                 }
 
@@ -54,6 +59,10 @@ struct ChannelListPage: View {
                                 Text(channel.title)
                             }
                         }
+                    }.sheet(isPresented: $presentsChannelSubscription, onDismiss: shouldReload.send) {
+                        NavigationView {
+                            ChannelSubscribingPage()
+                        }.navigationViewStyle(StackNavigationViewStyle())
                     }
                 }
             }.roundedListStyle(sidebar: false)
@@ -64,21 +73,23 @@ struct ChannelListPage: View {
     }
 
     func createChannelHeader() -> some View {
-        channelsHeader("ChannelList.OwnChannels.SectionTitle", actionText: "ChannelList.OwnChannels.New", action: { self.presentsChannelCreation.toggle() })
-            .sheet(isPresented: $presentsChannelCreation, onDismiss: shouldReload.send) {
-                NavigationView {
-                    ChannelCreationPage()
-                }.navigationViewStyle(StackNavigationViewStyle())
+        HStack {
+            Text("ChannelList.OwnChannels.SectionTitle")
+            Spacer()
+
+            Button(action: { DispatchQueue.main.async {
+                self.presentsChannelCreation.toggle()
+            } }) {
+                HStack {
+                    Text("ChannelList.OwnChannels.New")
+                    Image(systemName: "plus.circle").font(.body)
+                }.foregroundColor(.accentColor)
             }
+        }
     }
 
     func subscribeChannelHeader() -> some View {
         channelsHeader("ChannelList.SubscribeChannels.SectionTitle", actionText: "ChannelList.SubscribeChannels.New", action: { self.presentsChannelSubscription.toggle() })
-            .sheet(isPresented: $presentsChannelSubscription, onDismiss: shouldReload.send) {
-                NavigationView {
-                    ChannelSubscribingPage()
-                }.navigationViewStyle(StackNavigationViewStyle())
-            }
     }
 
     func channelsHeader(_ title: LocalizedStringKey, actionText: LocalizedStringKey, action: @escaping () -> Void) -> some View {

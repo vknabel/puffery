@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+
+* iOS 14 support
+
 ## 1.0.2
 
 * Removed Instabug

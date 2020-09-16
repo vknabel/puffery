@@ -30,7 +30,7 @@ let package = Package(
         .package(name: "Overture", url: "https://github.com/pointfreeco/swift-overture.git", from: "0.5.0"),
         .package(name: "KeychainSwift", url: "https://github.com/evgenyneu/keychain-swift.git", from: "19.0.0"),
 //        .package(name: "AckeeTracker", url: "https://github.com/vknabel/AckeeTracker-Swift.git", from: "0.1.0"),
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", from: "0.6.0"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", from: "0.8.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -64,7 +64,7 @@ let package = Package(
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]
         ),
-        
+
         .target(name: "DesignSystem", dependencies: [
             "PlatformSupport",
             "PufferyKit",
