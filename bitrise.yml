@@ -1,0 +1,129 @@
+---
+format_version: '8'
+default_step_lib_source: 'https://github.com/bitrise-io/bitrise-steplib.git'
+project_type: ios
+trigger_map:
+- push_branch: master
+  workflow: deploy
+- pull_request_source_branch: '*'
+  workflow: primary
+workflows:
+  deploy:
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@4: {}
+    - cache-pull@2: {}
+    - recreate-user-schemes@1:
+        inputs:
+        - project_path: $BITRISE_PROJECT_PATH
+    - certificate-and-profile-installer@1: {}
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            # write your script here
+            xcodebuild -workspace $BITRISE_PROJECT_PATH -list
+
+            # or run a script from your repository, like:
+            # bash ./path/to/script.sh
+            # not just bash, e.g.:
+            # ruby ./path/to/script.rb
+    - set-xcode-build-number@1:
+        inputs:
+        - plist_path: Puffery/Info.plist
+        title: 'Puffery: Set Xcode Project Build Number'
+    - set-xcode-build-number@1:
+        inputs:
+        - plist_path: Puffery Intents/Info.plist
+        title: 'Puffery Intent: Set Xcode Project Build Number'
+    - xcode-archive@2:
+        inputs:
+        - configuration: Release
+        - export_method: app-store
+    - deploy-to-itunesconnect-application-loader@0:
+        inputs:
+        - password: $PUFFERY_APPLE_PASSWORD
+        - app_password: $PUFFERY_APPLE_APP_PASSWORD
+        - itunescon_user: $PUFFERY_APPLE_ID
+    - deploy-to-bitrise-io@1:
+        inputs:
+        - notify_user_groups: none
+    - cache-push@2: {}
+    - script@1:
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            # write your script here
+            curl -X "POST" "https://vapor.puffery.app/notify/$PUFFERY_CHANNEL" \
+                 -H 'Content-Type: application/json; charset=utf-8' \
+                 -d "{ 
+              \"title\": \"New Puffery build $BITRISE_BUILD_NUMBER\",
+              \"body\": \"$BITRISE_GIT_MESSAGE\",
+              \"color\": \"blue\",
+            }"
+        title: Puffery Passed
+    - script@1:
+        is_always_run: true
+        run_if: .IsBuildFailed
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            # write your script here
+            curl -X "POST" "https://vapor.puffery.app/notify/$PUFFERY_CHANNEL" \
+                 -H 'Content-Type: application/json; charset=utf-8' \
+                 -d "{ 
+              \"title\": \"Build failed $BITRISE_BUILD_NUMBER\",
+              \"body\": \"$BITRISE_GIT_MESSAGE\",
+              \"color\": \"red\",
+            }"
+        title: Puffery Failed
+  primary:
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@4: {}
+    - cache-pull@2: {}
+    - set-xcode-build-number@1:
+        inputs:
+        - plist_path: Puffery/Info.plist
+        title: 'Puffery: Set Xcode Project Build Number'
+    - set-xcode-build-number@1:
+        inputs:
+        - plist_path: Puffery Intents/Info.plist
+        title: 'Puffery Intents: Set Xcode Project Build Number'
+    - xcode-test@2:
+        inputs:
+        - generate_code_coverage_files: 'yes'
+        title: Puffery Xcode Test
+    - certificate-and-profile-installer@1: {}
+    - cache-push@2: {}
+app:
+  envs:
+  - opts:
+      is_expand: false
+    BITRISE_PROJECT_PATH: Puffery.xcworkspace
+  - BITRISE_SCHEME: Puffery
+    opts:
+      is_expand: false
+  - opts:
+      is_expand: false
+    BITRISE_EXPORT_METHOD: app-store
+  - opts:
+      is_expand: false
+    BITRISE_CATALYST_PROVISIONING_PROFILE: a43b7298-7d38-4022-bcfb-37772c75f0e2
