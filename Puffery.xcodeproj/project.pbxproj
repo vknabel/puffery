@@ -14,12 +14,21 @@
 		BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94F0C2244BA4030087924C /* UserNotifications.framework */; };
 		BA95250C245EC51900FFC9E3 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95250B245EC51900FFC9E3 /* IntentHandler.swift */; };
 		BA952521245EC51900FFC9E3 /* Puffery Intents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BA952509245EC51900FFC9E3 /* Puffery Intents.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BA95252E245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95252D245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift */; };
 		BA952530245ED78500FFC9E3 /* PufferyUI in Frameworks */ = {isa = PBXBuildFile; productRef = BA95252F245ED78500FFC9E3 /* PufferyUI */; };
 		BA952532245ED7A300FFC9E3 /* PufferyKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA952531245ED7A300FFC9E3 /* PufferyKit */; };
 		BA952536245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA952535245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift */; };
 		BA952538245EEDF200FFC9E3 /* Puffery+Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA952537245EEDF200FFC9E3 /* Puffery+Intent.swift */; };
+		BA9831A125237236007ACF26 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9831A025237236007ACF26 /* WidgetKit.framework */; };
+		BA9831A325237236007ACF26 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9831A225237236007ACF26 /* SwiftUI.framework */; };
+		BA9831A625237236007ACF26 /* PufferyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9831A525237236007ACF26 /* PufferyWidget.swift */; };
+		BA9831A925237239007ACF26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA9831A825237239007ACF26 /* Assets.xcassets */; };
+		BA9831AB25237239007ACF26 /* ChannelWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA9831A725237236007ACF26 /* ChannelWidgets.intentdefinition */; };
+		BA9831AF25237239007ACF26 /* PufferyWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BA98319F25237236007ACF26 /* PufferyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BA9831BE25237454007ACF26 /* PufferyKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA9831BD25237454007ACF26 /* PufferyKit */; };
+		BA9831C025237454007ACF26 /* PufferyUI in Frameworks */ = {isa = PBXBuildFile; productRef = BA9831BF25237454007ACF26 /* PufferyUI */; };
 		BAC3D8212494D3E300BF33BF /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = BAC3D8202494D3E300BF33BF /* ComposableArchitecture */; };
+		BAD5349B25238D3400F537EE /* ChannelWidgetsIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD5349A25238D3400F537EE /* ChannelWidgetsIntentHandler.swift */; };
+		BAD534A525238DCF00F537EE /* ChannelWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA9831A725237236007ACF26 /* ChannelWidgets.intentdefinition */; };
 		BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154632444BB4400EDB97B /* AppDelegate.swift */; };
 		BAF154662444BB4400EDB97B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154652444BB4400EDB97B /* SceneDelegate.swift */; };
 		BAF154692444BB4400EDB97B /* Puffery.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF154672444BB4400EDB97B /* Puffery.xcdatamodeld */; };
@@ -38,6 +47,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = BA952508245EC51900FFC9E3;
 			remoteInfo = "Puffery Intents";
+		};
+		BA9831AD25237239007ACF26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BAF154582444BB4400EDB97B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA98319E25237236007ACF26;
+			remoteInfo = PufferyWidgetExtension;
 		};
 		BAF1547A2444BB4600EDB97B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -82,6 +98,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				BA9831AF25237239007ACF26 /* PufferyWidgetExtension.appex in Embed App Extensions */,
 				BA952521245EC51900FFC9E3 /* Puffery Intents.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -105,11 +122,19 @@
 		BA95250B245EC51900FFC9E3 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		BA95250D245EC51900FFC9E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA952513245EC51900FFC9E3 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
-		BA95252D245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListChannelsIntentHandler.swift; sourceTree = "<group>"; };
 		BA952533245EE15800FFC9E3 /* Puffery IntentsDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Puffery IntentsDebug.entitlements"; sourceTree = "<group>"; };
 		BA952535245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyChannelIntentHandler.swift; sourceTree = "<group>"; };
 		BA952537245EEDF200FFC9E3 /* Puffery+Intent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Puffery+Intent.swift"; sourceTree = "<group>"; };
 		BA96015C2452204200667BDD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		BA98319F25237236007ACF26 /* PufferyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PufferyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA9831A025237236007ACF26 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		BA9831A225237236007ACF26 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		BA9831A525237236007ACF26 /* PufferyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PufferyWidget.swift; sourceTree = "<group>"; };
+		BA9831A725237236007ACF26 /* ChannelWidgets.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ChannelWidgets.intentdefinition; sourceTree = "<group>"; };
+		BA9831A825237239007ACF26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BA9831AA25237239007ACF26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA9831C725237E8A007ACF26 /* PufferyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PufferyWidgetExtension.entitlements; sourceTree = "<group>"; };
+		BAD5349A25238D3400F537EE /* ChannelWidgetsIntentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelWidgetsIntentHandler.swift; sourceTree = "<group>"; };
 		BAF154602444BB4400EDB97B /* Puffery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puffery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF154632444BB4400EDB97B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF154652444BB4400EDB97B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +159,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA952532245ED7A300FFC9E3 /* PufferyKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA98319C25237236007ACF26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA9831C025237454007ACF26 /* PufferyUI in Frameworks */,
+				BA9831BE25237454007ACF26 /* PufferyKit in Frameworks */,
+				BA9831A325237236007ACF26 /* SwiftUI.framework in Frameworks */,
+				BA9831A125237236007ACF26 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,19 +200,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8B4A1F9B4B2830FC515538DA /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		BA94F0C1244BA4020087924C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				BA96015C2452204200667BDD /* Security.framework */,
 				BA94F0C2244BA4030087924C /* UserNotifications.framework */,
 				BA952513245EC51900FFC9E3 /* IntentsUI.framework */,
+				BA9831A025237236007ACF26 /* WidgetKit.framework */,
+				BA9831A225237236007ACF26 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -188,17 +219,29 @@
 				BA952533245EE15800FFC9E3 /* Puffery IntentsDebug.entitlements */,
 				BA95250B245EC51900FFC9E3 /* IntentHandler.swift */,
 				BA952537245EEDF200FFC9E3 /* Puffery+Intent.swift */,
-				BA95252D245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift */,
+				BAD5349A25238D3400F537EE /* ChannelWidgetsIntentHandler.swift */,
 				BA952535245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift */,
+				BA9831A725237236007ACF26 /* ChannelWidgets.intentdefinition */,
 				BA923F2F245EFAC0008BD6C9 /* Intents.intentdefinition */,
 				BA95250D245EC51900FFC9E3 /* Info.plist */,
 			);
 			path = "Puffery Intents";
 			sourceTree = "<group>";
 		};
+		BA9831A425237236007ACF26 /* PufferyWidget */ = {
+			isa = PBXGroup;
+			children = (
+				BA9831A525237236007ACF26 /* PufferyWidget.swift */,
+				BA9831A825237239007ACF26 /* Assets.xcassets */,
+				BA9831AA25237239007ACF26 /* Info.plist */,
+			);
+			path = PufferyWidget;
+			sourceTree = "<group>";
+		};
 		BAF154572444BB4400EDB97B = {
 			isa = PBXGroup;
 			children = (
+				BA9831C725237E8A007ACF26 /* PufferyWidgetExtension.entitlements */,
 				BA231224249C040A00AE13F1 /* ReceivedMessageNotification.apns */,
 				BA1B719A249521B800572516 /* Production.xcconfig */,
 				BA1B71942495205700572516 /* Local.xcconfig */,
@@ -206,9 +249,9 @@
 				BAF1547C2444BB4600EDB97B /* PufferyTests */,
 				BAF154872444BB4600EDB97B /* PufferyUITests */,
 				BA95250A245EC51900FFC9E3 /* Puffery Intents */,
+				BA9831A425237236007ACF26 /* PufferyWidget */,
 				BAF154612444BB4400EDB97B /* Products */,
 				BA94F0C1244BA4020087924C /* Frameworks */,
-				8B4A1F9B4B2830FC515538DA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,6 +262,7 @@
 				BAF154792444BB4600EDB97B /* PufferyTests.xctest */,
 				BAF154842444BB4600EDB97B /* PufferyUITests.xctest */,
 				BA952509245EC51900FFC9E3 /* Puffery Intents.appex */,
+				BA98319F25237236007ACF26 /* PufferyWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -289,6 +333,27 @@
 			productReference = BA952509245EC51900FFC9E3 /* Puffery Intents.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		BA98319E25237236007ACF26 /* PufferyWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA9831B325237239007ACF26 /* Build configuration list for PBXNativeTarget "PufferyWidgetExtension" */;
+			buildPhases = (
+				BA98319B25237236007ACF26 /* Sources */,
+				BA98319C25237236007ACF26 /* Frameworks */,
+				BA98319D25237236007ACF26 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PufferyWidgetExtension;
+			packageProductDependencies = (
+				BA9831BD25237454007ACF26 /* PufferyKit */,
+				BA9831BF25237454007ACF26 /* PufferyUI */,
+			);
+			productName = PufferyWidgetExtension;
+			productReference = BA98319F25237236007ACF26 /* PufferyWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		BAF1545F2444BB4400EDB97B /* Puffery */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BAF1548D2444BB4600EDB97B /* Build configuration list for PBXNativeTarget "Puffery" */;
@@ -303,6 +368,7 @@
 			);
 			dependencies = (
 				BA952520245EC51900FFC9E3 /* PBXTargetDependency */,
+				BA9831AE25237239007ACF26 /* PBXTargetDependency */,
 			);
 			name = Puffery;
 			packageProductDependencies = (
@@ -356,12 +422,15 @@
 		BAF154582444BB4400EDB97B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1160;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Valentin Knabel";
 				TargetAttributes = {
 					BA952508245EC51900FFC9E3 = {
 						CreatedOnToolsVersion = 11.4.1;
+					};
+					BA98319E25237236007ACF26 = {
+						CreatedOnToolsVersion = 12.0.1;
 					};
 					BAF1545F2444BB4400EDB97B = {
 						CreatedOnToolsVersion = 11.4;
@@ -398,6 +467,7 @@
 				BAF154782444BB4600EDB97B /* PufferyTests */,
 				BAF154832444BB4600EDB97B /* PufferyUITests */,
 				BA952508245EC51900FFC9E3 /* Puffery Intents */,
+				BA98319E25237236007ACF26 /* PufferyWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -407,6 +477,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA98319D25237236007ACF26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA9831A925237239007ACF26 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,11 +522,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAD5349B25238D3400F537EE /* ChannelWidgetsIntentHandler.swift in Sources */,
 				BA923F2D245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */,
-				BA95252E245ED5EA00FFC9E3 /* ListChannelsIntentHandler.swift in Sources */,
 				BA952536245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift in Sources */,
 				BA95250C245EC51900FFC9E3 /* IntentHandler.swift in Sources */,
+				BAD534A525238DCF00F537EE /* ChannelWidgets.intentdefinition in Sources */,
 				BA952538245EEDF200FFC9E3 /* Puffery+Intent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA98319B25237236007ACF26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA9831AB25237239007ACF26 /* ChannelWidgets.intentdefinition in Sources */,
+				BA9831A625237236007ACF26 /* PufferyWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +575,11 @@
 			platformFilter = ios;
 			target = BA952508245EC51900FFC9E3 /* Puffery Intents */;
 			targetProxy = BA95251F245EC51900FFC9E3 /* PBXContainerItemProxy */;
+		};
+		BA9831AE25237239007ACF26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA98319E25237236007ACF26 /* PufferyWidgetExtension */;
+			targetProxy = BA9831AD25237239007ACF26 /* PBXContainerItemProxy */;
 		};
 		BAF1547B2444BB4600EDB97B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -621,7 +714,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -688,7 +781,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vknabel.puffery.Puffery-Intents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -713,7 +806,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vknabel.puffery.Puffery-Intents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -738,12 +831,91 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vknabel.puffery.Puffery-Intents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Puffery Intents App Store";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BA9831B025237239007ACF26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PufferyWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = Automatic;
+				DEVELOPMENT_TEAM = BG9UY79792;
+				INFOPLIST_FILE = PufferyWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery.PufferyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BA9831B125237239007ACF26 /* Local Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PufferyWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = Automatic;
+				DEVELOPMENT_TEAM = BG9UY79792;
+				INFOPLIST_FILE = PufferyWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery.PufferyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Local Debug";
+		};
+		BA9831B225237239007ACF26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PufferyWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = Automatic;
+				DEVELOPMENT_TEAM = BG9UY79792;
+				INFOPLIST_FILE = PufferyWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery.PufferyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -887,7 +1059,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -916,7 +1088,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = maccatalyst.com.vknabel.puffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1025,6 +1197,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		BA9831B325237239007ACF26 /* Build configuration list for PBXNativeTarget "PufferyWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA9831B025237239007ACF26 /* Debug */,
+				BA9831B125237239007ACF26 /* Local Debug */,
+				BA9831B225237239007ACF26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BAF1545B2444BB4400EDB97B /* Build configuration list for PBXProject "Puffery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1094,6 +1276,14 @@
 		BA952531245ED7A300FFC9E3 /* PufferyKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PufferyKit;
+		};
+		BA9831BD25237454007ACF26 /* PufferyKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PufferyKit;
+		};
+		BA9831BF25237454007ACF26 /* PufferyUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PufferyUI;
 		};
 		BAC3D8202494D3E300BF33BF /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;

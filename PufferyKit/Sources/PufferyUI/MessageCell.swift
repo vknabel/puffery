@@ -52,7 +52,7 @@ extension Message.Color: View {
         }
     }
 
-    var foregroundColor: Color? {
+    public var foregroundColor: Color? {
         .white
     }
 }

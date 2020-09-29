@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0
+
+* Widgets for iOS 14
+
 ## 1.1.0
 
 * iOS 14 support

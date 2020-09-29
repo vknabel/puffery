@@ -58,6 +58,7 @@
 	<string>Puffery needs access to your photo library so you can attach images.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
+		<string>ListChannelsIntent</string>
 		<string>NotiyChannelIntent</string>
 	</array>
 	<key>PUFFERY_API_URL</key>

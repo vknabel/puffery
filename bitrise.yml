@@ -42,6 +42,10 @@ workflows:
         inputs:
         - plist_path: Puffery Intents/Info.plist
         title: 'Puffery Intent: Set Xcode Project Build Number'
+    - set-xcode-build-number@1:
+        inputs:
+        - plist_path: PufferyWidget/Info.plist
+        title: 'Puffery Widget: Set Xcode Project Build Number'
     - xcode-archive@2:
         inputs:
         - configuration: Release

@@ -25,7 +25,10 @@ class IntentHandler: INExtension {
              return ListChannelsIntentHandler()
          } else */ if intent is NotiyChannelIntent {
             return NotifyChannelIntentHandler()
-        } else {
+         } else if #available(iOSApplicationExtension 14.0, *), intent is ChannelWidgetsIntent {
+            return ChannelWidgetsIntentHandler()
+         } else {
+            print("Unhandled intent \(intent)")
             return self
         }
     }
