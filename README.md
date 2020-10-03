@@ -83,3 +83,7 @@ $ cd PufferyServer && swift run puffery routes
 | POST   | /api/v1/channels/subscribe                   |
 +--------+----------------------------------------------+
 ```
+
+## License
+
+Puffery is available under the [MIT](./LICENSE) license.
