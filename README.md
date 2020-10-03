@@ -5,6 +5,8 @@ An iOS App written in SwiftUI to send push notifications fueled by Siri Shortcut
 You can follow other's channels and directly receive updates.
 There is no algorithm deciding wether you should receive notifications or not.
 
+![](./assets/Sceenshot-iPhoneX.png)
+
 [![Download on the App Store](./assets/Download_on_the_App_Store_Badge.svg)](https://apps.apple.com/de/app/puffery/id1508776889)
 
 ## Server-Configuration
