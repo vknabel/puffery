@@ -1,6 +1,13 @@
-# Puffery Server-side Swift
+# Puffery
 
-## Configuration
+An iOS App written in SwiftUI to send push notifications fueled by Siri Shortcuts.
+
+You can follow other's channels and directly receive updates.
+There is no algorithm deciding wether you should receive notifications or not.
+
+[![Download on the App Store](./assets/Download_on_the_App_Store_Badge.svg)](https://apps.apple.com/de/app/puffery/id1508776889)
+
+## Server-Configuration
 
 | env                       | Description                         | Default                                                                  |
 | ------------------------- | ----------------------------------- | ------------------------------------------------------------------------ |
@@ -22,7 +29,7 @@ $ swift run puffery serve --hostname 0.0.0.0 --auto-migrate
 
 To access your server from the mobile app add `127.0.0.1 local.puffery.app` to `/etc/hosts` and select the `Puffery (Local)` scheme.
 
-## Routes
+## API-Routes
 
 ```
 $ cd PufferyServer && swift run puffery routes
