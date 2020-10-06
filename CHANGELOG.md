@@ -3,6 +3,7 @@
 ## 1.2.0
 
 * Widgets for iOS 14
+* Added date to message card
 
 ## 1.1.0
 

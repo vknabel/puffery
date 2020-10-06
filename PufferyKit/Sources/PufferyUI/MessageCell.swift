@@ -21,17 +21,18 @@ struct MessageCell: View {
         HStack {
 //            message.sender.icon.imageView
             VStack(alignment: .leading) {
-                Text(message.title)
-                    .font(.headline)
-
-                SelectableTextView(message.body, font: UIFont.preferredFont(forTextStyle: .subheadline))
-                
-                HStack {
+                HStack(alignment: .firstTextBaseline) {
+                    Text(message.title)
+                        .font(.headline)
+                    
                     Spacer()
+                    
                     Text(messageDateDescription)
                         .font(.caption)
                         .foregroundColor(message.color.secondary)
                 }
+
+                SelectableTextView(message.body, font: UIFont.preferredFont(forTextStyle: .subheadline))
             }
         }
         .padding()
@@ -74,12 +75,7 @@ extension Message.Color: View {
     }
     
     public var secondary: Color {
-        switch self {
-        case .gray:
-            return Color(white: 0.3)
-        default:
-            return Color(white: 0.7)
-        }
+        Color(white: 1.0, opacity: 0.7)
     }
 }
 
