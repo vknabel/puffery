@@ -34,7 +34,7 @@ extension Message: Identifiable {
                 body: "Version 123 has been build",
                 colorName: "orange",
                 channel: UUID(),
-                createdAt: Date()
+                createdAt: Date().addingTimeInterval(-120)
             )
         }
 
@@ -45,7 +45,7 @@ extension Message: Identifiable {
                 body: "Version 123 has been build",
                 colorName: "blue",
                 channel: UUID(),
-                createdAt: Date()
+                createdAt: Date().addingTimeInterval(-30)
             )
         }
     }

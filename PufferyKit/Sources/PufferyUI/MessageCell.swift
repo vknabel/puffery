@@ -9,14 +9,28 @@
 import SwiftUI
 
 struct MessageCell: View {
+    private static let dateFormatter: RelativeDateTimeFormatter = {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .short
+        return formatter
+    }()
+    
     let message: Message
 
     var body: some View {
         HStack {
 //            message.sender.icon.imageView
             VStack(alignment: .leading) {
-                Text(message.title)
-                    .font(.headline)
+                HStack(alignment: .firstTextBaseline) {
+                    Text(message.title)
+                        .font(.headline)
+                    
+                    Spacer()
+                    
+                    Text(messageDateDescription)
+                        .font(.caption)
+                        .foregroundColor(message.color.secondary)
+                }
 
                 SelectableTextView(message.body, font: UIFont.preferredFont(forTextStyle: .subheadline))
             }
@@ -27,6 +41,10 @@ struct MessageCell: View {
         .foregroundColor(message.color.foregroundColor)
         .cornerRadius(15)
         .shadow(radius: 8)
+    }
+    
+    var messageDateDescription: String {
+        MessageCell.dateFormatter.localizedString(for: message.createdAt, relativeTo: Date())
     }
 }
 
@@ -52,8 +70,12 @@ extension Message.Color: View {
         }
     }
 
-    public var foregroundColor: Color? {
+    public var foregroundColor: Color {
         .white
+    }
+    
+    public var secondary: Color {
+        Color(white: 1.0, opacity: 0.7)
     }
 }
 
