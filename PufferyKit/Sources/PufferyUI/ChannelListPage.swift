@@ -67,6 +67,11 @@ struct ChannelListPage: View {
                 }
             }.roundedListStyle(sidebar: false)
         }
+        .sheet(isPresented: $presentsSettings) {
+            NavigationView {
+                AppSettingsPage()
+            }.navigationViewStyle(StackNavigationViewStyle())
+        }
         .navigationBarTitle("ChannelList.Title")
         .navigationBarItems(trailing: settingsNavigationBarItem)
         .trackAppearence("channels", using: Current.tracker)
@@ -117,10 +122,6 @@ struct ChannelListPage: View {
     var settingsNavigationBarItem: some View {
         Button(action: { self.presentsSettings.toggle() }) {
             Image(systemName: "person.crop.circle").font(.system(size: 21))
-        }.sheet(isPresented: $presentsSettings) {
-            NavigationView {
-                AppSettingsPage()
-            }.navigationViewStyle(StackNavigationViewStyle())
         }
     }
 

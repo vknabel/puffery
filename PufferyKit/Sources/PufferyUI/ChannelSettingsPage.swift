@@ -60,15 +60,6 @@ struct ChannelSettingsPage: View {
                     }
                 }
             }
-            .sheet(string: $subscriptionToken) { subscriptionToken in
-                ShareSheet(
-                    activityItems: [
-                        "puffery://puffery.app/channels/subscribe/\(subscriptionToken)",
-                    ],
-                    applicationActivities: nil,
-                    completionWithItemsHandler: nil
-                )
-            }
 
             channel.notifyKey.map { notifyKey in
                 Section(header: Text("ChannelSettings.HowTo.SectionTitle")) {
@@ -111,6 +102,15 @@ struct ChannelSettingsPage: View {
             }
         }
         .roundedListStyle()
+        .sheet(string: $subscriptionToken) { subscriptionToken in
+            ShareSheet(
+                activityItems: [
+                    "puffery://puffery.app/channels/subscribe/\(subscriptionToken)",
+                ],
+                applicationActivities: nil,
+                completionWithItemsHandler: nil
+            )
+        }
         .navigationBarTitle("\(channel.title)", displayMode: NavigationBarItem.TitleDisplayMode.inline)
         .navigationBarItems(trailing: saveNavigationItem)
         .trackAppearence("channels/:id/settings", using: Current.tracker)
