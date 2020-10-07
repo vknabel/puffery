@@ -6,22 +6,21 @@
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
-import WidgetKit
-import SwiftUI
 import Intents
+import SwiftUI
+import WidgetKit
 
 struct Provider: IntentTimelineProvider {
-    
-    func placeholder(in context: Context) -> MessageEntry {
+    func placeholder(in _: Context) -> MessageEntry {
         MessageEntry(message: nil, configuration: ChannelWidgetsIntent())
     }
 
-    func getSnapshot(for configuration: ChannelWidgetsIntent, in context: Context, completion: @escaping (MessageEntry) -> ()) {
+    func getSnapshot(for configuration: ChannelWidgetsIntent, in _: Context, completion: @escaping (MessageEntry) -> Void) {
         let entry = MessageEntry(message: nil, configuration: configuration)
         completion(entry)
     }
 
-    func getTimeline(for configuration: ChannelWidgetsIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(for configuration: ChannelWidgetsIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         fetchTimelineEntries(for: configuration, in: context) { entries in
             let timeline: Timeline<MessageEntry>
             if let entries = entries {
@@ -32,10 +31,10 @@ struct Provider: IntentTimelineProvider {
             completion(timeline)
         }
     }
-    
-    private func fetchTimelineEntries(for configuration: ChannelWidgetsIntent, in context: Context, completion: @escaping ([MessageEntry]?) -> Void) {
+
+    private func fetchTimelineEntries(for configuration: ChannelWidgetsIntent, in _: Context, completion: @escaping ([MessageEntry]?) -> Void) {
         let messages: Endpoint<[Message]>
-        
+
         if let channelId = configuration.channel?.identifier.flatMap(UUID.init(uuidString:)) {
             messages = Current.api.messages(ofChannel: Channel(id: channelId, title: "", receiveOnlyKey: "", notifyKey: nil, isSilent: true))
         } else {
@@ -56,7 +55,6 @@ struct Provider: IntentTimelineProvider {
                     completion(nil)
                 }
             }
-
     }
 }
 
@@ -66,13 +64,19 @@ import PufferyUI
 struct MessageEntry: TimelineEntry {
     let message: Message?
     let configuration: ChannelWidgetsIntent
-    
+
     var date: Date {
         message?.createdAt ?? Date.distantPast
     }
 }
 
-struct PufferyWidgetEntryView : View {
+struct PufferyWidgetEntryView: View {
+    private static let dateFormatter: RelativeDateTimeFormatter = {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .short
+        return formatter
+    }()
+
     var entry: Provider.Entry
     var message: Message? {
         return entry.message
@@ -83,8 +87,16 @@ struct PufferyWidgetEntryView : View {
             HStack {
                 VStack(alignment: .leading) {
                     Spacer()
-                    Text(message.title)
-                        .font(.headline)
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(message.title)
+                            .font(.headline)
+
+                        Spacer()
+
+                        Text(messageDateDescription)
+                            .font(.caption)
+                            .foregroundColor(message.color.secondary)
+                    }
 
                     Text(message.body)
                         .font(.subheadline)
@@ -110,6 +122,13 @@ struct PufferyWidgetEntryView : View {
             .background(Message.Color.gray)
             .redacted(reason: .placeholder)
         }
+    }
+
+    var messageDateDescription: String {
+        guard let message = message else {
+            return "Lorem"
+        }
+        return PufferyWidgetEntryView.dateFormatter.localizedString(for: message.createdAt, relativeTo: Date())
     }
 }
 
