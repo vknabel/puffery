@@ -1,7 +1,7 @@
 # ================================
 # Build image
 # ================================
-FROM vapor/swift:latest as build
+FROM swift:5.3 as build
 WORKDIR /build
 
 # First just resolve dependencies.

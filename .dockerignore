@@ -1,6 +1,16 @@
 .git
 .build
 .swiftpm
+build
 DerivedData
 Package.resolved
 *.xcodeproj
+
+Puffery
+Puffery Intents
+Puffery IntentsUI
+Puffery for macOS
+Puffery for macOSUITests
+PufferyTests
+PufferyUITests
+PufferyWidget
