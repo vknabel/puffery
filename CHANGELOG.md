@@ -4,6 +4,9 @@
 
 * Widgets for iOS 14
 * Added date to message card
+* Added date to new iOS 14 widgets
+* Added CONTRIBUTING.md and improved README.md
+* Added public puffery beta testing link to README.md
 
 ## 1.1.0
 
