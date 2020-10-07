@@ -24,7 +24,7 @@ public func configure(_ app: Application) throws {
 
     let emailJob = SendEmailJob()
     app.queues.add(emailJob)
-    
+
     let statChannels: [String] = Environment.get("PUFFERY_STATISTICS_CHANNELS")?
         .split(separator: ",")
         .map(String.init)
@@ -32,6 +32,9 @@ public func configure(_ app: Application) throws {
     app.queues.schedule(ReportStatisticsJob(notifyKeys: statChannels))
         .daily()
         .at(.noon)
+    app.queues.schedule(ReportStatisticsJob(notifyKeys: statChannels))
+        .daily()
+        .at(.midnight)
 
     // Register middleware
     app.middleware.use(ErrorMiddleware.default(environment: app.environment))
@@ -41,7 +44,8 @@ public func configure(_ app: Application) throws {
     try routes(app)
 
     if let inProcessJobs = Environment.get("PUFFERY_IN_PROCESS_JOBS")?.lowercased(),
-        ["true", "yes", "1"].contains(inProcessJobs) {
+        ["true", "yes", "1"].contains(inProcessJobs)
+    {
         try app.queues.startInProcessJobs(on: .default)
     }
 }
