@@ -25,11 +25,11 @@ public func configure(_ app: Application) throws {
     let emailJob = SendEmailJob()
     app.queues.add(emailJob)
     
-    let statChannels: [UUID] = Environment.get("PUFFERY_STATISTICS_CHANNELS")?
+    let statChannels: [String] = Environment.get("PUFFERY_STATISTICS_CHANNELS")?
         .split(separator: ",")
-        .compactMap { UUID.init(uuidString: String($0)) }
+        .map(String.init)
         ?? []
-    app.queues.schedule(ReportStatisticsJob(channelIDs: statChannels))
+    app.queues.schedule(ReportStatisticsJob(notifyKeys: statChannels))
         .daily()
         .at(.noon)
 

@@ -8,6 +8,7 @@
 * Added CONTRIBUTING.md and improved README.md
 * Added public puffery beta testing link to README.md
 * Fixed collapsed Sections to one single row #47
+* Publish stats to configured channels
 
 ## 1.1.0
 
