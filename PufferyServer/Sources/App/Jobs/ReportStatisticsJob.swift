@@ -11,7 +11,7 @@ struct Statistics {
 }
 
 struct ReportStatisticsJob: ScheduledJob {
-    let channelIDs: [UUID]
+    let notifyKeys: [String]
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -20,7 +20,7 @@ struct ReportStatisticsJob: ScheduledJob {
 
     func run(context: QueueContext) -> EventLoopFuture<Void> {
         let channels: EventLoopFuture<[Channel]> = Channel.query(on: context.application.db)
-            .filter(\.$id ~~ channelIDs)
+            .filter(\Channel.$notifyKey ~~ notifyKeys)
             .all()
         let today = formatter.string(from: Date())
         return channels.and(statistics(context)).map { (channels, stats) in
