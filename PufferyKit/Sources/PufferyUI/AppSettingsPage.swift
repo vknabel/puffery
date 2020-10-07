@@ -39,7 +39,7 @@ struct AppSettingsPage: View {
             }
         }
         .roundedListStyle()
-        .navigationBarTitle("Settings", displayMode: .inline)
+        .navigationBarTitle("Settings.Title", displayMode: .inline)
         .navigationBarItems(trailing: Button(action: dismiss) {
             Text("Settings.Done").fontWeight(.bold)
         })

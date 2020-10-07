@@ -7,6 +7,7 @@
 * Added date to new iOS 14 widgets
 * Added CONTRIBUTING.md and improved README.md
 * Added public puffery beta testing link to README.md
+* Fixed collapsed Sections to one single row #47
 
 ## 1.1.0
 

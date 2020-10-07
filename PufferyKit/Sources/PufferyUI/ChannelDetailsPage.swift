@@ -33,14 +33,18 @@ struct ChannelDetailsPage: View {
                 Button(action: { self.displaysChannelSettings.toggle() }) {
                     Image(systemName: "wrench")
                         .font(.system(size: 21))
-                        .sheet(isPresented: self.$displaysChannelSettings) {
-                            NavigationView {
-                                ChannelSettingsPage(channel: channel)
-                            }.navigationViewStyle(StackNavigationViewStyle())
-                        }
                 }
             }
         )
+        .sheet(isPresented: self.$displaysChannelSettings) {
+            NavigationView {
+                if let channel = channel {
+                    ChannelSettingsPage(channel: channel)
+                } else {
+                    EmptyView()
+                }
+            }.navigationViewStyle(StackNavigationViewStyle())
+        }
         .trackAppearence("channels/:id", using: Current.tracker)
     }
 
