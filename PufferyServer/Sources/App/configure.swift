@@ -24,6 +24,14 @@ public func configure(_ app: Application) throws {
 
     let emailJob = SendEmailJob()
     app.queues.add(emailJob)
+    
+    let statChannels: [UUID] = Environment.get("PUFFERY_STATISTICS_CHANNELS")?
+        .split(separator: ",")
+        .compactMap { UUID.init(uuidString: String($0)) }
+        ?? []
+    app.queues.schedule(ReportStatisticsJob(channelIDs: statChannels))
+        .daily()
+        .at(.noon)
 
     // Register middleware
     app.middleware.use(ErrorMiddleware.default(environment: app.environment))

@@ -34,17 +34,14 @@ final class MessageController {
             guard let subscription = subscription, user.id == subscription.$user.id else {
                 throw ApiError(.channelNotFound)
             }
-
-            let message = try Message(
+            return req.messages.notify(
                 channel: subscription.channel,
                 title: createMessage.title,
                 body: createMessage.body,
                 color: createMessage.color
-            )
-            return self.saveAndNotify(req, message: message)
-                .flatMapThrowing { _ in
-                    try MessageResponse(message, subscription: subscription)
-                }
+            ).flatMapThrowing { message in
+                try MessageResponse(message, subscription: subscription)
+            }
         }
     }
 
@@ -60,10 +57,14 @@ final class MessageController {
                 }
                 return channel
             }
-            .flatMapThrowing { channel in
-                try Message(channel: channel, title: createMessage.title, body: createMessage.body, color: createMessage.color)
+            .flatMap { channel in
+                req.messages.notify(
+                    channel: channel,
+                    title: createMessage.title,
+                    body: createMessage.body,
+                    color: createMessage.color
+                )
             }
-            .flatMap { message in self.saveAndNotify(req, message: message) }
             .flatMapThrowing { message in try NotifyMessageResponse(message) }
     }
 
@@ -79,15 +80,14 @@ final class MessageController {
                 }
                 return channel
             }
-            .flatMapThrowing { channel in
-                try Message(
+            .flatMap { channel in
+                req.messages.notify(
                     channel: channel,
                     title: inboundEmail.subject,
                     body: inboundEmail.text,
                     color: nil
                 )
             }
-            .flatMap { message in self.saveAndNotify(req, message: message) }
             .flatMapThrowing { message in try NotifyMessageResponse(message) }
     }
 
@@ -121,11 +121,5 @@ final class MessageController {
                     try MessageResponse($0.message, subscription: $0.subscription)
                 }
             }
-    }
-
-    private func saveAndNotify(_ req: Request, message: Message) -> EventLoopFuture<Message> {
-        message.create(on: req.db)
-            .flatMap { _ in req.push.notifyDevices(message: message) }
-            .transform(to: message)
     }
 }

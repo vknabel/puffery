@@ -1,14 +1,31 @@
 import APNS
 import Fluent
 import Vapor
+import Queues
 
 struct PushServiceFactoryStorageKey: StorageKey {
-    typealias Value = (Request) -> PushService
+    typealias Value = (EventLoop, APNSwiftClient, Logger, Database) -> PushService
 }
 
 extension Request {
     var push: PushService {
-        (application.storage[PushServiceFactoryStorageKey.self] ?? APNSPushService.init(req:))(self)
+        (application.storage[PushServiceFactoryStorageKey.self] ?? APNSPushService.init)(
+            eventLoop,
+            apns,
+            logger,
+            db
+        )
+    }
+}
+
+extension QueueContext {
+    var push: PushService {
+        (application.storage[PushServiceFactoryStorageKey.self] ?? APNSPushService.init)(
+            eventLoop,
+            application.apns,
+            logger,
+            application.db
+        )
     }
 }
 
@@ -17,12 +34,15 @@ protocol PushService {
 }
 
 struct APNSPushService: PushService {
-    let req: Request
-
+    let eventLoop: EventLoop
+    let apns: APNSwiftClient
+    let logger: Logger
+    let db: Database
+    
     func notifyDevices(message: Message) -> EventLoopFuture<Void> {
         notifiableSubscriptions(message: message)
             .flatMap { subscriptions in
-                self.req.eventLoop.flatten(
+                eventLoop.flatten(
                     subscriptions.map { subscription in
                         self.notifyDevices(subscription: subscription, message: message)
                     }
@@ -36,7 +56,7 @@ struct APNSPushService: PushService {
                 tokens.unique(\.token).filter { !$0.token.isEmpty }
             }
             .flatMap { tokens in
-                self.req.eventLoop.flatten(
+                eventLoop.flatten(
                     tokens.map { self.send(message: message, to: $0, for: subscription) }
                 )
             }
@@ -47,28 +67,28 @@ struct APNSPushService: PushService {
         do {
             notif = try subscribedChannelNotification(for: message, subscription: subscription)
         } catch {
-            return req.eventLoop.makeFailedFuture(error)
+            return eventLoop.makeFailedFuture(error)
         }
-        return req.apns.send(notif, to: device.token)
+        return apns.send(notif, to: device.token)
             .flatMapError { (error) -> EventLoopFuture<Void> in
                 if case .badRequest(.badDeviceToken) = error as? APNSwiftError.ResponseError {
-                    self.req.logger.info("APN Removing bad device token", metadata: [
+                    logger.info("APN Removing bad device token", metadata: [
                         "token": .string(device.token),
                         "message": .string(message.id?.uuidString ?? "nil"),
                     ])
-                    return device.delete(on: self.req.db)
+                    return device.delete(on: db)
                 } else if case .badRequest(.unregistered) = error as? APNSwiftError.ResponseError {
-                    self.req.logger.info("APN Removing unregistered", metadata: [
+                    logger.info("APN Removing unregistered", metadata: [
                         "token": .string(device.token),
                         "message": .string(message.id?.uuidString ?? "nil"),
                     ])
-                    return device.delete(on: self.req.db)
+                    return device.delete(on: db)
                 } else if let signingError = error as? APNSwiftError.SigningError {
-                    self.req.logger.critical("APN Signing error \(signingError)")
-                    return self.req.eventLoop.future(error: error)
+                    logger.critical("APN Signing error \(signingError)")
+                    return eventLoop.future(error: error)
                 } else {
-                    self.req.logger.info("APN delivery failed \(error)")
-                    return self.req.eventLoop.future()
+                    logger.info("APN delivery failed \(error)")
+                    return eventLoop.future()
                 }
             }
     }
@@ -78,7 +98,7 @@ struct APNSPushService: PushService {
             message: message,
             subscription: subscription,
             aps: APNSwiftPayload(
-                alert: APNSwiftPayload.APNSwiftAlert(
+                alert: APNSwiftAlert(
                     title: "\(message.channel.title): \(message.title)",
                     body: message.body
                 ),
@@ -88,7 +108,7 @@ struct APNSPushService: PushService {
     }
 
     private func notifiableSubscriptions(message: Message) -> EventLoopFuture<[Subscription]> {
-        Subscription.query(on: req.db)
+        Subscription.query(on: db)
             .filter(Subscription.self, \Subscription.$channel.$id == message.$channel.id)
             .filter(Subscription.self, \Subscription.$isSilent != true)
             .all()
@@ -99,9 +119,9 @@ struct APNSPushService: PushService {
         do {
             subscriptionId = try subscription.requireID()
         } catch {
-            return req.eventLoop.makeFailedFuture(error)
+            return eventLoop.makeFailedFuture(error)
         }
-        return DeviceToken.query(on: req.db)
+        return DeviceToken.query(on: db)
             .join(User.self, on: \DeviceToken.$user.$id == \User.$id, method: .inner)
             .join(Subscription.self, on: \User.$id == \Subscription.$user.$id)
             .filter(Subscription.self, \Subscription.$id == subscriptionId)
