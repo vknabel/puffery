@@ -8,6 +8,7 @@
 
 import SwiftUI
 import PrivacyPolicyModule
+import PlatformSupport
 
 struct AppSettingsPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -54,6 +55,7 @@ struct AppSettingsPage: View {
         dismiss()
         DispatchQueue.main.async {
             Current.store.commit(.updateSession(nil))
+            Widgets.reloadAll()
         }
     }
 }

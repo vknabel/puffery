@@ -24,6 +24,9 @@ import APIDefinition
 
 public extension ReceivedMessageNotification {
     convenience init?(content: UNNotificationContent) {
+        defer {
+            DispatchQueue.main.async(execute: Widgets.reloadAll)
+        }
         if let channelUUIDString = content.userInfo["subscribedChannelID"] as? String,
             let channelID = UUID(uuidString: channelUUIDString),
             let messageUUIDString = content.userInfo["receivedMessageID"] as? String,

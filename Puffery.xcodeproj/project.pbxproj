@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA11BD812534DBCE004697FC /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11BD802534DBCE004697FC /* Provider.swift */; };
+		BA11BD892534DC1B004697FC /* MessageEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11BD882534DC1B004697FC /* MessageEntry.swift */; };
+		BA11BD912534DC54004697FC /* PufferyWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11BD902534DC54004697FC /* PufferyWidgetEntryView.swift */; };
 		BA231225249C040A00AE13F1 /* ReceivedMessageNotification.apns in Resources */ = {isa = PBXBuildFile; fileRef = BA231224249C040A00AE13F1 /* ReceivedMessageNotification.apns */; };
 		BA923F2C245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA923F2F245EFAC0008BD6C9 /* Intents.intentdefinition */; };
 		BA923F2D245EFAC0008BD6C9 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA923F2F245EFAC0008BD6C9 /* Intents.intentdefinition */; };
@@ -107,6 +110,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BA11BD802534DBCE004697FC /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		BA11BD882534DC1B004697FC /* MessageEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageEntry.swift; sourceTree = "<group>"; };
+		BA11BD902534DC54004697FC /* PufferyWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PufferyWidgetEntryView.swift; sourceTree = "<group>"; };
 		BA1B71942495205700572516 /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 		BA1B719A249521B800572516 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		BA231224249C040A00AE13F1 /* ReceivedMessageNotification.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReceivedMessageNotification.apns; sourceTree = "<group>"; };
@@ -231,7 +237,10 @@
 		BA9831A425237236007ACF26 /* PufferyWidget */ = {
 			isa = PBXGroup;
 			children = (
+				BA11BD802534DBCE004697FC /* Provider.swift */,
 				BA9831A525237236007ACF26 /* PufferyWidget.swift */,
+				BA11BD882534DC1B004697FC /* MessageEntry.swift */,
+				BA11BD902534DC54004697FC /* PufferyWidgetEntryView.swift */,
 				BA9831A825237239007ACF26 /* Assets.xcassets */,
 				BA9831AA25237239007ACF26 /* Info.plist */,
 			);
@@ -535,8 +544,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA11BD912534DC54004697FC /* PufferyWidgetEntryView.swift in Sources */,
+				BA11BD892534DC1B004697FC /* MessageEntry.swift in Sources */,
 				BA9831AB25237239007ACF26 /* ChannelWidgets.intentdefinition in Sources */,
 				BA9831A625237236007ACF26 /* PufferyWidget.swift in Sources */,
+				BA11BD812534DBCE004697FC /* Provider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -38,6 +38,9 @@ extension RegistrationEnvironment {
                         RegistrationEnvironment.registerOnLoginFailure(email: email, error: error)
                     }
             }
+            .handleEvents(receiveOutput: { _ in
+                DispatchQueue.main.async(execute: Widgets.reloadAll)
+            })
             .eraseToEffect()
     }
 
@@ -51,6 +54,9 @@ extension RegistrationEnvironment {
                 return Current.api.register(user: CreateUserRequest(device: createDeviceRequest, email: email))
                     .publisher()
             }
+            .handleEvents(receiveOutput: { _ in
+                DispatchQueue.main.async(execute: Widgets.reloadAll)
+            })
             .eraseToEffect()
     }
 
