@@ -1,5 +1,5 @@
-import PufferyKit
 import PlatformSupport
+import PufferyKit
 
 #if canImport(UIKit)
     import UIKit
@@ -19,9 +19,23 @@ import PlatformSupport
             case let ("confirmations", "email", confirmationID?):
                 Current.api.confirmEmail(confirmationID)
                     .task { _ in }
+            case let ("open", messageID?, channelID):
+                guard let messageID = UUID(uuidString: messageID) else {
+                    return
+                }
+                NotificationCenter.default.post(name: .receivedMessage, object: nil, userInfo: [
+                    "ReceivedMessageNotification": ReceivedMessageNotification(
+                        messageID: messageID,
+                        channelID: channelID.flatMap(UUID.init(uuidString:))
+                    ),
+                ])
+
             case let ("channels", "subscribe", receiveOrNotifyKey?):
                 func subscribe(isSilent: Bool) {
-                    let createRequest = CreateSubscriptionRequest(receiveOrNotifyKey: receiveOrNotifyKey, isSilent: isSilent)
+                    let createRequest = CreateSubscriptionRequest(
+                        receiveOrNotifyKey: receiveOrNotifyKey,
+                        isSilent: isSilent
+                    )
                     Current.api.subscribe(createRequest)
                         .task { _ in
                             NotificationCenter.default.post(
@@ -31,7 +45,11 @@ import PlatformSupport
                         }
                 }
 
-                let alert = UIAlertController(title: "ChannelSubscribingAlert.Title", message: "ChannelSubscribingAlert.Message", preferredStyle: UIAlertController.Style.actionSheet)
+                let alert = UIAlertController(
+                    title: "ChannelSubscribingAlert.Title",
+                    message: "ChannelSubscribingAlert.Message",
+                    preferredStyle: UIAlertController.Style.actionSheet
+                )
                 alert.addAction(UIAlertAction(
                     title: "ChannelSubscribingAlert.Receive",
                     style: .default,
@@ -46,7 +64,11 @@ import PlatformSupport
                     style: .default,
                     handler: { _ in subscribe(isSilent: true) }
                 ))
-                alert.addAction(UIAlertAction(title: "ChannelSubscribingAlert.Cancel", style: .cancel, handler: { _ in subscribe(isSilent: false) }))
+                alert.addAction(UIAlertAction(
+                    title: "ChannelSubscribingAlert.Cancel",
+                    style: .cancel,
+                    handler: { _ in subscribe(isSilent: false) }
+                ))
                 rootViewController?.present(alert, animated: true)
             default:
                 print("Unknown URL")

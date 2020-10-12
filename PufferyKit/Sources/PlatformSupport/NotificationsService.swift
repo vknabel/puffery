@@ -6,11 +6,18 @@
 //  Copyright © 2020 Valentin Knabel. All rights reserved.
 //
 
-import UserNotifications
 import APIDefinition
+import UserNotifications
 
 @objc public class NotificationsService: NSObject, UNUserNotificationCenterDelegate {
-    public func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    public func userNotificationCenter(
+        _: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        defer {
+            DispatchQueue.main.async(execute: Widgets.reloadAll)
+        }
         if let subscribedChannel = ReceivedMessageNotification(content: response.notification.request.content) {
             NotificationCenter.default.post(name: .receivedMessage, object: nil, userInfo: [
                 "ReceivedMessageNotification": subscribedChannel,
@@ -24,14 +31,12 @@ import APIDefinition
 
 public extension ReceivedMessageNotification {
     convenience init?(content: UNNotificationContent) {
-        defer {
-            DispatchQueue.main.async(execute: Widgets.reloadAll)
-        }
         if let channelUUIDString = content.userInfo["subscribedChannelID"] as? String,
             let channelID = UUID(uuidString: channelUUIDString),
             let messageUUIDString = content.userInfo["receivedMessageID"] as? String,
-            let messageID = UUID(uuidString: messageUUIDString) {
-            self.init(receivedMessageID: messageID, subscribedChannelID: channelID)
+            let messageID = UUID(uuidString: messageUUIDString)
+        {
+            self.init(messageID: messageID, channelID: channelID)
         } else {
             return nil
         }

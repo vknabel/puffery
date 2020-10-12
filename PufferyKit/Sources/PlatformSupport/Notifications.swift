@@ -19,11 +19,11 @@ extension Notification.Name {
 }
 
 @objc public final class ReceivedMessageNotification: NSObject {
-    public let receivedMessageID: UUID
-    public let subscribedChannelID: UUID
+    public let messageID: UUID
+    public let channelID: UUID?
 
-    public init(receivedMessageID: UUID, subscribedChannelID: UUID) {
-        self.receivedMessageID = receivedMessageID
-        self.subscribedChannelID = subscribedChannelID
+    public init(messageID: UUID, channelID: UUID?) {
+        self.messageID = messageID
+        self.channelID = channelID
     }
 }

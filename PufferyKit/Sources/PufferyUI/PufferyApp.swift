@@ -7,8 +7,8 @@
 //
 
 import Combine
-import SwiftUI
 import PlatformSupport
+import SwiftUI
 
 public struct SelectPufferyApp: View {
     @ObservedObject var store = Current.store
@@ -54,9 +54,31 @@ public struct SelectPufferyApp: View {
     }
 }
 
+enum DeepLinkedChannel: Identifiable {
+    case channel(Channel)
+    case allChannels
+
+    var id: String {
+        switch self {
+        case let .channel(channel):
+            return "channel:\(channel.id.uuidString)"
+        case .allChannels:
+            return "allChannels"
+        }
+    }
+
+    var channel: Channel? {
+        if case let .channel(channel) = self {
+            return channel
+        } else {
+            return nil
+        }
+    }
+}
+
 struct PufferyApp: View {
     @State var cancellableSet = Set<AnyCancellable>()
-    @State var deepLinkedChannel: Channel?
+    @State var deepLinkedChannel: DeepLinkedChannel?
 
     var body: some View {
         NavigationView {
@@ -64,9 +86,9 @@ struct PufferyApp: View {
             ChannelDetailsPage()
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
-        .sheet(item: $deepLinkedChannel) { channel in
+        .sheet(item: $deepLinkedChannel) { deepLink in
             NavigationView {
-                ChannelDetailsPage(channel: channel, displaysChannelSettings: false)
+                ChannelDetailsPage(channel: deepLink.channel, displaysChannelSettings: false)
             }
         }
         .onDisappear {
@@ -84,14 +106,19 @@ struct PufferyApp: View {
         .map { notif in
             notif.userInfo!["ReceivedMessageNotification"] as! ReceivedMessageNotification
         }
-        .flatMap { notif in
-            Current.api.channel(id: notif.subscribedChannelID)
+        .flatMap { notif -> AnyPublisher<DeepLinkedChannel?, Never> in
+            guard let channelID = notif.channelID else {
+                return Just(.allChannels).eraseToAnyPublisher()
+            }
+            return Current.api.channel(id: channelID)
                 .publisher()
                 .removeDuplicates(by: { $0.id == $1.id })
+                .map(DeepLinkedChannel.channel)
                 .map(Optional.some)
                 .catch { _ in
                     Just(nil)
                 }
+                .eraseToAnyPublisher()
         }
 }
 

@@ -36,6 +36,7 @@ struct PufferyWidgetEntryView: View {
             .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
             .background(message.color)
             .foregroundColor(message.color.foregroundColor)
+            .widgetURL(URL(string: "puffery://puffery.app/open/\(message.id)/\(entry.configuration.channel?.identifier ?? "")"))
         } else {
             VStack(alignment: .leading, spacing: 10) {
                 VStack(alignment: .leading) {
@@ -69,7 +70,14 @@ struct PufferyWidgetEntryView: View {
 
 struct PufferyWidgetEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        PufferyWidgetEntryView(entry: MessageEntry(message: Message(id: UUID(), title: "Upgrading a server-side Swift project to Vapor 3", body: "The past few days I created a new server using Vapor and hit which created a Vapor 3 server. ", colorName: "blue", channel: UUID(), createdAt: Date()), configuration: ChannelWidgetsIntent()))
+        PufferyWidgetEntryView(entry: MessageEntry(message: Message(
+            id: UUID(),
+            title: "Upgrading a server-side Swift project to Vapor 3",
+            body: "The past few days I created a new server using Vapor and hit which created a Vapor 3 server. ",
+            colorName: "blue",
+            channel: UUID(),
+            createdAt: Date()
+        ), configuration: ChannelWidgetsIntent()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
