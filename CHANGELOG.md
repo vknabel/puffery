@@ -1,10 +1,9 @@
 # Changelog
 
-## 1.2.0
+## 1.2.0 (unreleased)
 
-* Widgets for iOS 14
-* Added date to message card
-* Added date to new iOS 14 widgets
+* Widgets for iOS 14 #43
+* Added date to message card #24 by [@yonihemi](https://github.com/yonihemi)
 * Added CONTRIBUTING.md and improved README.md
 * Added public puffery beta testing link to README.md
 * Fixed collapsed Sections to one single row #47
