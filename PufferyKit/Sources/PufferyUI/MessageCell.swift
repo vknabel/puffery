@@ -19,7 +19,6 @@ struct MessageCell: View {
 
     var body: some View {
         HStack {
-//            message.sender.icon.imageView
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline) {
                     Text(message.title)

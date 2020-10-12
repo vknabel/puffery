@@ -1,6 +1,6 @@
+import Intents
 import PufferyKit
 import PufferyUI
-import Intents
 import SwiftUI
 import WidgetKit
 
@@ -18,43 +18,40 @@ struct PufferyWidgetEntryView: View {
 
     var body: some View {
         if let message = message {
-            VStack(alignment: .leading) {
-                HStack(alignment: .firstTextBaseline) {
-                    Text(message.title)
-                        .font(.headline)
-
-                    Spacer()
-
+            VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading) {
                     Text(messageDateDescription)
                         .font(.caption)
                         .foregroundColor(message.color.secondary)
+
+                    Text(message.title)
+                        .font(.headline)
                 }
 
                 Text(message.body)
                     .font(.subheadline)
-                Spacer()
+                Spacer(minLength: 0)
             }
             .padding()
             .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
             .background(message.color)
             .foregroundColor(message.color.foregroundColor)
         } else {
-            VStack(alignment: .leading) {
-                HStack(alignment: .firstTextBaseline) {
+            VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading) {
+                    Text("x min ago")
+                        .font(.caption)
+                        .foregroundColor(Message.Color.gray.foregroundColor)
+
                     Text("Lorem ipsum")
                         .font(.headline)
                         .foregroundColor(Message.Color.gray.foregroundColor)
-                    Spacer()
-                    
-                    Text("Lorem")
-                        .font(.caption)
-                        .foregroundColor(Message.Color.gray.foregroundColor)
                 }
-                    
+
                 Text("dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt")
                     .font(.subheadline)
                     .foregroundColor(Message.Color.gray.foregroundColor)
-                Spacer()
+                Spacer(minLength: 0)
             }
             .padding()
             .background(Message.Color.gray)
