@@ -8,6 +8,8 @@
 * Added public puffery beta testing link to README.md
 * Fixed collapsed Sections to one single row #47
 * Publish stats to configured channels
+* More logging for emails and notifications
+* Later Confirmation expiry
 
 ## 1.1.0
 

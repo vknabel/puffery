@@ -30,7 +30,7 @@ final class Confirmation: Model {
         self.snapshot = snapshot
         $user.value = user
         $user.id = try user.requireID()
-        self.expiresAt = expiresAt ?? Date(timeIntervalSinceNow: 10.minutes)
+        self.expiresAt = expiresAt ?? Date(timeIntervalSinceNow: 120.minutes)
     }
 }
 
