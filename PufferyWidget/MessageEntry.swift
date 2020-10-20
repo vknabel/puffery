@@ -6,6 +6,10 @@ struct MessageEntry: TimelineEntry {
     let configuration: ChannelWidgetsIntent
 
     var date: Date {
-        message?.createdAt ?? Date.distantPast
+        if let message = message {
+            return Date(timeIntervalSinceNow: min(3600, -1 * message.createdAt.timeIntervalSinceNow))
+        } else {
+            return Date(timeIntervalSinceNow: 60)
+        }
     }
 }

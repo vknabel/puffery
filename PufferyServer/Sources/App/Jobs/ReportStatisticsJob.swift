@@ -37,6 +37,9 @@ struct ReportStatisticsJob: ScheduledJob {
             })
         }
         .transform(to: ())
+        .always { _ in
+            context.logger.info("Sent Puffery stats", source: "ReportStatisticsJob")
+        }
     }
     
     private func statistics(_ context: QueueContext) -> EventLoopFuture<Statistics> {

@@ -48,6 +48,9 @@ struct APNSPushService: PushService {
                     }
                 )
             }
+            .always { _ in
+                logger.info("Sent Push Notification", source: "APNSPushService")
+            }
     }
 
     private func notifyDevices(subscription: Subscription, message: Message) -> EventLoopFuture<Void> {

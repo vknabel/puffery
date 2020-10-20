@@ -23,10 +23,14 @@ struct SendEmailJob: Job {
         )
 
         return context.eventLoop.tryFuture {
-            return try context.application.sendgrid.client.send(
+            try context.application.sendgrid.client.send(
                 email: email,
                 on: context.eventLoop
             )
-        }.flatMap { $0 }
+        }
+        .flatMap { $0 }
+        .always { _ in
+            context.logger.info("Sent E-Mail", metadata: ["subject": .string(payload.subject)], source: "SendEmailJob")
+        }
     }
 }

@@ -17,7 +17,7 @@ struct Provider: IntentTimelineProvider {
     func getTimeline(for configuration: ChannelWidgetsIntent, in context: Context, completion: @escaping (Timeline<MessageEntry>) -> Void) {
         fetchTimelineEntries(for: configuration, in: context) { entries in
             let timeline: Timeline<MessageEntry>
-            if let entries = entries {
+            if let entries = entries, !entries.isEmpty {
                 timeline = Timeline(entries: entries, policy: .atEnd)
             } else {
                 timeline = Timeline(entries: [], policy: TimelineReloadPolicy.after(Date(timeIntervalSinceNow: 60)))
