@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.0 (unreleased)
+## 1.2.0
 
 * Widgets for iOS 14 #43
 * Added date to message card #24 by [@yonihemi](https://github.com/yonihemi)
