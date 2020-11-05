@@ -17,58 +17,77 @@
 version: "3.7"
 
 volumes:
-  db_data:
+  - ./private/:/app/private
 
-x-shared_environment: &shared_environment
-  LOG_LEVEL: ${LOG_LEVEL:-debug}
-  DATABASE_HOST: db
-  DATABASE_NAME: vapor_database
-  DATABASE_USERNAME: vapor_username
-  DATABASE_PASSWORD: vapor_password
+x-config:
+  &server_config
+  build: ./
+  depends_on:
+    - db
+    - redis
+
+
+x-shared_environment: &server_environment
+  LOG_LEVEL: ${LOG_LEVEL:-info}
+  DATABASE_URL: "postgres://vapor_username:vapor_password@db/vapor_database"
+  REDIS_URL: "redis://redis:6379"
+  # APNS_KEY_PATH: ""
+  # APNS_KEY_ID: ""
+  # APNS_TEAM_ID: ""
+  # APNS_ENVIRONMENT: "staging"
+  # SENDGRID_API_KEY: ""
+  # PUFFERY_STATISTICS_CHANNELS: ""
 
 services:
-  app:
-    image: puffery-vapor:latest
-    build:
-      context: .
+  puffery:
+    <<: *server_config
+    restart: always
+    expose:
+      - 80
     environment:
-      <<: *shared_environment
-    depends_on:
-      - db
-    ports:
-      - "8080:80"
+      <<: *server_environment
     command:
-      ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "80"]
-  migrate:
-    image: puffery-vapor:latest
-    build:
-      context: .
+      ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "80", "--auto-migrate"]
+
+  puffery-queues:
+    <<: *server_config
+    restart: always
     environment:
-      <<: *shared_environment
-    depends_on:
-      - db
-    command: ["migrate", "--yes"]
-    deploy:
-      replicas: 0
-  revert:
-    image: puffery-vapor:latest
-    build:
-      context: .
+      <<: *server_environment
+    command: ["queues"]
+
+  puffery-queues-scheduled:
+    <<: *server_config
+    restart: always
     environment:
-      <<: *shared_environment
+      <<: *server_environment
+    command: ["queues", "--scheduled"]
+
+  inbound-middleware:
+    image: docker.pkg.github.com/okomari/puffery-sendgrid-inbound-middleware/puffery-sendgrid-inbound-middleware:latest-nightly-13
+    restart: always
+    expose:
+      - 3000
     depends_on:
-      - db
-    command: ["migrate", "--revert", "--yes"]
-    deploy:
-      replicas: 0
+      - puffery
+    environment:
+      PUFFERY_NOTIFY_ADDRESS: http://puffery/api/v1/notify-inbound-email
+
   db:
     image: postgres:12.1-alpine
+    restart: always
+    container_name: db
     volumes:
-      - db_data:/var/lib/postgresql/data/pgdata
+      - ./data/db:/var/lib/postgresql/data/pgdata
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
       POSTGRES_USER: vapor_username
       POSTGRES_PASSWORD: vapor_password
       POSTGRES_DB: vapor_database
-    ports:
-      - "5432:5432"
+
+  redis:
+    image: redis
+    restart: always
+    volumes:
+      - ./data/redis:/data
+    command: ["redis-server", "--appendonly", "yes"]

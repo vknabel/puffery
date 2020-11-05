@@ -1,22 +1,27 @@
 @testable import App
 import Vapor
 import XCTest
+import Fluent
+import APNSwift
 
 struct MockedPushService: PushService {
-    let req: Request
+    let eventLoop: EventLoop
+    let apns: APNSwiftClient
+    let logger: Logger
+    let database: Database
     let receiveMessage: (Message) -> Void
 
     func notifyDevices(message: Message) -> EventLoopFuture<Void> {
         receiveMessage(message)
-        return req.eventLoop.makeSucceededFuture(())
+        return eventLoop.makeSucceededFuture(())
     }
 }
 
 extension Application {
     @discardableResult
     func mockPushService(receive: @escaping (Message) -> Void) -> Application {
-        storage[PushServiceFactoryStorageKey.self] = { req in
-            MockedPushService(req: req, receiveMessage: receive)
+        storage[PushServiceFactoryStorageKey.self] = { loop, apns, logger, db in
+            MockedPushService(eventLoop: loop, apns: apns, logger: logger, database: db, receiveMessage: receive)
         }
         return self
     }

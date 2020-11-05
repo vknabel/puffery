@@ -1,6 +1,7 @@
 import APIDefinition
-import App
 import XCTVapor
+import Fluent
+@testable import App
 
 final class RegistrationTests: PufferyTestCase {
     func testBasicRegistration() throws {
@@ -50,6 +51,25 @@ final class RegistrationTests: PufferyTestCase {
             let token = try res.content.decode(TokenResponse.self)
             XCTAssertEqual(token.user.isConfirmed, false)
             XCTAssertEqual(token.user.email, "hello-puffery@mail.com")
+        }
+    }
+    
+    func testRegistrationConflictForExistingEmail() throws {
+        let existing = try app.seedUser(email: "hello-puffery@mail.com")
+        
+        let content = CreateUserRequest(
+            device: CreateDeviceRequest(token: "my-random-token", isProduction: false),
+            email: "hello-puffery@mail.com"
+        )
+
+        try app.testValidPostRegister(content) { res in
+            XCTAssertEqual(res.status, .conflict)
+            let usersWithSameEmail: [User] = try User.query(on: self.app.db)
+                .filter(\User.$email == existing.email)
+                .all()
+                .wait()
+            XCTAssertEqual(usersWithSameEmail.count, 1)
+            XCTAssertEqual(usersWithSameEmail.first?.id, existing.id)
         }
     }
 }

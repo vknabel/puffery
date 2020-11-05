@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Getting Started and better Log in
+
 ## 1.2.0
 
 * Widgets for iOS 14 #43

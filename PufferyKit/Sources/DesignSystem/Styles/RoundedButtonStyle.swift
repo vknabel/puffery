@@ -8,17 +8,22 @@
 import SwiftUI
 
 public struct RoundedButtonStyle: ButtonStyle {
-    public init() {}
+    var animation: Animation?
+
+    public init(animation: Animation? = .spring()) {
+        self.animation = animation
+    }
 
     public func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
+            .frame(maxWidth: .infinity)
             .padding(20)
             .background(
                 ZStack {
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
-//                        .shadow(color: .white, radius: configuration.isPressed ? 7: 10, x: configuration.isPressed ? -5: -15, y: configuration.isPressed ? -5: -15)
-                        .shadow(color: .black, radius: configuration.isPressed ? 7 : 10, x: configuration.isPressed ? 5 : 15, y: configuration.isPressed ? 5 : 15)
-                        .blendMode(.overlay)
+                        .fill(Color.clear)
+//                        .shadow(color: Color(white: 0, opacity: 0.25), radius: configuration.isPressed ? 7 : 10, x: configuration.isPressed ? 5 : 15, y: configuration.isPressed ? 5 : 15)
+//                        .blendMode(.overlay)
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
                         .fill(Color.accentColor)
 //                        .blendMode(.hardLight)
@@ -26,7 +31,7 @@ public struct RoundedButtonStyle: ButtonStyle {
             )
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
             .foregroundColor(.primary)
-            .animation(.spring())
+            .animation(animation)
     }
 }
 

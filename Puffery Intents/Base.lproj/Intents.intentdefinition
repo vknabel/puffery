@@ -111,15 +111,15 @@
 		</dict>
 	</array>
 	<key>INIntentDefinitionModelVersion</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>INIntentDefinitionNamespace</key>
 	<string>Ej80hO</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>19F101</string>
+	<string>19H2</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>11E708</string>
+	<string>12A7403</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>11.6</string>
+	<string>12.1</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -154,6 +154,8 @@
 			<key>INIntentParameters</key>
 			<array>
 				<dict>
+					<key>INIntentParameterConfigurable</key>
+					<true/>
 					<key>INIntentParameterDisplayName</key>
 					<string>Title</string>
 					<key>INIntentParameterDisplayNameID</key>
@@ -188,6 +190,8 @@
 					<string>String</string>
 				</dict>
 				<dict>
+					<key>INIntentParameterConfigurable</key>
+					<true/>
 					<key>INIntentParameterDisplayName</key>
 					<string>Body</string>
 					<key>INIntentParameterDisplayNameID</key>
@@ -224,6 +228,8 @@
 					<string>String</string>
 				</dict>
 				<dict>
+					<key>INIntentParameterConfigurable</key>
+					<true/>
 					<key>INIntentParameterCustomDisambiguation</key>
 					<true/>
 					<key>INIntentParameterDisplayName</key>
@@ -262,14 +268,6 @@
 							<string>DisambiguationIntroduction</string>
 						</dict>
 						<dict>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Which one?</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>Mn6Npa</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>DisambiguationSelection</string>
-						</dict>
-						<dict>
 							<key>INIntentParameterPromptDialogCustom</key>
 							<true/>
 							<key>INIntentParameterPromptDialogFormatString</key>
@@ -288,6 +286,8 @@
 					<string>Integer</string>
 				</dict>
 				<dict>
+					<key>INIntentParameterConfigurable</key>
+					<true/>
 					<key>INIntentParameterCustomDisambiguation</key>
 					<true/>
 					<key>INIntentParameterDisplayName</key>
@@ -323,14 +323,6 @@
 							<string>Bc4x5P</string>
 							<key>INIntentParameterPromptDialogType</key>
 							<string>DisambiguationIntroduction</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Which one?</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>XrQ6ja</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>DisambiguationSelection</string>
 						</dict>
 						<dict>
 							<key>INIntentParameterPromptDialogCustom</key>

@@ -4,7 +4,7 @@ import Vapor
 
 final class UserController {
     func create(_ req: Request) throws -> EventLoopFuture<TokenResponse> {
-        try CreateUserRequest.validate(req)
+        try CreateUserRequest.validate(content: req)
         let createRequest = try req.content.decode(CreateUserRequest.self)
         let newUser = User(email: createRequest.email)
 
@@ -35,6 +35,13 @@ final class UserController {
             .flatMapThrowing { token in
                 let userResponse = try UserResponse(id: newUser.requireID(), email: newUser.email, isConfirmed: newUser.isConfirmed)
                 return TokenResponse(token: token.value, user: userResponse)
+            }
+            .flatMapError { error in
+                if let dbError = error as? DatabaseError, dbError.isConstraintFailure {
+                    return req.eventLoop.future(error: Abort(.conflict, reason: "User already exists"))
+                } else {
+                    return req.eventLoop.future(error: error)
+                }
             }
     }
 

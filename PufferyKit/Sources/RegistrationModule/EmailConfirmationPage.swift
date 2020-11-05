@@ -7,12 +7,15 @@
 
 import SwiftUI
 import PlatformSupport
+import DesignSystem
 
 struct EmailConfirmationPage: View {
     let email: String
 
     var body: some View {
         VStack {
+            SlideImage("MessageSent")
+            
             Image(systemName: "envelope.badge.fill")
                 .font(.largeTitle)
                 .foregroundColor(.accentColor)
@@ -33,7 +36,7 @@ struct EmailConfirmationPage: View {
                         Text("Registration.Email.OpenApp")
                         Image(systemName: "chevron.right")
                     }
-                }
+                }.padding()
             #endif
         }
         .padding()

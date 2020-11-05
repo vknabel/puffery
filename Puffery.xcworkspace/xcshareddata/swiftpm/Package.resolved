@@ -110,6 +110,15 @@
         }
       },
       {
+        "package": "Pages",
+        "repositoryURL": "https://github.com/nachonavarro/Pages.git",
+        "state": {
+          "branch": null,
+          "revision": "4cdbe4ff2f9ddbfda8cf0376a2acb678a1a0a0a2",
+          "version": "0.1.5"
+        }
+      },
+      {
         "package": "postgres-kit",
         "repositoryURL": "https://github.com/vapor/postgres-kit.git",
         "state": {

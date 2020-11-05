@@ -15,6 +15,7 @@ public struct RegistrationState: Equatable {
     var activity = ActivityState.idle
 
     var shouldCheckEmails = false
+    var showsWelcomePage = false
     
     public init() {}
 
@@ -48,6 +49,7 @@ public enum RegistrationAction {
     case shouldLogin(onFinish: () -> Void)
 
     case showCheckEmails(Bool)
+    case showWelcomePage(Bool)
 
     case activityFinished
     case activityFailed(FetchingError)
@@ -64,6 +66,12 @@ public let registrationReducer = Reducer<
         return .none
     case let .showCheckEmails(shows):
         state.shouldCheckEmails = shows
+        return .none
+    case .showWelcomePage(false) where state.showsWelcomePage:
+        state.showsWelcomePage = false
+        return .init(value: .activityFinished)
+    case let .showWelcomePage(shows):
+        state.showsWelcomePage = shows
         return .none
 
     case .activityFinished:
@@ -95,9 +103,9 @@ public let registrationReducer = Reducer<
     case let .shouldRegister(onFinish: onFinish):
         state.activity = .inProgress
 
-        return environment.registerEffect(nil)
+        return environment.registerEffect(state.email.isEmpty ? nil : state.email)
             .handleEvents(receiveOutput: { _ in onFinish() })
-            .transform(to: RegistrationAction.activityFinished)
+            .transform(to: RegistrationAction.showWelcomePage(true))
             .catch { fetchingError in
                 Effect<RegistrationAction, Never>(value: RegistrationAction.activityFailed(fetchingError))
             }

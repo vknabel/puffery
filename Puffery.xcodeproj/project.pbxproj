@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA064A57254DE03F0010567F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA064A56254DE03F0010567F /* Assets.xcassets */; };
 		BA11BD812534DBCE004697FC /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11BD802534DBCE004697FC /* Provider.swift */; };
 		BA11BD892534DC1B004697FC /* MessageEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11BD882534DC1B004697FC /* MessageEntry.swift */; };
 		BA11BD912534DC54004697FC /* PufferyWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11BD902534DC54004697FC /* PufferyWidgetEntryView.swift */; };
@@ -24,7 +25,6 @@
 		BA9831A125237236007ACF26 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9831A025237236007ACF26 /* WidgetKit.framework */; };
 		BA9831A325237236007ACF26 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA9831A225237236007ACF26 /* SwiftUI.framework */; };
 		BA9831A625237236007ACF26 /* PufferyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9831A525237236007ACF26 /* PufferyWidget.swift */; };
-		BA9831A925237239007ACF26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA9831A825237239007ACF26 /* Assets.xcassets */; };
 		BA9831AB25237239007ACF26 /* ChannelWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA9831A725237236007ACF26 /* ChannelWidgets.intentdefinition */; };
 		BA9831AF25237239007ACF26 /* PufferyWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BA98319F25237236007ACF26 /* PufferyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BA9831BE25237454007ACF26 /* PufferyKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA9831BD25237454007ACF26 /* PufferyKit */; };
@@ -110,12 +110,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BA064A56254DE03F0010567F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA11BD802534DBCE004697FC /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		BA11BD882534DC1B004697FC /* MessageEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageEntry.swift; sourceTree = "<group>"; };
 		BA11BD902534DC54004697FC /* PufferyWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PufferyWidgetEntryView.swift; sourceTree = "<group>"; };
 		BA1B71942495205700572516 /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 		BA1B719A249521B800572516 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		BA231224249C040A00AE13F1 /* ReceivedMessageNotification.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReceivedMessageNotification.apns; sourceTree = "<group>"; };
+		BA2DCFCC254C47B700817B88 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Intents.strings; sourceTree = "<group>"; };
 		BA8F8649245F122D0019B818 /* Puffery Intents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Puffery Intents.entitlements"; sourceTree = "<group>"; };
 		BA923F2B245EFAA9008BD6C9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		BA923F2E245EFAC0008BD6C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Intents.intentdefinition; sourceTree = "<group>"; };
@@ -137,7 +139,6 @@
 		BA9831A225237236007ACF26 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		BA9831A525237236007ACF26 /* PufferyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PufferyWidget.swift; sourceTree = "<group>"; };
 		BA9831A725237236007ACF26 /* ChannelWidgets.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ChannelWidgets.intentdefinition; sourceTree = "<group>"; };
-		BA9831A825237239007ACF26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA9831AA25237239007ACF26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA9831C725237E8A007ACF26 /* PufferyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PufferyWidgetExtension.entitlements; sourceTree = "<group>"; };
 		BAD5349A25238D3400F537EE /* ChannelWidgetsIntentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelWidgetsIntentHandler.swift; sourceTree = "<group>"; };
@@ -241,7 +242,7 @@
 				BA9831A525237236007ACF26 /* PufferyWidget.swift */,
 				BA11BD882534DC1B004697FC /* MessageEntry.swift */,
 				BA11BD902534DC54004697FC /* PufferyWidgetEntryView.swift */,
-				BA9831A825237239007ACF26 /* Assets.xcassets */,
+				BA064A56254DE03F0010567F /* Assets.xcassets */,
 				BA9831AA25237239007ACF26 /* Info.plist */,
 			);
 			path = PufferyWidget;
@@ -493,7 +494,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA9831A925237239007ACF26 /* Assets.xcassets in Resources */,
+				BA064A57254DE03F0010567F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +612,7 @@
 			children = (
 				BA923F2E245EFAC0008BD6C9 /* Base */,
 				BA923F31245EFACF008BD6C9 /* de */,
+				BA2DCFCC254C47B700817B88 /* en */,
 			);
 			name = Intents.intentdefinition;
 			sourceTree = "<group>";
@@ -712,7 +714,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = LightAppIcon;
 				CODE_SIGN_ENTITLEMENTS = Puffery/PufferyDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1060,7 +1062,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = LightAppIcon;
 				CODE_SIGN_ENTITLEMENTS = Puffery/PufferyDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1088,7 +1090,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = LightAppIcon;
 				CODE_SIGN_ENTITLEMENTS = Puffery/Puffery.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution";

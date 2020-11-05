@@ -9,6 +9,7 @@
 import Combine
 import PlatformSupport
 import SwiftUI
+import GettingStartedModule
 
 public struct SelectPufferyApp: View {
     @ObservedObject var store = Current.store

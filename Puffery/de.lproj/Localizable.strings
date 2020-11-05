@@ -101,11 +101,32 @@
 
 "Fetching.Retry" = "Erneut versuchen";
 
+"GettingStarted.Splash.WelcomeToPuffery" = "Willkommen bei Puffery";
+"GettingStarted.Splash.FirstQuestion" = "Hast du dich schon mal erwischt, wie du auf dem Smartphone schaust, ob es etwas neues gibt?";
+"GettingStarted.Splash.SecondQuestion" = "Wolltest du je deinem Team eine Neuigkeit schicken?";
+
+"GettingStarted.Benefits.First" = "Werde direkt benachrichtigt";
+"GettingStarted.Benefits.Second" = "Keine Algorithmen entscheiden für dich";
+"GettingStarted.Benefits.Third" = "Keine Profile – kein sozialer Druck";
+"GettingStarted.Benefits.Fourth" = "Mit Siri Shortcuts programmierbar";
+"GettingStarted.Benefits.Fifth" = "Pausieren von Benachrichtigungen";
+
+"GettingStarted.Registration.PrivacyOptionalEmail" = "Da uns deine Privatsphäre am Herzen liegt, sind E-Mails bei der Registrierung optional.";
 "GettingStarted.Registration.Anonymous" = "Anonym registrieren";
+"GettingStarted.Registration.WithEmail" = "Mit E-Mail registrieren";
+"GettingStarted.Registration.EmailOptIn" = "Du kannst später eine E-Mail hinzufügen.";
+"GettingStarted.Registration.RegistrationLoginDelimiter" = "ODER";
+"GettingStarted.Registration.LogInWithEmail" = "Mit E-Mail anmelden";
 "GettingStarted.Registration.Failed" = "Registrierung fehlgeschlagen";
 "GettingStarted.Registration.TermsAndConditions" = "Es gelten unsere AGB.";
 "GettingStarted.Login.EmailPlaceholder" = "E-Mail";
 "GettingStarted.Login.Perform" = "Einloggen";
+
+"GettingStarted.Welcome.CreateChannels" = "Channel erstellen";
+"GettingStarted.Welcome.SendNotification" = "Neuigkeiten versenden";
+"GettingStarted.Welcome.ShareChannel" = "Deinen Channel teilen";
+"GettingStarted.Welcome.SubscribeChannels" = "Andere Channel abonnieren";
+"GettingStarted.Welcome.LetsStart" = "Los geht's!";
 
 "Registration.Email.Title" = "Wir haben dir einen Link zum Einloggen per E-Mail geschickt";
 "Registration.Email.Recepient email:%@" = "Gesendet an %@";

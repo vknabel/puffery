@@ -34,9 +34,6 @@ extension RegistrationEnvironment {
                     device: token.map { CreateDeviceRequest(token: $0) }
                 ))
                     .publisher()
-                    .catch { error in
-                        RegistrationEnvironment.registerOnLoginFailure(email: email, error: error)
-                    }
             }
             .handleEvents(receiveOutput: { _ in
                 DispatchQueue.main.async(execute: Widgets.reloadAll)
@@ -78,16 +75,6 @@ extension RegistrationEnvironment {
                 resolve(.success(Current.store.state.session.latestDeviceToken))
             }
         }.eraseToEffect()
-    }
-
-    private static func registerOnLoginFailure(email: String, error: FetchingError) -> AnyPublisher<Void, FetchingError> {
-        if error.reason.statusCode(403, 404) {
-            return registerEffect(email: email)
-                .map { _ in }
-                .eraseToAnyPublisher()
-        } else {
-            return Fail(error: error).eraseToAnyPublisher()
-        }
     }
 }
 

@@ -19,7 +19,7 @@ public struct RoundedTextFieldStyle: TextFieldStyle {
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(Color("Background").opacity(keyboard.isActive ? 0.75 : 0.25))
+                    .fill(Color.gray.opacity(keyboard.isActive ? 0.75 : 0.25))
             )
     }
 }

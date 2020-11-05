@@ -16,7 +16,6 @@ struct RegistrationTerms: View {
             .buttonStyle(PlainButtonStyle())
             .opacity(0.5)
             .font(.footnote)
-            .padding()
         }
     }
 }
