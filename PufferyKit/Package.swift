@@ -65,6 +65,7 @@ let package = Package(
                 "Pages",
                 "Overture",
                 "PufferyKit",
+                "RegistrationModule",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
         ]),
         .testTarget(

@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Getting Started and better Log in
+* 409 conflict on registration if email exists
 
 ## 1.2.0
 
