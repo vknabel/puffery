@@ -111,11 +111,11 @@
       },
       {
         "package": "Pages",
-        "repositoryURL": "https://github.com/nachonavarro/Pages.git",
+        "repositoryURL": "https://github.com/vknabel/Pages.git",
         "state": {
           "branch": null,
-          "revision": "4cdbe4ff2f9ddbfda8cf0376a2acb678a1a0a0a2",
-          "version": "0.1.5"
+          "revision": "0eae5d73344fc48875005dfb44017d7c92331d18",
+          "version": "0.1.6-alpha.1"
         }
       },
       {

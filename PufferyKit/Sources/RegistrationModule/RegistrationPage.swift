@@ -18,11 +18,20 @@ public struct RegistrationPage: View {
     public var body: some View {
         WithViewStore(self.store) { viewModel in
             VStack(alignment: .leading) {
+                VStack(alignment: .center) {
+                    SlideImage("Privacy")
+                        .show(when: !self.keyboard.isActive)
+                }
                 Text("GettingStarted.Registration.PrivacyOptionalEmail")
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
+                    .sheet(isPresented: Binding(get: { viewModel.showsWelcomePage }, set: { viewModel.send(.showWelcomePage($0)) })) {
+                        NavigationView {
+                            WelcomePage()
+                        }
+                    }
 
-                EmailTextField(onFinish: onFinish, store: store)
+                EmailTextField(onFinish: onFinish, viewModel: viewModel)
                 
                 Text("GettingStarted.Registration.EmailOptIn")
                     .opacity(0.5)
@@ -70,11 +79,6 @@ public struct RegistrationPage: View {
                     title: Text("GettingStarted.Registration.Failed"),
                     message: Text($0.localizedDescription)
                 )
-            }
-            .sheet(isPresented: Binding(get: { viewModel.showsWelcomePage }, set: { viewModel.send(.showWelcomePage($0)) })) {
-                NavigationView {
-                    WelcomePage()
-                }
             }
         }
     }

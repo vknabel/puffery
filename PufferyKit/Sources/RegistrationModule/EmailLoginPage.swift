@@ -13,7 +13,7 @@ struct EmailLoginPage: View {
             VStack(alignment: .center) {
                 SlideImage("Welcome")
                 
-                EmailTextField(onFinish: onFinish, store: store)
+                EmailTextField(onFinish: onFinish, viewModel: viewModel)
                 
                 Button(action: { viewModel.send(.shouldLogin(onFinish: self.onFinish)) }) {
                     Text("GettingStarted.Login.Perform")
@@ -21,6 +21,12 @@ struct EmailLoginPage: View {
                     .buttonStyle(RoundedButtonStyle(animation: nil))
                     .transition(.opacity)
                     .disabled(viewModel.activity.inProgress)
+                    .sheet(isPresented: viewModel.binding(
+                        get: { $0.shouldCheckEmails && self.globalStore.state.session.sessionToken == nil },
+                        send: RegistrationAction.showCheckEmails
+                    )) {
+                        EmailConfirmationPage(email: viewModel.email)
+                    }
                 
                 HStack {
                     RegistrationTerms()
@@ -30,16 +36,6 @@ struct EmailLoginPage: View {
             }
             .padding(.horizontal, 20)
             .multilineTextAlignment(.leading)
-            .sheet(isPresented: viewModel.binding(
-                get: { $0.shouldCheckEmails && self.globalStore.state.session.sessionToken != nil },
-                send: RegistrationAction.showCheckEmails
-            )) {
-                EmailConfirmationPage(email: viewModel.email)
-            }
         }
     }
-}
-
-private struct LoginButtonId: Identifiable, Hashable {
-    var id = #filePath
 }

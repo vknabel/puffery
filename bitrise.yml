@@ -5,6 +5,10 @@ project_type: ios
 trigger_map:
 - push_branch: main
   workflow: deploy
+- push_branch: develop
+  workflow: deploy
+- push_branch: release/*
+  workflow: deploy
 - pull_request_source_branch: '*'
   workflow: primary
 workflows:

@@ -86,7 +86,6 @@ public struct GettingStartedPage: View {
                     .padding(.horizontal)
                     
                     VStack {
-                        SlideImage("Privacy")
                         RegistrationPage(onFinish: self.onFinish, store: self.registrationStore)
                     }
                 }.edgesIgnoringSafeArea(.all)
