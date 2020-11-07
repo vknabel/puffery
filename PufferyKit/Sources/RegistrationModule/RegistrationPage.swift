@@ -18,10 +18,6 @@ public struct RegistrationPage: View {
     public var body: some View {
         WithViewStore(self.store) { viewModel in
             VStack(alignment: .leading) {
-                VStack(alignment: .center) {
-                    SlideImage("Privacy")
-                        .show(when: !self.keyboard.isActive)
-                }
                 Text("GettingStarted.Registration.PrivacyOptionalEmail")
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)

@@ -6,13 +6,10 @@ import PufferyKit
 struct EmailLoginPage: View {
     var onFinish: () -> Void
     let store: ComposableArchitecture.Store<RegistrationState, RegistrationAction>
-    @ObservedObject var globalStore = Current.store
     
     var body: some View {
         WithViewStore(self.store) { viewModel in
-            VStack(alignment: .center) {
-                SlideImage("Welcome")
-                
+            Slide(.constant(0), imageNamed: "Welcome", showsPageControls: false) {
                 EmailTextField(onFinish: onFinish, viewModel: viewModel)
                 
                 Button(action: { viewModel.send(.shouldLogin(onFinish: self.onFinish)) }) {
@@ -21,12 +18,6 @@ struct EmailLoginPage: View {
                     .buttonStyle(RoundedButtonStyle(animation: nil))
                     .transition(.opacity)
                     .disabled(viewModel.activity.inProgress)
-                    .sheet(isPresented: viewModel.binding(
-                        get: { $0.shouldCheckEmails && self.globalStore.state.session.sessionToken == nil },
-                        send: RegistrationAction.showCheckEmails
-                    )) {
-                        EmailConfirmationPage(email: viewModel.email)
-                    }
                 
                 HStack {
                     RegistrationTerms()

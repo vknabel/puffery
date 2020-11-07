@@ -22,13 +22,10 @@ public struct GettingStartedPage: View {
     @State var registrationInProgress = false
     @State var registrationError: FetchingError?
 
-    @State var registrationStore = ComposableArchitecture.Store<RegistrationState, RegistrationAction>(
-        initialState: RegistrationState(),
-        reducer: registrationReducer,
-        environment: RegistrationEnvironment.live()
-    )
+    var registrationStore: ComposableArchitecture.Store<RegistrationState, RegistrationAction>
     
-    public init(onFinish: @escaping () -> Void) {
+    public init(store: ComposableArchitecture.Store<RegistrationState, RegistrationAction>, onFinish: @escaping () -> Void) {
+        registrationStore = store
         self.onFinish = onFinish
     }
 
@@ -36,16 +33,12 @@ public struct GettingStartedPage: View {
         NavigationView {
             ZStack {
                 Pages(currentPage: $currentPageIndex) {
-                    Slide($currentPageIndex) {
-                        SlideImage("Logo")
-                        
+                    Slide($currentPageIndex, imageNamed: "Logo") {
                         Text("GettingStarted.Splash.WelcomeToPuffery")
                             .font(.headline)
                     }
                     
-                    Slide($currentPageIndex) {
-                        SlideImage("Lost")
-                        
+                    Slide($currentPageIndex, imageNamed: "Lost") {
                         MultilineBulletPoint(
                             systemName: "questionmark.circle.fill",
                             title: "GettingStarted.Splash.FirstQuestion"
@@ -57,9 +50,7 @@ public struct GettingStartedPage: View {
                     }
                     .multilineTextAlignment(.center)
                     
-                    Slide($currentPageIndex) {
-                        SlideImage("Arrived")
-
+                    Slide($currentPageIndex, imageNamed: "Arrived") {
                         VStack(spacing: 12) {
                             InlineBulletPoint(
                                 systemName: "checkmark.seal.fill",
@@ -85,20 +76,27 @@ public struct GettingStartedPage: View {
                     }
                     .padding(.horizontal)
                     
-                    VStack {
+                    Slide($currentPageIndex, imageNamed: "Privacy", showsPageControls: false) {
                         RegistrationPage(onFinish: self.onFinish, store: self.registrationStore)
                     }
                 }.edgesIgnoringSafeArea(.all)
             }
             .trackAppearence("getting-started", using: Current.tracker)
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 #if DEBUG
     struct GettingStarted_Previews: PreviewProvider {
         static var previews: some View {
-            GettingStartedPage(onFinish: {})
+            GettingStartedPage(
+                store: ComposableArchitecture.Store<RegistrationState, RegistrationAction>(
+                    initialState: RegistrationState(),
+                    reducer: registrationReducer,
+                    environment: RegistrationEnvironment.live()
+                ),
+                onFinish: {}
+            )
         }
     }
 #endif

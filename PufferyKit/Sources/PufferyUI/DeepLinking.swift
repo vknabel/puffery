@@ -14,11 +14,15 @@ import PufferyKit
 
             switch (first, second, third) {
             case let ("confirmations", "login", confirmationID?):
-                Current.api.confirmLogin(confirmationID)
-                    .task { _ in }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    Current.api.confirmLogin(confirmationID)
+                        .task { _ in }
+                }
             case let ("confirmations", "email", confirmationID?):
-                Current.api.confirmEmail(confirmationID)
-                    .task { _ in }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    Current.api.confirmEmail(confirmationID)
+                        .task { _ in }
+                }
             case let ("open", messageID?, channelID):
                 guard let messageID = UUID(uuidString: messageID) else {
                     return
@@ -36,6 +40,7 @@ import PufferyKit
                         receiveOrNotifyKey: receiveOrNotifyKey,
                         isSilent: isSilent
                     )
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     Current.api.subscribe(createRequest)
                         .task { _ in
                             NotificationCenter.default.post(
@@ -43,6 +48,7 @@ import PufferyKit
                                 object: nil
                             )
                         }
+                    }
                 }
 
                 let alert = UIAlertController(

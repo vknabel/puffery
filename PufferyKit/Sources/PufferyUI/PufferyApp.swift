@@ -10,10 +10,17 @@ import Combine
 import PlatformSupport
 import SwiftUI
 import GettingStartedModule
+import ComposableArchitecture
+import RegistrationModule
 
 public struct SelectPufferyApp: View {
     @ObservedObject var store = Current.store
-
+    @State var registrationStore = ComposableArchitecture.Store<RegistrationState, RegistrationAction>(
+        initialState: RegistrationState(),
+        reducer: registrationReducer,
+        environment: RegistrationEnvironment.live()
+    )
+    
     public init() {}
 
     public var body: some View {
@@ -21,8 +28,16 @@ public struct SelectPufferyApp: View {
             PufferyApp()
                 .show(when: store.state.session.sessionToken != nil)
 
-            GettingStartedPage(onFinish: determineCurrentNotificationSettings)
-                .show(when: store.state.session.sessionToken == nil)
+            WithViewStore(registrationStore) { viewModel in
+                GettingStartedPage(store: registrationStore, onFinish: determineCurrentNotificationSettings)
+                    .show(when: store.state.session.sessionToken == nil)
+                    .sheet(isPresented: viewModel.binding(
+                        get: { $0.shouldCheckEmails && self.store.state.session.sessionToken == nil },
+                        send: RegistrationAction.showCheckEmails
+                    )) {
+                        EmailConfirmationPage(email: viewModel.email)
+                    }
+            }
         }.onAppear(perform: determineCurrentNotificationSettings)
     }
 

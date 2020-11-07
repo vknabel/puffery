@@ -9,10 +9,14 @@ import SwiftUI
 import PlatformSupport
 import DesignSystem
 
-struct EmailConfirmationPage: View {
+public struct EmailConfirmationPage: View {
     let email: String
+    
+    public init(email: String) {
+        self.email = email
+    }
 
-    var body: some View {
+    public var body: some View {
         VStack {
             SlideImage("MessageSent")
             

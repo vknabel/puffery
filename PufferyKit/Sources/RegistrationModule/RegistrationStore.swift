@@ -11,20 +11,20 @@ import Foundation
 import PufferyKit
 
 public struct RegistrationState: Equatable {
-    var email = ""
-    var activity = ActivityState.idle
+    public var email = ""
+    public var activity = ActivityState.idle
 
-    var shouldCheckEmails = false
-    var showsWelcomePage = false
+    public var shouldCheckEmails = false
+    public var showsWelcomePage = false
     
     public init() {}
 
-    enum ActivityState: Equatable {
+    public enum ActivityState: Equatable {
         case idle
         case inProgress
         case failed(FetchingError)
 
-        var inProgress: Bool {
+        public var inProgress: Bool {
             if case .inProgress = self {
                 return true
             } else {
@@ -32,7 +32,7 @@ public struct RegistrationState: Equatable {
             }
         }
 
-        var failedError: FetchingError? {
+        public var failedError: FetchingError? {
             if case let .failed(error) = self {
                 return error
             } else {
