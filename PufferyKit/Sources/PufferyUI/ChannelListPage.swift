@@ -9,6 +9,7 @@
 import Combine
 import DesignSystem
 import SwiftUI
+import PlatformSupport
 
 enum ChannelSelection: Hashable {
     case all
@@ -142,6 +143,11 @@ struct ChannelListPage: View {
             .prepend(())
             .flatMap(api.ownChannels().publisher)
             .receive(on: DispatchQueue.main)
+            .handleEvents(receiveOutput: { channels in
+                if channels.contains(where: { !$0.isSilent }) {
+                    PushNotifications.register()
+                }
+            })
             .eraseToAnyPublisher()
 
         loadSharedChannelsPublisher = shouldReload.merge(with: didUnsubscribedFromChannel)
@@ -150,6 +156,11 @@ struct ChannelListPage: View {
             .prepend(())
             .flatMap(api.sharedChannels().publisher)
             .receive(on: DispatchQueue.main)
+            .handleEvents(receiveOutput: { channels in
+                if channels.contains(where: { !$0.isSilent }) {
+                    PushNotifications.register()
+                }
+            })
             .eraseToAnyPublisher()
     }
 

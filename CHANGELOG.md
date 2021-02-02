@@ -3,7 +3,7 @@
 ## 1.3.1
 
 * Accept lowercased inbound email addresses #58
-* 409 conflict on registration if email exists
+* Better handle changing push notification tokens #59
 
 ## 1.3.0
 
