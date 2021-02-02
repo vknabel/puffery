@@ -16,6 +16,7 @@ internal struct AckeeServer {
 extension AckeeServer {
     func post(attributes: Attributes, receive: @escaping (Record) -> Void) {
         guard
+            !configuration.disabled,
             let request = createRequest(
                 "POST", ["domains", configuration.domainId, "records"], attributes: attributes
             )
