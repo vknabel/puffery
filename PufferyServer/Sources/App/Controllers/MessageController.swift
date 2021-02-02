@@ -72,7 +72,7 @@ final class MessageController {
         let inboundEmail = try req.content.decode(InboundEmail.self)
         let notifyKey = String(inboundEmail.envelope.to.first?.prefix(while: { $0 != "@" }) ?? "")
         return Channel.query(on: req.db)
-            .filter(\.$notifyKey, .equal, notifyKey)
+            .filter(\.$notifyKey, .equal, notifyKey.uppercased())
             .first()
             .flatMapThrowing { (channel) throws -> Channel in
                 guard let channel = channel else {

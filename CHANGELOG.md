@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.1
+
+* Accept lowercased inbound email addresses #58
+* 409 conflict on registration if email exists
+
 ## 1.3.0
 
 * Getting Started and better Log in
