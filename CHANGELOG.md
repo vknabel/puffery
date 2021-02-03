@@ -4,7 +4,7 @@
 
 * Accept lowercased inbound email addresses #58
 * Better handle changing push notification tokens #59
-
+* Fixed a layout glitch in login form
 ## 1.3.0
 
 * Getting Started and better Log in

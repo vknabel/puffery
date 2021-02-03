@@ -30,7 +30,7 @@ let package = Package(
         .package(name: "Overture", url: "https://github.com/pointfreeco/swift-overture.git", from: "0.5.0"),
         .package(name: "KeychainSwift", url: "https://github.com/evgenyneu/keychain-swift.git", from: "19.0.0"),
 //        .package(name: "AckeeTracker", url: "https://github.com/vknabel/AckeeTracker-Swift.git", from: "0.1.0"),
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", from: "0.9.0"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", from: "0.13.0"),
         .package(url: "https://github.com/vknabel/Pages.git", from: "0.1.6-alpha.1"),
     ],
     targets: [
