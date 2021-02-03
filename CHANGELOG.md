@@ -2,7 +2,7 @@
 
 ## 1.3.1
 
-* Accept lowercased inbound email addresses #58
+* Accept lowercased receive and notify keys for all APIs #58
 * Better handle changing push notification tokens #59
 * Fixed a layout glitch in login form
 ## 1.3.0

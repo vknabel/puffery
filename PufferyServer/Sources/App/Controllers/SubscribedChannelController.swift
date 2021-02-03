@@ -84,16 +84,8 @@ final class SubscribedChannelController {
         let user = try req.auth.require(User.self)
         let createSubscription = try req.content.decode(CreateSubscriptionRequest.self)
 
-        let loadChannel = Channel.query(on: req.db)
-            .group(.or) { query in
-                query.filter(\Channel.$notifyKey == createSubscription.receiveOrNotifyKey)
-                    .filter(\Channel.$receiveOnlyKey == createSubscription.receiveOrNotifyKey)
-            }
-            .sort(\.$title)
-            .first()
-
-        return loadChannel.flatMap { channel in
-            if let channel = channel {
+        return req.channels.find(byReceiveOrNotifyKey: createSubscription.receiveOrNotifyKey)
+            .flatMap { channel in
                 let subscription = try Subscription(
                     user: user,
                     channel: channel,
@@ -103,10 +95,7 @@ final class SubscribedChannelController {
                 return subscription.create(on: req.db).flatMapThrowing { _ in
                     try SubscribedChannelResponse(subscription: subscription)
                 }
-            } else {
-                return req.eventLoop.future(error: ApiError(.channelNotFound))
             }
-        }
     }
 }
 

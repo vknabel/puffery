@@ -19,9 +19,7 @@ struct ReportStatisticsJob: ScheduledJob {
     }()
 
     func run(context: QueueContext) -> EventLoopFuture<Void> {
-        let channels: EventLoopFuture<[Channel]> = Channel.query(on: context.application.db)
-            .filter(\Channel.$notifyKey ~~ notifyKeys)
-            .all()
+        let channels = context.channels.all(withNotifyKeys: notifyKeys)
         let today = formatter.string(from: Date())
         return channels.and(statistics(context)).map { (channels, stats) in
             context.eventLoop.flatten(channels.map { channel in

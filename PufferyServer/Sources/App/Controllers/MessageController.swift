@@ -48,15 +48,7 @@ final class MessageController {
     func publicNotify(_ req: Request) throws -> EventLoopFuture<NotifyMessageResponse> {
         let notifyKey = req.parameters.get("notify_key")
         let createMessage = try req.content.decode(CreateMessageRequest.self)
-        return Channel.query(on: req.db)
-            .filter(\.$notifyKey, .equal, notifyKey ?? "")
-            .first()
-            .flatMapThrowing { (channel) throws -> Channel in
-                guard let channel = channel else {
-                    throw ApiError(.channelNotFound)
-                }
-                return channel
-            }
+        return req.channels.find(byNotifyKey: notifyKey ?? "")
             .flatMap { channel in
                 req.messages.notify(
                     channel: channel,
@@ -71,15 +63,7 @@ final class MessageController {
     func publicEmail(_ req: Request) throws -> EventLoopFuture<NotifyMessageResponse> {
         let inboundEmail = try req.content.decode(InboundEmail.self)
         let notifyKey = String(inboundEmail.envelope.to.first?.prefix(while: { $0 != "@" }) ?? "")
-        return Channel.query(on: req.db)
-            .filter(\.$notifyKey, .equal, notifyKey.uppercased())
-            .first()
-            .flatMapThrowing { (channel) throws -> Channel in
-                guard let channel = channel else {
-                    throw ApiError(.channelNotFound)
-                }
-                return channel
-            }
+        return req.channels.find(byNotifyKey: notifyKey)
             .flatMap { channel in
                 req.messages.notify(
                     channel: channel,
