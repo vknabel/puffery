@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/vapor/apns.git",
         "state": {
           "branch": null,
-          "revision": "d8e81d9345f71ac7a6cf3637bbc10fdcc48d34f5",
-          "version": "1.0.0"
+          "revision": "897389f19e9f5734acf70ad30ae169d383a59a15",
+          "version": "2.0.1"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/kylebrowning/APNSwift.git",
         "state": {
           "branch": null,
-          "revision": "48e77d4c8d6ad671727b89bef5538ec79c3d7397",
-          "version": "2.1.0"
+          "revision": "03e83e2332d13a3c06d5cd70948166e5724c43c7",
+          "version": "3.0.0"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/vapor/fluent.git",
         "state": {
           "branch": null,
-          "revision": "e681c93df3201a2d8ceef15e8a9a0634578df233",
-          "version": "4.0.0"
+          "revision": "4004e926cdef1fbb937501c8a60554349cced675",
+          "version": "4.2.0"
         }
       },
       {
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/vapor/fluent-postgres-driver.git",
         "state": {
           "branch": null,
-          "revision": "f310f8843fafa3134cf89d81b8b3480f16967f37",
-          "version": "2.1.0"
+          "revision": "11d4fce0c5d8a027a5d131439c9c94dd3230cb8e",
+          "version": "2.1.2"
         }
       },
       {
@@ -92,12 +92,21 @@
         }
       },
       {
+        "package": "multipart-kit",
+        "repositoryURL": "https://github.com/vapor/multipart-kit.git",
+        "state": {
+          "branch": null,
+          "revision": "4fcc81d2ce9210a0debceb015a210c2d2eb1da71",
+          "version": "4.0.2"
+        }
+      },
+      {
         "package": "postgres-kit",
         "repositoryURL": "https://github.com/vapor/postgres-kit.git",
         "state": {
           "branch": null,
-          "revision": "e43a32baec80ebbcfed4d0330d0be50eb73434c7",
-          "version": "2.0.1"
+          "revision": "13f6c735cf9a9053011d03e77e2a81802ad6c680",
+          "version": "2.3.0"
         }
       },
       {
@@ -105,8 +114,8 @@
         "repositoryURL": "https://github.com/vapor/postgres-nio.git",
         "state": {
           "branch": null,
-          "revision": "81a309a463f5b3d1f33b6db20a50d6c83fed7d59",
-          "version": "1.0.0"
+          "revision": "33eea144f465a48b17f4c63573c40d33824fdde4",
+          "version": "1.5.2"
         }
       },
       {
@@ -123,17 +132,17 @@
         "repositoryURL": "https://github.com/vapor/queues-redis-driver.git",
         "state": {
           "branch": null,
-          "revision": "2212b5daf46a35de6da1ea91af2e0cc927247ccb",
-          "version": "1.0.0-rc.3"
+          "revision": "53077538b862ea93cc0054c6b308497b67219b7c",
+          "version": "1.0.2"
         }
       },
       {
-        "package": "redis-kit",
-        "repositoryURL": "https://github.com/vapor/redis-kit.git",
+        "package": "redis",
+        "repositoryURL": "https://github.com/vapor/redis.git",
         "state": {
           "branch": null,
-          "revision": "9ef8f9dc472d022c4e94e5388ccf3c87ad83e2cb",
-          "version": "1.0.0-beta.5"
+          "revision": "47bb678f35a2bb0dfd583de1a5c1ef4ab449bcae",
+          "version": "4.3.0"
         }
       },
       {
@@ -141,8 +150,8 @@
         "repositoryURL": "https://gitlab.com/mordil/RediStack.git",
         "state": {
           "branch": null,
-          "revision": "b462bdcf3f3008b23f29ba02b1639bebf13948a0",
-          "version": "1.0.0-alpha.9"
+          "revision": "b2367ac33eb8632011c1ec7afff12307838a4dab",
+          "version": "1.1.0"
         }
       },
       {
@@ -177,8 +186,8 @@
         "repositoryURL": "https://github.com/vapor/sql-kit.git",
         "state": {
           "branch": null,
-          "revision": "3800a6f5fe5cb781420ebe059ff93392bc67cb9c",
-          "version": "3.1.0"
+          "revision": "07f3fc3b9179fce604a0c1672eaf8502e66a4af4",
+          "version": "3.8.2"
         }
       },
       {
@@ -267,8 +276,8 @@
         "repositoryURL": "https://github.com/vapor/vapor.git",
         "state": {
           "branch": null,
-          "revision": "66f412bcb276c09ad3a5df263f159cee9fecc310",
-          "version": "4.29.1"
+          "revision": "ad3fb7f87d47eaca4d97bf515c0d7e93093b38ad",
+          "version": "4.44.4"
         }
       },
       {

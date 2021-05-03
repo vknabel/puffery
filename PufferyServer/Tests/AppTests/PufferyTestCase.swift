@@ -30,9 +30,8 @@ class PufferyTestCase: XCTVaporTests {
     }
 
     override func tearDown() {
-        super.tearDown()
-
         sentMessage = nil
         app.unmockPushService()
+        super.tearDown()
     }
 }
