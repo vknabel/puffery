@@ -2,6 +2,7 @@
 
 ## Unrleased
 
+- Upgraded to Swift 5.4
 - Upgraded dependencies
 
 ## 1.3.1
