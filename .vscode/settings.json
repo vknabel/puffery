@@ -1,6 +1,6 @@
 {
+  "sde.languageServerMode": "sourcekite",
   "[swift]": {
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "vknabel.vscode-swiftformat"
   },
   "swift.targets": [
@@ -9,6 +9,13 @@
       "path": "Puffery",
       "sources": ["**/*.swift"],
       "compilerArguments": ["-target", "iOS"]
+    },
+    {
+      "name": "PufferyWidget",
+      "path": "PufferyWidget",
+      "sources": ["**/*.swift"],
+      "compilerArguments": ["-target", "iOS"]
     }
-  ]
+  ],
+  "sde.buildOnSave": false
 }

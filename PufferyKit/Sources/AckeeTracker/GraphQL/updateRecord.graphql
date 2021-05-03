@@ -1,0 +1,5 @@
+mutation updateRecord($recordId: ID!) {
+  updateRecord(id: $recordId) {
+    success
+  }
+}

@@ -1,0 +1,7 @@
+mutation createRecord($domainId: ID!, $input: CreateRecordInput!) {
+  createRecord(domainId: $domainId, input: $input) {
+    payload {
+      id
+    }
+  }
+}

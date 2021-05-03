@@ -1,0 +1,5 @@
+mutation updateAction($actionId: ID!, $input: UpdateActionInput!) {
+  updateAction(id: $actionId, input: $input) {
+    success
+  }
+}

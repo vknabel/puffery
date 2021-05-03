@@ -1,0 +1,7 @@
+mutation createAction($eventId: ID!, $input: CreateActionInput!) {
+  createAction(eventId: $eventId, input: $input) {
+    payload {
+      id
+    }
+  }
+}
