@@ -131,3 +131,5 @@
 "Registration.Email.Title" = "Wir haben dir einen Link zum Einloggen per E-Mail geschickt";
 "Registration.Email.Recepient email:%@" = "Gesendet an %@";
 "Registration.Email.OpenApp" = "Mail öffnen";
+
+"Message.CopyWhole" = "Kopieren";

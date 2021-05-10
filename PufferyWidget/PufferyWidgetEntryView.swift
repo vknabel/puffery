@@ -29,10 +29,10 @@ struct PufferyWidgetEntryView: View {
                 }
 
                 Text(message.body)
-                    .font(.subheadline)
+                    .font(.footnote)
                 Spacer(minLength: 0)
             }
-            .padding()
+            .padding([.top, .leading, .trailing])
             .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
             .background(message.color)
             .foregroundColor(message.color.foregroundColor)

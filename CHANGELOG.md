@@ -4,6 +4,8 @@
 
 - Upgraded to Swift 5.4
 - Upgraded dependencies
+- Smaller Widget body size
+- Copy whole message and disable text selection to fix layout glitches
 
 ## 1.3.1
 

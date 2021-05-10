@@ -31,7 +31,9 @@ struct MessageCell: View {
                         .foregroundColor(message.color.secondary)
                 }
 
-                SelectableTextView(message.body, font: UIFont.preferredFont(forTextStyle: .subheadline))
+                Text(message.body)
+                    .font(.subheadline)
+                    .padding(.top, 6)
             }
         }
         .padding()
@@ -39,11 +41,20 @@ struct MessageCell: View {
         .background(message.color)
         .foregroundColor(message.color.foregroundColor)
         .cornerRadius(15)
+        .copyContextMenu(text: messageContent)
         .shadow(radius: 8)
     }
     
     var messageDateDescription: String {
         MessageCell.dateFormatter.localizedString(for: message.createdAt, relativeTo: Date())
+    }
+
+    var messageContent: String {
+        """
+        \(message.title)
+        \(messageDateDescription)
+        \(message.body)
+        """
     }
 }
 
@@ -82,9 +93,22 @@ extension Message.Color: View {
     struct MessageCell_Previews: PreviewProvider {
         static var previews: some View {
             MessageCell(message: .dockerImage)
+                .previewLayout(.sizeThatFits)
+                .padding()
         }
     }
 #endif
+
+extension View {
+    func copyContextMenu(text: String) -> some View {
+        contextMenu(ContextMenu(menuItems: {
+            Button(
+                action: { UIPasteboard.general.string = text },
+                label: { Text("Copy") }
+            )
+        }))
+    }
+}
 
 struct SelectableTextView: UIViewRepresentable {
     typealias UIViewType = UITextView
