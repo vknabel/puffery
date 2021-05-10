@@ -6,6 +6,7 @@
 - Upgraded dependencies
 - Smaller Widget body size
 - Copy whole message and disable text selection to fix layout glitches
+- Open first url in message body
 
 ## 1.3.1
 

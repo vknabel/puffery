@@ -34,6 +34,7 @@ struct MessageCell: View {
                 Text(message.body)
                     .font(.subheadline)
                     .padding(.top, 6)
+                    .onTapGestureOpenFirstURL(in: message.body)
             }
         }
         .padding()
@@ -108,42 +109,16 @@ extension View {
             )
         }))
     }
-}
 
-struct SelectableTextView: UIViewRepresentable {
-    typealias UIViewType = UITextView
-
-    var text: String
-    var font: UIFont
-
-    init(_ text: String, font: UIFont) {
-        self.text = text
-        self.font = font
-    }
-
-    func makeUIView(context _: Context) -> UITextView {
-        let textView = UITextView()
-        textView.backgroundColor = .clear
-        textView.isEditable = false
-        textView.dataDetectorTypes = .all
-        textView.text = text
-        textView.font = font
-        textView.textColor = .white
-        textView.isScrollEnabled = false
-        textView.textContainerInset = .zero
-        textView.textContainer.lineFragmentPadding = 0
-        textView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-//        textView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-//        textField.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-//        textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-//        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textView
-    }
-
-    func updateUIView(_: UITextView, context _: Context) {
-//        uiView.text = text
-//        uiView.font = font
-//        let fixedWidth = uiView.frame.size.width
-//        let newSize = uiView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+    func onTapGestureOpenFirstURL(in text: String) -> some View {
+        onTapGesture {
+            guard let url = text.lazy
+                    .split(separator: " ")
+                    .compactMap({ URL(string: String($0)) })
+                    .first else {
+                return
+            }
+            UIApplication.shared.open(url)
+        }
     }
 }
