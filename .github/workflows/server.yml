@@ -47,7 +47,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: YOCKOW/Action-setup-swift@v1.1.2
+      - uses: YOCKOW/Action-setup-swift@1
+        with:
+          swift-version: '5.4'
       - name: Resolve
         run: cd PufferyServer && swift package resolve
       - name: Build
