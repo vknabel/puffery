@@ -21,18 +21,20 @@ struct ReportStatisticsJob: ScheduledJob {
     func run(context: QueueContext) -> EventLoopFuture<Void> {
         let channels = context.channels.all(withNotifyKeys: notifyKeys)
         let today = formatter.string(from: Date())
-        return channels.and(statistics(context)).map { (channels, stats) in
-            context.eventLoop.flatten(channels.map { channel in
-                context.messages.notify(
-                    channel: channel,
-                    title: "Puffery stats for \(today)",
-                    body: """
-                    There are \(stats.userCount) users, \(stats.registeredUserCount) provided an email.
-                    They sent \(stats.messageCount) messages to \(stats.channelCount) channels.
-                    """,
-                    color: nil
-                )
-            })
+        return channels.flatMap { channels in
+            statistics(context, ignoring: channels).flatMap { stats in
+                context.eventLoop.flatten(channels.map { channel in
+                    context.messages.notify(
+                        channel: channel,
+                        title: "Puffery stats for \(today)",
+                        body: """
+                        There are \(stats.userCount) users, \(stats.registeredUserCount) provided an email.
+                        They sent \(stats.messageCount) messages to \(stats.channelCount) channels.
+                        """,
+                        color: nil
+                    )
+                })
+            }
         }
         .transform(to: ())
         .always { _ in
@@ -40,11 +42,13 @@ struct ReportStatisticsJob: ScheduledJob {
         }
     }
     
-    private func statistics(_ context: QueueContext) -> EventLoopFuture<Statistics> {
+    private func statistics(_ context: QueueContext, ignoring channels: [Channel]) -> EventLoopFuture<Statistics> {
         let statCounters = [
             context.application.db.query(Message.self)
+                .filter(\.$channel.$id !~ channels.compactMap(\.id))
                 .count(),
             context.application.db.query(Channel.self)
+                .filter(\.$id !~ channels.compactMap(\.id))
                 .count(),
             context.application.db.query(User.self)
                 .count(),

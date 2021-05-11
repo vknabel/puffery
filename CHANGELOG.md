@@ -7,6 +7,7 @@
 - Smaller Widget body size
 - Copy whole message and disable text selection to fix layout glitches
 - Open first url in message body
+- Ignore statistic channels in stats
 
 ## 1.3.1
 
