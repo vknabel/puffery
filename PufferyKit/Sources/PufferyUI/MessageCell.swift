@@ -112,10 +112,17 @@ extension View {
 
     func onTapGestureOpenFirstURL(in text: String) -> some View {
         onTapGesture {
-            guard let url = text.lazy
-                    .split(separator: " ")
-                    .compactMap({ URL(string: String($0)) })
-                    .first else {
+            guard let detector = try? NSDataDetector(
+                    types: NSTextCheckingResult.CheckingType.link.rawValue
+                ),
+                let match = detector.firstMatch(
+                    in: text,
+                    options: [],
+                    range: NSRange(location: 0, length: text.utf16.count)
+                ),
+                let range = Range(match.range, in: text),
+                let url = URL(string: String(text[range]))
+            else {
                 return
             }
             UIApplication.shared.open(url)
