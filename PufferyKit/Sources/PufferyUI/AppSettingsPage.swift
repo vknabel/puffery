@@ -9,6 +9,7 @@
 import SwiftUI
 import PrivacyPolicyModule
 import PlatformSupport
+import RegistrationModule
 
 struct AppSettingsPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -22,6 +23,10 @@ struct AppSettingsPage: View {
             }
 
             Section {
+                NavigationLink(
+                    destination: WelcomePage(),
+                    label: { Text("GettingStarted.Welcome.LetsStart") }
+                )
                 NavigationLink(destination: PrivacyPolicy()) {
                     Text("PrivacyPolicy.Title")
                 }

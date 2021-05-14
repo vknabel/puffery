@@ -37,6 +37,7 @@ public struct GettingStartedPage: View {
                         Text("GettingStarted.Splash.WelcomeToPuffery")
                             .font(.headline)
                     }
+                    .navigationBarHidden(true)
                     
                     Slide($currentPageIndex, imageNamed: "Lost") {
                         MultilineBulletPoint(
@@ -48,6 +49,7 @@ public struct GettingStartedPage: View {
                             title: "GettingStarted.Splash.SecondQuestion"
                         )
                     }
+                    .navigationBarHidden(true)
                     .multilineTextAlignment(.center)
                     
                     Slide($currentPageIndex, imageNamed: "Arrived") {
@@ -74,6 +76,7 @@ public struct GettingStartedPage: View {
                             )
                         }
                     }
+                    .navigationBarHidden(true)
                     .padding(.horizontal)
                     
                     Slide($currentPageIndex, imageNamed: "Privacy", showsPageControls: false) {

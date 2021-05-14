@@ -35,7 +35,6 @@ public struct Slide<Body: View>: View {
         .padding()
         .padding(.bottom, 30)
         .navigationBarTitle("")
-        .navigationBarHidden(true)
         .frame(maxWidth: 350)
     }
 }
