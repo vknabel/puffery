@@ -9,7 +9,7 @@ import SwiftUI
 import PlatformSupport
 
 public struct RoundedTextFieldStyle: TextFieldStyle {
-    @ObservedObject private var keyboard = Keyboard()
+    @ObservedObject private var keyboard = Keyboard.shared
     
     public init() {}
 

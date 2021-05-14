@@ -8,6 +8,7 @@
 - Copy whole message and disable text selection to fix layout glitches
 - Open first url in message body
 - Ignore statistic channels in stats
+- Improved layout and keyboard handling for signup
 
 ## 1.3.1
 

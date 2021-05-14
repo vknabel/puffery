@@ -7,7 +7,7 @@ import PufferyKit
 public struct RegistrationPage: View {
     var onFinish: () -> Void
     
-    @ObservedObject private var keyboard = Keyboard()
+    @StateObject private var keyboard = Keyboard.shared
     let store: ComposableArchitecture.Store<RegistrationState, RegistrationAction>
     
     public init(onFinish: @escaping () -> Void, store: ComposableArchitecture.Store<RegistrationState, RegistrationAction>) {
@@ -21,18 +21,13 @@ public struct RegistrationPage: View {
                 Text("GettingStarted.Registration.PrivacyOptionalEmail")
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
-                    .sheet(isPresented: Binding(get: { viewModel.showsWelcomePage }, set: { viewModel.send(.showWelcomePage($0)) })) {
-                        NavigationView {
-                            WelcomePage()
-                        }
-                    }
 
-                EmailTextField(onFinish: onFinish, viewModel: viewModel)
+                EmailTextField(email: Binding(get: { viewModel.registerEmail }, set: { viewModel.send(.updateRegisterEmail($0)) }), onFinish: onFinish, viewModel: viewModel)
                 
                 Text("GettingStarted.Registration.EmailOptIn")
                     .opacity(0.5)
-                
-                if viewModel.email.isEmpty || keyboard.isActive {
+
+                if viewModel.registerEmail.isEmpty && !keyboard.isActive {
                     Button(action: { viewModel.send(.shouldRegister(onFinish: self.onFinish)) }) {
                         Text("GettingStarted.Registration.Anonymous")
                     }
@@ -45,7 +40,7 @@ public struct RegistrationPage: View {
                     }
                         .buttonStyle(RoundedButtonStyle())
                         .transition(.opacity)
-                        .disabled(viewModel.activity.inProgress || viewModel.email.isEmpty)
+                        .disabled(viewModel.activity.inProgress || viewModel.registerEmail.isEmpty)
                 }
                 RegistrationTerms()
                     .padding(.vertical)
@@ -70,7 +65,7 @@ public struct RegistrationPage: View {
             }
             .padding(.horizontal, 20)
             .multilineTextAlignment(.leading)
-            .alert(item: Binding.constant(viewModel.activity.failedError)) {
+            .alert(item: Binding(get: { viewModel.activity.failedError }, set: { _ in viewModel.send(.activityErrorCleared) })) {
                 Alert(
                     title: Text("GettingStarted.Registration.Failed"),
                     message: Text($0.localizedDescription)

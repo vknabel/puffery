@@ -25,17 +25,22 @@ public struct SelectPufferyApp: View {
 
     public var body: some View {
         ZStack {
-            PufferyApp()
-                .show(when: store.state.session.sessionToken != nil)
-
             WithViewStore(registrationStore) { viewModel in
+                PufferyApp()
+                    .show(when: store.state.session.sessionToken != nil)
+                    .sheet(isPresented: Binding(get: { viewModel.showsWelcomePage }, set: { viewModel.send(.showWelcomePage($0)) })) {
+                        NavigationView {
+                            WelcomePage()
+                        }
+                    }
+
                 GettingStartedPage(store: registrationStore, onFinish: determineCurrentNotificationSettings)
                     .show(when: store.state.session.sessionToken == nil)
                     .sheet(isPresented: viewModel.binding(
                         get: { $0.shouldCheckEmails && self.store.state.session.sessionToken == nil },
                         send: RegistrationAction.showCheckEmails
                     )) {
-                        EmailConfirmationPage(email: viewModel.email)
+                        EmailConfirmationPage(email: viewModel.latestOrLoginEmail)
                     }
             }
         }.onAppear(perform: determineCurrentNotificationSettings)

@@ -11,7 +11,8 @@ import Foundation
 import PufferyKit
 
 public struct RegistrationState: Equatable {
-    public var email = ""
+    public var latestOrLoginEmail = ""
+    public var registerEmail = ""
     public var activity = ActivityState.idle
 
     public var shouldCheckEmails = false
@@ -43,7 +44,8 @@ public struct RegistrationState: Equatable {
 }
 
 public enum RegistrationAction {
-    case updateEmail(String)
+    case updateLoginEmail(String)
+    case updateRegisterEmail(String)
     // TODO: remove onFinish
     case shouldRegister(onFinish: () -> Void)
     case shouldLogin(onFinish: () -> Void)
@@ -53,6 +55,7 @@ public enum RegistrationAction {
 
     case activityFinished
     case activityFailed(FetchingError)
+    case activityErrorCleared
 }
 
 public let registrationReducer = Reducer<
@@ -61,8 +64,12 @@ public let registrationReducer = Reducer<
     RegistrationEnvironment
 > { (state, action, environment: RegistrationEnvironment) in
     switch action {
-    case let .updateEmail(email):
-        state.email = email
+    case let .updateLoginEmail(email):
+        state.latestOrLoginEmail = email
+        return .none
+    case let .updateRegisterEmail(email):
+        state.latestOrLoginEmail = email
+        state.registerEmail = email
         return .none
     case let .showCheckEmails(shows):
         state.shouldCheckEmails = shows
@@ -80,11 +87,14 @@ public let registrationReducer = Reducer<
     case let .activityFailed(error):
         state.activity = .failed(error)
         return .none
+    case .activityErrorCleared:
+        state.activity = .idle
+        return .none
 
     case let .shouldLogin(onFinish: onFinish):
         state.activity = .inProgress
 
-        return environment.loginEffect(state.email)
+        return environment.loginEffect(state.latestOrLoginEmail)
             .handleEvents(receiveOutput: { onFinish() })
             .flatMap { _ in
                 [
@@ -103,8 +113,7 @@ public let registrationReducer = Reducer<
     case let .shouldRegister(onFinish: onFinish):
         state.activity = .inProgress
 
-        return environment.registerEffect(state.email.isEmpty ? nil : state.email)
-            .handleEvents(receiveOutput: { _ in onFinish() })
+        return environment.registerEffect(state.registerEmail.isEmpty ? nil : state.registerEmail)
             .transform(to: RegistrationAction.showWelcomePage(true))
             .catch { fetchingError in
                 Effect<RegistrationAction, Never>(value: RegistrationAction.activityFailed(fetchingError))
