@@ -7,7 +7,7 @@ import PufferyKit
 public struct RegistrationPage: View {
     var onFinish: () -> Void
     
-    @StateObject private var keyboard = Keyboard.shared
+    @ObservedObject private var keyboard = Keyboard.shared
     let store: ComposableArchitecture.Store<RegistrationState, RegistrationAction>
     
     public init(onFinish: @escaping () -> Void, store: ComposableArchitecture.Store<RegistrationState, RegistrationAction>) {
