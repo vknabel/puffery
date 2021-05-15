@@ -57,8 +57,13 @@
 "ChannelList.SubscribeChannels.New" = "Abonnieren";
 "ChannelList.NoChannels" = "Keine Channel";
 
+"ChannelSettings.Basic.SectionTitle" = "Allgemein";
 "ChannelSettings.Basic.Name" = "Name";
 "ChannelSettings.Basic.ReceiveNotifications" = "Benachrichtigungen erhalten";
+"ChannelSettings.Statistics.SectionTitle" = "Statistiken";
+"ChannelSettings.Statistics.Notifiers" = "Autoren";
+"ChannelSettings.Statistics.Receivers" = "Abonnenten";
+"ChannelSettings.Statistics.Messages" = "Bisherige Nachrichten";
 "ChannelSettings.Share.SectionTitle" = "Teilen";
 "ChannelSettings.Share.Explanation" = "Teile deinen Notify-Key mit anderen, um dich zu benachrichtigen. Willst du andere benachrichtigen, verwende den Abonnement-Key.";
 "ChannelSettings.Share.NotifyKey" = "Notify-Key";

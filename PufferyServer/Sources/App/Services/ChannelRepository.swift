@@ -51,4 +51,16 @@ struct ChannelRepository {
             .filter(\Channel.$notifyKey ~~ notifyKeys.map { $0.uppercased() })
             .all()
     }
+
+    func countSubscriptions(_ channelId: UUID?, of user: User, where queries: (QueryBuilder<Subscription>) -> QueryBuilder<Subscription> = { $0 }) -> EventLoopFuture<Int> {
+        guard let channelId = channelId else {
+            return eventLoop.makeFailedFuture(ApiError(.channelNotFound))
+        }
+        
+        return queries(
+            Subscription.query(on: db)
+                .filter(\.$channel.$id == channelId)
+            )
+            .count()
+    }
 }

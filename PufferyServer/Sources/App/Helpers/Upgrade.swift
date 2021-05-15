@@ -19,4 +19,27 @@ extension EventLoopFuture {
             }
         }
     }
+
+    @inlinable
+    public static func zip<Second, Third>(
+        _ first: EventLoopFuture<Value>,
+        _ second: EventLoopFuture<Second>,
+        _ third: EventLoopFuture<Third>
+    ) -> EventLoopFuture<(Value, Second, Third)> {
+        first.and(second).and(third)
+            .map { (prefix, third) in
+                (prefix.0, prefix.1, third)
+            }
+    }
+
+    @inlinable
+    public func and<Second, Third>(
+        _ second: EventLoopFuture<Second>,
+        _ third: EventLoopFuture<Third>
+    ) -> EventLoopFuture<(Value, Second, Third)> {
+        and(second).and(third)
+            .map { (prefix, third) in
+                (prefix.0, prefix.1, third)
+            }
+    }
 }

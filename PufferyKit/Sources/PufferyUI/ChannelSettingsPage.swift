@@ -8,6 +8,7 @@
 
 import SwiftUI
 import PlatformSupport
+import DesignSystem
 
 struct ChannelSettingsPage: View {
     @State var channel: Channel
@@ -20,7 +21,7 @@ struct ChannelSettingsPage: View {
 
     var body: some View {
         List {
-            Section {
+            Section(header: Text("ChannelSettings.Basic.SectionTitle")) {
                 HStack {
                     Text("ChannelSettings.Basic.Name")
                     Spacer()
@@ -29,6 +30,26 @@ struct ChannelSettingsPage: View {
                 }
 
                 Toggle("ChannelSettings.Basic.ReceiveNotifications", isOn: Binding(get: { !self.channel.isSilent }, set: self.registerAndSetReceiveNotifications))
+            }
+            
+            Section(header: Text("ChannelSettings.Statistics.SectionTitle")) {
+                Fetching(Current.api.channelStats(id: channel.id).publisher()) { stats in
+                    HStack {
+                        Text("ChannelSettings.Statistics.Notifiers")
+                        Spacer()
+                        Text(String(stats.notifiers))
+                    }
+                    HStack {
+                        Text("ChannelSettings.Statistics.Receivers")
+                        Spacer()
+                        Text(String(stats.receivers))
+                    }
+                    HStack {
+                        Text("ChannelSettings.Statistics.Messages")
+                        Spacer()
+                        Text(String(stats.messages))
+                    }
+                }
             }
 
             Section(header: Text("ChannelSettings.Share.SectionTitle"), footer: Text("ChannelSettings.Share.Explanation")) {

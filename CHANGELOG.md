@@ -10,6 +10,7 @@
 - Ignore statistic channels in stats
 - Improved layout and keyboard handling for signup
 - Link Getting started in app settings #62
+- Basic Statistics for Channels #64
 
 ## 1.3.1
 

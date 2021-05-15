@@ -57,9 +57,14 @@
 "ChannelList.SubscribeChannels.New" = "Subscribe";
 "ChannelList.NoChannels" = "No Channels";
 
+"ChannelSettings.Basic.SectionTitle" = "General";
 "ChannelSettings.Basic.Name" = "Name";
 "ChannelSettings.Basic.ReceiveNotifications" = "Receive Notifications";
 "ChannelSettings.Share.SectionTitle" = "Share";
+"ChannelSettings.Statistics.SectionTitle" = "Statistics";
+"ChannelSettings.Statistics.Notifiers" = "Notifiers";
+"ChannelSettings.Statistics.Receivers" = "Receivers";
+"ChannelSettings.Statistics.Messages" = "Current Messages";
 "ChannelSettings.Share.Explanation" = "Share the Notify Key to allow others notifying you. If sufficient, just share the Receive Only Key to keep others up to date.";
 "ChannelSettings.Share.NotifyKey" = "Notify Key";
 "ChannelSettings.Share.InvitePublishers" = "Share to invite publishers";

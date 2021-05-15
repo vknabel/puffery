@@ -1,5 +1,6 @@
 import APIDefinition
 import Fluent
+import FluentSQL
 import Vapor
 
 final class SubscribedChannelController {
@@ -8,6 +9,25 @@ final class SubscribedChannelController {
         return req.subscriptions.find(req.parameters.get("subscription_id"), of: user, where: { $0.with(\.$channel) })
             .flatMapThrowing { subscription in
                 try SubscribedChannelResponse(subscription: subscription)
+            }
+    }
+
+    func statistics(_ req: Request) throws -> EventLoopFuture<SubscribedChannelStatisticsResponse> {
+        let user = try req.auth.require(User.self)
+        let subscriptionId = try req.parameters.require("subscription_id", as: UUID.self)
+        return req.subscriptions.find(subscriptionId, of: user)
+            .flatMap { subscription in
+                EventLoopFuture.zip(
+                    req.channels.countSubscriptions(subscription.$channel.id, of: user, where: { $0.filter(\Subscription.$canNotify == true) }),
+                    req.channels.countSubscriptions(subscription.$channel.id, of: user, where: { $0.filter(\Subscription.$canNotify == false) }),
+                    req.messages.count(for: subscription)
+                ).map { (notifiers, receivers, messages) in
+                        SubscribedChannelStatisticsResponse(
+                            notifiers: notifiers,
+                            receivers: receivers,
+                            messages: messages
+                        )
+                    }
             }
     }
 

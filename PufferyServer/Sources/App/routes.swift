@@ -42,6 +42,7 @@ public func routes(_ app: Application) throws {
     bearer.get("channels", ":subscription_id", use: subscribedChannelController.details)
     bearer.post("channels", ":subscription_id", use: subscribedChannelController.update)
     bearer.delete("channels", ":subscription_id", use: subscribedChannelController.unsubscribe)
+    bearer.get("channels", ":subscription_id", "stats", use: subscribedChannelController.statistics)
     bearer.get("channels", use: subscribedChannelController.index)
     bearer.get("channels", "shared", use: subscribedChannelController.indexShared)
     bearer.get("channels", "own", use: subscribedChannelController.indexOwn)

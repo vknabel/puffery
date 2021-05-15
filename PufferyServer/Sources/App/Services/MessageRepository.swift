@@ -26,6 +26,12 @@ struct MessageRepository {
             .limit(20)
             .all()
     }
+    
+    func count(for subscription: Subscription) -> EventLoopFuture<Int> {
+        Message.query(on: db)
+            .filter(\Message.$channel.$id, .equal, subscription.$channel.id)
+            .count()
+    }
 
     func latestSubscribed(for subscriptions: [Subscription]) -> EventLoopFuture<[SubscriptionMessage]> {
         let messageResponses = subscriptions.map { subscription in
