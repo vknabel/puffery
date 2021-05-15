@@ -1,6 +1,6 @@
 # Changelog
 
-## Unrleased
+## 1.4.0
 
 - Upgraded to Swift 5.4
 - Upgraded dependencies
