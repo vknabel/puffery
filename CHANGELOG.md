@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.1
+
+- Subscribing channels by link was not translated
+- Multiple subscribed channels were not displayed correctly
+
 ## 1.4.0
 
 - Upgraded to Swift 5.4

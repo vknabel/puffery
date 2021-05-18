@@ -60,10 +60,6 @@ struct ChannelListPage: View {
                                 Text(channel.title)
                             }
                         }
-                    }.sheet(isPresented: $presentsChannelSubscription, onDismiss: shouldReload.send) {
-                        NavigationView {
-                            ChannelSubscribingPage()
-                        }.navigationViewStyle(StackNavigationViewStyle())
                     }
                 }
             }.roundedListStyle(sidebar: false)
@@ -71,6 +67,11 @@ struct ChannelListPage: View {
         .sheet(isPresented: $presentsSettings) {
             NavigationView {
                 AppSettingsPage()
+            }.navigationViewStyle(StackNavigationViewStyle())
+        }
+        .sheet(isPresented: $presentsChannelSubscription, onDismiss: shouldReload.send) {
+            NavigationView {
+                ChannelSubscribingPage()
             }.navigationViewStyle(StackNavigationViewStyle())
         }
         .navigationBarTitle("ChannelList.Title")
