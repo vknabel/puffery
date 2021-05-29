@@ -48,15 +48,17 @@ struct MessageCreationPage: View {
     }
     
     var cancelNavigationItem: some View {
-        Button("CreateMessage.Cancel") {
-            presentationMode.wrappedValue.dismiss()
-        }
-        .disabled(isBusy)
+        Button("CreateMessage.Cancel", action: dismiss)
+            .disabled(isBusy)
     }
 
     var createButton: some View {
         Button("CreateMessage.Create", action: createMessage)
             .disabled(isBusy || text.isEmpty || title.isEmpty)
+    }
+
+    func dismiss() {
+        presentationMode.wrappedValue.dismiss()
     }
 
     func createMessage() {
@@ -66,11 +68,11 @@ struct MessageCreationPage: View {
             CreateMessageRequest(
                 title: title,
                 body: text,
-                color: nil
+                color: color?.rawValue
             )
         ).task { response in
             isBusy = false
-            print(response)
+            dismiss()
         }
     }
 }
