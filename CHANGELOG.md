@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0 Unreleased
+
+- Create messages from within Puffery #61
+
 ## 1.4.1
 
 - Subscribing channels by link was not translated

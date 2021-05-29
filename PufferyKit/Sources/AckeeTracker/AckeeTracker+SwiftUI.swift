@@ -17,17 +17,25 @@
         fileprivate var recorder: DurationRecorder? = nil
 
         var body: some View {
-            content
-                .onAppear(perform: {
-                    DispatchQueue.main.async {
-                        self.recorder = self.tracker.recordPresence(self.location)
-                    }
-                })
-                .onDisappear(perform: {
-                    DispatchQueue.main.async {
-                        self.recorder = nil
-                    }
-                })
+            if isInPreviewMode {
+                content
+            } else {
+                content
+                    .onAppear(perform: {
+                        DispatchQueue.main.async {
+                            self.recorder = self.tracker.recordPresence(self.location)
+                        }
+                    })
+                    .onDisappear(perform: {
+                        DispatchQueue.main.async {
+                            self.recorder = nil
+                        }
+                    })
+            }
+        }
+        
+        private var isInPreviewMode: Bool {
+            ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
         }
     }
 

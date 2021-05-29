@@ -57,6 +57,12 @@
 "ChannelList.SubscribeChannels.New" = "Subscribe";
 "ChannelList.NoChannels" = "No Channels";
 
+"CreateMessage.Title" = "Create Notification";
+"CreateMessage.Cancel" = "Cancel";
+"CreateMessage.Create" = "Notify";
+"CreateMessage.MessageTitle" = "Title";
+"CreateMessage.MessageText" = "Text";
+
 "ChannelSettings.Basic.SectionTitle" = "General";
 "ChannelSettings.Basic.Name" = "Name";
 "ChannelSettings.Basic.ReceiveNotifications" = "Receive Notifications";

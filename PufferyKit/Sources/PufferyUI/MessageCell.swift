@@ -61,6 +61,10 @@ struct MessageCell: View {
 
 extension Message.Color: View {
     public var body: some View {
+        color
+    }
+    
+    public var color: SwiftUI.Color {
         switch self {
         case .blue:
             return SwiftUI.Color.blue

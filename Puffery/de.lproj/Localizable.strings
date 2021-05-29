@@ -57,6 +57,12 @@
 "ChannelList.SubscribeChannels.New" = "Abonnieren";
 "ChannelList.NoChannels" = "Keine Channel";
 
+"CreateMessage.Title" = "Benachrichtigen";
+"CreateMessage.Cancel" = "Abbrechen";
+"CreateMessage.Create" = "Abschicken";
+"CreateMessage.MessageTitle" = "Titel";
+"CreateMessage.MessageText" = "Text";
+
 "ChannelSettings.Basic.SectionTitle" = "Allgemein";
 "ChannelSettings.Basic.Name" = "Name";
 "ChannelSettings.Basic.ReceiveNotifications" = "Benachrichtigungen erhalten";
