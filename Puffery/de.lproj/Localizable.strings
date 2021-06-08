@@ -28,6 +28,7 @@
 "Settings.Acknowledgements.Link" = "Danksagungen";
 
 "Settings.Session.Logout" = "Abmelden";
+"Settings.Session.DeleteAccount" = "Account Löschen";
 
 "Profile.Email.Title" = "Profil bearbeiten";
 "Profile.Email.Placeholder" = "E-Mail";

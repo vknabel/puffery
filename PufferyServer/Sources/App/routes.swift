@@ -30,6 +30,7 @@ public func routes(_ app: Application) throws {
 
     bearer.get("profile", use: userController.profile)
     bearer.put("profile", use: userController.updateProfile)
+    bearer.delete("profile", use: userController.deleteUser)
 
     let subscribedChannelController = SubscribedChannelController()
     let messageController = MessageController()

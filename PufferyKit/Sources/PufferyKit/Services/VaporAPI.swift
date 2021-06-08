@@ -75,6 +75,11 @@ final class VaporAPI: API {
             .encoding(body: credentials, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode, UserResponse.self)
     }
+    
+    func deleteAccount() -> Endpoint<Void> {
+        endpoint().delete("api", "v1", "profile")
+            .ignoreValue()
+    }
 
     func confirmEmail(_ confirmation: String) -> Endpoint<Void> {
         endpoint().put("api", "v1", "confirmations", "email", confirmation)

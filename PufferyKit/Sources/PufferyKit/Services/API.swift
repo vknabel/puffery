@@ -17,6 +17,7 @@ public protocol API {
     func login(user createUser: LoginUserRequest) -> Endpoint<Void>
     func profile() -> Endpoint<UserResponse>
     func updateProfile(credentials: UpdateProfileRequest) -> Endpoint<UserResponse>
+    func deleteAccount() -> Endpoint<Void>
 
     func confirmEmail(_ confirmation: String) -> Endpoint<Void>
     func confirmLogin(_ confirmation: String) -> Endpoint<TokenResponse>

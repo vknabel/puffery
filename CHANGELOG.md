@@ -1,6 +1,10 @@
 # Changelog
 
-## 1.5.0 Unreleased
+## 1.6.0 Unreleased
+
+- Allow permanent deletion of accounts from within the app to conform latest guidelines
+
+## 1.5.0
 
 - Create messages from within Puffery #61
 

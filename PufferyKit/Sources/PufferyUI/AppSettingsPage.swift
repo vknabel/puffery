@@ -42,6 +42,9 @@ struct AppSettingsPage: View {
                 Button(action: logout) {
                     Text("Settings.Session.Logout").foregroundColor(.red)
                 }
+                Button(action: deleteAccount) {
+                    Text("Settings.Session.DeleteAccount").foregroundColor(.red)
+                }
             }
         }
         .roundedListStyle()
@@ -62,6 +65,17 @@ struct AppSettingsPage: View {
             Current.store.commit(.updateSession(nil))
             Widgets.reloadAll()
         }
+    }
+
+    func deleteAccount() {
+        dismiss()
+        Current.api.deleteAccount()
+            .task({ _ in
+                DispatchQueue.main.async {
+                    Current.store.commit(.updateSession(nil))
+                    Widgets.reloadAll()
+                }
+            })?.resume()
     }
 }
 
