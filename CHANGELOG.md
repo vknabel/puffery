@@ -3,6 +3,7 @@
 ## 1.6.0 Unreleased
 
 - Allow permanent deletion of accounts from within the app to conform latest guidelines
+- Removed remaining traces of Ackee
 
 ## 1.5.0
 

@@ -44,7 +44,6 @@ struct MessageCreationPage: View {
             leading: cancelNavigationItem,
             trailing: createButton
         )
-        .trackAppearence("channels/:id/notify", using: Current.tracker)
     }
     
     var cancelNavigationItem: some View {

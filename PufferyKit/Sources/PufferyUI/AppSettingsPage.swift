@@ -52,7 +52,6 @@ struct AppSettingsPage: View {
         .navigationBarItems(trailing: Button(action: dismiss) {
             Text("Settings.Done").fontWeight(.bold)
         })
-        .trackAppearence("settings", using: Current.tracker)
     }
 
     func dismiss() {

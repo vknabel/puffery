@@ -134,7 +134,6 @@ struct ChannelSettingsPage: View {
         }
         .navigationBarTitle("\(channel.title)", displayMode: NavigationBarItem.TitleDisplayMode.inline)
         .navigationBarItems(trailing: saveNavigationItem)
-        .trackAppearence("channels/:id/settings", using: Current.tracker)
     }
 
     var saveNavigationItem: some View {

@@ -66,7 +66,6 @@ struct ChannelDetailsPage: View {
                 }
             }.navigationViewStyle(StackNavigationViewStyle())
         }
-        .trackAppearence("channels/:id", using: Current.tracker)
     }
 
     var noMessages: some View {
