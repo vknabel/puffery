@@ -18,7 +18,7 @@ struct Provider: IntentTimelineProvider {
         fetchTimelineEntries(for: configuration, in: context) { entries in
             let timeline: Timeline<MessageEntry>
             if let entries = entries, !entries.isEmpty {
-                timeline = Timeline(entries: entries, policy: .atEnd)
+                timeline = Timeline(entries: entries, policy: .never)
             } else {
                 timeline = Timeline(entries: [], policy: TimelineReloadPolicy.after(Date(timeIntervalSinceNow: 60)))
             }

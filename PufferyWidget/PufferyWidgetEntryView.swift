@@ -5,9 +5,10 @@ import SwiftUI
 import WidgetKit
 
 struct PufferyWidgetEntryView: View {
-    private static let dateFormatter: RelativeDateTimeFormatter = {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .short
+    private static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
         return formatter
     }()
 
@@ -64,7 +65,7 @@ struct PufferyWidgetEntryView: View {
         guard let message = message else {
             return "Lorem"
         }
-        return PufferyWidgetEntryView.dateFormatter.localizedString(for: message.createdAt, relativeTo: Date())
+        return PufferyWidgetEntryView.dateFormatter.string(for: message.createdAt) ?? ""
     }
 }
 
