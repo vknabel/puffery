@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import DesignSystem
+import PlatformSupport
 
 @available(iOS 14.0, *)
 struct MessageCreationPage: View {
@@ -71,6 +72,7 @@ struct MessageCreationPage: View {
             )
         ).task { response in
             isBusy = false
+            Widgets.reloadAll()
             dismiss()
         }
     }

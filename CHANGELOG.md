@@ -2,7 +2,7 @@
 
 ## 1.6.1
 
-- Improved reloading of widget contents
+- Improved reloading of widget contents #66
 
 ## 1.6.0
 
