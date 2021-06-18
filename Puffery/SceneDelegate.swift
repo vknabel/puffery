@@ -9,6 +9,7 @@
 import PufferyUI
 import SwiftUI
 import UIKit
+import PlatformSupport
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -48,6 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
         UIApplication.shared.applicationIconBadgeNumber = 0
+        Widgets.reloadAll()
     }
 
     func sceneWillResignActive(_: UIScene) {
