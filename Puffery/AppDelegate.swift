@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         Widgets.reloadAll()
-        completionHandler(.noData)
+        completionHandler(.newData)
     }
 
     // MARK: - Core Data stack
