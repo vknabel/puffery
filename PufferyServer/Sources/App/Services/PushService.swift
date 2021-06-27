@@ -105,7 +105,8 @@ struct APNSPushService: PushService {
                     title: "\(message.channel.title): \(message.title)",
                     body: message.body
                 ),
-                badge: 1
+                badge: 1,
+                hasContentAvailable: true
             )
         )
     }

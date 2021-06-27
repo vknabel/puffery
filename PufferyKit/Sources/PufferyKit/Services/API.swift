@@ -17,6 +17,7 @@ public protocol API {
     func login(user createUser: LoginUserRequest) -> Endpoint<Void>
     func profile() -> Endpoint<UserResponse>
     func updateProfile(credentials: UpdateProfileRequest) -> Endpoint<UserResponse>
+    func deleteAccount() -> Endpoint<Void>
 
     func confirmEmail(_ confirmation: String) -> Endpoint<Void>
     func confirmLogin(_ confirmation: String) -> Endpoint<TokenResponse>
@@ -32,6 +33,7 @@ public protocol API {
     func unsubscribe(_ subscription: SubscribedChannelResponse) -> Endpoint<SubscribedChannelDeletedResponse>
     func channels() -> Endpoint<[SubscribedChannelResponse]>
     func channel(id: UUID) -> Endpoint<SubscribedChannelResponse>
+    func channelStats(id: UUID) -> Endpoint<SubscribedChannelStatisticsResponse>
     func sharedChannels() -> Endpoint<[SubscribedChannelResponse]>
     func ownChannels() -> Endpoint<[SubscribedChannelResponse]>
 

@@ -31,7 +31,10 @@ struct MessageCell: View {
                         .foregroundColor(message.color.secondary)
                 }
 
-                SelectableTextView(message.body, font: UIFont.preferredFont(forTextStyle: .subheadline))
+                Text(message.body)
+                    .font(.subheadline)
+                    .padding(.top, 6)
+                    .onTapGestureOpenFirstURL(in: message.body)
             }
         }
         .padding()
@@ -39,16 +42,29 @@ struct MessageCell: View {
         .background(message.color)
         .foregroundColor(message.color.foregroundColor)
         .cornerRadius(15)
+        .copyContextMenu(text: messageContent)
         .shadow(radius: 8)
     }
     
     var messageDateDescription: String {
         MessageCell.dateFormatter.localizedString(for: message.createdAt, relativeTo: Date())
     }
+
+    var messageContent: String {
+        """
+        \(message.title)
+        \(messageDateDescription)
+        \(message.body)
+        """
+    }
 }
 
 extension Message.Color: View {
     public var body: some View {
+        color
+    }
+    
+    public var color: SwiftUI.Color {
         switch self {
         case .blue:
             return SwiftUI.Color.blue
@@ -82,44 +98,38 @@ extension Message.Color: View {
     struct MessageCell_Previews: PreviewProvider {
         static var previews: some View {
             MessageCell(message: .dockerImage)
+                .previewLayout(.sizeThatFits)
+                .padding()
         }
     }
 #endif
 
-struct SelectableTextView: UIViewRepresentable {
-    typealias UIViewType = UITextView
-
-    var text: String
-    var font: UIFont
-
-    init(_ text: String, font: UIFont) {
-        self.text = text
-        self.font = font
+extension View {
+    func copyContextMenu(text: String) -> some View {
+        contextMenu(ContextMenu(menuItems: {
+            Button(
+                action: { UIPasteboard.general.string = text },
+                label: { Text("Copy") }
+            )
+        }))
     }
 
-    func makeUIView(context _: Context) -> UITextView {
-        let textView = UITextView()
-        textView.backgroundColor = .clear
-        textView.isEditable = false
-        textView.dataDetectorTypes = .all
-        textView.text = text
-        textView.font = font
-        textView.textColor = .white
-        textView.isScrollEnabled = false
-        textView.textContainerInset = .zero
-        textView.textContainer.lineFragmentPadding = 0
-        textView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-//        textView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-//        textField.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-//        textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-//        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textView
-    }
-
-    func updateUIView(_: UITextView, context _: Context) {
-//        uiView.text = text
-//        uiView.font = font
-//        let fixedWidth = uiView.frame.size.width
-//        let newSize = uiView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+    func onTapGestureOpenFirstURL(in text: String) -> some View {
+        onTapGesture {
+            guard let detector = try? NSDataDetector(
+                    types: NSTextCheckingResult.CheckingType.link.rawValue
+                ),
+                let match = detector.firstMatch(
+                    in: text,
+                    options: [],
+                    range: NSRange(location: 0, length: text.utf16.count)
+                ),
+                let range = Range(match.range, in: text),
+                let url = URL(string: String(text[range]))
+            else {
+                return
+            }
+            UIApplication.shared.open(url)
+        }
     }
 }

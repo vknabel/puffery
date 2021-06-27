@@ -9,6 +9,7 @@
 import SwiftUI
 import PrivacyPolicyModule
 import PlatformSupport
+import RegistrationModule
 
 struct AppSettingsPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -22,6 +23,10 @@ struct AppSettingsPage: View {
             }
 
             Section {
+                NavigationLink(
+                    destination: WelcomePage(),
+                    label: { Text("GettingStarted.Welcome.LetsStart") }
+                )
                 NavigationLink(destination: PrivacyPolicy()) {
                     Text("PrivacyPolicy.Title")
                 }
@@ -37,6 +42,9 @@ struct AppSettingsPage: View {
                 Button(action: logout) {
                     Text("Settings.Session.Logout").foregroundColor(.red)
                 }
+                Button(action: deleteAccount) {
+                    Text("Settings.Session.DeleteAccount").foregroundColor(.red)
+                }
             }
         }
         .roundedListStyle()
@@ -44,7 +52,6 @@ struct AppSettingsPage: View {
         .navigationBarItems(trailing: Button(action: dismiss) {
             Text("Settings.Done").fontWeight(.bold)
         })
-        .trackAppearence("settings", using: Current.tracker)
     }
 
     func dismiss() {
@@ -57,6 +64,17 @@ struct AppSettingsPage: View {
             Current.store.commit(.updateSession(nil))
             Widgets.reloadAll()
         }
+    }
+
+    func deleteAccount() {
+        dismiss()
+        Current.api.deleteAccount()
+            .task({ _ in
+                DispatchQueue.main.async {
+                    Current.store.commit(.updateSession(nil))
+                    Widgets.reloadAll()
+                }
+            })?.resume()
     }
 }
 

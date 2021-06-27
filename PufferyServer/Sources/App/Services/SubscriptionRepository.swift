@@ -1,4 +1,5 @@
 import Fluent
+import FluentSQL
 import Vapor
 
 extension Request {

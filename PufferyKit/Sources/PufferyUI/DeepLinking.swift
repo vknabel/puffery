@@ -52,12 +52,12 @@ import PufferyKit
                 }
 
                 let alert = UIAlertController(
-                    title: "ChannelSubscribingAlert.Title",
-                    message: "ChannelSubscribingAlert.Message",
+                    title: NSLocalizedString("ChannelSubscribingAlert.Title", comment: ""),
+                    message: NSLocalizedString("ChannelSubscribingAlert.Message", comment: ""),
                     preferredStyle: UIAlertController.Style.actionSheet
                 )
                 alert.addAction(UIAlertAction(
-                    title: "ChannelSubscribingAlert.Receive",
+                    title: NSLocalizedString("ChannelSubscribingAlert.Receive", comment: ""),
                     style: .default,
                     handler: { _ in
                         PushNotifications.register {
@@ -66,12 +66,12 @@ import PufferyKit
                     }
                 ))
                 alert.addAction(UIAlertAction(
-                    title: "ChannelSubscribingAlert.Silent",
+                    title: NSLocalizedString("ChannelSubscribingAlert.Silent", comment: ""),
                     style: .default,
                     handler: { _ in subscribe(isSilent: true) }
                 ))
                 alert.addAction(UIAlertAction(
-                    title: "ChannelSubscribingAlert.Cancel",
+                    title: NSLocalizedString("ChannelSubscribingAlert.Cancel", comment: ""),
                     style: .cancel,
                     handler: { _ in subscribe(isSilent: false) }
                 ))

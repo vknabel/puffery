@@ -9,7 +9,9 @@ There is no algorithm deciding wether you should receive notifications or not.
 
 [![Download on the App Store](./assets/Download_on_the_App_Store_Badge.svg)](https://apps.apple.com/de/app/puffery/id1508776889)
 
-[Join the public beta on TestFlight](https://testflight.apple.com/join/066lEjQN)
+[Join the public beta on TestFlight](https://testflight.apple.com/join/066lEjQN).
+
+Do you want to stay up to date with Puffery-dev-builds? [There is a channel for that!](puffery://puffery.app/channels/subscribe/70D2A779-2829-4DD0-93BC-C695E5E1EBE7)
 
 ## Server-Configuration
 

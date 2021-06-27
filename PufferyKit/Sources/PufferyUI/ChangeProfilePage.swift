@@ -13,7 +13,7 @@ import DesignSystem
 import PlatformSupport
 
 struct ChangeProfilePage: View {
-    @ObservedObject private var keyboard = Keyboard()
+    @ObservedObject private var keyboard = Keyboard.shared
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     @State var email = ""

@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ACKEE_APP_URL</key>
-	<string>$(ACKEE_APP_URL)</string>
-	<key>ACKEE_DOMAIN_ID</key>
-	<string>$(ACKEE_DOMAIN_ID)</string>
-	<key>ACKEE_SERVER_URL</key>
-	<string>$(ACKEE_SERVER_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

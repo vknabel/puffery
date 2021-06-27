@@ -15,6 +15,8 @@ struct ChannelDetailsPage: View {
 
     private var api: API { Current.api }
     @State var displaysChannelSettings = false
+    @State var displaysSendMessage = false
+    @State var forceReload = PassthroughSubject<Void, FetchingError>()
 
     var loadMessagesPublisher: AnyPublisher<[Message], FetchingError> {
         channel.map(api.messages(ofChannel:))?.publisher()
@@ -22,7 +24,7 @@ struct ChannelDetailsPage: View {
     }
 
     var body: some View {
-        Fetching(loadMessagesPublisher, empty: self.noMessages) { messages in
+        Fetching(loadMessagesPublisher, forceReload: forceReload, empty: self.noMessages) { messages in
             VStack {
                 MessageList(messages: messages)
             }
@@ -30,9 +32,16 @@ struct ChannelDetailsPage: View {
         .navigationBarTitle(self.channel?.title ?? NSLocalizedString("ChannelDetails.All", comment: "All"))
         .navigationBarItems(trailing:
             channel.map { channel in
-                Button(action: { self.displaysChannelSettings.toggle() }) {
-                    Image(systemName: "wrench")
-                        .font(.system(size: 21))
+                HStack {
+                    if #available(iOS 14.0, *) {
+                        Button(action: { self.displaysSendMessage.toggle() }, label: {
+                            Image(systemName: "paperplane")
+                        })
+                    }
+                    Button(action: { self.displaysChannelSettings.toggle() }) {
+                        Image(systemName: "wrench")
+                            .font(.system(size: 21))
+                    }
                 }
             }
         )
@@ -45,7 +54,18 @@ struct ChannelDetailsPage: View {
                 }
             }.navigationViewStyle(StackNavigationViewStyle())
         }
-        .trackAppearence("channels/:id", using: Current.tracker)
+        .sheet(isPresented: self.$displaysSendMessage) {
+            NavigationView {
+                if let channel = channel, #available(iOS 14.0, *) {
+                    MessageCreationPage(channel: channel)
+                        .onDisappear(perform: {
+                            forceReload.send(())
+                        })
+                } else {
+                    EmptyView()
+                }
+            }.navigationViewStyle(StackNavigationViewStyle())
+        }
     }
 
     var noMessages: some View {

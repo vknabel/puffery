@@ -24,4 +24,26 @@ extension Application {
             .saving(on: db)
             .wait()
     }
+
+    func seedUserToken(user: User) throws -> UserToken {
+        let token = try user.generateToken()
+        try token.create(on: db).wait()
+        return token
+    }
+
+    func seedMessage(
+        channel: App.Channel,
+        title: String = "You got news!",
+        body: String = "Test contents",
+        color: String? = nil
+    ) throws -> Message {
+        try Message(
+            channel: channel,
+            title: title,
+            body: body,
+            color: color
+        )
+        .saving(on: db)
+        .wait()
+    }
 }

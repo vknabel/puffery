@@ -71,7 +71,7 @@ final class UserController {
 
     func updateProfile(_ req: Request) throws -> EventLoopFuture<UserResponse> {
         let user = try req.auth.require(User.self)
-        try UpdateProfileRequest.validate(req)
+        try UpdateProfileRequest.validate(content: req)
         let profile = try req.content.decode(UpdateProfileRequest.self)
 
         if let email = profile.email {
@@ -86,6 +86,12 @@ final class UserController {
             .flatMapThrowing { _ in
                 try UserResponse(id: user.requireID(), email: user.email, isConfirmed: user.isConfirmed)
             }
+    }
+    
+    func deleteUser(_ req: Request) throws -> EventLoopFuture<HTTPResponseStatus> {
+        let user = try req.auth.require(User.self)
+        return user.delete(on: req.db)
+            .transform(to: HTTPResponseStatus.ok)
     }
 }
 

@@ -28,6 +28,7 @@
 "Settings.Acknowledgements.Link" = "Acknowledgements";
 
 "Settings.Session.Logout" = "Logout";
+"Settings.Session.DeleteAccount" = "Delete Account";
 
 "Profile.Email.Title" = "Edit Profile";
 "Profile.Email.Placeholder" = "Email";
@@ -57,9 +58,20 @@
 "ChannelList.SubscribeChannels.New" = "Subscribe";
 "ChannelList.NoChannels" = "No Channels";
 
+"CreateMessage.Title" = "Create Notification";
+"CreateMessage.Cancel" = "Cancel";
+"CreateMessage.Create" = "Notify";
+"CreateMessage.MessageTitle" = "Title";
+"CreateMessage.MessageText" = "Text";
+
+"ChannelSettings.Basic.SectionTitle" = "General";
 "ChannelSettings.Basic.Name" = "Name";
 "ChannelSettings.Basic.ReceiveNotifications" = "Receive Notifications";
 "ChannelSettings.Share.SectionTitle" = "Share";
+"ChannelSettings.Statistics.SectionTitle" = "Statistics";
+"ChannelSettings.Statistics.Notifiers" = "Notifiers";
+"ChannelSettings.Statistics.Receivers" = "Receivers";
+"ChannelSettings.Statistics.Messages" = "Current Messages";
 "ChannelSettings.Share.Explanation" = "Share the Notify Key to allow others notifying you. If sufficient, just share the Receive Only Key to keep others up to date.";
 "ChannelSettings.Share.NotifyKey" = "Notify Key";
 "ChannelSettings.Share.InvitePublishers" = "Share to invite publishers";
@@ -131,3 +143,5 @@
 "Registration.Email.Title" = "We sent you a link to log in by email";
 "Registration.Email.Recepient email:%@" = "Sent to %@";
 "Registration.Email.OpenApp" = "Open Mail";
+
+"Message.CopyWhole" = "Copy";

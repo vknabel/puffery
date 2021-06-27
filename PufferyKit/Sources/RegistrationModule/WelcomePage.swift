@@ -3,7 +3,9 @@ import DesignSystem
 
 public struct WelcomePage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
+
+    public init() {}
+
     public var body: some View {
         VStack {
             SlideImage("Welcome")

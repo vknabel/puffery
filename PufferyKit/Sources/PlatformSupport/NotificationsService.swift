@@ -15,15 +15,14 @@ import UserNotifications
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        defer {
-            DispatchQueue.main.async(execute: Widgets.reloadAll)
-        }
         if let subscribedChannel = ReceivedMessageNotification(content: response.notification.request.content) {
             NotificationCenter.default.post(name: .receivedMessage, object: nil, userInfo: [
                 "ReceivedMessageNotification": subscribedChannel,
             ])
+            DispatchQueue.main.async(execute: Widgets.reloadAll)
             completionHandler()
         } else {
+            DispatchQueue.main.async(execute: Widgets.reloadAll)
             completionHandler()
         }
     }

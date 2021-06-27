@@ -10,7 +10,7 @@ struct EmailLoginPage: View {
     var body: some View {
         WithViewStore(self.store) { viewModel in
             Slide(.constant(0), imageNamed: "Welcome", showsPageControls: false) {
-                EmailTextField(onFinish: onFinish, viewModel: viewModel)
+                EmailTextField(email: Binding(get: { viewModel.latestOrLoginEmail }, set: { viewModel.send(.updateLoginEmail($0)) }), onFinish: onFinish, viewModel: viewModel)
                 
                 Button(action: { viewModel.send(.shouldLogin(onFinish: self.onFinish)) }) {
                     Text("GettingStarted.Login.Perform")
@@ -27,6 +27,13 @@ struct EmailLoginPage: View {
             }
             .padding(.horizontal, 20)
             .multilineTextAlignment(.leading)
+            .alert(item: Binding(get: { viewModel.activity.failedError }, set: { _ in viewModel.send(.activityErrorCleared) })) {
+                Alert(
+                    title: Text("GettingStarted.Registration.Failed"),
+                    message: Text($0.localizedDescription)
+                )
+            }
         }
+        .navigationBarHidden(false)
     }
 }

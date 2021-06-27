@@ -16,7 +16,9 @@ extension Message: Identifiable {
         colorName.flatMap(Color.init(rawValue:)) ?? .unspecified
     }
 
-    public enum Color: String, Codable {
+    public enum Color: String, Codable, CaseIterable, Identifiable {
+        public var id: String { rawValue }
+        
         case blue, orange, green, red, gray, pink, purple, yellow
 
         public static var unspecified: Color {

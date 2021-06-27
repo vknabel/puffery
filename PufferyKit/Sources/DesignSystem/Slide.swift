@@ -2,7 +2,7 @@ import SwiftUI
 import PlatformSupport
 
 public struct Slide<Body: View>: View {
-    @ObservedObject private var keyboard = Keyboard()
+    @ObservedObject private var keyboard = Keyboard.shared
 
     @Binding var currentPage: Int
     var image: SlideImage
@@ -32,8 +32,9 @@ public struct Slide<Body: View>: View {
                 NextPageButton($currentPage).transition(.opacity)
             }
         }
+        .padding()
+        .padding(.bottom, 30)
         .navigationBarTitle("")
-        .navigationBarHidden(true)
         .frame(maxWidth: 350)
     }
 }

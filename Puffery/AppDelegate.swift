@@ -11,6 +11,7 @@ import CoreData
 import PufferyUI
 import UIKit
 import UserNotifications
+import PlatformSupport
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,6 +41,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
         pufferyApp.didRegisterForRemoteNotifications(with: deviceToken)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        Widgets.reloadAll()
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        Widgets.reloadAll()
+        completionHandler(.newData)
     }
 
     // MARK: - Core Data stack

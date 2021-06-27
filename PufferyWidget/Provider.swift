@@ -15,10 +15,10 @@ struct Provider: IntentTimelineProvider {
     }
 
     func getTimeline(for configuration: ChannelWidgetsIntent, in context: Context, completion: @escaping (Timeline<MessageEntry>) -> Void) {
-        fetchTimelineEntries(for: configuration, in: context) { entries in
+        fetchTimelineEntries(for: configuration, in: context) { entry in
             let timeline: Timeline<MessageEntry>
-            if let entries = entries, !entries.isEmpty {
-                timeline = Timeline(entries: entries, policy: .atEnd)
+            if let entry = entry {
+                timeline = Timeline(entries: [entry], policy: .never)
             } else {
                 timeline = Timeline(entries: [], policy: TimelineReloadPolicy.after(Date(timeIntervalSinceNow: 60)))
             }
@@ -26,10 +26,10 @@ struct Provider: IntentTimelineProvider {
         }
     }
 
-    private func fetchTimelineEntries(for configuration: ChannelWidgetsIntent, in _: Context, completion: @escaping ([MessageEntry]?) -> Void) {
+    private func fetchTimelineEntries(for configuration: ChannelWidgetsIntent, in _: Context, completion: @escaping (MessageEntry?) -> Void) {
         let messages: Endpoint<[Message]>
         guard Current.store.state.session.isLoggedIn() else {
-            completion([MessageEntry(message: nil, configuration: configuration)])
+            completion(MessageEntry(message: nil, configuration: configuration))
             return
         }
         if let channelId = configuration.channel?.identifier.flatMap(UUID.init(uuidString:)) {
@@ -46,10 +46,10 @@ struct Provider: IntentTimelineProvider {
             .task { result in
                 switch result {
                 case let .success(entries):
-                    completion(entries)
+                    completion(entries.first)
                 case let .failure(error):
                     print(error)
-                    completion([MessageEntry(message: nil, configuration: configuration)])
+                    completion(MessageEntry(message: nil, configuration: configuration))
                 }
             }
     }

@@ -75,6 +75,11 @@ final class VaporAPI: API {
             .encoding(body: credentials, using: jsonEncoder.encode)
             .decoding(jsonDecoder.decode, UserResponse.self)
     }
+    
+    func deleteAccount() -> Endpoint<Void> {
+        endpoint().delete("api", "v1", "profile")
+            .ignoreValue()
+    }
 
     func confirmEmail(_ confirmation: String) -> Endpoint<Void> {
         endpoint().put("api", "v1", "confirmations", "email", confirmation)
@@ -166,6 +171,11 @@ final class VaporAPI: API {
 
     func channel(id: UUID) -> Endpoint<SubscribedChannelResponse> {
         endpoint().get("api", "v1", "channels", id.uuidString)
+            .decoding(jsonDecoder.decode)
+    }
+
+    func channelStats(id: UUID) -> Endpoint<SubscribedChannelStatisticsResponse> {
+        endpoint().get("api", "v1", "channels", id.uuidString, "stats")
             .decoding(jsonDecoder.decode)
     }
 

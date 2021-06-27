@@ -47,6 +47,22 @@ public struct SubscribedChannelResponse: Codable, Hashable {
     }
 }
 
+public struct SubscribedChannelStatisticsResponse: Codable, Hashable {
+    public var notifiers: Int
+    public var receivers: Int
+    public var messages: Int
+
+    public init(
+        notifiers: Int,
+        receivers: Int,
+        messages: Int
+    ) {
+        self.notifiers = notifiers
+        self.receivers = receivers
+        self.messages = messages
+    }
+}
+
 public struct SubscribedChannelDeletedResponse: Codable {
     public init() {}
 }
