@@ -38,6 +38,7 @@ let package = Package(
                 "PufferyKit",
                 "RegistrationModule",
                 "GettingStartedModule",
+                "AckeeTracker",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]
         ),

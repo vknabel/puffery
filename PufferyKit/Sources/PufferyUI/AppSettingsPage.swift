@@ -10,6 +10,7 @@ import SwiftUI
 import PrivacyPolicyModule
 import PlatformSupport
 import RegistrationModule
+import AckeeTracker
 
 struct AppSettingsPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -59,6 +60,7 @@ struct AppSettingsPage: View {
     }
 
     func logout() {
+        ackeeTracker.action("6e2d6099-a809-4063-ba5b-d474611691b3", attributes: CreateActionInput(key: "logout"))
         dismiss()
         DispatchQueue.main.async {
             Current.store.commit(.updateSession(nil))
@@ -67,6 +69,7 @@ struct AppSettingsPage: View {
     }
 
     func deleteAccount() {
+        ackeeTracker.action("6e2d6099-a809-4063-ba5b-d474611691b3", attributes: CreateActionInput(key: "delete"))
         dismiss()
         Current.api.deleteAccount()
             .task({ _ in

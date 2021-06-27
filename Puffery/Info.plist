@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AckeeAppUrl</key>
+	<string>puffery://puffery.app</string>
+	<key>AckeeDomainId</key>
+	<string>dd72344d-8238-4ca4-838e-422e42e2555b</string>
+	<key>AckeeServerUrl</key>
+	<string>https://ack.knabel.dev</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

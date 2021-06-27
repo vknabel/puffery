@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import AckeeTracker
 
 struct AcknowledgementsPage: View {
     var assets: [FlaticonAsset]
@@ -39,6 +40,7 @@ struct AcknowledgementsPage: View {
             }.show(when: !licenses.isEmpty)
         }.roundedListStyle()
             .navigationBarTitle("Acknowledgements.Title", displayMode: .inline)
+        .record("acknowledgments")
     }
 
     func openAssetDetails(_ asset: FlaticonAsset) {
@@ -69,6 +71,7 @@ struct LicensePage: View {
             Image(systemName: "safari").padding()
         })
         .navigationBarTitle("\(license.name)", displayMode: .inline)
+        .record("license")
     }
 
     func openLicense() {
@@ -87,6 +90,7 @@ struct FlaticonAssetPage: View {
             })
         }
         .navigationBarTitle("\(asset.name)", displayMode: .inline)
+        .record("acknowledgements/flaticon")
     }
 
     func openLicense() {

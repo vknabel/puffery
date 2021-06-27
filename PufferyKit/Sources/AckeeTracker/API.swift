@@ -13,7 +13,7 @@ public struct CreateActionInput: GraphQLMapConvertible {
   /// Use '1' to count how many times an event occurred or a price (e.g. '1.99') to
   /// see the sum of successful checkouts in a shop.
   ///   - details: Details allow you to store more data along with the associated action.
-  public init(key: String, value: String?? = nil, details: String?? = nil) {
+  public init(key: String, value: Swift.Optional<String?> = nil, details: Swift.Optional<String?> = nil) {
     graphQLMap = ["key": key, "value": value, "details": details]
   }
 
@@ -30,9 +30,9 @@ public struct CreateActionInput: GraphQLMapConvertible {
   /// Numerical value that is added to all other numerical values of the key, grouped by day, month or year.
   /// Use '1' to count how many times an event occurred or a price (e.g. '1.99') to
   /// see the sum of successful checkouts in a shop.
-  public var value: String?? {
+  public var value: Swift.Optional<String?> {
     get {
-      return graphQLMap["value"] as? String?? ?? String??.none
+      return graphQLMap["value"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "value")
@@ -40,9 +40,9 @@ public struct CreateActionInput: GraphQLMapConvertible {
   }
 
   /// Details allow you to store more data along with the associated action.
-  public var details: String?? {
+  public var details: Swift.Optional<String?> {
     get {
-      return graphQLMap["details"] as? String?? ?? String??.none
+      return graphQLMap["details"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "details")
@@ -69,7 +69,7 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   ///   - browserVersion: Version of the browser used by the user to visit the site.
   ///   - browserWidth: Width of the browser used by the user to visit the site.
   ///   - browserHeight: Height of the browser used by the user to visit the site.
-  public init(siteLocation: String, siteReferrer: String?? = nil, source: String?? = nil, siteLanguage: String?? = nil, screenWidth: String?? = nil, screenHeight: String?? = nil, screenColorDepth: String?? = nil, deviceName: String?? = nil, deviceManufacturer: String?? = nil, osName: String?? = nil, osVersion: String?? = nil, browserName: String?? = nil, browserVersion: String?? = nil, browserWidth: String?? = nil, browserHeight: String?? = nil) {
+  public init(siteLocation: String, siteReferrer: Swift.Optional<String?> = nil, source: Swift.Optional<String?> = nil, siteLanguage: Swift.Optional<String?> = nil, screenWidth: Swift.Optional<String?> = nil, screenHeight: Swift.Optional<String?> = nil, screenColorDepth: Swift.Optional<String?> = nil, deviceName: Swift.Optional<String?> = nil, deviceManufacturer: Swift.Optional<String?> = nil, osName: Swift.Optional<String?> = nil, osVersion: Swift.Optional<String?> = nil, browserName: Swift.Optional<String?> = nil, browserVersion: Swift.Optional<String?> = nil, browserWidth: Swift.Optional<String?> = nil, browserHeight: Swift.Optional<String?> = nil) {
     graphQLMap = ["siteLocation": siteLocation, "siteReferrer": siteReferrer, "source": source, "siteLanguage": siteLanguage, "screenWidth": screenWidth, "screenHeight": screenHeight, "screenColorDepth": screenColorDepth, "deviceName": deviceName, "deviceManufacturer": deviceManufacturer, "osName": osName, "osVersion": osVersion, "browserName": browserName, "browserVersion": browserVersion, "browserWidth": browserWidth, "browserHeight": browserHeight]
   }
 
@@ -84,9 +84,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Where the user came from. Either unknown, a specific page or just the domain. This depends on the browser of the user.
-  public var siteReferrer: String?? {
+  public var siteReferrer: Swift.Optional<String?> {
     get {
-      return graphQLMap["siteReferrer"] as? String?? ?? String??.none
+      return graphQLMap["siteReferrer"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "siteReferrer")
@@ -94,9 +94,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Where the user came from. Specified using the source query parameter.
-  public var source: String?? {
+  public var source: Swift.Optional<String?> {
     get {
-      return graphQLMap["source"] as? String?? ?? String??.none
+      return graphQLMap["source"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "source")
@@ -104,9 +104,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Preferred language of the user. ISO 639-1 formatted.
-  public var siteLanguage: String?? {
+  public var siteLanguage: Swift.Optional<String?> {
     get {
-      return graphQLMap["siteLanguage"] as? String?? ?? String??.none
+      return graphQLMap["siteLanguage"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "siteLanguage")
@@ -114,9 +114,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Width of the screen used by the user to visit the site.
-  public var screenWidth: String?? {
+  public var screenWidth: Swift.Optional<String?> {
     get {
-      return graphQLMap["screenWidth"] as? String?? ?? String??.none
+      return graphQLMap["screenWidth"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "screenWidth")
@@ -124,9 +124,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Height of the screen used by the user to visit the site.
-  public var screenHeight: String?? {
+  public var screenHeight: Swift.Optional<String?> {
     get {
-      return graphQLMap["screenHeight"] as? String?? ?? String??.none
+      return graphQLMap["screenHeight"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "screenHeight")
@@ -134,9 +134,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Color depth of the screen used by the user to visit the site.
-  public var screenColorDepth: String?? {
+  public var screenColorDepth: Swift.Optional<String?> {
     get {
-      return graphQLMap["screenColorDepth"] as? String?? ?? String??.none
+      return graphQLMap["screenColorDepth"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "screenColorDepth")
@@ -144,9 +144,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Device used by the user to visit the site.
-  public var deviceName: String?? {
+  public var deviceName: Swift.Optional<String?> {
     get {
-      return graphQLMap["deviceName"] as? String?? ?? String??.none
+      return graphQLMap["deviceName"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "deviceName")
@@ -154,9 +154,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Manufacturer of the device used by the user to visit the site.
-  public var deviceManufacturer: String?? {
+  public var deviceManufacturer: Swift.Optional<String?> {
     get {
-      return graphQLMap["deviceManufacturer"] as? String?? ?? String??.none
+      return graphQLMap["deviceManufacturer"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "deviceManufacturer")
@@ -164,9 +164,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Operating system used by the user to visit the site.
-  public var osName: String?? {
+  public var osName: Swift.Optional<String?> {
     get {
-      return graphQLMap["osName"] as? String?? ?? String??.none
+      return graphQLMap["osName"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "osName")
@@ -174,9 +174,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Operating system version used by the user to visit the site.
-  public var osVersion: String?? {
+  public var osVersion: Swift.Optional<String?> {
     get {
-      return graphQLMap["osVersion"] as? String?? ?? String??.none
+      return graphQLMap["osVersion"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "osVersion")
@@ -184,9 +184,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Browser used by the user to visit the site.
-  public var browserName: String?? {
+  public var browserName: Swift.Optional<String?> {
     get {
-      return graphQLMap["browserName"] as? String?? ?? String??.none
+      return graphQLMap["browserName"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "browserName")
@@ -194,9 +194,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Version of the browser used by the user to visit the site.
-  public var browserVersion: String?? {
+  public var browserVersion: Swift.Optional<String?> {
     get {
-      return graphQLMap["browserVersion"] as? String?? ?? String??.none
+      return graphQLMap["browserVersion"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "browserVersion")
@@ -204,9 +204,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Width of the browser used by the user to visit the site.
-  public var browserWidth: String?? {
+  public var browserWidth: Swift.Optional<String?> {
     get {
-      return graphQLMap["browserWidth"] as? String?? ?? String??.none
+      return graphQLMap["browserWidth"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "browserWidth")
@@ -214,9 +214,9 @@ public struct CreateRecordInput: GraphQLMapConvertible {
   }
 
   /// Height of the browser used by the user to visit the site.
-  public var browserHeight: String?? {
+  public var browserHeight: Swift.Optional<String?> {
     get {
-      return graphQLMap["browserHeight"] as? String?? ?? String??.none
+      return graphQLMap["browserHeight"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "browserHeight")
@@ -234,7 +234,7 @@ public struct UpdateActionInput: GraphQLMapConvertible {
   /// see the sum of successful checkouts in a shop.
   /// Reset an existing value using 'null'.
   ///   - details: Details allow you to store more data along with the associated action.
-  public init(key: String, value: String?? = nil, details: String?? = nil) {
+  public init(key: String, value: Swift.Optional<String?> = nil, details: Swift.Optional<String?> = nil) {
     graphQLMap = ["key": key, "value": value, "details": details]
   }
 
@@ -252,9 +252,9 @@ public struct UpdateActionInput: GraphQLMapConvertible {
   /// Use '1' to count how many times an event occurred or a price (e.g. '1.99') to
   /// see the sum of successful checkouts in a shop.
   /// Reset an existing value using 'null'.
-  public var value: String?? {
+  public var value: Swift.Optional<String?> {
     get {
-      return graphQLMap["value"] as? String?? ?? String??.none
+      return graphQLMap["value"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "value")
@@ -262,9 +262,9 @@ public struct UpdateActionInput: GraphQLMapConvertible {
   }
 
   /// Details allow you to store more data along with the associated action.
-  public var details: String?? {
+  public var details: Swift.Optional<String?> {
     get {
-      return graphQLMap["details"] as? String?? ?? String??.none
+      return graphQLMap["details"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "details")
@@ -313,7 +313,7 @@ public final class CreateActionMutation: GraphQLMutation {
     public private(set) var resultMap: ResultMap
 
     public init(unsafeResultMap: ResultMap) {
-      resultMap = unsafeResultMap
+      self.resultMap = unsafeResultMap
     }
 
     public init(createAction: CreateAction) {
@@ -343,7 +343,7 @@ public final class CreateActionMutation: GraphQLMutation {
       public private(set) var resultMap: ResultMap
 
       public init(unsafeResultMap: ResultMap) {
-        resultMap = unsafeResultMap
+        self.resultMap = unsafeResultMap
       }
 
       public init(payload: Payload? = nil) {
@@ -382,7 +382,7 @@ public final class CreateActionMutation: GraphQLMutation {
         public private(set) var resultMap: ResultMap
 
         public init(unsafeResultMap: ResultMap) {
-          resultMap = unsafeResultMap
+          self.resultMap = unsafeResultMap
         }
 
         public init(id: GraphQLID) {
@@ -453,7 +453,7 @@ public final class CreateRecordMutation: GraphQLMutation {
     public private(set) var resultMap: ResultMap
 
     public init(unsafeResultMap: ResultMap) {
-      resultMap = unsafeResultMap
+      self.resultMap = unsafeResultMap
     }
 
     public init(createRecord: CreateRecord) {
@@ -483,7 +483,7 @@ public final class CreateRecordMutation: GraphQLMutation {
       public private(set) var resultMap: ResultMap
 
       public init(unsafeResultMap: ResultMap) {
-        resultMap = unsafeResultMap
+        self.resultMap = unsafeResultMap
       }
 
       public init(payload: Payload? = nil) {
@@ -522,7 +522,7 @@ public final class CreateRecordMutation: GraphQLMutation {
         public private(set) var resultMap: ResultMap
 
         public init(unsafeResultMap: ResultMap) {
-          resultMap = unsafeResultMap
+          self.resultMap = unsafeResultMap
         }
 
         public init(id: GraphQLID) {
@@ -590,7 +590,7 @@ public final class UpdateActionMutation: GraphQLMutation {
     public private(set) var resultMap: ResultMap
 
     public init(unsafeResultMap: ResultMap) {
-      resultMap = unsafeResultMap
+      self.resultMap = unsafeResultMap
     }
 
     public init(updateAction: UpdateAction) {
@@ -620,7 +620,7 @@ public final class UpdateActionMutation: GraphQLMutation {
       public private(set) var resultMap: ResultMap
 
       public init(unsafeResultMap: ResultMap) {
-        resultMap = unsafeResultMap
+        self.resultMap = unsafeResultMap
       }
 
       public init(success: Bool? = nil) {
@@ -685,7 +685,7 @@ public final class UpdateRecordMutation: GraphQLMutation {
     public private(set) var resultMap: ResultMap
 
     public init(unsafeResultMap: ResultMap) {
-      resultMap = unsafeResultMap
+      self.resultMap = unsafeResultMap
     }
 
     public init(updateRecord: UpdateRecord) {
@@ -715,7 +715,7 @@ public final class UpdateRecordMutation: GraphQLMutation {
       public private(set) var resultMap: ResultMap
 
       public init(unsafeResultMap: ResultMap) {
-        resultMap = unsafeResultMap
+        self.resultMap = unsafeResultMap
       }
 
       public init(success: Bool? = nil) {
