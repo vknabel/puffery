@@ -1,1 +1,4 @@
 PUFFERY_API_URL = https:/$()/vapor.puffery.app
+ACKEE_APP_URL = puffery:/$()/puffery.app
+ACKEE_DOMAIN_ID = dd72344d-8238-4ca4-838e-422e42e2555b
+ACKEE_SERVER_URL = https:/$()/ack.knabel.dev/api

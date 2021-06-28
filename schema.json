@@ -410,6 +410,22 @@
         "description": "Facts about a domain. Usually simple data that can be represented in one value.",
         "fields": [
           {
+            "name": "id",
+            "description": "Facts identifier.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "activeVisitors",
             "description": "Number of visitors currently on your site.",
             "args": [],
@@ -427,14 +443,14 @@
           },
           {
             "name": "averageViews",
-            "description": "Average number of visitors per day during the last 14 days.",
+            "description": "Details about the average number of views.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "UnsignedInt",
+                "kind": "OBJECT",
+                "name": "AverageViews",
                 "ofType": null
               }
             },
@@ -443,14 +459,14 @@
           },
           {
             "name": "averageDuration",
-            "description": "Average visit duration of the last 14 days in milliseconds.",
+            "description": "Details about the average visit duration.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "UnsignedInt",
+                "kind": "OBJECT",
+                "name": "AverageDuration",
                 "ofType": null
               }
             },
@@ -523,9 +539,113 @@
       },
       {
         "kind": "OBJECT",
+        "name": "AverageViews",
+        "description": null,
+        "fields": [
+          {
+            "name": "count",
+            "description": "Average number of views per day during the last 14 days, excluding the current day.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "UnsignedInt",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "change",
+            "description": "Percentage change of the average views when comparing the last 7 days with the previous 7 days.\nMight be undefined when there's not enough data to compare.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Float",
+        "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AverageDuration",
+        "description": null,
+        "fields": [
+          {
+            "name": "count",
+            "description": "Average visit duration in milliseconds for the last 14 days, excluding the current day.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "UnsignedInt",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "change",
+            "description": "Percentage change of the average visit duration when comparing the last 7 days with the previous 7 days.\nMight be undefined when there's not enough data to compare.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "DomainStatistics",
         "description": "Statistics of a domain. Usually data that needs to be represented in a list or chart.",
         "fields": [
+          {
+            "name": "id",
+            "description": "Statistic identifier.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "views",
             "description": "Amount of views grouped by day, month or year.",
@@ -1160,14 +1280,30 @@
         "fields": [
           {
             "name": "id",
-            "description": "Date of visits.",
+            "description": "View identifier.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "DateTime",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": "Date of visits.\nEither YYYY, YYYY-MM or YYYY-MM-DD depending on the current interval.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -1267,6 +1403,22 @@
         "fields": [
           {
             "name": "id",
+            "description": "Page identifier.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
             "description": "URL of the page.",
             "args": [],
             "type": {
@@ -1357,6 +1509,22 @@
         "fields": [
           {
             "name": "id",
+            "description": "Referrer identifier.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
             "description": "Either the URL of the referrer or the source parameter of the page to indicate where the visit comes from.",
             "args": [],
             "type": {
@@ -1408,14 +1576,30 @@
         "fields": [
           {
             "name": "id",
-            "description": "Date of average duration.",
+            "description": "Duration identifier.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "DateTime",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": "Date of average duration.\nEither YYYY, YYYY-MM or YYYY-MM-DD depending on the current interval.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -1474,6 +1658,22 @@
         "fields": [
           {
             "name": "id",
+            "description": "System identifier.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
             "description": "Name of the system. With or without the version.",
             "args": [],
             "type": {
@@ -1548,6 +1748,22 @@
         "fields": [
           {
             "name": "id",
+            "description": "Device identifier.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
             "description": "Name of the device. With or without the model.",
             "args": [],
             "type": {
@@ -1622,6 +1838,22 @@
         "fields": [
           {
             "name": "id",
+            "description": "Browser identifier.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
             "description": "Name of the browser. With or without the version.",
             "args": [],
             "type": {
@@ -1720,6 +1952,22 @@
         "fields": [
           {
             "name": "id",
+            "description": "Size identifier.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
             "description": "Screen or browser width, height or resolution.",
             "args": [],
             "type": {
@@ -1771,6 +2019,22 @@
         "fields": [
           {
             "name": "id",
+            "description": "Language identifier.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
             "description": "Name of the language or language code when unknown.",
             "args": [],
             "type": {
@@ -1963,6 +2227,22 @@
         "description": "Statistics of an event. The data is available in different types, depending on\nwhether they are to be shown in a chart or list.",
         "fields": [
           {
+            "name": "id",
+            "description": "Statistic identifier.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "chart",
             "description": "The chart type should be used when showing events in a chart. It groups events\nby an interval and shows the total or average sum of values on each entry.",
             "args": [
@@ -2126,14 +2406,30 @@
         "fields": [
           {
             "name": "id",
-            "description": "Date of the event.",
+            "description": "Event entry identifier.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "DateTime",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": "Date of the event entry.\nEither YYYY, YYYY-MM or YYYY-MM-DD depending on the current interval.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -2159,16 +2455,6 @@
         ],
         "inputFields": null,
         "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Float",
-        "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
@@ -2202,7 +2488,23 @@
         "fields": [
           {
             "name": "id",
-            "description": "Key of the event.",
+            "description": "Event entry identifier.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": "Key of the event entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -5000,11 +5302,7 @@
       {
         "name": "cacheControl",
         "description": null,
-        "locations": [
-          "FIELD_DEFINITION",
-          "OBJECT",
-          "INTERFACE"
-        ],
+        "locations": ["FIELD_DEFINITION", "OBJECT", "INTERFACE"],
         "args": [
           {
             "name": "maxAge",
@@ -5031,9 +5329,7 @@
       {
         "name": "specifiedBy",
         "description": "Exposes a URL that specifies the behaviour of this scalar.",
-        "locations": [
-          "SCALAR"
-        ],
+        "locations": ["SCALAR"],
         "args": [
           {
             "name": "url",
@@ -5054,11 +5350,7 @@
       {
         "name": "skip",
         "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
-        "locations": [
-          "FIELD",
-          "FRAGMENT_SPREAD",
-          "INLINE_FRAGMENT"
-        ],
+        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
         "args": [
           {
             "name": "if",
@@ -5079,11 +5371,7 @@
       {
         "name": "include",
         "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
-        "locations": [
-          "FIELD",
-          "FRAGMENT_SPREAD",
-          "INLINE_FRAGMENT"
-        ],
+        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
         "args": [
           {
             "name": "if",
@@ -5104,10 +5392,7 @@
       {
         "name": "deprecated",
         "description": "Marks an element of a GraphQL schema as no longer supported.",
-        "locations": [
-          "FIELD_DEFINITION",
-          "ENUM_VALUE"
-        ],
+        "locations": ["FIELD_DEFINITION", "ENUM_VALUE"],
         "args": [
           {
             "name": "reason",
@@ -5124,11 +5409,7 @@
       {
         "name": "client",
         "description": "Direct the client to resolve this field locally, either from the cache or local resolvers.",
-        "locations": [
-          "FIELD",
-          "FRAGMENT_DEFINITION",
-          "INLINE_FRAGMENT"
-        ],
+        "locations": ["FIELD", "FRAGMENT_DEFINITION", "INLINE_FRAGMENT"],
         "args": [
           {
             "name": "always",
@@ -5145,9 +5426,7 @@
       {
         "name": "export",
         "description": "Export this locally resolved field as a variable to be used in the remainder of this query. See\nhttps://www.apollographql.com/docs/react/essentials/local-state/#using-client-fields-as-variables",
-        "locations": [
-          "FIELD"
-        ],
+        "locations": ["FIELD"],
         "args": [
           {
             "name": "as",
@@ -5168,9 +5447,7 @@
       {
         "name": "connection",
         "description": "Specify a custom store key for this result. See\nhttps://www.apollographql.com/docs/react/advanced/caching/#the-connection-directive",
-        "locations": [
-          "FIELD"
-        ],
+        "locations": ["FIELD"],
         "args": [
           {
             "name": "key",

@@ -27,11 +27,13 @@ public class AckeeTracker {
            let appUrlString = Bundle.main.infoDictionary?["AckeeAppUrl"] as? String,
            let appUrl = URL(string: appUrlString),
            let domainId = Bundle.main.infoDictionary?["AckeeDomainId"] as? String {
-            prepare(AckeeOptions(domainId: domainId, serverUrl: serverUrl, appUrl: appUrl))
+            let detailed = Bundle.main.infoDictionary?["AckeeDetailed"] as? Bool ?? false
+            prepare(AckeeOptions(domainId: domainId, serverUrl: serverUrl, appUrl: appUrl, detailed: detailed))
         }
     }
     
     public func prepare(_ options: AckeeOptions) {
+        self.options = options
         client = ApolloClient(url: options.serverUrl)
     }
     
@@ -44,11 +46,12 @@ public class AckeeTracker {
     }
     
     private var isEnabled: Bool {
-        if let options = options {
-            return !options.disabled && options.ignoreDebug == true && !isDebug
-        } else {
-            return false
-        }
+        return true
+//        if let options = options {
+//            return !options.disabled && options.ignoreDebug == true && !isDebug
+//        } else {
+//            return false
+//        }
     }
     
     @discardableResult
@@ -57,6 +60,7 @@ public class AckeeTracker {
             return EmptyCancellable()
         }
         return client.perform(mutation: CreateRecordMutation(domainId: options.domainId, input: updatedAttributes(record))) { result in
+            self.log(record.siteLocation, result)
             if let recordId = try? result.get().data?.createRecord.payload?.id {
                 onSuccess?(Record(id: recordId))
             }
@@ -74,6 +78,7 @@ public class AckeeTracker {
             return EmptyCancellable()
         }
         return client.perform(mutation: UpdateRecordMutation(recordId: record.id)) { result in
+            self.log(record.id, result)
             if let success = try? result.get().data?.updateRecord.success {
                 onSuccess?(success)
             }
@@ -86,6 +91,7 @@ public class AckeeTracker {
             return EmptyCancellable()
         }
         return client.perform(mutation: CreateActionMutation(eventId: eventId, input: attributes)) { result in
+            self.log(eventId, result)
             if let actionId = try? result.get().data?.createAction.payload?.id {
                 onSuccess?(Action(id: actionId))
             }
@@ -93,8 +99,8 @@ public class AckeeTracker {
     }
     
     @discardableResult
-    public func action<Event: RawRepresentable>(_ event: Event, attributes: CreateActionInput, onSuccess: ((Action) -> Void)? = nil) -> Cancellable where Event.RawValue == String {
-        action(event.rawValue, attributes: attributes, onSuccess: onSuccess)
+    public func action(_ eventId: String, key: String, value: Decimal = 1.0, details: String? = nil, onSuccess: ((Action) -> Void)? = nil) -> Cancellable {
+        action(eventId, attributes: CreateActionInput(key: key, value: "\(value)", details: details), onSuccess: onSuccess)
     }
     
     @discardableResult
@@ -103,6 +109,7 @@ public class AckeeTracker {
             return EmptyCancellable()
         }
         return client.perform(mutation: UpdateActionMutation(actionId: action.id, input: attributes)) { result in
+            self.log(action.id, result)
             if let success = try? result.get().data?.updateAction.success {
                 onSuccess?(success)
             }
@@ -123,5 +130,20 @@ public class AckeeTracker {
             recordSession.record = record
         }
         return recordSession
+    }
+    
+    private func log<Data>(_ what: String, _ result: Result<GraphQLResult<Data>, Error>, method: StaticString = #function) {
+        #if DEBUG
+        switch result {
+        case let .success(response):
+            if  let errors = response.errors, !errors.isEmpty {
+                print("[ACKEE] Soft-Failure", method, what, errors)
+            } else {
+                print("[ACKEE] Success", method, what)
+            }
+        case let .failure(error):
+            print("[ACKEE] Failure", method, what, error)
+        }
+        #endif
     }
 }

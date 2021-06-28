@@ -57,11 +57,15 @@ struct ChannelSettingsPage: View {
                     CopyContentsCell(
                         title: "ChannelSettings.Share.NotifyKey",
                         teaser: "\(String(notifyKey.prefix(8)))…",
-                        contents: "\(notifyKey)"
+                        contents: "\(notifyKey)",
+                        action: { ackeeTracker.action(.shareChannel, key: .copyNotify) }
                     )
                 }
                 channel.notifyKey.map { notifyKey in
-                    Button(action: { self.subscriptionToken = notifyKey }) {
+                    Button(action: {
+                        self.subscriptionToken = notifyKey
+                        ackeeTracker.action(.shareChannel, key: .shareNotify)
+                    }) {
                         HStack(spacing: 10) {
                             Image(systemName: "square.and.arrow.up")
                             Text("ChannelSettings.Share.InvitePublishers")
@@ -72,9 +76,13 @@ struct ChannelSettingsPage: View {
                 CopyContentsCell(
                     title: "ChannelSettings.Share.ReceiveOnlyKey",
                     teaser: "\(String(channel.receiveOnlyKey.prefix(8)))…",
-                    contents: "\(channel.receiveOnlyKey)"
+                    contents: "\(channel.receiveOnlyKey)",
+                    action: { ackeeTracker.action(.shareChannel, key: .copyReceiveOnly) }
                 )
-                Button(action: { self.subscriptionToken = self.channel.receiveOnlyKey }) {
+                Button(action: {
+                    self.subscriptionToken = self.channel.receiveOnlyKey
+                    ackeeTracker.action(.shareChannel, key: .shareReceiveOnly)
+                }) {
                     HStack(spacing: 10) {
                         Image(systemName: "square.and.arrow.up")
                         Text("ChannelSettings.Share.InviteSubscribers")
@@ -87,16 +95,19 @@ struct ChannelSettingsPage: View {
                     CopyContentsCell(
                         title: "ChannelSettings.HowTo.CURL.Title",
                         teaser: "ChannelSettings.HowTo.CURL.Teaser url:\(Current.config.apiURL.absoluteString)",
-                        contents: String(format: NSLocalizedString("ChannelSettings.HowTo.CURL.Contents url:%@ notify:%@ title:%@", comment: ""), Current.config.apiURL.absoluteString, notifyKey, channel.title)
+                        contents: String(format: NSLocalizedString("ChannelSettings.HowTo.CURL.Contents url:%@ notify:%@ title:%@", comment: ""), Current.config.apiURL.absoluteString, notifyKey, channel.title),
+                        action: { ackeeTracker.action(.example, key: .exampleCurl) }
                     )
 
                     CopyContentsCell(
                         title: "ChannelSettings.HowTo.Email.Title",
                         teaser: "ChannelSettings.HowTo.Email.Teaser",
-                        contents: String(format: NSLocalizedString("ChannelSettings.HowTo.Email.Contents notify:%@", comment: ""), notifyKey)
+                        contents: String(format: NSLocalizedString("ChannelSettings.HowTo.Email.Contents notify:%@", comment: ""), notifyKey),
+                        action: { ackeeTracker.action(.example, key: .exampleEmail) }
                     )
 
                     Button(action: {
+                        ackeeTracker.action(.example, key: .exampleShortcut)
                         UIApplication.shared.open(URL(string: "https://www.icloud.com/shortcuts/3596f5d512404b2f9e19e488d4bbf3a0")!)
                     }) {
                         Text("ChannelSettings.HowTo.Shortcuts.Action")
@@ -134,6 +145,7 @@ struct ChannelSettingsPage: View {
         }
         .navigationBarTitle("\(channel.title)", displayMode: NavigationBarItem.TitleDisplayMode.inline)
         .navigationBarItems(trailing: saveNavigationItem)
+        .record("channels/:id/settings")
     }
 
     var saveNavigationItem: some View {
@@ -188,6 +200,7 @@ struct CopyContentsCell: View {
     var title: LocalizedStringKey
     var teaser: LocalizedStringKey
     var contents: String
+    var action: (() -> Void)?
 
     var body: some View {
         Button(action: copyToPasteboard) {
@@ -203,6 +216,7 @@ struct CopyContentsCell: View {
     func copyToPasteboard() {
         UIPasteboard.general.string = String(describing: contents)
         hasJustCopied = true
+        action?()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.hasJustCopied = false

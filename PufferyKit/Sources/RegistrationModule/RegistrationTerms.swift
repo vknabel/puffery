@@ -17,5 +17,6 @@ struct RegistrationTerms: View {
             .opacity(0.5)
             .font(.footnote)
         }
+        .record("registration/terms")
     }
 }

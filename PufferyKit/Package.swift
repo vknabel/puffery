@@ -52,6 +52,7 @@ let package = Package(
                 "Overture",
                 "KeychainSwift",
                 "APIDefinition",
+                "AckeeTracker",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]
         ),

@@ -47,9 +47,11 @@ public struct EmailConfirmationPage: View {
         .onAppear {
             PushNotifications.register()
         }
+        .record("confirmation")
     }
 
     private func openMailApp() {
+        ackeeTracker.action(.external, key: "Mail.app")
         let mailURL = URL(string: "message://")!
         if UIApplication.shared.canOpenURL(mailURL) {
             UIApplication.shared.open(mailURL, options: [:], completionHandler: nil)

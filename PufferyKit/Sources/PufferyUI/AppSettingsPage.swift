@@ -53,6 +53,7 @@ struct AppSettingsPage: View {
         .navigationBarItems(trailing: Button(action: dismiss) {
             Text("Settings.Done").fontWeight(.bold)
         })
+        .record("settings")
     }
 
     func dismiss() {
@@ -60,7 +61,7 @@ struct AppSettingsPage: View {
     }
 
     func logout() {
-        ackeeTracker.action("6e2d6099-a809-4063-ba5b-d474611691b3", attributes: CreateActionInput(key: "logout"))
+        ackeeTracker.action(.session, key: .logout)
         dismiss()
         DispatchQueue.main.async {
             Current.store.commit(.updateSession(nil))
@@ -69,7 +70,7 @@ struct AppSettingsPage: View {
     }
 
     func deleteAccount() {
-        ackeeTracker.action("6e2d6099-a809-4063-ba5b-d474611691b3", attributes: CreateActionInput(key: "delete"))
+        ackeeTracker.action(.session, key: .delete)
         dismiss()
         Current.api.deleteAccount()
             .task({ _ in

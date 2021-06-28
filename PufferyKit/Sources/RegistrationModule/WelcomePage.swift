@@ -32,6 +32,7 @@ public struct WelcomePage: View {
         .navigationBarItems(trailing: Button(action: dismiss) {
             Text("GettingStarted.Welcome.LetsStart").fontWeight(.bold)
         })
+        .record("welcome")
     }
     
     func dismiss() {

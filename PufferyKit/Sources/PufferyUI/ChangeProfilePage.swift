@@ -41,6 +41,7 @@ struct ChangeProfilePage: View {
             .padding(.bottom, self.keyboard.currentHeight)
             .animation(.default)
         }.navigationBarTitle("Profile.Email.Title")
+        .record("profile")
     }
 
     var currentProfilePublisher: AnyPublisher<UserResponse, FetchingError> {
@@ -52,6 +53,7 @@ struct ChangeProfilePage: View {
             return
         }
 
+        ackeeTracker.action(.session, key: .changeEmail)
         Current.api.updateProfile(credentials: UpdateProfileRequest(email: email.nonEmpty))
             .task { result in
                 switch result {

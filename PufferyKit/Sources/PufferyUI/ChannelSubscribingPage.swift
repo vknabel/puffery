@@ -44,6 +44,7 @@ struct ChannelSubscribingPage: View {
                 self.channelKey = subscription.uuidString
             }
         }
+        .record("channels/subscribe")
     }
 
     var createNavigationItem: some View {

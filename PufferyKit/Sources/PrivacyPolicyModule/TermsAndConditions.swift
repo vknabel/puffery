@@ -47,6 +47,7 @@ public struct TermsAndConditions: View {
             .padding()
         }
         .navigationBarTitle("TermsAndConditions.Title")
+        .record("terms")
     }
 }
 

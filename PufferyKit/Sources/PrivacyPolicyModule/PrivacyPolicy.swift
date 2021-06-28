@@ -74,6 +74,7 @@ public struct PrivacyPolicy: View {
             .padding()
         }
         .navigationBarTitle("PrivacyPolicy.Title")
+        .record("privacy")
     }
 }
 

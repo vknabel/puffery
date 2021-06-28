@@ -45,6 +45,7 @@ struct MessageCreationPage: View {
             leading: cancelNavigationItem,
             trailing: createButton
         )
+        .record("channels/:id/notify")
     }
     
     var cancelNavigationItem: some View {
@@ -63,6 +64,7 @@ struct MessageCreationPage: View {
 
     func createMessage() {
         isBusy = true
+        ackeeTracker.action(.sendMessage, key: .fromApp)
         _ = Current.api.notify(
             key: channel.notifyKey!,
             CreateMessageRequest(

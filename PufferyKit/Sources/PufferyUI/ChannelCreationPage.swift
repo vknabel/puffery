@@ -39,6 +39,7 @@ struct ChannelCreationPage: View {
                 leading: cancelNavigationItem,
                 trailing: createNavigationItem
             )
+        .record("channels/create")
     }
 
     var createNavigationItem: some View {

@@ -1,4 +1,5 @@
 import SwiftUI
+import AckeeTracker
 
 public struct NextPageButton: View {
     @Binding var currentPage: Int

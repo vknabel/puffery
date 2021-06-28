@@ -12,7 +12,10 @@ struct EmailLoginPage: View {
             Slide(.constant(0), imageNamed: "Welcome", showsPageControls: false) {
                 EmailTextField(email: Binding(get: { viewModel.latestOrLoginEmail }, set: { viewModel.send(.updateLoginEmail($0)) }), onFinish: onFinish, viewModel: viewModel)
                 
-                Button(action: { viewModel.send(.shouldLogin(onFinish: self.onFinish)) }) {
+                Button(action: {
+                    ackeeTracker.action(.session, key: .login)
+                    viewModel.send(.shouldLogin(onFinish: self.onFinish))
+                }) {
                     Text("GettingStarted.Login.Perform")
                 }
                     .buttonStyle(RoundedButtonStyle(animation: nil))
@@ -35,5 +38,6 @@ struct EmailLoginPage: View {
             }
         }
         .navigationBarHidden(false)
+        .record("login/mail")
     }
 }

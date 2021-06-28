@@ -12,12 +12,12 @@ import Foundation
 #endif
 
 internal extension AckeeTracker {
-    func updatedAttributes(_ attributes: CreateRecordInput) -> CreateRecordInput {
+    func updatedAttributes(_ input: CreateRecordInput) -> CreateRecordInput {
         guard let options = options else {
-            return attributes
+            return input
         }
         
-        var attributes = attributes
+        var attributes = input
         attributes.siteLocation = options.appUrl.appendingPathComponent(attributes.siteLocation).absoluteString
 
         guard options.detailed else {

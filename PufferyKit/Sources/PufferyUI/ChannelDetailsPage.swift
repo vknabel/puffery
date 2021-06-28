@@ -66,6 +66,7 @@ struct ChannelDetailsPage: View {
                 }
             }.navigationViewStyle(StackNavigationViewStyle())
         }
+        .record(channel != nil ? "channels/:id" : "channels/all")
     }
 
     var noMessages: some View {

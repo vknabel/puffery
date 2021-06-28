@@ -28,14 +28,20 @@ public struct RegistrationPage: View {
                     .opacity(0.5)
 
                 if viewModel.registerEmail.isEmpty && !keyboard.isActive {
-                    Button(action: { viewModel.send(.shouldRegister(onFinish: self.onFinish)) }) {
+                    Button(action: {
+                        ackeeTracker.action(.session, key: .signup)
+                        viewModel.send(.shouldRegister(onFinish: self.onFinish))
+                    }) {
                         Text("GettingStarted.Registration.Anonymous")
                     }
                         .buttonStyle(RoundedButtonStyle())
                         .transition(.opacity)
                         .disabled(viewModel.activity.inProgress)
                 } else {
-                    Button(action: { viewModel.send(.shouldRegister(onFinish: self.onFinish)) }) {
+                    Button(action: {
+                        ackeeTracker.action(.session, key: .signup)
+                        viewModel.send(.shouldRegister(onFinish: self.onFinish))
+                    }) {
                         Text("GettingStarted.Registration.WithEmail")
                     }
                         .buttonStyle(RoundedButtonStyle())
@@ -71,6 +77,7 @@ public struct RegistrationPage: View {
                     message: Text($0.localizedDescription)
                 )
             }
+            .record("registration")
         }
     }
 }

@@ -85,6 +85,7 @@ public struct GettingStartedPage: View {
                 }.edgesIgnoringSafeArea(.all)
             }
         }.navigationViewStyle(StackNavigationViewStyle())
+        .record("getting-started")
     }
 }
 

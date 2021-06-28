@@ -3,11 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>AckeeAppUrl</key>
-	<string>puffery://puffery.app</string>
+	<string>$(ACKEE_APP_URL)</string>
 	<key>AckeeDomainId</key>
-	<string>dd72344d-8238-4ca4-838e-422e42e2555b</string>
+	<string>$(ACKEE_DOMAIN_ID)</string>
 	<key>AckeeServerUrl</key>
-	<string>https://ack.knabel.dev</string>
+	<string>$(ACKEE_SERVER_URL)</string>
+	<key>AckeeDetailed</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
