@@ -82,9 +82,12 @@ let package = Package(
             "PufferyKit",
         ]),
         .target(name: "PrivacyPolicyModule", dependencies: [
+            "AckeeTracker",
+            "PufferyKit",
             .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
         ]),
         .target(name: "RegistrationModule", dependencies: [
+            "AckeeTracker",
             "PufferyKit",
             "DesignSystem",
             "PlatformSupport",
