@@ -46,12 +46,11 @@ public class AckeeTracker {
     }
     
     private var isEnabled: Bool {
-        return true
-//        if let options = options {
-//            return !options.disabled && options.ignoreDebug == true && !isDebug
-//        } else {
-//            return false
-//        }
+        if let options = options {
+            return !options.disabled && options.ignoreDebug == true && !isDebug
+        } else {
+            return false
+        }
     }
     
     @discardableResult
