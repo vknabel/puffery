@@ -8,6 +8,7 @@
 
 import Intents
 import PufferyKit
+import AckeeTracker
 
 @objc class NotifyChannelIntentHandler: NSObject, NotiyChannelIntentHandling {
     func handle(intent: NotiyChannelIntent, completion: @escaping (NotiyChannelIntentResponse) -> Void) {
@@ -15,6 +16,8 @@ import PufferyKit
             completion(NotiyChannelIntentResponse(code: .failure, userActivity: nil))
             return
         }
+
+        ackeeTracker.action(.sendMessage, key: .fromShortcut)
         Current.api.notify(key: notifyKey, CreateMessageRequest(title: intent.title ?? "", body: intent.body ?? "", color: intent.color.toPuffery.rawValue)).task { result in
             switch result {
             case let .success(messageResponse):
