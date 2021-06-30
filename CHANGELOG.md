@@ -3,6 +3,7 @@
 ## 1.6.1
 
 - Improved reloading of widget contents #66
+- Re-added Ackee
 
 ## 1.6.0
 
