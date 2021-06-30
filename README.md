@@ -13,6 +13,8 @@ There is no algorithm deciding wether you should receive notifications or not.
 
 Do you want to stay up to date with Puffery-dev-builds? [There is a channel for that!](puffery://puffery.app/channels/subscribe/70D2A779-2829-4DD0-93BC-C695E5E1EBE7)
 
+Do you need inspiration or help? Head over to [our GitHub discussions](https://github.com/vknabel/puffery/discussions)!
+
 ## Server-Configuration
 
 | env                           | Description                                           | Default                                                                  |
