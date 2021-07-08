@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.1 (Server only)
+
+- Silent push notifications to update widgets
+
 ## 1.6.1
 
 - Improved reloading of widget contents #66

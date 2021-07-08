@@ -97,10 +97,13 @@ struct APNSPushService: PushService {
     }
 
     private func subscribedChannelNotification(for message: Message, subscription: Subscription) throws -> ReceivedMessageNotification {
-        try ReceivedMessageNotification(
-            message: message,
-            subscription: subscription,
-            aps: APNSwiftPayload(
+        let aps: APNSwiftPayload
+        if subscription.isSilent {
+            aps = APNSwiftPayload(
+                hasContentAvailable: true
+            )
+        } else {
+            aps = APNSwiftPayload(
                 alert: APNSwiftAlert(
                     title: "\(message.channel.title): \(message.title)",
                     body: message.body
@@ -108,13 +111,17 @@ struct APNSPushService: PushService {
                 badge: 1,
                 hasContentAvailable: true
             )
+        }
+        return try ReceivedMessageNotification(
+            message: message,
+            subscription: subscription,
+            aps: aps
         )
     }
 
     private func notifiableSubscriptions(message: Message) -> EventLoopFuture<[Subscription]> {
         Subscription.query(on: db)
             .filter(Subscription.self, \Subscription.$channel.$id == message.$channel.id)
-            .filter(Subscription.self, \Subscription.$isSilent != true)
             .all()
     }
 
