@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Bump Vapor dependencies
+
 ## 1.6.1 (Server only)
 
 - Silent push notifications to update widgets
