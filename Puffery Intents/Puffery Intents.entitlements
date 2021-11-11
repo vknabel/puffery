@@ -6,5 +6,7 @@
 	<array>
 		<string>$(AppIdentifierPrefix)com.vknabel.puffery.shared</string>
 	</array>
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
 </dict>
 </plist>
