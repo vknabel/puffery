@@ -22,7 +22,7 @@ struct MessageCreationPage: View {
     var body: some View {
         Form {
             Section {
-                TextField("CreateMessage.MessageTitle", text: $title)
+                TextField(LocalizedStringKey("CreateMessage.MessageTitle"), text: $title)
                     .disabled(isBusy)
                 ZStack(alignment: .topLeading) {
                     if text.isEmpty {
