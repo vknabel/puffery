@@ -109,7 +109,7 @@ extension View {
         contextMenu(ContextMenu(menuItems: {
             Button(
                 action: { UIPasteboard.general.string = text },
-                label: { Text("Copy") }
+                label: { Text("Message.CopyWhole") }
             )
         }))
     }

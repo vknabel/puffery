@@ -54,6 +54,9 @@ workflows:
         inputs:
         - configuration: Release
         - export_method: app-store
+    - export-xcarchive-mac@1:
+        inputs:
+        - export_method: app-store
     - deploy-to-itunesconnect-application-loader@0:
         inputs:
         - password: $PUFFERY_APPLE_PASSWORD

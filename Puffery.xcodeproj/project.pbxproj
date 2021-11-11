@@ -17,7 +17,7 @@
 		BA923F34245EFE94008BD6C9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA923F36245EFE94008BD6C9 /* Localizable.strings */; };
 		BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA94F0C2244BA4030087924C /* UserNotifications.framework */; };
 		BA95250C245EC51900FFC9E3 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95250B245EC51900FFC9E3 /* IntentHandler.swift */; };
-		BA952521245EC51900FFC9E3 /* Puffery Intents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BA952509245EC51900FFC9E3 /* Puffery Intents.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BA952521245EC51900FFC9E3 /* Puffery Intents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BA952509245EC51900FFC9E3 /* Puffery Intents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BA952530245ED78500FFC9E3 /* PufferyUI in Frameworks */ = {isa = PBXBuildFile; productRef = BA95252F245ED78500FFC9E3 /* PufferyUI */; };
 		BA952532245ED7A300FFC9E3 /* PufferyKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA952531245ED7A300FFC9E3 /* PufferyKit */; };
 		BA952536245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA952535245EEB6000FFC9E3 /* NotifyChannelIntentHandler.swift */; };
@@ -141,6 +141,7 @@
 		BA9831A725237236007ACF26 /* ChannelWidgets.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ChannelWidgets.intentdefinition; sourceTree = "<group>"; };
 		BA9831AA25237239007ACF26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA9831C725237E8A007ACF26 /* PufferyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PufferyWidgetExtension.entitlements; sourceTree = "<group>"; };
+		BAB5A06D273D7B8F00C382B6 /* Puffery macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Puffery macOS.entitlements"; sourceTree = "<group>"; };
 		BAD5349A25238D3400F537EE /* ChannelWidgetsIntentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelWidgetsIntentHandler.swift; sourceTree = "<group>"; };
 		BAF154602444BB4400EDB97B /* Puffery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puffery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF154632444BB4400EDB97B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -281,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				BA94F0C0244BA2E80087924C /* Puffery.entitlements */,
+				BAB5A06D273D7B8F00C382B6 /* Puffery macOS.entitlements */,
 				BAF154632444BB4400EDB97B /* AppDelegate.swift */,
 				BAF154652444BB4400EDB97B /* SceneDelegate.swift */,
 				BAF1546C2444BB4600EDB97B /* Assets.xcassets */,
@@ -607,7 +609,6 @@
 /* Begin PBXTargetDependency section */
 		BA952520245EC51900FFC9E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = BA952508245EC51900FFC9E3 /* Puffery Intents */;
 			targetProxy = BA95251F245EC51900FFC9E3 /* PBXContainerItemProxy */;
 		};
@@ -736,7 +737,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = LightAppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Puffery/PufferyDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -750,11 +751,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -817,11 +818,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vknabel.puffery.Puffery-Intents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -842,11 +843,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vknabel.puffery.Puffery-Intents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -857,6 +858,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Puffery Intents/Puffery Intents.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_TEAM = BG9UY79792;
@@ -867,12 +869,13 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vknabel.puffery.Puffery-Intents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Puffery Intents App Store";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Puffery Intents App Store (Mac)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -895,11 +898,12 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery.PufferyWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -922,11 +926,12 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery.PufferyWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -939,7 +944,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = PufferyWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_TEAM = BG9UY79792;
@@ -950,11 +955,13 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery.PufferyWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Puffery Widget App Store";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Puffery Widget App Store (Mac)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1084,7 +1091,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = LightAppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Puffery/PufferyDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1098,11 +1105,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1112,10 +1119,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = LightAppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Puffery/Puffery.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "Puffery/Puffery macOS.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Puffery/Preview Content\"";
@@ -1127,13 +1135,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.1;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vknabel.puffery;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = maccatalyst.com.vknabel.puffery;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.vknabel.puffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Puffery App Store";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Puffery Mac App Store (Catalyst)";
-				SUPPORTS_MACCATALYST = NO;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Puffery App Store (Mac)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

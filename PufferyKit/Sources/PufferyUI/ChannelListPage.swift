@@ -88,7 +88,9 @@ struct ChannelListPage: View {
                 self.presentsChannelCreation.toggle()
             } }) {
                 HStack {
+                    #if !targetEnvironment(macCatalyst)
                     Text("ChannelList.OwnChannels.New")
+                    #endif
                     Image(systemName: "plus.circle").font(.body)
                 }.foregroundColor(.accentColor)
             }
@@ -106,7 +108,9 @@ struct ChannelListPage: View {
 
             Button(action: action) {
                 HStack {
+                    #if !targetEnvironment(macCatalyst)
                     Text(actionText)
+                    #endif
                     Image(systemName: "plus.circle").font(.body)
                 }.foregroundColor(.accentColor)
             }
@@ -123,7 +127,7 @@ struct ChannelListPage: View {
 
     var settingsNavigationBarItem: some View {
         Button(action: { self.presentsSettings.toggle() }) {
-            Image(systemName: "person.crop.circle").font(.system(size: 21))
+            Image(systemName: "person.crop.circle")
         }
     }
 

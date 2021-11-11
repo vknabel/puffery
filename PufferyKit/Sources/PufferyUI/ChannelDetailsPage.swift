@@ -40,7 +40,6 @@ struct ChannelDetailsPage: View {
                     }
                     Button(action: { self.displaysChannelSettings.toggle() }) {
                         Image(systemName: "wrench")
-                            .font(.system(size: 21))
                     }
                 }
             }
