@@ -135,3 +135,6 @@ app:
   - opts:
       is_expand: false
     BITRISE_CATALYST_PROVISIONING_PROFILE: a43b7298-7d38-4022-bcfb-37772c75f0e2
+meta:
+  bitrise.io:
+    stack: osx-xcode-13.1.x
