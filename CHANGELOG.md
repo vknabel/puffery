@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Bump Vapor dependencies
+- Bump Client dependencies
 
 ## 1.6.1 (Server only)
 

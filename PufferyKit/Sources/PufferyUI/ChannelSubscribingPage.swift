@@ -25,7 +25,7 @@ struct ChannelSubscribingPage: View {
     var body: some View {
         Form {
             Section(footer: Text("ChannelSubscribing.Basic.Explanation")) {
-                TextField("ChannelSubscribing.Basic.ChannelKey", text: $channelKey, onCommit: createChannel)
+                TextField(LocalizedStringKey("ChannelSubscribing.Basic.ChannelKey"), text: $channelKey, onCommit: createChannel)
                 Toggle("ChannelSubscribing.Basic.ReceiveNotifications", isOn: Binding(get: { self.receiveNotifications }, set: self.registerAndSetReceiveNotifications))
             }
             Section {
