@@ -11,7 +11,10 @@ public func configure(_ app: Application) throws {
 
     // Register providers first
     try app.databases.use(.postgres(
-        url: URL(string: Environment.get("DATABASE_URL") ?? "postgres://vapor_username:vapor_password@localhost:5432/vapor_database")!
+        url: URL(string:
+            Environment.get("DATABASE_URL")
+                ?? "postgres://vapor_username:vapor_password@localhost:5432/vapor_database"
+        )!
     ), as: DatabaseID.psql)
 
     try app.queues.use(.redis(url: Environment.get("REDIS_URL") ?? "redis://localhost:6379"))
@@ -44,7 +47,7 @@ public func configure(_ app: Application) throws {
     try routes(app)
 
     if let inProcessJobs = Environment.get("PUFFERY_IN_PROCESS_JOBS")?.lowercased(),
-        ["true", "yes", "1"].contains(inProcessJobs)
+       ["true", "yes", "1"].contains(inProcessJobs)
     {
         try app.queues.startInProcessJobs(on: .default)
     }

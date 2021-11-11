@@ -3,59 +3,46 @@ import Fluent
 import Vapor
 
 final class UserController {
-    func create(_ req: Request) throws -> EventLoopFuture<TokenResponse> {
-        try CreateUserRequest.validate(content: req)
-        let createRequest = try req.content.decode(CreateUserRequest.self)
-        let newUser = User(email: createRequest.email)
+    func create(_ req: Request) async throws -> TokenResponse {
+        do {
+            try CreateUserRequest.validate(content: req)
+            let createRequest = try req.content.decode(CreateUserRequest.self)
+            let newUser = User(email: createRequest.email)
 
-        return newUser.save(on: req.db)
-            .flatMap { _ in
-                req.users.confirmEmailIfNeeded(newUser)
+            try await newUser.save(on: req.db)
+            try await req.users.confirmEmailIfNeeded(newUser)
+
+            if let device = createRequest.device {
+                try await DeviceToken(
+                    user: newUser, token: device.token, isProduction: device.isProduction ?? true
+                )
+                .create(on: req.db)
             }
-            .flatMap { _ -> EventLoopFuture<Void> in
-                if let device = createRequest.device {
-                    do {
-                        return try DeviceToken(
-                            user: newUser, token: device.token, isProduction: device.isProduction ?? true
-                        )
-                        .create(on: req.db)
-                    } catch {
-                        return req.eventLoop.makeFailedFuture(error)
-                    }
-                } else {
-                    return req.eventLoop.makeSucceededFuture(())
-                }
+            let token = try newUser.generateToken()
+            try await token.create(on: req.db)
+
+            let userResponse = try UserResponse(id: newUser.requireID(), email: newUser.email, isConfirmed: newUser.isConfirmed)
+            return TokenResponse(token: token.value, user: userResponse)
+        } catch {
+            if let dbError = error as? DatabaseError, dbError.isConstraintFailure {
+                throw Abort(.conflict, reason: "User already exists")
+            } else {
+                throw error
             }
-            .flatMapThrowing { _ in
-                try newUser.generateToken()
-            }
-            .flatMap { token in
-                token.create(on: req.db).transform(to: token)
-            }
-            .flatMapThrowing { token in
-                let userResponse = try UserResponse(id: newUser.requireID(), email: newUser.email, isConfirmed: newUser.isConfirmed)
-                return TokenResponse(token: token.value, user: userResponse)
-            }
-            .flatMapError { error in
-                if let dbError = error as? DatabaseError, dbError.isConstraintFailure {
-                    return req.eventLoop.future(error: Abort(.conflict, reason: "User already exists"))
-                } else {
-                    return req.eventLoop.future(error: error)
-                }
-            }
+        }
     }
 
-    func login(_ req: Request) throws -> EventLoopFuture<LoginAttemptResponse> {
+    func login(_ req: Request) async throws -> LoginAttemptResponse {
         let loginUser = try req.content.decode(LoginUserRequest.self)
 
-        return User.query(on: req.db)
+        guard let user = try await User.query(on: req.db)
             .filter(\User.$email == loginUser.email)
             .first()
-            .flatMap { (user: User?) -> EventLoopFuture<Void> in
-                user.map(req.users.sendLoginConfirmation)
-                    ?? req.eventLoop.future(error: ApiError(.invalidCredentials))
-            }
-            .transform(to: LoginAttemptResponse())
+        else {
+            throw ApiError(.invalidCredentials)
+        }
+        try await req.users.sendLoginConfirmation(user)
+        return LoginAttemptResponse()
 
 //        // Confirm
 //        let token = try user.generateToken()
@@ -69,7 +56,7 @@ final class UserController {
         return try UserResponse(id: user.requireID(), email: user.email, isConfirmed: user.isConfirmed)
     }
 
-    func updateProfile(_ req: Request) throws -> EventLoopFuture<UserResponse> {
+    func updateProfile(_ req: Request) async throws -> UserResponse {
         let user = try req.auth.require(User.self)
         try UpdateProfileRequest.validate(content: req)
         let profile = try req.content.decode(UpdateProfileRequest.self)
@@ -79,19 +66,16 @@ final class UserController {
             user.isConfirmed = false
         }
 
-        return user.save(on: req.db)
-            .flatMap { _ in
-                req.users.confirmEmailIfNeeded(user)
-            }
-            .flatMapThrowing { _ in
-                try UserResponse(id: user.requireID(), email: user.email, isConfirmed: user.isConfirmed)
-            }
+        try await user.save(on: req.db)
+        try await req.users.confirmEmailIfNeeded(user)
+
+        return try UserResponse(id: user.requireID(), email: user.email, isConfirmed: user.isConfirmed)
     }
-    
-    func deleteUser(_ req: Request) throws -> EventLoopFuture<HTTPResponseStatus> {
+
+    func deleteUser(_ req: Request) async throws -> HTTPResponseStatus {
         let user = try req.auth.require(User.self)
-        return user.delete(on: req.db)
-            .transform(to: HTTPResponseStatus.ok)
+        try await user.delete(on: req.db)
+        return HTTPResponseStatus.ok
     }
 }
 

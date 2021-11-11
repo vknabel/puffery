@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "PufferyServer",
     platforms: [
-        .macOS(.v10_15), .iOS(.v13),
+        .macOS(.v12), .iOS(.v13),
     ],
     products: [
         .library(name: "PufferyServer", targets: ["App"]),
