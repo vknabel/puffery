@@ -8,7 +8,7 @@ struct EmailTextField: View {
     let viewModel: ComposableArchitecture.ViewStore<RegistrationState, RegistrationAction>
 
     var body: some View {
-        TextField("GettingStarted.Login.EmailPlaceholder", text: $email, onCommit: { viewModel.send(.shouldLogin(onFinish: self.onFinish)) })
+        TextField(LocalizedStringKey("GettingStarted.Login.EmailPlaceholder"), text: $email, onCommit: { viewModel.send(.shouldLogin(onFinish: self.onFinish)) })
             .textFieldStyle(RoundedTextFieldStyle())
             .keyboardType(.emailAddress)
             .textContentType(.emailAddress)

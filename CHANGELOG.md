@@ -1,8 +1,10 @@
 # Changelog
 
-## Unreleased
+## 1.7.0
 
 - Bump Vapor dependencies
+- Bump Client dependencies
+- macOS support
 
 ## 1.6.1 (Server only)
 

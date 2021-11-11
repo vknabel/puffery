@@ -4,12 +4,12 @@
 <dict>
 	<key>AckeeAppUrl</key>
 	<string>$(ACKEE_APP_URL)</string>
+	<key>AckeeDetailed</key>
+	<true/>
 	<key>AckeeDomainId</key>
 	<string>$(ACKEE_DOMAIN_ID)</string>
 	<key>AckeeServerUrl</key>
 	<string>$(ACKEE_SERVER_URL)</string>
-	<key>AckeeDetailed</key>
-	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
