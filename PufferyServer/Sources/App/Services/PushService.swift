@@ -1,7 +1,7 @@
 import APNS
 import Fluent
-import Vapor
 import Queues
+import Vapor
 
 struct PushServiceFactoryStorageKey: StorageKey {
     typealias Value = (EventLoop, APNSwiftClient, Logger, Database) -> PushService
@@ -30,7 +30,7 @@ extension QueueContext {
 }
 
 protocol PushService {
-    func notifyDevices(message: Message) -> EventLoopFuture<Void>
+    func notifyDevices(message: Message) async throws -> Void
 }
 
 struct APNSPushService: PushService {
@@ -38,9 +38,9 @@ struct APNSPushService: PushService {
     let apns: APNSwiftClient
     let logger: Logger
     let db: Database
-    
-    func notifyDevices(message: Message) -> EventLoopFuture<Void> {
-        notifiableSubscriptions(message: message)
+
+    func notifyDevices(message: Message) async throws {
+        try await notifiableSubscriptions(message: message)
             .flatMap { subscriptions in
                 eventLoop.flatten(
                     subscriptions.map { subscription in
@@ -51,6 +51,7 @@ struct APNSPushService: PushService {
             .always { _ in
                 logger.info("Sent Push Notification", source: "APNSPushService")
             }
+            .get()
     }
 
     private func notifyDevices(subscription: Subscription, message: Message) -> EventLoopFuture<Void> {
@@ -73,7 +74,7 @@ struct APNSPushService: PushService {
             return eventLoop.makeFailedFuture(error)
         }
         return apns.send(notif, to: device.token)
-            .flatMapError { (error) -> EventLoopFuture<Void> in
+            .flatMapError { error -> EventLoopFuture<Void> in
                 if case .badRequest(.badDeviceToken) = error as? APNSwiftError.ResponseError {
                     logger.info("APN Removing bad device token", metadata: [
                         "token": .string(device.token),

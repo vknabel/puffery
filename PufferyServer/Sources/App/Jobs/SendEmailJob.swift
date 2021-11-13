@@ -8,10 +8,10 @@ struct Email: Codable {
     var contents: String
 }
 
-struct SendEmailJob: Job {
+struct SendEmailJob: AsyncJob {
     typealias Payload = Email
 
-    func dequeue(_ context: QueueContext, _ payload: Email) -> EventLoopFuture<Void> {
+    func dequeue(_ context: QueueContext, _ payload: Email) async throws {
         let sendingEmailAddress = "noreply@puffery.app"
         let email = SendGridEmail(
             personalizations: [Personalization(to: [EmailAddress(email: payload.email)])],
@@ -22,15 +22,10 @@ struct SendEmailJob: Job {
             ]
         )
 
-        return context.eventLoop.tryFuture {
-            try context.application.sendgrid.client.send(
-                email: email,
-                on: context.eventLoop
-            )
-        }
-        .flatMap { $0 }
-        .always { _ in
-            context.logger.info("Sent E-Mail", metadata: ["subject": .string(payload.subject)], source: "SendEmailJob")
-        }
+        defer { context.logger.info("Sent E-Mail", metadata: ["subject": .string(payload.subject)], source: "SendEmailJob") }
+        return try await context.application.sendgrid.client.send(
+            email: email,
+            on: context.eventLoop
+        ).get()
     }
 }

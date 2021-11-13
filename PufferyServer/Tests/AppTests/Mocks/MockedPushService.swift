@@ -1,8 +1,8 @@
+import APNSwift
 @testable import App
+import Fluent
 import Vapor
 import XCTest
-import Fluent
-import APNSwift
 
 struct MockedPushService: PushService {
     let eventLoop: EventLoop

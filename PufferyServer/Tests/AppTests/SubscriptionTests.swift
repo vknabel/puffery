@@ -1,6 +1,6 @@
 import APIDefinition
-import XCTVapor
 @testable import App
+import XCTVapor
 
 final class SubscriptionTests: PufferyTestCase {
     func testPublicNotify() throws {
@@ -42,7 +42,7 @@ private extension Application {
             headers: [
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": "Bearer \(token.value)"
+                "Authorization": "Bearer \(token.value)",
             ],
             file: file,
             line: line,

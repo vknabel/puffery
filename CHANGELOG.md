@@ -3,6 +3,7 @@
 ## 1.7.0
 
 - Bump Vapor dependencies
+- Use async/await for Vapor
 - Bump Client dependencies
 - macOS support
 

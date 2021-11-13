@@ -1,7 +1,7 @@
 import APIDefinition
-import XCTVapor
-import Fluent
 @testable import App
+import Fluent
+import XCTVapor
 
 final class RegistrationTests: PufferyTestCase {
     func testBasicRegistration() throws {
@@ -53,10 +53,10 @@ final class RegistrationTests: PufferyTestCase {
             XCTAssertEqual(token.user.email, "hello-puffery@mail.com")
         }
     }
-    
+
     func testRegistrationConflictForExistingEmail() throws {
         let existing = try app.seedUser(email: "hello-puffery@mail.com")
-        
+
         let content = CreateUserRequest(
             device: CreateDeviceRequest(token: "my-random-token", isProduction: false),
             email: "hello-puffery@mail.com"
