@@ -742,7 +742,7 @@
 				CODE_SIGN_ENTITLEMENTS = Puffery/PufferyDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 235;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Puffery/Preview Content\"";
 				DEVELOPMENT_TEAM = BG9UY79792;
 				ENABLE_PREVIEWS = YES;
@@ -811,7 +811,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Puffery Intents/Puffery IntentsDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 235;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_TEAM = BG9UY79792;
 				INFOPLIST_FILE = "Puffery Intents/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -837,7 +837,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Puffery Intents/Puffery IntentsDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 235;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_TEAM = BG9UY79792;
 				INFOPLIST_FILE = "Puffery Intents/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -864,7 +864,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 235;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_TEAM = BG9UY79792;
 				INFOPLIST_FILE = "Puffery Intents/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -894,7 +894,7 @@
 				CODE_SIGN_ENTITLEMENTS = PufferyWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 235;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_TEAM = BG9UY79792;
 				INFOPLIST_FILE = PufferyWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -922,7 +922,7 @@
 				CODE_SIGN_ENTITLEMENTS = PufferyWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 235;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_TEAM = BG9UY79792;
 				INFOPLIST_FILE = PufferyWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -951,7 +951,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 235;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_TEAM = BG9UY79792;
 				INFOPLIST_FILE = PufferyWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1101,7 +1101,7 @@
 				CODE_SIGN_ENTITLEMENTS = Puffery/PufferyDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 235;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Puffery/Preview Content\"";
 				DEVELOPMENT_TEAM = BG9UY79792;
 				ENABLE_PREVIEWS = YES;
@@ -1133,7 +1133,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 235;
+				CURRENT_PROJECT_VERSION = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Puffery/Preview Content\"";
 				DEVELOPMENT_TEAM = BG9UY79792;
 				ENABLE_PREVIEWS = YES;
