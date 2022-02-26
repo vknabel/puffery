@@ -83,6 +83,15 @@
       "args": [".build/debug/PufferyServerPackageTests.xctest"],
       "cwd": "${workspaceFolder:puffery}/PufferyServer",
       "preLaunchTask": "swift: Build All (PufferyServer)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Test APIDefinition",
+      "program": "/Applications/Xcode.app/Contents/Developer/usr/bin/xctest",
+      "args": [".build/debug/APIDefinitionPackageTests.xctest"],
+      "cwd": "${workspaceFolder:puffery}/APIDefinition",
+      "preLaunchTask": "swift: Build All (APIDefinition)"
     }
   ]
 }
