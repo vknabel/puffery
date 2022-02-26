@@ -13,11 +13,11 @@ public func configure(_ app: Application) throws {
     try app.databases.use(.postgres(
         url: URL(string:
             Environment.get("DATABASE_URL")
-                ?? "postgres://vapor_username:vapor_password@localhost:5432/vapor_database"
+                ?? "postgres://puffery-test:puffery-test@localhost:5431/puffery-test"
         )!
     ), as: DatabaseID.psql)
 
-    try app.queues.use(.redis(url: Environment.get("REDIS_URL") ?? "redis://localhost:6379"))
+    try app.queues.use(.redis(url: Environment.get("REDIS_URL") ?? "redis://localhost:6378"))
 
     if Environment.process.SENDGRID_API_KEY != nil {
         app.sendgrid.initialize() // SENDGRID_API_KEY
