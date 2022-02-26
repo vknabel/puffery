@@ -14,49 +14,53 @@ final class SendMessageTests: PufferyTestCase {
         }
     }
 
-    func testPublicNotify() throws {
-        let channel = try app.seedChannel()
+    func testPublicNotify() {
+        asyncTest { [self] in
+            let channel = try await app.seedChannel()
 
-        let content = CreateMessageRequest(
-            title: "Hello World!",
-            body: "How are you?",
-            color: nil
-        )
-        try app.testPublicNotify(key: channel.notifyKey, content, usingApiPrefix: false) { res in
-            XCTAssertEqual(res.status, .ok)
-            let message = try res.content.decode(NotifyMessageResponse.self)
-            XCTAssertEqual(message.title, content.title)
-            XCTAssertEqual(message.body, content.body)
-            XCTAssertEqual(message.color, content.color)
+            let content = CreateMessageRequest(
+                title: "Hello World!",
+                body: "How are you?",
+                color: nil
+            )
+            try app.testPublicNotify(key: channel.notifyKey, content, usingApiPrefix: false) { res in
+                XCTAssertEqual(res.status, .ok)
+                let message = try res.content.decode(NotifyMessageResponse.self)
+                XCTAssertEqual(message.title, content.title)
+                XCTAssertEqual(message.body, content.body)
+                XCTAssertEqual(message.color, content.color)
 
-            XCTAssertNotNil(self.sentMessage)
-            XCTAssertEqual(self.sentMessage?.id, message.id)
-            XCTAssertEqual(self.sentMessage?.title, content.title)
-            XCTAssertEqual(self.sentMessage?.body, content.body)
-            XCTAssertEqual(self.sentMessage?.color, content.color)
+                XCTAssertNotNil(self.sentMessage)
+                XCTAssertEqual(self.sentMessage?.id, message.id)
+                XCTAssertEqual(self.sentMessage?.title, content.title)
+                XCTAssertEqual(self.sentMessage?.body, content.body)
+                XCTAssertEqual(self.sentMessage?.color, content.color)
+            }
         }
     }
 
-    func testPublicNotifyWithLowercasedNotifyKey() throws {
-        let channel = try app.seedChannel()
+    func testPublicNotifyWithLowercasedNotifyKey() {
+        asyncTest { [self] in
+            let channel = try await app.seedChannel()
 
-        let content = CreateMessageRequest(
-            title: "Hello World!",
-            body: "How are you?",
-            color: nil
-        )
-        try app.testPublicNotify(key: channel.notifyKey.lowercased(), content, usingApiPrefix: false) { res in
-            XCTAssertEqual(res.status, .ok)
-            let message = try res.content.decode(NotifyMessageResponse.self)
-            XCTAssertEqual(message.title, content.title)
-            XCTAssertEqual(message.body, content.body)
-            XCTAssertEqual(message.color, content.color)
+            let content = CreateMessageRequest(
+                title: "Hello World!",
+                body: "How are you?",
+                color: nil
+            )
+            try app.testPublicNotify(key: channel.notifyKey.lowercased(), content, usingApiPrefix: false) { res in
+                XCTAssertEqual(res.status, .ok)
+                let message = try res.content.decode(NotifyMessageResponse.self)
+                XCTAssertEqual(message.title, content.title)
+                XCTAssertEqual(message.body, content.body)
+                XCTAssertEqual(message.color, content.color)
 
-            XCTAssertNotNil(self.sentMessage)
-            XCTAssertEqual(self.sentMessage?.id, message.id)
-            XCTAssertEqual(self.sentMessage?.title, content.title)
-            XCTAssertEqual(self.sentMessage?.body, content.body)
-            XCTAssertEqual(self.sentMessage?.color, content.color)
+                XCTAssertNotNil(self.sentMessage)
+                XCTAssertEqual(self.sentMessage?.id, message.id)
+                XCTAssertEqual(self.sentMessage?.title, content.title)
+                XCTAssertEqual(self.sentMessage?.body, content.body)
+                XCTAssertEqual(self.sentMessage?.color, content.color)
+            }
         }
     }
 }

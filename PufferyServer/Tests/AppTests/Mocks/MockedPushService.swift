@@ -11,9 +11,8 @@ struct MockedPushService: PushService {
     let database: Database
     let receiveMessage: (Message) -> Void
 
-    func notifyDevices(message: Message) -> EventLoopFuture<Void> {
+    func notifyDevices(message: Message) async throws -> Void {
         receiveMessage(message)
-        return eventLoop.makeSucceededFuture(())
     }
 }
 

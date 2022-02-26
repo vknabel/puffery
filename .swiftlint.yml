@@ -1,0 +1,7 @@
+excluded:
+  - "**/.build"
+  - "**/.swiftpm"
+  - PufferyKit/Sources/AckeeTracker/API.swift
+
+disabled_rules:
+  - force_cast

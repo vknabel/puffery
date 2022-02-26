@@ -4,7 +4,6 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-    // Running executables
     {
       "type": "lldb",
       "request": "launch",
@@ -32,12 +31,11 @@
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "swift-build"
     },
-    // Running unit tests
     {
       "type": "lldb",
       "request": "launch",
       "name": "Test on macOS",
-      "program": "/Applications/Xcode.app/Contents/Developer/usr/bin/xctest", //For example /Applications/Xcode.app/Contents/Developer/usr/bin/xctest
+      "program": "/Applications/Xcode.app/Contents/Developer/usr/bin/xctest",
       "args": [
         "${workspaceFolder}/.build/debug/PufferyServerPackageTests.xctest"
       ],
@@ -49,6 +47,51 @@
       "name": "Test on Linux",
       "program": "./.build/x86_64-unknown-linux/debug/PufferyServerPackageTests.xctest",
       "preLaunchTask": "swift-build-tests"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Test PufferyKit",
+      "program": "/Applications/Xcode.app/Contents/Developer/usr/bin/xctest",
+      "args": [".build/debug/PufferyKitPackageTests.xctest"],
+      "cwd": "${workspaceFolder:puffery}/PufferyKit",
+      "preLaunchTask": "swift: Build All (PufferyKit)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug puffery (PufferyServer)",
+      "program": "${workspaceFolder:puffery}/PufferyServer/.build/debug/puffery",
+      "args": [],
+      "cwd": "${workspaceFolder:puffery}/PufferyServer",
+      "preLaunchTask": "swift: Build Debug puffery (PufferyServer)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Release puffery (PufferyServer)",
+      "program": "${workspaceFolder:puffery}/PufferyServer/.build/release/puffery",
+      "args": [],
+      "cwd": "${workspaceFolder:puffery}/PufferyServer",
+      "preLaunchTask": "swift: Build Release puffery (PufferyServer)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Test PufferyServer",
+      "program": "/Applications/Xcode.app/Contents/Developer/usr/bin/xctest",
+      "args": [".build/debug/PufferyServerPackageTests.xctest"],
+      "cwd": "${workspaceFolder:puffery}/PufferyServer",
+      "preLaunchTask": "swift: Build All (PufferyServer)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Test APIDefinition",
+      "program": "/Applications/Xcode.app/Contents/Developer/usr/bin/xctest",
+      "args": [".build/debug/APIDefinitionPackageTests.xctest"],
+      "cwd": "${workspaceFolder:puffery}/APIDefinition",
+      "preLaunchTask": "swift: Build All (APIDefinition)"
     }
   ]
 }

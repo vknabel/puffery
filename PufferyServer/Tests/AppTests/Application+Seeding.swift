@@ -2,16 +2,14 @@
 import Vapor
 
 extension Application {
-    func seedUser(email: String? = nil, isConfirmed: Bool = false) throws -> User {
-        try User(email: email, isConfirmed: isConfirmed)
+    func seedUser(email: String? = nil, isConfirmed: Bool = false) async throws -> User {
+        try await User(email: email, isConfirmed: isConfirmed)
             .saving(on: db)
-            .wait()
     }
 
-    func seedChannel(title: String = "My Test Channel") throws -> App.Channel {
-        try App.Channel(title: title)
+    func seedChannel(title: String = "My Test Channel") async throws -> App.Channel {
+        try await App.Channel(title: title)
             .saving(on: db)
-            .wait()
     }
 
     func seedSubscription(
@@ -19,13 +17,12 @@ extension Application {
         channel: App.Channel,
         canNotify: Bool = .random(),
         isSilent: Bool = .random()
-    ) throws -> Subscription {
-        try Subscription(user: user, channel: channel, canNotify: canNotify, isSilent: isSilent)
+    ) async throws -> Subscription {
+        try await Subscription(user: user, channel: channel, canNotify: canNotify, isSilent: isSilent)
             .saving(on: db)
-            .wait()
     }
 
-    func seedUserToken(user: User) throws -> UserToken {
+    func seedUserToken(user: User) async throws -> UserToken {
         let token = try user.generateToken()
         try token.create(on: db).wait()
         return token
@@ -36,14 +33,14 @@ extension Application {
         title: String = "You got news!",
         body: String = "Test contents",
         color: String? = nil
-    ) throws -> Message {
-        try Message(
+    ) async
+    throws -> Message {
+        try await Message(
             channel: channel,
             title: title,
             body: body,
             color: color
         )
         .saving(on: db)
-        .wait()
     }
 }
