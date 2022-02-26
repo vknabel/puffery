@@ -54,22 +54,24 @@ final class RegistrationTests: PufferyTestCase {
         }
     }
 
-    func testRegistrationConflictForExistingEmail() async throws {
-        let existing = try await app.seedUser(email: "hello-puffery@mail.com")
+    func testRegistrationConflictForExistingEmail() throws {
+        try asyncTest { [self] in
+            let existing = try await app.seedUser(email: "hello-puffery@mail.com")
 
-        let content = CreateUserRequest(
-            device: CreateDeviceRequest(token: "my-random-token", isProduction: false),
-            email: "hello-puffery@mail.com"
-        )
+            let content = CreateUserRequest(
+                device: CreateDeviceRequest(token: "my-random-token", isProduction: false),
+                email: "hello-puffery@mail.com"
+            )
 
-        try app.testValidPostRegister(content) { res in
-            XCTAssertEqual(res.status, .conflict)
-            let usersWithSameEmail: [User] = try User.query(on: self.app.db)
-                .filter(\User.$email == existing.email)
-                .all()
-                .wait()
-            XCTAssertEqual(usersWithSameEmail.count, 1)
-            XCTAssertEqual(usersWithSameEmail.first?.id, existing.id)
+            try app.testValidPostRegister(content) { res in
+                XCTAssertEqual(res.status, .conflict)
+                let usersWithSameEmail: [User] = try User.query(on: self.app.db)
+                    .filter(\User.$email == existing.email)
+                    .all()
+                    .wait()
+                XCTAssertEqual(usersWithSameEmail.count, 1)
+                XCTAssertEqual(usersWithSameEmail.first?.id, existing.id)
+            }
         }
     }
 }

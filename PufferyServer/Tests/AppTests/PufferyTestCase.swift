@@ -35,3 +35,27 @@ class PufferyTestCase: XCTVaporTests {
         super.tearDown()
     }
 }
+
+extension XCTestCase {
+    /// Async test cases are not compatible with Linux.
+    func asyncTest(
+        name: String = #function,
+        file: StaticString = #file,
+        line: UInt = #line,
+        timeout: TimeInterval = 10,
+        test: @escaping () async throws -> Void
+    ) {
+        let expectation = expectation(description: name)
+        defer { waitForExpectations(timeout: timeout) }
+
+        Task {
+            do {
+                try await test()
+            } catch {
+                XCTAssertNoThrow(try { throw error }())
+            }
+
+            expectation.fulfill()
+        }
+    }
+}

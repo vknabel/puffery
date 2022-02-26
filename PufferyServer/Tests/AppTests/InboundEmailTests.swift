@@ -39,27 +39,29 @@ final class InboundEmailTests: PufferyTestCase {
         }
     }
 
-    func testInboundEmailChannelFoundAndNotified() async throws {
-        let channel = try await app.seedChannel()
+    func testInboundEmailChannelFoundAndNotified() throws {
+        try asyncTest { [self] in
+            let channel = try await app.seedChannel()
 
-        let email = InboundEmail(
-            envelope: InboundEmail.Envelope(
-                from: "noreply@mock.com", to: ["\(channel.notifyKey)@notify.puffery.app"]
-            ),
-            subject: "Mockingmail",
-            text: "String"
-        )
-        try app.testInboundEmail(email) { res in
-            XCTAssertEqual(res.status, .ok)
-            let message = try res.content.decode(NotifyMessageResponse.self)
-            XCTAssertEqual(message.title, email.subject)
-            XCTAssertEqual(message.body, email.text)
+            let email = InboundEmail(
+                envelope: InboundEmail.Envelope(
+                    from: "noreply@mock.com", to: ["\(channel.notifyKey)@notify.puffery.app"]
+                ),
+                subject: "Mockingmail",
+                text: "String"
+            )
+            try app.testInboundEmail(email) { res in
+                XCTAssertEqual(res.status, .ok)
+                let message = try res.content.decode(NotifyMessageResponse.self)
+                XCTAssertEqual(message.title, email.subject)
+                XCTAssertEqual(message.body, email.text)
 
-            XCTAssertNotNil(self.sentMessage)
-            XCTAssertEqual(self.sentMessage?.id, message.id)
-            XCTAssertEqual(self.sentMessage?.title, email.subject)
-            XCTAssertEqual(self.sentMessage?.body, email.text)
-            XCTAssertEqual(self.sentMessage?.color, message.color)
+                XCTAssertNotNil(self.sentMessage)
+                XCTAssertEqual(self.sentMessage?.id, message.id)
+                XCTAssertEqual(self.sentMessage?.title, email.subject)
+                XCTAssertEqual(self.sentMessage?.body, email.text)
+                XCTAssertEqual(self.sentMessage?.color, message.color)
+            }
         }
     }
 
