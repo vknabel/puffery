@@ -39,8 +39,8 @@ final class InboundEmailTests: PufferyTestCase {
         }
     }
 
-    func testInboundEmailChannelFoundAndNotified() throws {
-        let channel = try app.seedChannel()
+    func testInboundEmailChannelFoundAndNotified() async throws {
+        let channel = try await app.seedChannel()
 
         let email = InboundEmail(
             envelope: InboundEmail.Envelope(
@@ -63,8 +63,8 @@ final class InboundEmailTests: PufferyTestCase {
         }
     }
 
-    func testLowercasedInboundEmailChannelFoundAndNotified() throws {
-        let channel = try app.seedChannel()
+    func testLowercasedInboundEmailChannelFoundAndNotified() async throws {
+        let channel = try await app.seedChannel()
 
         let email = InboundEmail(
             envelope: InboundEmail.Envelope(

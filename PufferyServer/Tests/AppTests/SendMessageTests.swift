@@ -14,8 +14,8 @@ final class SendMessageTests: PufferyTestCase {
         }
     }
 
-    func testPublicNotify() throws {
-        let channel = try app.seedChannel()
+    func testPublicNotify() async throws {
+        let channel = try await app.seedChannel()
 
         let content = CreateMessageRequest(
             title: "Hello World!",
@@ -37,8 +37,8 @@ final class SendMessageTests: PufferyTestCase {
         }
     }
 
-    func testPublicNotifyWithLowercasedNotifyKey() throws {
-        let channel = try app.seedChannel()
+    func testPublicNotifyWithLowercasedNotifyKey() async throws {
+        let channel = try await app.seedChannel()
 
         let content = CreateMessageRequest(
             title: "Hello World!",

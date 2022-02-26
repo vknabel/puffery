@@ -54,8 +54,8 @@ final class RegistrationTests: PufferyTestCase {
         }
     }
 
-    func testRegistrationConflictForExistingEmail() throws {
-        let existing = try app.seedUser(email: "hello-puffery@mail.com")
+    func testRegistrationConflictForExistingEmail() async throws {
+        let existing = try await app.seedUser(email: "hello-puffery@mail.com")
 
         let content = CreateUserRequest(
             device: CreateDeviceRequest(token: "my-random-token", isProduction: false),

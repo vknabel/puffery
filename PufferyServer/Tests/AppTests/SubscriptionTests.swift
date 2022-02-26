@@ -3,20 +3,20 @@ import APIDefinition
 import XCTVapor
 
 final class SubscriptionTests: PufferyTestCase {
-    func testPublicNotify() throws {
-        let author = try app.seedUser()
-        let channel = try app.seedChannel()
-        let authorSubscription = try app.seedSubscription(user: author, channel: channel, canNotify: true)
-        _ = try app.seedSubscription(user: app.seedUser(), channel: channel, canNotify: true)
-        _ = try app.seedSubscription(user: app.seedUser(), channel: channel, canNotify: false)
+    func testPublicNotify() async throws {
+        let author = try await app.seedUser()
+        let channel = try await app.seedChannel()
+        let authorSubscription = try await app.seedSubscription(user: author, channel: channel, canNotify: true)
+        _ = try await app.seedSubscription(user: app.seedUser(), channel: channel, canNotify: true)
+        _ = try await app.seedSubscription(user: app.seedUser(), channel: channel, canNotify: false)
 
-        _ = try app.seedMessage(channel: channel)
-        _ = try app.seedMessage(channel: channel)
-        _ = try app.seedMessage(channel: channel)
+        _ = try await app.seedMessage(channel: channel)
+        _ = try await app.seedMessage(channel: channel)
+        _ = try await app.seedMessage(channel: channel)
 
         try app.testStatistics(
             subscriptionId: authorSubscription.requireID(),
-            token: app.seedUserToken(user: author),
+            token: await app.seedUserToken(user: author),
             afterResponse: { res in
                 XCTAssertEqual(res.status, .ok)
                 let stats = try res.content.decode(SubscribedChannelStatisticsResponse.self)

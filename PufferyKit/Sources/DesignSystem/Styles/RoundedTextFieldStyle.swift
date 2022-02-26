@@ -5,12 +5,12 @@
 //  Created by Valentin Knabel on 10.05.20.
 //
 
-import SwiftUI
 import PlatformSupport
+import SwiftUI
 
 public struct RoundedTextFieldStyle: TextFieldStyle {
     @ObservedObject private var keyboard = Keyboard.shared
-    
+
     public init() {}
 
     public func _body(configuration: TextField<Self._Label>) -> some View {
