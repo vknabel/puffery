@@ -39,6 +39,6 @@ The app itself consists of multiple modules and targets:
 
 The code coverage isn’t at the level it should be, but most roadblocks have been solved.
 
-To run tests, the server requires working postgres and redis databases. If you have [Docker](https://www.docker.com/) and [Archery](https://github.com/vknabel/Archery) installed, running `archery test-server` will set up the databases, run the actual tests and will then tear them down again.
+To run tests, the server requires working postgres and redis databases. If you have [Docker](https://www.docker.com/) and [Archery](https://github.com/vknabel/Archery) installed, running `archery test-server` will set up the databases, run the actual tests and will then tear them down again. To repeatedly running tests, prepare the databases with `archery test-setup` and thereafter run `cd PufferyServer && swift test`.
 
 If you wish to run the tests in Xcode, run `archery test-setup` to start the database and redis in docker containers and select the `AppTests` target. In case your database credentials or urls differ, set `DATABASE_URL` accordingly `REDIS_URL`.
