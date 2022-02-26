@@ -54,8 +54,8 @@ final class RegistrationTests: PufferyTestCase {
         }
     }
 
-    func testRegistrationConflictForExistingEmail() throws {
-        try asyncTest { [self] in
+    func testRegistrationConflictForExistingEmail() {
+        asyncTest { [self] in
             let existing = try await app.seedUser(email: "hello-puffery@mail.com")
 
             let content = CreateUserRequest(
