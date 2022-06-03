@@ -16,18 +16,17 @@
 #
 version: "3.7"
 
-volumes:
-  - ./private/:/app/private
-
 x-config:
   &server_config
   build: ./
   depends_on:
     - db
     - redis
+  volumes:
+    - ./private/:/app/private
 
-
-x-shared_environment: &server_environment
+x-shared_environment:
+  &server_environment
   LOG_LEVEL: ${LOG_LEVEL:-info}
   DATABASE_URL: "postgres://vapor_username:vapor_password@db/vapor_database"
   REDIS_URL: "redis://redis:6379"
@@ -47,24 +46,33 @@ services:
     environment:
       <<: *server_environment
     command:
-      ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "80", "--auto-migrate"]
+      [
+        "serve",
+        "--env",
+        "production",
+        "--hostname",
+        "0.0.0.0",
+        "--port",
+        "80",
+        "--auto-migrate"
+      ]
 
   puffery-queues:
     <<: *server_config
     restart: always
     environment:
       <<: *server_environment
-    command: ["queues"]
+    command: [ "queues" ]
 
   puffery-queues-scheduled:
     <<: *server_config
     restart: always
     environment:
       <<: *server_environment
-    command: ["queues", "--scheduled"]
+    command: [ "queues", "--scheduled" ]
 
   inbound-middleware:
-    image: docker.pkg.github.com/okomari/puffery-sendgrid-inbound-middleware/puffery-sendgrid-inbound-middleware:latest-nightly-13
+    image: ghcr.io/vknabel/puffery-sendgrid-inbound-middleware/puffery-sendgrid-inbound-middleware:latest-nightly-18
     restart: always
     expose:
       - 3000
@@ -90,4 +98,4 @@ services:
     restart: always
     volumes:
       - ./data/redis:/data
-    command: ["redis-server", "--appendonly", "yes"]
+    command: [ "redis-server", "--appendonly", "yes" ]
