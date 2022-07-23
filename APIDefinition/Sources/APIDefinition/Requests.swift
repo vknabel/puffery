@@ -56,7 +56,6 @@ public struct UpdateSubscriptionRequest: Codable {
     }
 }
 
-
 public struct CreateMessageRequest: Codable {
     public var title: String
     public var body: String
@@ -84,5 +83,15 @@ public struct CreateOrUpdateDeviceRequest: Codable {
 
     public init(isProduction: Bool? = nil) {
         self.isProduction = isProduction
+    }
+}
+
+public struct PaginationRequest: Codable {
+    public var page: Int?
+    public var limit: Int?
+
+    public init(page: Int?, limit: Int?) {
+        self.page = page
+        self.limit = limit
     }
 }

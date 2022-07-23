@@ -77,6 +77,21 @@ extension Endpoint {
         }
     }
 
+    public func query(_ params: [String: String?]) -> Endpoint {
+        update { request in
+            guard let requestUrl = request.url,
+                  var components = URLComponents(string: requestUrl.absoluteString) else {
+                return
+            }
+            var queryItems = components.queryItems ?? []
+            queryItems.append(contentsOf: params.map({ key, value in
+                URLQueryItem(name: key, value: value)
+            }))
+            components.queryItems = queryItems
+            request.url = components.url ?? requestUrl
+        }
+    }
+
     public func ignoreValue() -> Endpoint<Void> {
         map { _ in }
     }

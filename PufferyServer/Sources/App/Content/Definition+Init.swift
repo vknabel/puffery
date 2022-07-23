@@ -1,4 +1,5 @@
 import APIDefinition
+import Fluent
 import Vapor
 
 extension APIDefinition.ConfirmedEmailResponse: Content {}
@@ -19,6 +20,7 @@ extension APIDefinition.SubscribedChannelDeletedResponse: Content {}
 extension APIDefinition.TokenResponse: Content {}
 extension APIDefinition.UpdateProfileRequest: Content {}
 extension APIDefinition.UserResponse: Content {}
+extension APIDefinition.PaginationRequest: Content {}
 
 extension MessageResponse {
     init(_ message: Message, subscription: Subscription) throws {
@@ -42,6 +44,15 @@ extension NotifyMessageResponse {
             body: message.body,
             color: message.color,
             createdAt: message.createdAt ?? Date()
+        )
+    }
+}
+
+extension PaginationRequest {
+    var pageRequest: PageRequest {
+        PageRequest(
+            page: page ?? 1,
+            per: limit ?? 30
         )
     }
 }

@@ -33,9 +33,9 @@ struct Provider: IntentTimelineProvider {
             return
         }
         if let channelId = configuration.channel?.identifier.flatMap(UUID.init(uuidString:)) {
-            messages = Current.api.messages(ofChannel: Channel(id: channelId, title: "", receiveOnlyKey: "", notifyKey: nil, isSilent: true))
+            messages = Current.api.messages(ofChannel: Channel(id: channelId, title: "", receiveOnlyKey: "", notifyKey: nil, isSilent: true), pagination: PaginationRequest(page: 1, limit: 1))
         } else {
-            messages = Current.api.messages()
+            messages = Current.api.messages(pagination: PaginationRequest(page: 1, limit: 1))
         }
         messages
             .map {

@@ -19,12 +19,12 @@ struct MessageRepository {
     let push: PushService
     let db: Database
 
-    func latest(for subscription: Subscription) async throws -> [Message] {
+    func latest(for subscription: Subscription, page: PageRequest) async throws -> [Message] {
         try await Message.query(on: db)
             .filter(\Message.$channel.$id, .equal, subscription.$channel.id)
             .sort(\.$createdAt, .descending)
-            .limit(20)
-            .all()
+            .paginate(page)
+            .items
     }
 
     func count(for subscription: Subscription) async throws -> Int {
@@ -33,24 +33,20 @@ struct MessageRepository {
             .count()
     }
 
-    func latestSubscribed(for subscriptions: [Subscription]) async throws -> [SubscriptionMessage] {
-        let messageResponses = subscriptions.map { subscription in
-            eventLoop.from(task: { try await self.latest(for: subscription) })
-                .map { messages in
-                    messages.map {
-                        SubscriptionMessage(message: $0, subscription: subscription)
-                    }
-                }
+    func latestSubscribed(for subscriptions: [Subscription], page: PageRequest) async throws -> [SubscriptionMessage] {
+        let messages = try await Message.query(on: db)
+            .filter(\Message.$channel.$id ~~ subscriptions.map(\.$channel.id))
+            .sort(\.$createdAt, .descending)
+            .join(Channel.self, on: \Message.$channel.$id == \Channel.$id)
+            .join(Subscription.self, on: \Channel.$id == \Subscription.$channel.$id)
+            .paginate(page)
+
+        return try messages.items.map { message in
+            try SubscriptionMessage(
+                message: message,
+                subscription: message.joined(Subscription.self)
+            )
         }
-        return try await eventLoop.flatten(messageResponses)
-            .map { responses in
-                responses
-                    .flatMap { $0 }
-                    .sorted(by: >)
-                    .prefix(30)
-            }
-            .map(Array.init(_:))
-            .get()
     }
 
     func notify(channel: Channel, title: String, body: String, color: String?) async throws -> Message {

@@ -95,12 +95,12 @@ public let registrationReducer = Reducer<
         state.activity = .inProgress
 
         return environment.loginEffect(state.latestOrLoginEmail)
-            .handleEvents(receiveOutput: { onFinish() })
+            .handleEvents(receiveOutput: onFinish)
             .flatMap { _ in
                 [
                     RegistrationAction.activityFinished,
                     RegistrationAction.showCheckEmails(true),
-                ].publisher.transformError()
+                ].publisher.transformError(to: FetchingError.self)
             }
             .catch { fetchingError in
                 Effect<RegistrationAction, Never>(value: RegistrationAction.activityFailed(fetchingError))

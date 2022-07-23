@@ -10,17 +10,25 @@ import SwiftUI
 
 struct MessageList: View {
     let messages: [Message]
+    let loadNextPage: (() -> Void)?
 
     var body: some View {
         ScrollView(.vertical) {
-            VStack(spacing: 16) {
-                ForEach(messages) { message in
+            LazyVStack(spacing: 16) {
+                ForEach(Array(messages.enumerated()), id: \.element.id) { (index, message) in
                     MessageCell(message: message)
+                        .onAppear {
+                            loadNextPageIfNeeded(index)
+                        }
                 }
-                Text("ChannelDetails.LimitedMessages")
-                    .font(.footnote)
             }
             .padding()
+        }
+    }
+    
+    private func loadNextPageIfNeeded(_ index: Int) {
+        if index == messages.count - 1 {
+            loadNextPage?()
         }
     }
 }
@@ -31,7 +39,7 @@ struct MessageList: View {
             MessageList(messages: [
                 .testflight,
                 .dockerImage,
-            ])
+            ], loadNextPage: nil)
         }
     }
 #endif

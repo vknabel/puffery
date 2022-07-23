@@ -26,8 +26,8 @@ public protocol API {
     func createOrUpdate(device deviceToken: String, contents: CreateOrUpdateDeviceRequest) -> Endpoint<DeviceResponse>
 
     func createChannel(_ createChannel: CreateChannelRequest) -> Endpoint<SubscribedChannelResponse>
-    func messages() -> Endpoint<[Message]>
-    func messages(ofChannel: Channel) -> Endpoint<[MessageResponse]>
+    func messages(pagination: PaginationRequest) -> Endpoint<[Message]>
+    func messages(ofChannel: Channel, pagination: PaginationRequest) -> Endpoint<[MessageResponse]>
     func subscribe(_ createSubscription: CreateSubscriptionRequest) -> Endpoint<SubscribedChannelResponse>
     func update(subscription: SubscribedChannelResponse, updateSubscription: UpdateSubscriptionRequest) -> Endpoint<SubscribedChannelResponse>
     func unsubscribe(_ subscription: SubscribedChannelResponse) -> Endpoint<SubscribedChannelDeletedResponse>

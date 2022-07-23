@@ -40,18 +40,18 @@ struct APNSPushService: PushService {
     let db: Database
 
     func notifyDevices(message: Message) async throws {
-        try await notifiableSubscriptions(message: message)
-            .flatMap { subscriptions in
-                eventLoop.flatten(
-                    subscriptions.map { subscription in
-                        self.notifyDevices(subscription: subscription, message: message)
-                    }
-                )
-            }
-            .always { _ in
-                logger.info("Sent Push Notification", source: "APNSPushService")
-            }
-            .get()
+        // try await notifiableSubscriptions(message: message)
+        //     .flatMap { subscriptions in
+        //         eventLoop.flatten(
+        //             subscriptions.map { subscription in
+        //                 self.notifyDevices(subscription: subscription, message: message)
+        //             }
+        //         )
+        //     }
+        //     .always { _ in
+        //         logger.info("Sent Push Notification", source: "APNSPushService")
+        //     }
+        //     .get()
     }
 
     private func notifyDevices(subscription: Subscription, message: Message) -> EventLoopFuture<Void> {

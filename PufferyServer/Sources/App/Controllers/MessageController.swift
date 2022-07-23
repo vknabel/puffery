@@ -76,13 +76,14 @@ final class MessageController {
 
     func index(_ req: Request) async throws -> [MessageResponse] {
         let user = try req.auth.require(User.self)
+        let pagination = try req.query.decode(PaginationRequest.self)
 
         let subscription = try await Subscription.find(req.parameters.get("subscription_id"), on: req.db)
         guard let subscription = subscription, subscription.$user.id == user.id else {
             throw ApiError(.channelNotFound)
         }
 
-        let messages = try await req.messages.latest(for: subscription)
+        let messages = try await req.messages.latest(for: subscription, page: pagination.pageRequest)
         return try messages.map { message in
             try MessageResponse(message, subscription: subscription)
         }
@@ -90,9 +91,10 @@ final class MessageController {
 
     func messagesForAllChannels(_ req: Request) async throws -> [MessageResponse] {
         let user = try req.auth.require(User.self)
+        let pagination = try req.query.decode(PaginationRequest.self)
 
         let subs = try await req.subscriptions.all(of: user)
-        let messages = try await req.messages.latestSubscribed(for: subs)
+        let messages = try await req.messages.latestSubscribed(for: subs, page: pagination.pageRequest)
         return try messages.map {
             try MessageResponse($0.message, subscription: $0.subscription)
         }

@@ -1,4 +1,4 @@
-struct SubscriptionMessage: Comparable {
+struct SubscriptionMessage: Comparable, Codable {
     var message: Message
     var subscription: Subscription
 

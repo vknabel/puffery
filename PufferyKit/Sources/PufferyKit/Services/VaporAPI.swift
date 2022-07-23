@@ -126,15 +126,17 @@ final class VaporAPI: API {
             .decoding(jsonDecoder.decode)
     }
 
-    func messages() -> Endpoint<[Message]> {
+    func messages(pagination: PaginationRequest) -> Endpoint<[Message]> {
         endpoint()
             .get("api", "v1", "channels", "messages")
+            .query(["page": pagination.page.map(String.init), "limit": pagination.limit.map(String.init)])
             .decoding(jsonDecoder.decode)
     }
 
-    func messages(ofChannel channel: Channel) -> Endpoint<[Message]> {
+    func messages(ofChannel channel: Channel, pagination: PaginationRequest) -> Endpoint<[Message]> {
         endpoint()
             .get("api", "v1", "channels", channel.id.uuidString, "messages")
+            .query(["page": pagination.page.map(String.init), "limit": pagination.limit.map(String.init)])
             .decoding(jsonDecoder.decode)
     }
 

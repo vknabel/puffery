@@ -17,16 +17,43 @@ struct ChannelDetailsPage: View {
     @State var displaysChannelSettings = false
     @State var displaysSendMessage = false
     @State var forceReload = PassthroughSubject<Void, FetchingError>()
+    @State var shouldLoadNextPage = PassthroughSubject<Void, Never>()
 
     var loadMessagesPublisher: AnyPublisher<[Message], FetchingError> {
-        channel.map(api.messages(ofChannel:))?.publisher()
-            ?? api.messages().publisher()
+        let fetcher = { pagination in
+            channel.map({ api.messages(ofChannel: $0, pagination: pagination) })
+            ?? api.messages(pagination: pagination)
+        }
+        return shouldLoadNextPage.prepend(())
+            .scan(0) { page, _ in page + 1 }
+            .map { page in
+                PaginationRequest(page: page, limit: 20)
+            }
+            .flatMap { request in
+                fetcher(request).publisher()
+                    .map({ (page: request.page ?? 1, messages: $0) })
+            }
+            .prefix(while: { result in
+                result.messages.count != 0
+            })
+            .scan([Int: [Message]]()) { baseCache, fetched in
+                var cache = baseCache
+                cache[fetched.page] = fetched.messages
+                return cache
+            }
+            .map({ (cache: [Int: [Message]]) -> [Message] in
+                cache.sorted(by: { $0.key < $1.key })
+                    .flatMap(\.value)
+            })
+            .eraseToAnyPublisher()
     }
+    
+    
 
     var body: some View {
         Fetching(loadMessagesPublisher, forceReload: forceReload, empty: self.noMessages) { messages in
             VStack {
-                MessageList(messages: messages)
+                MessageList(messages: messages, loadNextPage: { shouldLoadNextPage.send(()) })
             }
         }
         .navigationBarTitle(self.channel?.title ?? NSLocalizedString("ChannelDetails.All", comment: "All"))

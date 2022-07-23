@@ -44,7 +44,6 @@
 "CreateChannel.Basic.ReceiveNotifications" = "Receive Notifications";
 
 "ChannelDetails.All" = "All";
-"ChannelDetails.LimitedMessages" = "Only the latest news will be shown.";
 "ChannelDetails.NoMessages.Title" = "No news, yet.";
 "ChannelDetails.NoMessages.HelperNotify" = "Create your own news!";
 "ChannelDetails.NoMessages.HelperReceive" = "Stay tuned for the author!";

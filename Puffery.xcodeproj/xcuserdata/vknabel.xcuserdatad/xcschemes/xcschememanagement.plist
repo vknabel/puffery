@@ -12,12 +12,17 @@
 		<key>Puffery Intents.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Puffery IntentsUI.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
+		</dict>
+		<key>Puffery Local.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>Puffery for macOS.xcscheme_^#shared#^_</key>
 		<dict>
@@ -34,15 +39,45 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>PufferyWidgetExtension Local.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>PufferyWidgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>BA952508245EC51900FFC9E3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>BA952511245EC51900FFC9E3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BA98319E25237236007ACF26</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BAF1545F2444BB4400EDB97B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BAF154782444BB4600EDB97B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BAF154832444BB4600EDB97B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

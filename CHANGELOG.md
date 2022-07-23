@@ -6,6 +6,7 @@
 - Use async/await for Vapor
 - Bump Client dependencies
 - macOS support
+- pagination
 
 ## 1.6.1 (Server only)
 

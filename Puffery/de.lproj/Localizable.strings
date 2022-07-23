@@ -44,7 +44,6 @@
 "CreateChannel.Basic.ReceiveNotifications" = "Neuigkeiten erhalten";
 
 "ChannelDetails.All" = "Alle";
-"ChannelDetails.LimitedMessages" = "Es werden nur die neuesten Neuigkeiten angezeigt.";
 "ChannelDetails.NoMessages.Title" = "Noch keine Neuigkeiten.";
 "ChannelDetails.NoMessages.HelperNotify" = "Erstelle deine eigenen Neuigkeiten!";
 "ChannelDetails.NoMessages.HelperReceive" = "Warte auf eine Neuigkeit vom Autor.";
