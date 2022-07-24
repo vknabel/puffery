@@ -6,7 +6,8 @@
 - Use async/await for Vapor
 - Bump Client dependencies
 - macOS support
-- pagination
+- Pagination support
+- fixed: the send icon was shown for receive only channels
 
 ## 1.6.1 (Server only)
 

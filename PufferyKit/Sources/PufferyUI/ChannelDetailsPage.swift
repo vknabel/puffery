@@ -60,7 +60,7 @@ struct ChannelDetailsPage: View {
         .navigationBarItems(trailing:
             channel.map { channel in
                 HStack {
-                    if #available(iOS 14.0, *) {
+                    if #available(iOS 14.0, *), channel.notifyKey != nil {
                         Button(action: { self.displaysSendMessage.toggle() }, label: {
                             Image(systemName: "paperplane")
                         })
