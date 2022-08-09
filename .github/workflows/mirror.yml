@@ -1,0 +1,22 @@
+name: Mirror
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  soft-serve:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # git cannot push a shallow clone
+
+      - name: Push to Soft-Serve
+        uses: charmbracelet/soft-serve-action@master
+        with:
+          server: knabel.dev
+          ssh-key: ${{ secrets.LITHIA_SSH_KEY }}
