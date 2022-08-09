@@ -19,4 +19,4 @@ jobs:
         uses: charmbracelet/soft-serve-action@master
         with:
           server: knabel.dev
-          ssh-key: ${{ secrets.LITHIA_SSH_KEY }}
+          ssh-key: ${{ secrets.GIT_SSH_KEY }}
