@@ -18,5 +18,6 @@ jobs:
       - name: Push to Soft-Serve
         uses: charmbracelet/soft-serve-action@master
         with:
+          name: puffery
           server: knabel.dev
           ssh-key: ${{ secrets.GIT_SSH_KEY }}
