@@ -1,7 +1,7 @@
 # ================================
 # Build image
 # ================================
-FROM swift:5.5.1 as build
+FROM swift:5.7.0 as build
 WORKDIR /build
 
 # First just resolve dependencies.
@@ -24,7 +24,7 @@ RUN swift build \
 # ================================
 # Run image
 # ================================
-FROM vapor/ubuntu:18.04
+FROM ubuntu:22.10
 WORKDIR /app
 
 # Copy build artifacts

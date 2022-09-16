@@ -14,7 +14,7 @@ let package = Package(
         .package(name: "APIDefinition", path: "../APIDefinition"),
 
         // 💧 A server-side Swift web framework.
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.44.4"),
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.65.2"),
 
         // 🔵 Swift ORM (queries, models, relations, etc) built on Postegres.
         .package(url: "https://github.com/vapor/fluent.git", from: "4.2.0"),

@@ -19,7 +19,7 @@ public func configure(_ app: Application) throws {
 
     try app.queues.use(.redis(url: Environment.get("REDIS_URL") ?? "redis://localhost:6378"))
 
-    if Environment.process.SENDGRID_API_KEY != nil {
+    if Environment.process.SENDGRID_API_KEY != nil, Environment.process.SENDGRID_API_KEY != "" {
         app.sendgrid.initialize() // SENDGRID_API_KEY
     } else {
         app.logger.warning("Missing SENDGRID_API_KEY. Deactivate emails.")

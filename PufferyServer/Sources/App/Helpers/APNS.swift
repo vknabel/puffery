@@ -3,12 +3,15 @@ import Vapor
 
 public func apns(_ app: Application) throws {
     guard let keyID = Environment.get("APNS_KEY_ID"),
+          keyID != "",
           let teamID = Environment.get("APNS_TEAM_ID"),
+          teamID != "",
           let environment = try APNSwiftConfiguration.Environment(key: "APNS_ENVIRONMENT")
     else {
         app.logger.warning("Missing APNS_KEY_ID, APNS_TEAM_ID. Disabling notifications.")
         return
     }
+    app.logger.debug("Using APNS_KEY_ID: \(keyID)")
     let keyPath = Environment.get("APNS_KEY_PATH") ?? "private/AuthKey_\(keyID).p8"
 
     app.apns.configuration = try APNSwiftConfiguration(

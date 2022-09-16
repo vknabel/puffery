@@ -1,0 +1,130 @@
+args: {
+    logLevel: "info"
+    statisticsChannels: ""
+    apnsEnvironment: "production"
+}
+
+profiles: {
+    dev: {
+        logLevel: "debug"
+        apnsEnvironment: "sandbox"
+    }
+}
+
+containers: {
+    server: {
+        build: {
+            context: "."
+        }
+        dependsOn: ["db", "redis"]
+        ports: publish: "80/http"
+        command: [
+            "serve",
+            "--env",
+            "production",
+            "--hostname",
+            "0.0.0.0",
+            "--port",
+            "80",
+            "--auto-migrate"
+        ]
+        env: {
+            LOG_LEVEL: args.logLevel
+            REDIS_URL: "redis://redis:6379"
+            DATABASE_URL: "secret://db-url/template"
+            SENDGRID_API_KEY: "secret://sendgrid/api-key"
+            APNS_KEY_ID: "secret://apns/key-id"
+            APNS_TEAM_ID: "secret://apns/team-id"
+            APNS_ENVIRONMENT: args.apnsEnvironment
+            APNS_KEY_PATH: "/app/private/AuthKey.p8"
+            STATISTICS_CHANNELS: args.statisticsChannels
+        }
+        dirs: {
+            "/app/private/": "secret://apns"
+        }
+    }
+    queues: {
+        build: containers.server.build
+        env: containers.server.env
+        dependsOn: containers.server.dependsOn + ["server"]
+        command: ["queues"]
+        dirs: containers.server.dirs
+    }
+    "queues-scheduled": {
+        build: containers.server.build
+        env: containers.server.env
+        dependsOn: containers.server.dependsOn + ["server"]
+        command: ["queues", "--scheduled"]
+        dirs: containers.server.dirs
+    }
+    db: {
+        image: "postgres:alpine"
+        ports: "5432/tcp"
+        env: {
+            PGDATA: "/var/lib/postgresql/data/pgdata"
+            POSTGRES_DB: "secret://pg-db/token"
+            POSTGRES_USER: "secret://pg-user/token"
+            POSTGRES_PASSWORD: "secret://pg-password/token"
+        }
+        dirs: {
+            "/var/lib/postgresql/data/pgdata": "volume://puffery-db"
+        }
+    }
+    redis: {
+        image: "redis:alpine"
+        ports: "6379/tcp"
+        dirs: {
+            "/data": "volume://puffery-redis"
+        }
+        command: [ "redis-server", "--appendonly", "yes" ]
+    }
+    inbound: {
+        image: "ghcr.io/vknabel/puffery-sendgrid-inbound-middleware/puffery-sendgrid-inbound-middleware:latest-nightly-14"
+        dependsOn: ["server"]
+        ports: publish: "3000/http"
+        env: {
+            PUFFERY_NOTIFY_ADDRESS: "http://server/api/v1/notify-inbound-email"
+        }
+    }
+}
+
+volumes: {
+    "puffery-redis": {
+        accessModes: "readWriteOnce"
+    }
+    "puffery-db": {
+        accessModes: "readWriteOnce"
+    }
+}
+
+secrets: {
+    "pg-user": {
+        type: "token"
+    }
+    "pg-password": {
+        type: "token"
+    }
+    "pg-db": {
+        type: "token"
+    }
+    "db-url": {
+        type: "template"
+        data: {
+            template: "postgres://${secret://pg-user/token}:${secret://pg-password/token}@db:5432/${secret://pg-db/token}"
+        }
+    }
+    sendgrid: {
+        type: "opaque"
+        data: {
+            "api-key": ""
+        }
+    }
+    apns: {
+        type: "opaque"
+        data: {
+            "key-id": ""
+            "team-id": ""
+            "AuthKey.p8": ""
+        }
+    }
+}

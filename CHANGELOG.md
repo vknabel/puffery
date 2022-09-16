@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Bump Vapor dependencies
+- Add Acornfile
+- Use Swift 5.7
+
 ## 1.7.0
 
 - Bump Vapor dependencies

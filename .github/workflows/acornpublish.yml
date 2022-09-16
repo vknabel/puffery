@@ -1,0 +1,33 @@
+# Save into your repo as .github/workflows/on-tag.yaml
+name: On Tag
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+    paths:
+      - ".github/workflows/**"
+      - ".swift-version"
+      - "PufferyServer/**"
+      - "APIDefinition/**"
+      - "Dockerfile"
+
+jobs:
+  publish:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: acorn-io/actions-setup@v1
+      - uses: acorn-io/actions-login@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set Tag
+        run: |
+          echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Build and Push
+        run: |
+          acorn build -t ghcr.io/acorn-${{ github.repository }}:$TAG .
+          acorn push ghcr.io/acorn-${{ github.repository }}:$TAG

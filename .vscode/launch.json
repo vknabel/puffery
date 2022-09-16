@@ -61,7 +61,7 @@
       "type": "lldb",
       "request": "launch",
       "name": "Debug puffery (PufferyServer)",
-      "program": ".build/debug/puffery",
+      "program": "${workspaceFolder:puffery}/PufferyServer/.build/debug/puffery",
       "args": [],
       "cwd": "${workspaceFolder:puffery}/PufferyServer",
       "preLaunchTask": "swift: Build Debug puffery (PufferyServer)"
@@ -70,7 +70,7 @@
       "type": "lldb",
       "request": "launch",
       "name": "Release puffery (PufferyServer)",
-      "program": ".build/release/puffery",
+      "program": "${workspaceFolder:puffery}/PufferyServer/.build/release/puffery",
       "args": [],
       "cwd": "${workspaceFolder:puffery}/PufferyServer",
       "preLaunchTask": "swift: Build Release puffery (PufferyServer)"
