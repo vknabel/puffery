@@ -1,5 +1,4 @@
-# Save into your repo as .github/workflows/on-tag.yaml
-name: On Tag
+name: Acorn Publish
 on:
   push:
     branches:
