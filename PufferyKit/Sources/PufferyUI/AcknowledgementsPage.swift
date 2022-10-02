@@ -15,6 +15,7 @@ struct AcknowledgementsPage: View {
 
     var body: some View {
         List {
+            //Asset Section
             Section(header: Text("Acknowledgements.Assets.SectionHeader")) {
                 ForEach(assets) { asset in
                     NavigationLink(destination: FlaticonAssetPage(asset: asset)) {
@@ -31,6 +32,7 @@ struct AcknowledgementsPage: View {
                 }
             }.show(when: !assets.isEmpty)
 
+            //Code Section
             Section(header: Text("Acknowledgements.Code.SectionHeader")) {
                 ForEach(licenses) { license in
                     NavigationLink(destination: LicensePage(license: license)) {
@@ -38,6 +40,20 @@ struct AcknowledgementsPage: View {
                     }
                 }
             }.show(when: !licenses.isEmpty)
+            
+            
+            //Source Code Section
+            Section {
+                Link(destination: URL(string: "https://github.com/vknabel/puffery#readme")!) {
+                    HStack{
+                        Image(systemName: "link")
+                        Text("Git Repository")
+                    }
+                }
+            } header: {
+                Text("SOURCE CODE")
+            }
+
         }.roundedListStyle()
             .navigationBarTitle("Acknowledgements.Title", displayMode: .inline)
         .record("acknowledgements")
