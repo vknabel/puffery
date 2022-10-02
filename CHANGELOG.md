@@ -5,6 +5,7 @@
 - Bump Vapor dependencies
 - Add Acornfile
 - Use Swift 5.7
+- Link Git Repository #49
 
 ## 1.7.0
 

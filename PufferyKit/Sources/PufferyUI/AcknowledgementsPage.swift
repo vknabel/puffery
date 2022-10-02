@@ -44,14 +44,14 @@ struct AcknowledgementsPage: View {
             
             //Source Code Section
             Section {
-                Link(destination: URL(string: "https://github.com/vknabel/puffery#readme")!) {
+                Link(destination: URL(string: NSLocalizedString("Acknowledgements.SourceCode.RepositoryURL", comment: ""))!) {
                     HStack{
                         Image(systemName: "link")
-                        Text("Git Repository")
+                        Text("Acknowledgements.SourceCode.GitRepository")
                     }
                 }
             } header: {
-                Text("SOURCE CODE")
+                Text("Acknowledgements.SourceCode.SectionHeader")
             }
 
         }.roundedListStyle()

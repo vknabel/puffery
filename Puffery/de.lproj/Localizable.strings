@@ -18,6 +18,10 @@
 
 "Acknowledgements.Code.SectionHeader" = "Code";
 
+"Acknowledgements.SourceCode.SectionHeader" = "Source Code";
+"Acknowledgements.SourceCode.GitRepository" = "Git Repository";
+"Acknowledgements.SourceCode.RepositoryURL" = "https://github.com/vknabel/puffery#readme";
+
 "PrivacyPolicy.Title" = "Datenschutzerklärung";
 "TermsAndConditions.Title" = "AGB";
 
