@@ -20,6 +20,8 @@ Puffery consists of multiple parts working together to bring you your push notif
 Also note: this project currently is Swift Package Manager only.
 You can simply open the `Puffery.xcworkspace` in Xcode or the repository folder in VS Code to get started.
 
+> If you'd prefer contributing to a Go repository, feel free to have a look on our CLI [go-puffery](https://github.com/vknabel/go-puffery).
+
 ## Server
 
 The server is written in Vapor 4, the sources are located at [PufferyServer](./PufferyServer) and loosely conform to most applicable parts of the [Vapor Style Guide](https://docs.vapor.codes/3.0/extras/style-guide/) (written for Vapor 3). Also the [Vapor 4 docs](https://docs.vapor.codes/4.0/) make some recommendations which should be considered.
