@@ -67,7 +67,6 @@ public struct RegistrationPage: View {
                     .buttonStyle(RoundedButtonStyle())
                     .accentColor(Color.gray)
                     .opacity(0.5)
-                    .show(when: !self.keyboard.isActive)
             }
             .padding(.horizontal, 20)
             .multilineTextAlignment(.leading)

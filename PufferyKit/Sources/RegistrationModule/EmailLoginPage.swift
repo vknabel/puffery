@@ -10,7 +10,14 @@ struct EmailLoginPage: View {
     var body: some View {
         WithViewStore(self.store) { viewModel in
             Slide(.constant(0), imageNamed: "Welcome", showsPageControls: false) {
-                EmailTextField(email: Binding(get: { viewModel.latestOrLoginEmail }, set: { viewModel.send(.updateLoginEmail($0)) }), onFinish: onFinish, viewModel: viewModel)
+                EmailTextField(
+                    email: Binding(
+                        get: { viewModel.latestOrLoginEmail },
+                        set: { viewModel.send(.updateLoginEmail($0)) }
+                    ),
+                    onFinish: onFinish,
+                    viewModel: viewModel
+                )
                 
                 Button(action: {
                     ackeeTracker.action(.session, key: .login)

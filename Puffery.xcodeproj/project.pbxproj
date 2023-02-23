@@ -29,7 +29,6 @@
 		BA9831AF25237239007ACF26 /* PufferyWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BA98319F25237236007ACF26 /* PufferyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BA9831BE25237454007ACF26 /* PufferyKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA9831BD25237454007ACF26 /* PufferyKit */; };
 		BA9831C025237454007ACF26 /* PufferyUI in Frameworks */ = {isa = PBXBuildFile; productRef = BA9831BF25237454007ACF26 /* PufferyUI */; };
-		BAC3D8212494D3E300BF33BF /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = BAC3D8202494D3E300BF33BF /* ComposableArchitecture */; };
 		BAD5349B25238D3400F537EE /* ChannelWidgetsIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD5349A25238D3400F537EE /* ChannelWidgetsIntentHandler.swift */; };
 		BAD534A525238DCF00F537EE /* ChannelWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA9831A725237236007ACF26 /* ChannelWidgets.intentdefinition */; };
 		BAF154642444BB4400EDB97B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF154632444BB4400EDB97B /* AppDelegate.swift */; };
@@ -187,7 +186,6 @@
 			files = (
 				BA952530245ED78500FFC9E3 /* PufferyUI in Frameworks */,
 				BA94F0C3244BA4030087924C /* UserNotifications.framework in Frameworks */,
-				BAC3D8212494D3E300BF33BF /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,7 +384,6 @@
 			name = Puffery;
 			packageProductDependencies = (
 				BA95252F245ED78500FFC9E3 /* PufferyUI */,
-				BAC3D8202494D3E300BF33BF /* ComposableArchitecture */,
 			);
 			productName = Puffery;
 			productReference = BAF154602444BB4400EDB97B /* Puffery.app */;
@@ -469,8 +466,6 @@
 			);
 			mainGroup = BAF154572444BB4400EDB97B;
 			packageReferences = (
-				BA96015E2452208C00667BDD /* XCRemoteSwiftPackageReference "keychain-swift" */,
-				BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = BAF154612444BB4400EDB97B /* Products */;
 			projectDirPath = "";
@@ -547,7 +542,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"${SRCROOT}/schema.json\" \"${SRCROOT}/PufferyKit/Sources/AckeeTracker/API.swift\"\n";
+			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://ack.knabel.dev/graphql\"\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"${SRCROOT}/schema.json\" \"${SRCROOT}/PufferyKit/Sources/AckeeTracker/API.swift\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1308,25 +1303,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.2;
-			};
-		};
-		BA96015E2452208C00667BDD /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 19.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
 		BA95252F245ED78500FFC9E3 /* PufferyUI */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1343,11 +1319,6 @@
 		BA9831BF25237454007ACF26 /* PufferyUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PufferyUI;
-		};
-		BAC3D8202494D3E300BF33BF /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BA8E673A2469FB93004F05F3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
 

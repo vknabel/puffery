@@ -1,7 +1,7 @@
 # ================================
 # Build image
 # ================================
-FROM swift:5.7.0 as build
+FROM swift:5.7.2 as build
 WORKDIR /build
 
 # First just resolve dependencies.
