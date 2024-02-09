@@ -1,331 +1,338 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "apns",
-        "repositoryURL": "https://github.com/vapor/apns.git",
-        "state": {
-          "branch": null,
-          "revision": "a9345ebc2296a8efb0be2428bf851cdea805c75b",
-          "version": "2.3.0"
-        }
-      },
-      {
-        "package": "apnswift",
-        "repositoryURL": "https://github.com/kylebrowning/APNSwift.git",
-        "state": {
-          "branch": null,
-          "revision": "b53fd38f5611c6b935427febb43d91b15be26c0d",
-          "version": "3.2.0"
-        }
-      },
-      {
-        "package": "async-http-client",
-        "repositoryURL": "https://github.com/swift-server/async-http-client.git",
-        "state": {
-          "branch": null,
-          "revision": "fc510a39cff61b849bf5cdff17eb2bd6d0777b49",
-          "version": "1.11.5"
-        }
-      },
-      {
-        "package": "async-kit",
-        "repositoryURL": "https://github.com/vapor/async-kit.git",
-        "state": {
-          "branch": null,
-          "revision": "c3329e444bafbb12d1d312af9191be95348a8175",
-          "version": "1.13.0"
-        }
-      },
-      {
-        "package": "console-kit",
-        "repositoryURL": "https://github.com/vapor/console-kit.git",
-        "state": {
-          "branch": null,
-          "revision": "a7e67a1719933318b5ab7eaaed355cde020465b1",
-          "version": "4.5.0"
-        }
-      },
-      {
-        "package": "fluent",
-        "repositoryURL": "https://github.com/vapor/fluent.git",
-        "state": {
-          "branch": null,
-          "revision": "26c446002f03c5ab34b20d86873014ef3d92d0da",
-          "version": "4.5.0"
-        }
-      },
-      {
-        "package": "fluent-kit",
-        "repositoryURL": "https://github.com/vapor/fluent-kit.git",
-        "state": {
-          "branch": null,
-          "revision": "38670d2eefcba27530272946d627ac8d4e45f017",
-          "version": "1.35.1"
-        }
-      },
-      {
-        "package": "fluent-postgres-driver",
-        "repositoryURL": "https://github.com/vapor/fluent-postgres-driver.git",
-        "state": {
-          "branch": null,
-          "revision": "a8b2839ea86c44a35c17f66eb0885f9e5b51a531",
-          "version": "2.4.0"
-        }
-      },
-      {
-        "package": "jwt",
-        "repositoryURL": "https://github.com/vapor/jwt.git",
-        "state": {
-          "branch": null,
-          "revision": "506d238a707c0e7c1d2cf690863902eaf3bc4e94",
-          "version": "4.2.1"
-        }
-      },
-      {
-        "package": "jwt-kit",
-        "repositoryURL": "https://github.com/vapor/jwt-kit.git",
-        "state": {
-          "branch": null,
-          "revision": "87ce13a1df913ba4d51cf00606df7ef24d455571",
-          "version": "4.7.0"
-        }
-      },
-      {
-        "package": "multipart-kit",
-        "repositoryURL": "https://github.com/vapor/multipart-kit.git",
-        "state": {
-          "branch": null,
-          "revision": "0d55c35e788451ee27222783c7d363cb88092fab",
-          "version": "4.5.2"
-        }
-      },
-      {
-        "package": "postgres-kit",
-        "repositoryURL": "https://github.com/vapor/postgres-kit.git",
-        "state": {
-          "branch": null,
-          "revision": "e97975309073e05d408749ccc1356076e4fdc22a",
-          "version": "2.8.2"
-        }
-      },
-      {
-        "package": "postgres-nio",
-        "repositoryURL": "https://github.com/vapor/postgres-nio.git",
-        "state": {
-          "branch": null,
-          "revision": "d648c5b4594ffbc2f6173318f70f5531e05ccb4e",
-          "version": "1.11.0"
-        }
-      },
-      {
-        "package": "queues",
-        "repositoryURL": "https://github.com/vapor/queues.git",
-        "state": {
-          "branch": null,
-          "revision": "c95c891c3c04817eac1165587fb02457c749523a",
-          "version": "1.11.1"
-        }
-      },
-      {
-        "package": "queues-redis-driver",
-        "repositoryURL": "https://github.com/vapor/queues-redis-driver.git",
-        "state": {
-          "branch": null,
-          "revision": "2728477b50e24be82f5bc0bd0722c35656e1c5b1",
-          "version": "1.0.3"
-        }
-      },
-      {
-        "package": "redis",
-        "repositoryURL": "https://github.com/vapor/redis.git",
-        "state": {
-          "branch": null,
-          "revision": "e955843b08064071f465a6b1ca9e04bebad8623a",
-          "version": "4.6.0"
-        }
-      },
-      {
-        "package": "RediStack",
-        "repositoryURL": "https://gitlab.com/mordil/RediStack.git",
-        "state": {
-          "branch": null,
-          "revision": "5458d6476e05d5f1b43097f1bc9b599e936b5f2f",
-          "version": "1.3.0"
-        }
-      },
-      {
-        "package": "routing-kit",
-        "repositoryURL": "https://github.com/vapor/routing-kit.git",
-        "state": {
-          "branch": null,
-          "revision": "ffac7b3a127ce1e85fb232f1a6271164628809ad",
-          "version": "4.6.0"
-        }
-      },
-      {
-        "package": "sendgrid",
-        "repositoryURL": "https://github.com/vapor-community/sendgrid.git",
-        "state": {
-          "branch": null,
-          "revision": "c744bc4398bd8dec50e3a6cfb0cdeca1aa853c07",
-          "version": "4.0.0"
-        }
-      },
-      {
-        "package": "sendgrid-kit",
-        "repositoryURL": "https://github.com/vapor-community/sendgrid-kit.git",
-        "state": {
-          "branch": null,
-          "revision": "2da9f9558c690af07219b1e63f126105b747fec8",
-          "version": "1.1.0"
-        }
-      },
-      {
-        "package": "sql-kit",
-        "repositoryURL": "https://github.com/vapor/sql-kit.git",
-        "state": {
-          "branch": null,
-          "revision": "3c5413a229bc2abc962dab17ea66d25e448ad344",
-          "version": "3.21.0"
-        }
-      },
-      {
-        "package": "swift-algorithms",
-        "repositoryURL": "https://github.com/apple/swift-algorithms.git",
-        "state": {
-          "branch": null,
-          "revision": "b14b7f4c528c942f121c8b860b9410b2bf57825e",
-          "version": "1.0.0"
-        }
-      },
-      {
-        "package": "swift-atomics",
-        "repositoryURL": "https://github.com/apple/swift-atomics.git",
-        "state": {
-          "branch": null,
-          "revision": "919eb1d83e02121cdb434c7bfc1f0c66ef17febe",
-          "version": "1.0.2"
-        }
-      },
-      {
-        "package": "swift-backtrace",
-        "repositoryURL": "https://github.com/swift-server/swift-backtrace.git",
-        "state": {
-          "branch": null,
-          "revision": "f25620d5d05e2f1ba27154b40cafea2b67566956",
-          "version": "1.3.3"
-        }
-      },
-      {
-        "package": "swift-collections",
-        "repositoryURL": "https://github.com/apple/swift-collections.git",
-        "state": {
-          "branch": null,
-          "revision": "f504716c27d2e5d4144fa4794b12129301d17729",
-          "version": "1.0.3"
-        }
-      },
-      {
-        "package": "swift-crypto",
-        "repositoryURL": "https://github.com/apple/swift-crypto.git",
-        "state": {
-          "branch": null,
-          "revision": "d9825fa541df64b1a7b182178d61b9a82730d01f",
-          "version": "2.1.0"
-        }
-      },
-      {
-        "package": "swift-log",
-        "repositoryURL": "https://github.com/apple/swift-log.git",
-        "state": {
-          "branch": null,
-          "revision": "6fe203dc33195667ce1759bf0182975e4653ba1c",
-          "version": "1.4.4"
-        }
-      },
-      {
-        "package": "swift-metrics",
-        "repositoryURL": "https://github.com/apple/swift-metrics.git",
-        "state": {
-          "branch": null,
-          "revision": "53be78637ecd165d1ddedc4e20de69b8f43ec3b7",
-          "version": "2.3.2"
-        }
-      },
-      {
-        "package": "swift-nio",
-        "repositoryURL": "https://github.com/apple/swift-nio.git",
-        "state": {
-          "branch": null,
-          "revision": "b4e0a274f7f34210e97e2f2c50ab02a10b549250",
-          "version": "2.41.1"
-        }
-      },
-      {
-        "package": "swift-nio-extras",
-        "repositoryURL": "https://github.com/apple/swift-nio-extras.git",
-        "state": {
-          "branch": null,
-          "revision": "6c84d247754ad77487a6f0694273b89b83efd056",
-          "version": "1.14.0"
-        }
-      },
-      {
-        "package": "swift-nio-http2",
-        "repositoryURL": "https://github.com/apple/swift-nio-http2.git",
-        "state": {
-          "branch": null,
-          "revision": "f9ab1c94c80d568efd762d2a638f25162691d766",
-          "version": "1.22.1"
-        }
-      },
-      {
-        "package": "swift-nio-ssl",
-        "repositoryURL": "https://github.com/apple/swift-nio-ssl.git",
-        "state": {
-          "branch": null,
-          "revision": "ba7c0d7f82affc518147ea61d240330bf7f7ea9b",
-          "version": "2.22.1"
-        }
-      },
-      {
-        "package": "swift-nio-transport-services",
-        "repositoryURL": "https://github.com/apple/swift-nio-transport-services.git",
-        "state": {
-          "branch": null,
-          "revision": "4e02d9cf35cabfb538c96613272fb027dd0c8692",
-          "version": "1.13.1"
-        }
-      },
-      {
-        "package": "swift-numerics",
-        "repositoryURL": "https://github.com/apple/swift-numerics",
-        "state": {
-          "branch": null,
-          "revision": "0a5bc04095a675662cf24757cc0640aa2204253b",
-          "version": "1.0.2"
-        }
-      },
-      {
-        "package": "vapor",
-        "repositoryURL": "https://github.com/vapor/vapor.git",
-        "state": {
-          "branch": null,
-          "revision": "dda0de537e7906414dccd551e77095be1e34e3da",
-          "version": "4.65.2"
-        }
-      },
-      {
-        "package": "websocket-kit",
-        "repositoryURL": "https://github.com/vapor/websocket-kit.git",
-        "state": {
-          "branch": null,
-          "revision": "2d9d2188a08eef4a869d368daab21b3c08510991",
-          "version": "2.6.1"
-        }
+  "pins" : [
+    {
+      "identity" : "apns",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/apns.git",
+      "state" : {
+        "revision" : "a9345ebc2296a8efb0be2428bf851cdea805c75b",
+        "version" : "2.3.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "apnswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kylebrowning/APNSwift.git",
+      "state" : {
+        "revision" : "b53fd38f5611c6b935427febb43d91b15be26c0d",
+        "version" : "3.2.0"
+      }
+    },
+    {
+      "identity" : "async-http-client",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swift-server/async-http-client.git",
+      "state" : {
+        "revision" : "291438696abdd48d2a83b52465c176efbd94512b",
+        "version" : "1.20.1"
+      }
+    },
+    {
+      "identity" : "async-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/async-kit.git",
+      "state" : {
+        "revision" : "eab9edff78e8ace20bd7cb6e792ab46d54f59ab9",
+        "version" : "1.18.0"
+      }
+    },
+    {
+      "identity" : "console-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/console-kit.git",
+      "state" : {
+        "revision" : "a31f44ebfbd15a2cc0fda705279676773ac16355",
+        "version" : "4.14.1"
+      }
+    },
+    {
+      "identity" : "fluent",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/fluent.git",
+      "state" : {
+        "revision" : "26c446002f03c5ab34b20d86873014ef3d92d0da",
+        "version" : "4.5.0"
+      }
+    },
+    {
+      "identity" : "fluent-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/fluent-kit.git",
+      "state" : {
+        "revision" : "38670d2eefcba27530272946d627ac8d4e45f017",
+        "version" : "1.35.1"
+      }
+    },
+    {
+      "identity" : "fluent-postgres-driver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/fluent-postgres-driver.git",
+      "state" : {
+        "revision" : "a8b2839ea86c44a35c17f66eb0885f9e5b51a531",
+        "version" : "2.4.0"
+      }
+    },
+    {
+      "identity" : "jwt",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/jwt.git",
+      "state" : {
+        "revision" : "506d238a707c0e7c1d2cf690863902eaf3bc4e94",
+        "version" : "4.2.1"
+      }
+    },
+    {
+      "identity" : "jwt-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/jwt-kit.git",
+      "state" : {
+        "revision" : "87ce13a1df913ba4d51cf00606df7ef24d455571",
+        "version" : "4.7.0"
+      }
+    },
+    {
+      "identity" : "multipart-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/multipart-kit.git",
+      "state" : {
+        "revision" : "0d55c35e788451ee27222783c7d363cb88092fab",
+        "version" : "4.5.2"
+      }
+    },
+    {
+      "identity" : "postgres-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/postgres-kit.git",
+      "state" : {
+        "revision" : "e97975309073e05d408749ccc1356076e4fdc22a",
+        "version" : "2.8.2"
+      }
+    },
+    {
+      "identity" : "postgres-nio",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/postgres-nio.git",
+      "state" : {
+        "revision" : "d648c5b4594ffbc2f6173318f70f5531e05ccb4e",
+        "version" : "1.11.0"
+      }
+    },
+    {
+      "identity" : "queues",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/queues.git",
+      "state" : {
+        "revision" : "c95c891c3c04817eac1165587fb02457c749523a",
+        "version" : "1.11.1"
+      }
+    },
+    {
+      "identity" : "queues-redis-driver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/queues-redis-driver.git",
+      "state" : {
+        "revision" : "2728477b50e24be82f5bc0bd0722c35656e1c5b1",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "redis",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/redis.git",
+      "state" : {
+        "revision" : "e955843b08064071f465a6b1ca9e04bebad8623a",
+        "version" : "4.6.0"
+      }
+    },
+    {
+      "identity" : "redistack",
+      "kind" : "remoteSourceControl",
+      "location" : "https://gitlab.com/mordil/RediStack.git",
+      "state" : {
+        "revision" : "5458d6476e05d5f1b43097f1bc9b599e936b5f2f",
+        "version" : "1.3.0"
+      }
+    },
+    {
+      "identity" : "routing-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/routing-kit.git",
+      "state" : {
+        "revision" : "ffac7b3a127ce1e85fb232f1a6271164628809ad",
+        "version" : "4.6.0"
+      }
+    },
+    {
+      "identity" : "sendgrid",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor-community/sendgrid.git",
+      "state" : {
+        "revision" : "c744bc4398bd8dec50e3a6cfb0cdeca1aa853c07",
+        "version" : "4.0.0"
+      }
+    },
+    {
+      "identity" : "sendgrid-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor-community/sendgrid-kit.git",
+      "state" : {
+        "revision" : "2da9f9558c690af07219b1e63f126105b747fec8",
+        "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "sql-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/sql-kit.git",
+      "state" : {
+        "revision" : "3c5413a229bc2abc962dab17ea66d25e448ad344",
+        "version" : "3.21.0"
+      }
+    },
+    {
+      "identity" : "swift-algorithms",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-algorithms.git",
+      "state" : {
+        "revision" : "b14b7f4c528c942f121c8b860b9410b2bf57825e",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swift-atomics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-atomics.git",
+      "state" : {
+        "revision" : "cd142fd2f64be2100422d658e7411e39489da985",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections.git",
+      "state" : {
+        "revision" : "f504716c27d2e5d4144fa4794b12129301d17729",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "swift-crypto",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-crypto.git",
+      "state" : {
+        "revision" : "d9825fa541df64b1a7b182178d61b9a82730d01f",
+        "version" : "2.1.0"
+      }
+    },
+    {
+      "identity" : "swift-http-types",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-http-types",
+      "state" : {
+        "revision" : "12358d55a3824bd5fed310b999ea8cf83a9a1a65",
+        "version" : "1.0.3"
+      }
+    },
+    {
+      "identity" : "swift-log",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-log.git",
+      "state" : {
+        "revision" : "e97a6fcb1ab07462881ac165fdbb37f067e205d5",
+        "version" : "1.5.4"
+      }
+    },
+    {
+      "identity" : "swift-metrics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-metrics.git",
+      "state" : {
+        "revision" : "53be78637ecd165d1ddedc4e20de69b8f43ec3b7",
+        "version" : "2.3.2"
+      }
+    },
+    {
+      "identity" : "swift-nio",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-nio.git",
+      "state" : {
+        "revision" : "635b2589494c97e48c62514bc8b37ced762e0a62",
+        "version" : "2.63.0"
+      }
+    },
+    {
+      "identity" : "swift-nio-extras",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-nio-extras.git",
+      "state" : {
+        "revision" : "363da63c1966405764f380c627409b2f9d9e710b",
+        "version" : "1.21.0"
+      }
+    },
+    {
+      "identity" : "swift-nio-http2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-nio-http2.git",
+      "state" : {
+        "revision" : "0904bf0feb5122b7e5c3f15db7df0eabe623dd87",
+        "version" : "1.30.0"
+      }
+    },
+    {
+      "identity" : "swift-nio-ssl",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-nio-ssl.git",
+      "state" : {
+        "revision" : "7c381eb6083542b124a6c18fae742f55001dc2b5",
+        "version" : "2.26.0"
+      }
+    },
+    {
+      "identity" : "swift-nio-transport-services",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-nio-transport-services.git",
+      "state" : {
+        "revision" : "6cbe0ed2b394f21ab0d46b9f0c50c6be964968ce",
+        "version" : "1.20.1"
+      }
+    },
+    {
+      "identity" : "swift-numerics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-numerics",
+      "state" : {
+        "revision" : "0a5bc04095a675662cf24757cc0640aa2204253b",
+        "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "swift-system",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-system.git",
+      "state" : {
+        "revision" : "025bcb1165deab2e20d4eaba79967ce73013f496",
+        "version" : "1.2.1"
+      }
+    },
+    {
+      "identity" : "vapor",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/vapor.git",
+      "state" : {
+        "revision" : "6db3d917b5ce5024a84eb265ef65691383305d70",
+        "version" : "4.90.0"
+      }
+    },
+    {
+      "identity" : "websocket-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/websocket-kit.git",
+      "state" : {
+        "revision" : "53fe0639a98903858d0196b699720decb42aee7b",
+        "version" : "2.14.0"
+      }
+    }
+  ],
+  "version" : 2
 }
